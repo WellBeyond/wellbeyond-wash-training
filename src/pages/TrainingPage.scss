@@ -1,8 +1,26 @@
 #subject-list {
+
+  .topic-list, .subject-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    img {
+      width: 100%;
+      min-height: 153px;
+      object-fit: cover;
+    }
+  }
+
   .subject-card {
     display: flex;
     flex-direction: column;
     width: 100%
+  }
+
+  .topic-card {
+    box-shadow: none;
+    margin-bottom: 5%;
   }
 
   /* Due to the fact the cards are inside of columns the margins don't overlap
@@ -33,7 +51,7 @@
     padding: 0;
   }
 
-  .subject-card ion-card-content {
+  .subject-card ion-card-content, .topic-card ion-card-content {
     flex: 1 1 auto;
 
     padding: 0;
@@ -48,4 +66,18 @@
 
     padding: 0;
   }
+}
+
+
+.topic-group {
+  width: 45%;
+  margin: auto;
+}
+
+.topic-item {
+  height: auto;
+  padding-bottom: 10%;
+  text-align: center;
+  --border-style: none;
+  font-size: large;
 }
