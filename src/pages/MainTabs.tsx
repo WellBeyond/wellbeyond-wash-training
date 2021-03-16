@@ -9,6 +9,7 @@ import LessonSummaryPage from './LessonSummaryPage';
 import LessonPage from './LessonPage';
 import QuestionPage from './QuestionPage';
 import QuestionPreviewPage from './QuestionPreviewPage';
+import HomePage from './HomePage'
 import {connect} from "../data/connect";
 import {useTranslation} from "react-i18next";
 import i18n from "../i18n";
@@ -57,11 +58,12 @@ const MainTabs: React.FC<MainTabsProps> = ({isLoggedIn, isRegistered, acceptedTe
   return (
       <IonRouterOutlet id='tabs' animated={false}>
         <Switch>
-          <Redirect exact path="/tabs" to="/tabs/training" />
+          <Redirect exact path="/tabs" to="/tabs/home" />
           {/*
           Using the render method prop cuts down the number of renders your components will have due to route changes.
           Use the component prop when your component depends on the RouterComponentProps passed in automatically.
         */}
+          <Route path="/tabs/home" component= {HomePage} exact={true}/>
           <Route path="/tabs/training" component={TrainingPage} exact={true} />
           <Route path="/tabs/subjects/:subjectId" component={SubjectPage} exact={true} />
           <Route path="/tabs/subjects/:subjectId/progress" component={SubjectProgressPage} exact={true} />
