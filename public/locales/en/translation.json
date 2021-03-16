@@ -1,7 +1,8 @@
 {
   "app": {
     "title": "WellBeyond Mobile App",
-    "logo": "WellBeyond Logo"
+    "logo": "WellBeyond Logo",
+    "landing": "HOME SCREEN"
   },
   "menu": {
     "about": "About WellBeyond",
@@ -16,7 +17,16 @@
     "support": "Support",
     "darkMode": "Dark Mode",
     "notificationsOn": "Allow Notifications",
-    "pleaseWait": "Please wait..."
+    "pleaseWait": "Please wait...",
+    "menuText": "Menu"
+  },
+  "pages": {
+    "homePage": {
+      "trainingTopics": "TRAINING TOPICS",
+      "waterSystems": "WATER SYSTEMS",
+      "impactReporting": "IMPACT REPORTING",
+      "miscReporting": "MISC REPORTING"
+    }
   },
   "buttons": {
     "previous": "Prev",
@@ -88,9 +98,9 @@
       "sendPasswordReset": "Send Email"
     },
     "messages": {
-      "loginInfo": "Please login to get started using the WellBeyond Wash Training Application.",
-      "signupInfo": "Please register to get started using the WellBeyond WASH Training Application.",
-      "registerInfo": "Please complete your registration to get started using the WellBeyond WASH Training Application.",
+      "loginInfo": "Please login to get started using the Well Beyond Application.",
+      "signupInfo": "Please register to get started using the Well Beyond Application.",
+      "registerInfo": "Please complete your registration to get started using the Well Beyond Application.",
       "passwordChanged": "Password updated",
       "emailChanged": "Email updated",
       "profileChanged": "Profile updated",
