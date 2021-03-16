@@ -1,0 +1,20 @@
+.page-header {
+  display: flex;
+  .menu-text {
+    color: blue;
+    margin-top: 0.8rem;
+    z-index: 1;
+  }
+  .header-logo {
+    display: flex;
+    margin: 0;
+    justify-content: center;
+    box-shadow: none;
+    width: 100%;
+  }
+  .well-beyond-logo {
+    display: flex;
+    flex-direction: column;
+    font-size: x-large;
+  }
+}
