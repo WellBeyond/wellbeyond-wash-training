@@ -1,17 +1,12 @@
 import React, {useEffect, useRef} from 'react';
 
 import {
-  IonButtons,
   IonContent,
-  IonHeader,
   IonItem,
   IonItemGroup,
   IonList,
   IonLoading,
-  IonMenuButton,
   IonPage,
-  IonTitle,
-  IonToolbar
 } from '@ionic/react';
 
 import './TrainingPage.scss';

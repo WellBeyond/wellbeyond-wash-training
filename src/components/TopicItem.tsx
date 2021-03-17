@@ -1,6 +1,6 @@
 import React from 'react';
 import {Topic} from '../models/Training';
-import {IonCard, IonCardContent, IonCardHeader, IonItem, IonLabel} from '@ionic/react';
+import {IonCard, IonCardContent, IonItem, IonLabel} from '@ionic/react';
 
 
 interface TopicItemProps {

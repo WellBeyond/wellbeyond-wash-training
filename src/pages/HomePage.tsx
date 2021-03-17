@@ -2,10 +2,8 @@ import React, {useEffect, useRef} from 'react';
 
 import {
   IonContent,
-  IonHeader,
   IonItem,
   IonItemGroup,
-  IonMenuButton,
   IonPage,
   IonText,
 } from '@ionic/react';
