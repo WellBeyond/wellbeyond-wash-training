@@ -56,9 +56,9 @@ const TrainingPage: React.FC<TrainingPageProps> = ({ subjects, topics, topic, or
   return (
     <IonPage ref={pageRef} id="subject-list">
       {topic || topics.length < 2 ?
-        <HeaderLogo pageTitle={t('resources.subjects.name_plural')}/> 
+        <HeaderLogo pageTitle={t('resources.subjects.name_plural')} menuText={t('menu.menuText')}/> 
         :
-        <HeaderLogo pageTitle={t('resources.topics.name_plural')}/>
+        <HeaderLogo pageTitle={t('resources.topics.name_plural')} menuText={t('menu.menuText')}/>
       }
 
       <IonContent fullscreen={true}>
@@ -88,7 +88,7 @@ const TrainingPage: React.FC<TrainingPageProps> = ({ subjects, topics, topic, or
             </IonList>
             )
           :
-            (<IonList className="topic-list">
+            (<IonList className="topic-list ion-no-border">
               {topics.map((topic, index: number) => (
                 <IonItemGroup key={`topic-${index}`} className="topic-group">
                     <TopicItem topic={topic} />
