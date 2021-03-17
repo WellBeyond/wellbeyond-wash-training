@@ -1,18 +1,21 @@
-#home-page{
+#home-page, #water-systems-page{
   font-weight: 400;
-  .home-page-items {
+  .page-items {
     display: flex;
     padding: 3%;
     margin: 3%;
     justify-content: space-evenly;
     flex-wrap: wrap;
-    .home-page-item {
+    .page-item {
       width: 45%;
       height: auto;
       padding-bottom: 10%;
       text-align: center;
       --border-style: none;
       font-size: large;
+      .photo {
+        width: 100%;
+      }
     }
   }
 }

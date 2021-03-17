@@ -28,7 +28,12 @@
       "miscReporting": "Misc Reporting"
     },
     "waterSystemsPage": {
-      "pageTitle": "Water Systems"
+      "pageTitle": "Water Systems",
+      "drillLogs": "Drill Logs",
+      "diagnostics": "Diagnostics",
+      "maintenanceChecklists": "Maintenance Checklists",
+      "fieldReporting": "Field Reporting",
+      "submitTicket": "Submit A Ticket"
     }
   },
   "buttons": {
