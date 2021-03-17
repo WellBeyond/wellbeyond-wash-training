@@ -43,27 +43,27 @@ const HomePage: React.FC<HomePageProps> = ({defaultLanguage}) => {
     <IonPage ref={pageRef} id="home-page" >
       <HeaderLogo pageTitle={t('app.landing')} menuText={t('menu.menuText')}/>
       <IonContent fullscreen={true}>
-          <IonItemGroup className="home-page-items" >
-            <IonItem routerLink="/tabs/training" className="home-page-item" detail={false}>
-              <div className="topics-logo">
+          <IonItemGroup className="page-items" >
+            <IonItem routerLink="/tabs/training" className="page-item" detail={false}>
+              <div className="photo">
                 <img src="assets/img/home-page/icon-comm-impact.jpg" alt="Training topics logo" />
                 <IonText className="subsection ion-text-uppercase">{t('pages.homePage.trainingTopics')}</IonText>
               </div>
             </IonItem>
-            <IonItem routerLink="/tabs/maintenance" className="home-page-item" detail={false}>
-              <div className="water-systems-logo">
+            <IonItem routerLink="/tabs/water-systems" className="page-item" detail={false}>
+              <div className="photo">
                 <img src="assets/img/home-page/icon-custom-submissions.jpg" alt="Water systems logo" />
                 <IonText className="subsection ion-text-uppercase">{t('pages.homePage.waterSystems')}</IonText>
               </div>
             </IonItem>
-            <IonItem routerLink="/tabs" className="home-page-item" detail={false}>
-              <div className="impact-reporting-logo">
+            <IonItem routerLink="/tabs" className="page-item" detail={false}>
+              <div className="photo">
                 <img src="assets/img/home-page/icon-maint-checklist.jpg" alt="Impact reporting logo" />
                 <IonText className="subsection ion-text-uppercase">{t('pages.homePage.impactReporting')}</IonText>
               </div>
             </IonItem>
-            <IonItem routerLink="/tabs" className="home-page-item" detail={false}>
-              <div className="misc-reporting-logo">
+            <IonItem routerLink="/tabs" className="page-item" detail={false}>
+              <div className="photo">
                 <img src="assets/img/home-page/icon-site-observation.jpg" alt="Misc reporting logo" />
                 <IonText className="subsection ion-text-uppercase">{t('pages.homePage.miscReporting')}</IonText>
               </div>
