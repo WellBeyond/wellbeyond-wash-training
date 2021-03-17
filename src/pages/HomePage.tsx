@@ -53,19 +53,19 @@ const HomePage: React.FC<HomePageProps> = ({defaultLanguage}) => {
             <IonItem routerLink="/tabs/maintenance" className="home-page-item" detail={false}>
               <div className="water-systems-logo">
                 <img src="assets/img/home-page/icon-custom-submissions.jpg" alt="Water systems logo" />
-                <IonText className="subsection">{t('pages.homePage.waterSystems')}</IonText>
+                <IonText className="subsection ion-text-uppercase">{t('pages.homePage.waterSystems')}</IonText>
               </div>
             </IonItem>
             <IonItem routerLink="/tabs" className="home-page-item" detail={false}>
               <div className="impact-reporting-logo">
                 <img src="assets/img/home-page/icon-maint-checklist.jpg" alt="Impact reporting logo" />
-                <IonText className="subsection">{t('pages.homePage.impactReporting')}</IonText>
+                <IonText className="subsection ion-text-uppercase">{t('pages.homePage.impactReporting')}</IonText>
               </div>
             </IonItem>
             <IonItem routerLink="/tabs" className="home-page-item" detail={false}>
               <div className="misc-reporting-logo">
                 <img src="assets/img/home-page/icon-site-observation.jpg" alt="Misc reporting logo" />
-                <IonText className="subsection">{t('pages.homePage.miscReporting')}</IonText>
+                <IonText className="subsection ion-text-uppercase">{t('pages.homePage.miscReporting')}</IonText>
               </div>
             </IonItem>
           </IonItemGroup>
