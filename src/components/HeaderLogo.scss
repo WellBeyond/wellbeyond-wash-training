@@ -11,10 +11,13 @@
     justify-content: center;
     box-shadow: none;
     width: 100%;
+    font-weight: 500;
+    color: black;
   }
   .well-beyond-logo {
     display: flex;
     flex-direction: column;
+    align-items: center;
     font-size: large;
     img {
       width: 70%;
