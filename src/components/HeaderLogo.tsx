@@ -12,7 +12,7 @@ const HeaderLogo = (properties: any) => {
         <IonCardContent>
           <div className="well-beyond-logo">
             <img src="assets/img/appicon.png" alt="WellBeyond logo" />
-            <IonText>{ properties.pageTitle }</IonText>
+            <IonText className="ion-text-uppercase">{ properties.pageTitle }</IonText>
           </div>
         </IonCardContent>
       </IonCard>

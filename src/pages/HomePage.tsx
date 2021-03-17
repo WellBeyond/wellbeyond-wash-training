@@ -47,7 +47,7 @@ const HomePage: React.FC<HomePageProps> = ({defaultLanguage}) => {
             <IonItem routerLink="/tabs/training" className="home-page-item" detail={false}>
               <div className="topics-logo">
                 <img src="assets/img/home-page/icon-comm-impact.jpg" alt="Training topics logo" />
-                <IonText className="subsection">{t('pages.homePage.trainingTopics')}</IonText>
+                <IonText className="subsection ion-text-uppercase">{t('pages.homePage.trainingTopics')}</IonText>
               </div>
             </IonItem>
             <IonItem routerLink="/tabs/maintenance" className="home-page-item" detail={false}>
