@@ -15,6 +15,9 @@
   .well-beyond-logo {
     display: flex;
     flex-direction: column;
-    font-size: x-large;
+    font-size: large;
+    img {
+      width: 70%;
+    }
   }
 }
