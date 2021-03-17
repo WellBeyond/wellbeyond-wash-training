@@ -2,7 +2,7 @@
   "app": {
     "title": "WellBeyond Mobile App",
     "logo": "WellBeyond Logo",
-    "landing": "HOME SCREEN"
+    "landing": "Home Screen"
   },
   "menu": {
     "about": "About WellBeyond",
@@ -22,10 +22,13 @@
   },
   "pages": {
     "homePage": {
-      "trainingTopics": "TRAINING TOPICS",
-      "waterSystems": "WATER SYSTEMS",
-      "impactReporting": "IMPACT REPORTING",
-      "miscReporting": "MISC REPORTING"
+      "trainingTopics": "Training Topics",
+      "waterSystems": "Water Systems",
+      "impactReporting": "Impact Reporting",
+      "miscReporting": "Misc Reporting"
+    },
+    "waterSystemsPage": {
+      "pageTitle": "Water Systems"
     }
   },
   "buttons": {
