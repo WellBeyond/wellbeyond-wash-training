@@ -62,7 +62,7 @@ const HomePage: React.FC<HomePageProps> = ({defaultLanguage}) => {
                 <IonText className="subsection ion-text-uppercase">{t('pages.homePage.impactReporting')}</IonText>
               </div>
             </IonItem>
-            <IonItem routerLink="#" className="page-item" detail={false}>
+            <IonItem routerLink="/tabs/reports" className="page-item" detail={false}>
               <div className="photo">
                 <img src="assets/img/home-page/icon-site-observation.jpg" alt="Misc reporting logo" />
                 <IonText className="subsection ion-text-uppercase">{t('pages.homePage.miscReporting')}</IonText>

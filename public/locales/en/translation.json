@@ -40,6 +40,11 @@
       "instructions": "Instructions",
       "surveys": "Surveys (PDF)",
       "surveyInput": "Survey Input"
+    },
+    "miscReportingPage": {
+      "pageTitle": "Reporting",
+      "schoolAttendance": "School Attendance",
+      "cropYield": "Crop Yield"
     }
   },
   "buttons": {
