@@ -19,6 +19,7 @@ import SystemPage from "./SystemPage";
 import MaintenanceLogPage from "./MaintenanceLogPage";
 import MaintenanceStepPage from "./MaintenanceStepPage";
 import WaterSystemsPage from './WaterSystemsPage';
+import ImpactReportingPage from './ImpactReportingPage';
 
 interface OwnProps {}
 
@@ -76,6 +77,7 @@ const MainTabs: React.FC<MainTabsProps> = ({isLoggedIn, isRegistered, acceptedTe
           <Route path="/tabs/subjects/:subjectId/lessons/:lessonId/question/:questionId" component={QuestionPage} exact={true} />
           <Route path="/tabs/subjects/:subjectId/lessons/:lessonId/preview/:questionId" component={QuestionPreviewPage} exact={true} />
           <Route path="/tabs/water-systems" component={WaterSystemsPage} exact={true} />
+          <Route path="/tabs/impact-reports" component={ImpactReportingPage} exact={true} />
           <Route path="/tabs/maintenance" component={MaintenancePage} exact={true} />
           <Route path="/tabs/systems/:systemId" component={SystemPage} exact={true} />
           <Route path="/tabs/maintenance/:mlId" component={MaintenanceLogPage} exact={true} />
