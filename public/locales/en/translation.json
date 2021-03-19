@@ -34,6 +34,12 @@
       "maintenanceChecklists": "Maintenance Checklists",
       "fieldReporting": "Field Reporting",
       "submitTicket": "Submit A Ticket"
+    },
+    "impactReportingPage" : {
+      "pageTitle": "Impact Reporting",
+      "instructions": "Instructions",
+      "surveys": "Surveys (PDF)",
+      "surveyInput": "Survey Input"
     }
   },
   "buttons": {
