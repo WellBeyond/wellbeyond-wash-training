@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {
   IonButton,
   IonButtons,
@@ -18,6 +18,8 @@ import {
   IonTextarea,
   IonTitle,
   IonToolbar,
+  IonProgressBar,
+  IonToast,
 } from '@ionic/react';
 import {useTranslation} from "react-i18next";
 import i18n from "../i18n";
@@ -26,7 +28,11 @@ import {connect} from "../data/connect";
 import * as selectors from "../data/selectors";
 import {UserProfile} from "../models/User";
 import {updateMaintenanceLog} from '../data/maintenance/maintenance.actions';
+import PhotoUpload from "./PhotoUpload";
 
+import useFirebaseUpload from "../hooks/useFirebaseUpload";
+import { CameraResultType } from "@capacitor/core";
+import { useCamera, availableFeatures } from "@capacitor-community/react-hooks/camera";
 
 interface OwnProps {
   showModal: boolean,
@@ -53,9 +59,15 @@ const StepCompleteModal: React.FC<StepCompleteProps> = ({showModal, closeModal, 
   const [formSubmitted, setFormSubmitted] = useState(false);
 
   useEffect(() =>{
-    setFormValues({status: step.status, information: step.information});
+    setFormValues({status: step.status, information: step.information, photo: step.photo});
     setFormErrors({status: null});
   }, [showModal, step]);
+
+  const setPhoto = useCallback((url:string) => {
+    let values = {...formValues};
+    values.photo = url;
+    setFormValues(values);
+  }, [formValues]);
 
   const handleChange = (field:string, value:string) => {
     let errors = {...formErrors};
@@ -65,6 +77,7 @@ const StepCompleteModal: React.FC<StepCompleteProps> = ({showModal, closeModal, 
     setFormErrors(errors);
     setFormValues(values);
   }
+
   const validate = ():boolean => {
     let errors = {...formErrors};
     errors.status = formValues.status ? null : 'maintenance.errors.statusRequired';
@@ -81,11 +94,11 @@ const StepCompleteModal: React.FC<StepCompleteProps> = ({showModal, closeModal, 
       step.completedByName = profile && profile.name;
       step.status = formValues.status;
       step.information = formValues.information;
+      step.photo = formValues.photo;
       updateMaintenanceLog(log);
       closeModal(true);
     }
   };
-
 
   return (
     <IonModal isOpen={showModal}>
@@ -102,46 +115,49 @@ const StepCompleteModal: React.FC<StepCompleteProps> = ({showModal, closeModal, 
       <IonContent>
 
         <form noValidate onSubmit={save}>
-        <IonList>
-          <IonListHeader>
-            <h3>{t('maintenance.logs.status.choose')}</h3>
-          </IonListHeader>
-          <IonRadioGroup value={formValues.status} onIonChange={e => handleChange('status', e.detail.value)}>
+          <IonList>
+            <IonListHeader>
+              <h3>{t('maintenance.logs.status.choose')}</h3>
+            </IonListHeader>
+            <IonRadioGroup value={formValues.status} onIonChange={e => handleChange('status', e.detail.value)}>
+              <IonItem>
+                <IonLabel>{t('maintenance.logs.status.completed')}</IonLabel>
+                <IonRadio slot="start" value="completed" />
+              </IonItem>
+              <IonItem>
+                <IonLabel>{t('maintenance.logs.status.incomplete')}</IonLabel>
+                <IonRadio slot="start" value="incomplete" />
+              </IonItem>
+              <IonItem>
+                <IonLabel>{t('maintenance.logs.status.repairs')}</IonLabel>
+                <IonRadio slot="start" value="repairs-needed" />
+              </IonItem>
+            </IonRadioGroup>
+
+            {formSubmitted && formErrors.status && <IonText color="danger">
+              <p className="ion-padding-start">
+                {t(formErrors.status)}
+              </p>
+            </IonText>}
+          </IonList>
+
+          <IonList lines="none">
+            {/* eslint-disable-next-line react/jsx-no-undef */}
+            <IonItemDivider>{t('maintenance.logs.infolabel')}</IonItemDivider>
             <IonItem>
-              <IonLabel>{t('maintenance.logs.status.completed')}</IonLabel>
-              <IonRadio slot="start" value="completed" />
+              <IonTextarea disabled={formValues.status !== 'incomplete' && formValues.status !== 'repairs-needed'}
+                           value={formValues.information} onIonChange={e => handleChange('information', e.detail.value!)}></IonTextarea>
             </IonItem>
             <IonItem>
-              <IonLabel>{t('maintenance.logs.status.incomplete')}</IonLabel>
-              <IonRadio slot="start" value="incomplete" />
+              <PhotoUpload setPhotoUrl={setPhoto} photoUrl={formValues.photo} ></PhotoUpload>
             </IonItem>
-            <IonItem>
-              <IonLabel>{t('maintenance.logs.status.repairs')}</IonLabel>
-              <IonRadio slot="start" value="repairs-needed" />
-            </IonItem>
-          </IonRadioGroup>
+          </IonList>
 
-          {formSubmitted && formErrors.status && <IonText color="danger">
-            <p className="ion-padding-start">
-              {t(formErrors.status)}
-            </p>
-          </IonText>}
-        </IonList>
-
-        <IonList>
-          {/* eslint-disable-next-line react/jsx-no-undef */}
-          <IonItemDivider>{t('maintenance.logs.infolabel')}</IonItemDivider>
-          <IonItem>
-            <IonTextarea disabled={formValues.status !== 'incomplete' && formValues.status !== 'repairs-needed'}
-                         value={formValues.information} onIonChange={e => handleChange('information', e.detail.value!)}></IonTextarea>
-          </IonItem>
-        </IonList>
-
-        <IonRow>
-          <IonCol>
-            <IonButton type="submit" expand="block">{t('maintenance.buttons.completeStep')}</IonButton>
-          </IonCol>
-        </IonRow>
+          <IonRow>
+            <IonCol>
+              <IonButton type="submit" expand="block">{t('maintenance.buttons.completeStep')}</IonButton>
+            </IonCol>
+          </IonRow>
         </form>
       </IonContent>
     </IonModal>

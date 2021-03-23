@@ -4,12 +4,12 @@
   "private": true,
   "dependencies": {
     "@capacitor-community/fcm": "^1.0.8",
+    "@capacitor-community/react-hooks": "0.0.11",
     "@capacitor/android": "^2.4.6",
     "@capacitor/core": "^2.4.6",
     "@capacitor/ios": "^2.4.6",
     "@ionic/pwa-elements": "^3.0.2",
     "@ionic/react": "^5.5.4",
-    "@ionic/react-hooks": "0.0.8",
     "@ionic/react-router": "^5.5.4",
     "@types/jest": "24.0.18",
     "@types/node": "12.7.5",

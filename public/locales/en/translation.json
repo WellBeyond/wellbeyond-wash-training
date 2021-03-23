@@ -254,7 +254,7 @@
       "notStarted": "Not yet started",
       "completed": "Completed successfully",
       "incomplete": "Unable to complete",
-      "repairs-needed": "Repairs needed"
+      "repairsNeeded": "Repairs needed"
     },
     "logs": {
       "listhdr": "Recent Maintenance",
