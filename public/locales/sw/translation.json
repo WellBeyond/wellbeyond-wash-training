@@ -253,7 +253,8 @@
       "notStarted": "Bado haijaanza",
       "completed": "Imekamilika kwa mafanikio",
       "incomplete": "Imeshindwa kukamilisha",
-      "repairs-needed": "Matengenezo yanahitajika"
+      "repairs-needed": "Matengenezo yanahitajika",
+      "repairsNeeded": "Matengenezo yanahitajika"
     },
     "logs": {
       "listhdr": "Matengenezo ya Hivi Karibuni",
@@ -277,7 +278,8 @@
       "incompleteCount": "Imeshindwa kukamilisha hatua {{count}}",
       "incompleteCount_plural": "Imeshindwa kukamilisha hatua {{count}}",
       "repairsCount": "Matengenezo yanahitajika kwa hatua {{count}}",
-      "repairsCount_plural": "Matengenezo yanahitajika kwa hatua {{count}}"
+      "repairsCount_plural": "Matengenezo yanahitajika kwa hatua {{count}}",
+      "infoplaceholder": "Ingiza maandishi hapa"
     },
     "buttons": {
       "archive": "Tupa",
@@ -286,7 +288,10 @@
       "start": "Anza Orodha mpya",
       "startChecklist": "Anzisha orodha ya ukaguzi",
       "complete": "Sasisha Hali",
-      "completeStep": "Imefanywa na hatua hii"
+      "completeStep": "Okoa",
+      "addPhoto": "Ongeza Picha",
+      "updatePhoto": "BADILISHA picha",
+      "deletePhoto": "Ondoa Picha"
     },
     "messages": {
       "step-completed": "Hatua iliyotiwa alama kuwa imekamilika kwa mafanikio",

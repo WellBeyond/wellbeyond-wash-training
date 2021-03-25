@@ -263,6 +263,7 @@
       "noactive": "Nothing currently in-progress",
       "norecent": "No maintenance has been completed yet",
       "infolabel": "If unable to complete or repairs needed, please provide additional information below:",
+      "infoplaceholder": "Enter text here",
       "status": {
         "choose": "What is the status of this step?",
         "completed": "Completed",
@@ -284,10 +285,13 @@
       "archive": "Discard",
       "resume": "Resume",
       "review": "Review",
+      "addPhoto": "Add Photo",
+      "updatePhoto": "Change Photo",
+      "deletePhoto": "Remove Photo",
       "start": "Start A New Checklist",
       "startChecklist": "Start the Checklist",
       "complete": "Update Status",
-      "completeStep": "Done with this step"
+      "completeStep": "Save"
     },
     "messages": {
       "step-completed": "Step marked as completed successfully",

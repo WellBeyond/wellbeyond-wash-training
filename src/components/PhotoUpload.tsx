@@ -1,11 +1,13 @@
-import React, {Fragment, useEffect, useState} from 'react';
-import {IonButton, IonProgressBar, IonToast,} from '@ionic/react';
+import React, {Fragment, useEffect} from 'react';
+import {IonButton, IonCol, IonGrid, IonIcon, IonProgressBar, IonRow, IonToast,} from '@ionic/react';
 import {useTranslation} from "react-i18next";
 import i18n from "../i18n";
 
 import useFirebaseUpload from "../hooks/useFirebaseUpload";
 import {CameraResultType} from "@capacitor/core";
 import {availableFeatures, useCamera} from "@capacitor-community/react-hooks/camera";
+
+import {cameraOutline, closeCircleOutline} from 'ionicons/icons';
 
 import './PhotoUpload.css'
 
@@ -50,31 +52,60 @@ const PhotoUpload: React.FC<PhotoUploadProps> = ({photoUrl, setPhotoUrl}) => {
     }
   };
 
+  const removePhoto = () => {
+    setPhotoUrl('');
+  }
+
   return (
     <Fragment>
-
-      {/* get loading information from hook and display progress if necessary */}
-      {isLoading && progress && (
-        <IonProgressBar value={progress.value}></IonProgressBar>
-      )}
-      {availableFeatures.getPhoto ? null : (
-        <input
-          type="file"
-          onChange={(e: any) => {
-            setFileData(e.target.files[0]);
-          }}
-        />
-      )}
-      {photoUrl && (
-        <img
-          src={photoUrl}
-          alt={"Photo"}
-        />
-      )}
-
-      <div>
-        <IonButton onClick={handleTakePhoto}>Take Photo</IonButton>
-      </div>
+      <IonGrid fixed>
+        <IonRow>
+          <IonCol size="12">
+            {/* get loading information from hook and display progress if necessary */}
+            {isLoading && progress && (
+              <IonProgressBar value={progress.value}></IonProgressBar>
+            )}
+            {availableFeatures.getPhoto ? null : (
+              <input
+                type="file"
+                onChange={(e: any) => {
+                  setFileData(e.target.files[0]);
+                }}
+              />
+            )}
+            {photoUrl && (
+              <img
+                src={photoUrl} alt={""}
+              />
+            )}
+          </IonCol>
+        </IonRow>
+        {photoUrl ?
+          <IonRow>
+            <IonCol size="6">
+              <IonButton onClick={handleTakePhoto} size={"small"} color={"success"}>
+                <IonIcon  icon={cameraOutline} slot={"start"}/>
+                {t('maintenance.buttons.updatePhoto')}
+              </IonButton>
+            </IonCol>
+            <IonCol size="6">
+              <IonButton onClick={removePhoto} size={"small"} color={"danger"}>
+                <IonIcon  icon={closeCircleOutline} slot={"start"}/>
+                {t('maintenance.buttons.deletePhoto')}
+              </IonButton>
+            </IonCol>
+          </IonRow>
+         :
+          <IonRow>
+            <IonCol size="12">
+              <IonButton onClick={handleTakePhoto} size={"small"} color={"success"}>
+                <IonIcon  icon={cameraOutline} slot={"start"}/>
+                {t('maintenance.buttons.addPhoto')}
+              </IonButton>
+            </IonCol>
+          </IonRow>
+        }
+      </IonGrid>
       {/* <!-- the toast for errors --> */}
       <IonToast
         isOpen={isError ? true : false}

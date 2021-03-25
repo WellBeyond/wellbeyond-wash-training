@@ -253,7 +253,8 @@
       "notStarted": "अभी तक शुरू नहीं किया",
       "completed": "सफलतापुर्वक पूरा",
       "incomplete": "पूर्ण करने में असमर्थ",
-      "repairs-needed": "मरम्मत की जरूरत है"
+      "repairs-needed": "मरम्मत की जरूरत है",
+      "repairsNeeded": "मरम्मत की जरूरत है"
     },
     "logs": {
       "listhdr": "हाल ही में रखरखाव",
@@ -277,7 +278,8 @@
       "incompleteCount": "{{count}} चरण पूरा करने में असमर्थ",
       "incompleteCount_plural": "{{count}} चरण पूरे करने में असमर्थ",
       "repairsCount": "{{count}} चरण के लिए आवश्यक मरम्मत",
-      "repairsCount_plural": "{{count}} चरणों के लिए आवश्यक मरम्मत"
+      "repairsCount_plural": "{{count}} चरणों के लिए आवश्यक मरम्मत",
+      "infoplaceholder": "पाठ यहां लिखें"
     },
     "buttons": {
       "archive": "रद्द करें",
@@ -286,7 +288,10 @@
       "start": "एक नई चेकलिस्ट शुरू करें",
       "startChecklist": "चेकलिस्ट शुरू करें",
       "complete": "नवीनतम स्थिति",
-      "completeStep": "इस कदम के साथ किया"
+      "completeStep": "सहेजें",
+      "addPhoto": "फ़ोटो जोड़ें",
+      "updatePhoto": "छवि बदलो",
+      "deletePhoto": "फोटो निकालें"
     },
     "messages": {
       "step-completed": "चरण को सफलतापूर्वक पूरा किया गया",

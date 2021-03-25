@@ -115,8 +115,19 @@ const MaintenanceStepPage: React.FC<SystemProps> = ({ log, checklistStep,  maint
             {maintenanceStep.status &&
             <IonGrid>
               <IonRow>
-                <IonCol>
+                <IonCol size="12">
                   <MaintenanceStepStatus maintenanceStep={maintenanceStep} step={checklistStep}></MaintenanceStepStatus>
+                </IonCol>
+              </IonRow>
+              <IonRow>
+                <IonCol size="12">
+                  {maintenanceStep.information && <div>{maintenanceStep.information}</div>}
+                </IonCol>
+              </IonRow>
+              <IonRow>
+                <IonCol size="12">
+                  {maintenanceStep.photo &&
+                  <img src={maintenanceStep.photo} alt={""}/>}
                 </IonCol>
               </IonRow>
             </IonGrid>}

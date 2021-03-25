@@ -1,5 +1,5 @@
 import React from 'react';
-import {IonButtons, IonContent, IonHeader, IonList, IonPage, IonTitle, IonToolbar} from '@ionic/react';
+import {IonButtons, IonContent, IonHeader, IonList, IonListHeader, IonPage, IonTitle, IonToolbar} from '@ionic/react';
 import StepItem from '../components/StepItem';
 import {Checklist, MaintenanceLog, System} from '../models/Maintenance';
 import {connect} from '../data/connect';
@@ -40,6 +40,21 @@ const MaintenanceLogPage: React.FC<SystemProps> = ({ system, checklist,  log}) =
 
       { system && checklist && log ?
         <IonContent fullscreen={true}>
+          <IonListHeader>
+            <h2>
+              {checklist ? checklist.name : 'maintenance.checklist.notfound'}
+              <br/>
+              <small>
+                {log.completed ?
+                  <div>{t('maintenance.logs.completedOn', {date: log.completed})}</div>
+                  :
+                  log.started ?
+                    <div>{t('maintenance.logs.startedOn', {date: log.started})}</div>
+                  : undefined
+                }
+              </small>
+            </h2>
+          </IonListHeader>
           <IonList>
             {checklist.steps && checklist.steps.map((step, idx) => (
                 <StepItem

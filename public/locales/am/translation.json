@@ -253,7 +253,8 @@
       "notStarted": "ገና አልተጀመረም",
       "completed": "በተሳካ ሁኔታ ተጠናቅቋል",
       "incomplete": "ማጠናቀቅ አልተቻለም",
-      "repairs-needed": "ጥገናዎች ያስፈልጋሉ"
+      "repairs-needed": "ጥገናዎች ያስፈልጋሉ",
+      "repairsNeeded": "ጥገናዎች ያስፈልጋሉ"
     },
     "logs": {
       "listhdr": "የቅርብ ጊዜ ጥገና",
@@ -277,7 +278,8 @@
       "incompleteCount": "{{count}} ደረጃን ማጠናቀቅ አልተቻለም",
       "incompleteCount_plural": "{{count}} ደረጃዎችን ማጠናቀቅ አልተቻለም",
       "repairsCount": "ለ {{count}} ደረጃ ጥገና ያስፈልጋል",
-      "repairsCount_plural": "ለ {{count}} ደረጃዎች ጥገና ያስፈልጋል"
+      "repairsCount_plural": "ለ {{count}} ደረጃዎች ጥገና ያስፈልጋል",
+      "infoplaceholder": "ጽሑፍ እዚህ ያስገቡ"
     },
     "buttons": {
       "archive": "አስወግድ",
@@ -286,7 +288,10 @@
       "start": "አዲስ የማረጋገጫ ዝርዝርን ይጀምሩ",
       "startChecklist": "የማረጋገጫ ዝርዝሩን ይጀምሩ",
       "complete": "ሁኔታን ያዘምኑ",
-      "completeStep": "በዚህ ደረጃ ተከናውኗል"
+      "completeStep": "አስቀምጥ",
+      "addPhoto": "ፎቶ አክል",
+      "updatePhoto": "ፎቶ ቀይር",
+      "deletePhoto": "ፎቶን ያስወግዱ"
     },
     "messages": {
       "step-completed": "ደረጃው በተሳካ ሁኔታ እንደተጠናቀቀ ምልክት ተደርጎበታል",

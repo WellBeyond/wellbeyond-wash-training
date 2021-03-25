@@ -4,7 +4,7 @@ import App from './App';
 // import i18n (needs to be bundled ;))
 import './i18n';
 import * as serviceWorker from './serviceWorker';
-import { defineCustomElements } from '@ionic/pwa-elements/loader';
+import {defineCustomElements} from '@ionic/pwa-elements/loader';
 
 ReactDOM.render(<App />, document.getElementById('root'));
 serviceWorker.register();

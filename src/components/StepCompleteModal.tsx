@@ -2,9 +2,10 @@ import React, {useCallback, useEffect, useState} from 'react';
 import {
   IonButton,
   IonButtons,
-  IonCol,
   IonContent,
+  IonFab,
   IonHeader,
+  IonIcon,
   IonItem,
   IonItemDivider,
   IonLabel,
@@ -13,13 +14,10 @@ import {
   IonModal,
   IonRadio,
   IonRadioGroup,
-  IonRow,
   IonText,
   IonTextarea,
   IonTitle,
   IonToolbar,
-  IonProgressBar,
-  IonToast,
 } from '@ionic/react';
 import {useTranslation} from "react-i18next";
 import i18n from "../i18n";
@@ -29,10 +27,7 @@ import * as selectors from "../data/selectors";
 import {UserProfile} from "../models/User";
 import {updateMaintenanceLog} from '../data/maintenance/maintenance.actions';
 import PhotoUpload from "./PhotoUpload";
-
-import useFirebaseUpload from "../hooks/useFirebaseUpload";
-import { CameraResultType } from "@capacitor/core";
-import { useCamera, availableFeatures } from "@capacitor-community/react-hooks/camera";
+import {saveOutline} from 'ionicons/icons';
 
 interface OwnProps {
   showModal: boolean,
@@ -93,8 +88,8 @@ const StepCompleteModal: React.FC<StepCompleteProps> = ({showModal, closeModal, 
       step.completedById = profile && profile.id;
       step.completedByName = profile && profile.name;
       step.status = formValues.status;
-      step.information = formValues.information;
-      step.photo = formValues.photo;
+      step.information = formValues.information || '';
+      step.photo = formValues.photo || '';
       updateMaintenanceLog(log);
       closeModal(true);
     }
@@ -145,19 +140,27 @@ const StepCompleteModal: React.FC<StepCompleteProps> = ({showModal, closeModal, 
             {/* eslint-disable-next-line react/jsx-no-undef */}
             <IonItemDivider>{t('maintenance.logs.infolabel')}</IonItemDivider>
             <IonItem>
-              <IonTextarea disabled={formValues.status !== 'incomplete' && formValues.status !== 'repairs-needed'}
-                           value={formValues.information} onIonChange={e => handleChange('information', e.detail.value!)}></IonTextarea>
+              <IonTextarea // disabled={formValues.status !== 'incomplete' && formValues.status !== 'repairs-needed'}
+                           value={formValues.information}
+                           debounce={2000}
+                           inputmode="text"
+                           autoGrow={true}
+                           rows={5}
+                           placeholder={t('maintenance.logs.infoplaceholder')}
+                           onIonChange={e => handleChange('information', e.detail.value!)}></IonTextarea>
             </IonItem>
             <IonItem>
               <PhotoUpload setPhotoUrl={setPhoto} photoUrl={formValues.photo} ></PhotoUpload>
             </IonItem>
           </IonList>
 
-          <IonRow>
-            <IonCol>
-              <IonButton type="submit" expand="block">{t('maintenance.buttons.completeStep')}</IonButton>
-            </IonCol>
-          </IonRow>
+          {/*-- fab placed to the bottom end --*/}
+          <IonFab vertical="bottom" horizontal="end" slot="fixed">
+            <IonButton type={"submit"}>
+              <IonIcon icon={saveOutline} slot={"start"}/>
+              {t('maintenance.buttons.completeStep')}
+            </IonButton>
+          </IonFab>
         </form>
       </IonContent>
     </IonModal>
