@@ -3,7 +3,6 @@ import {
   IonButton,
   IonButtons,
   IonContent,
-  IonFab,
   IonHeader,
   IonIcon,
   IonItem,
@@ -17,7 +16,7 @@ import {
   IonText,
   IonTextarea,
   IonTitle,
-  IonToolbar,
+  IonToolbar, IonFooter,
 } from '@ionic/react';
 import {useTranslation} from "react-i18next";
 import i18n from "../i18n";
@@ -107,9 +106,7 @@ const StepCompleteModal: React.FC<StepCompleteProps> = ({showModal, closeModal, 
           <IonTitle>{t('maintenance.modals.stepComplete', {step: step.name})}</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent>
-
-        <form noValidate onSubmit={save}>
+        <IonContent>
           <IonList>
             <IonListHeader>
               <h3>{t('maintenance.logs.status.choose')}</h3>
@@ -141,28 +138,26 @@ const StepCompleteModal: React.FC<StepCompleteProps> = ({showModal, closeModal, 
             <IonItemDivider>{t('maintenance.logs.infolabel')}</IonItemDivider>
             <IonItem>
               <IonTextarea // disabled={formValues.status !== 'incomplete' && formValues.status !== 'repairs-needed'}
-                           value={formValues.information}
-                           debounce={2000}
-                           inputmode="text"
-                           autoGrow={true}
-                           rows={5}
-                           placeholder={t('maintenance.logs.infoplaceholder')}
-                           onIonChange={e => handleChange('information', e.detail.value!)}></IonTextarea>
+                value={formValues.information}
+                debounce={2000}
+                inputmode="text"
+                rows={5}
+                placeholder={t('maintenance.logs.infoplaceholder')}
+                onIonChange={e => handleChange('information', e.detail.value!)}></IonTextarea>
             </IonItem>
             <IonItem>
               <PhotoUpload setPhotoUrl={setPhoto} photoUrl={formValues.photo} ></PhotoUpload>
             </IonItem>
           </IonList>
-
-          {/*-- fab placed to the bottom end --*/}
-          <IonFab vertical="bottom" horizontal="end" slot="fixed">
-            <IonButton type={"submit"}>
-              <IonIcon icon={saveOutline} slot={"start"}/>
+        </IonContent>
+        <IonFooter>
+          <IonToolbar>
+            <IonButton type="submit" expand="block" color={"primary"} onClick={save}>
+              <IonIcon icon={saveOutline} slot={"primary"}/>
               {t('maintenance.buttons.completeStep')}
             </IonButton>
-          </IonFab>
-        </form>
-      </IonContent>
+          </IonToolbar>
+        </IonFooter>
     </IonModal>
   );
 };

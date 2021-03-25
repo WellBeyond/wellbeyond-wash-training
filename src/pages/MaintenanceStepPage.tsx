@@ -6,7 +6,7 @@ import {
   IonCardContent,
   IonCardHeader,
   IonCol,
-  IonContent,
+  IonContent, IonFooter,
   IonGrid,
   IonHeader,
   IonPage,
@@ -133,15 +133,14 @@ const MaintenanceStepPage: React.FC<SystemProps> = ({ log, checklistStep,  maint
             </IonGrid>}
           </IonCardContent>
         </IonCard>
-        <IonRow>
-          <IonCol>
-            <IonButton expand="block" fill="solid" color="primary" onClick={openModal}>{t('maintenance.buttons.complete')}</IonButton>
-          </IonCol>
-        </IonRow>
         <StepCompleteModal showModal={showModal} closeModal={closeModal} log={log} step={maintenanceStep} />
       </IonContent>
-
       }
+      <IonFooter>
+        <IonToolbar>
+          <IonButton expand="block" fill="solid" color="primary" onClick={openModal}>{t('maintenance.buttons.complete')}</IonButton>
+        </IonToolbar>
+      </IonFooter>
     </IonPage>
   );
 };

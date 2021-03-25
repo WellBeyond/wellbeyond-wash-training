@@ -2,8 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {
   IonButton,
   IonButtons,
-  IonCol,
-  IonContent,
+  IonContent, IonFooter,
   IonHeader,
   IonItem,
   IonItemDivider,
@@ -13,7 +12,6 @@ import {
   IonListHeader,
   IonMenuButton,
   IonPage,
-  IonRow,
   IonTitle,
   IonToolbar,
 } from '@ionic/react';
@@ -139,14 +137,15 @@ const SystemPage: React.FC<SystemProps> = ({ system,  maintenanceLogs,  checklis
                 </IonItem> : undefined
             }
           </IonList>
-          <IonRow>
-            <IonCol>
-              <IonButton expand="block" fill="solid" color="primary" onClick={openModal}>{t('maintenance.buttons.start')}</IonButton>
-            </IonCol>
-          </IonRow>
           <StartMaintenanceModal showModal={showModal} closeModal={closeModal} system={system} checklists={checklists} />
         </IonContent>
       }
+
+      <IonFooter>
+        <IonToolbar>
+          <IonButton expand="block" fill="solid" color="primary" onClick={openModal}>{t('maintenance.buttons.start')}</IonButton>
+        </IonToolbar>
+      </IonFooter>
     </IonPage>
   );
 };
