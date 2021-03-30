@@ -253,7 +253,8 @@
       "notStarted": "Pas encore commencé",
       "completed": "Complété avec succès",
       "incomplete": "Impossible de terminer",
-      "repairs-needed": "Réparations nécessaires"
+      "repairs-needed": "Réparations nécessaires",
+      "repairsNeeded": "Réparations nécessaires"
     },
     "logs": {
       "listhdr": "Maintenance récente",
@@ -277,7 +278,8 @@
       "incompleteCount": "Impossible de terminer {{count}} étape",
       "incompleteCount_plural": "Impossible d&#39;effectuer {{count}} étape",
       "repairsCount": "Réparations requises pour {{count}} étape",
-      "repairsCount_plural": "Réparations requises pour {{count}} étapes"
+      "repairsCount_plural": "Réparations requises pour {{count}} étapes",
+      "infoplaceholder": "Entrez le texte ici"
     },
     "buttons": {
       "archive": "Jeter",
@@ -286,7 +288,10 @@
       "start": "Commencer une nouvelle liste de contrôle",
       "startChecklist": "Commencer la liste de contrôle",
       "complete": "État de mise à jour",
-      "completeStep": "Terminé cette étape"
+      "completeStep": "Sauvegarder",
+      "addPhoto": "Ajouter une photo",
+      "updatePhoto": "Changer la photo",
+      "deletePhoto": "Retirer photo"
     },
     "messages": {
       "step-completed": "Étape marquée comme terminée avec succès",

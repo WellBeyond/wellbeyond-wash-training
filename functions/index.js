@@ -3,10 +3,24 @@ const functions = require('firebase-functions');
 const crypto = require('crypto');
 const async = require('async');
 const Intercom = require('intercom-client');
+const {Translate} = require('@google-cloud/translate').v2;
 const INTERCOM_ACCESS_TOKEN = functions.config().intercom.access_token;
 const INTERCOM_SECRET_KEY = functions.config().intercom.secret_key;
 const admin = require('firebase-admin');
 admin.initializeApp();
+
+exports.translateText = functions.https.onCall((data, context) => {
+// Creates a client
+  const translate = new Translate();
+  return translate.translate(data.text, data.target).then(translations => {
+    if (Array.isArray(translations) && translations.length) {
+      return translations[0];
+    }
+  }).catch((err) => {
+    console.log(err);
+    return '';
+  });
+});
 
 /**
  *

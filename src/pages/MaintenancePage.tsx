@@ -4,14 +4,14 @@ import {
   IonButtons,
   IonContent,
   IonHeader,
+  IonItem,
   IonItemGroup,
   IonList,
   IonLoading,
   IonMenuButton,
   IonPage,
   IonTitle,
-  IonToolbar,
-  IonItem
+  IonToolbar
 } from '@ionic/react';
 
 import './MaintenancePage.scss'

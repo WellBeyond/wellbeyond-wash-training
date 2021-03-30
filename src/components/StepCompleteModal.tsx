@@ -1,10 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {
   IonButton,
   IonButtons,
-  IonCol,
   IonContent,
   IonHeader,
+  IonIcon,
   IonItem,
   IonItemDivider,
   IonLabel,
@@ -13,11 +13,10 @@ import {
   IonModal,
   IonRadio,
   IonRadioGroup,
-  IonRow,
   IonText,
   IonTextarea,
   IonTitle,
-  IonToolbar,
+  IonToolbar, IonFooter,
 } from '@ionic/react';
 import {useTranslation} from "react-i18next";
 import i18n from "../i18n";
@@ -26,7 +25,8 @@ import {connect} from "../data/connect";
 import * as selectors from "../data/selectors";
 import {UserProfile} from "../models/User";
 import {updateMaintenanceLog} from '../data/maintenance/maintenance.actions';
-
+import PhotoUpload from "./PhotoUpload";
+import {saveOutline} from 'ionicons/icons';
 
 interface OwnProps {
   showModal: boolean,
@@ -53,9 +53,15 @@ const StepCompleteModal: React.FC<StepCompleteProps> = ({showModal, closeModal, 
   const [formSubmitted, setFormSubmitted] = useState(false);
 
   useEffect(() =>{
-    setFormValues({status: step.status, information: step.information});
+    setFormValues({status: step.status, information: step.information, photo: step.photo});
     setFormErrors({status: null});
   }, [showModal, step]);
+
+  const setPhoto = useCallback((url:string) => {
+    let values = {...formValues};
+    values.photo = url;
+    setFormValues(values);
+  }, [formValues]);
 
   const handleChange = (field:string, value:string) => {
     let errors = {...formErrors};
@@ -65,6 +71,7 @@ const StepCompleteModal: React.FC<StepCompleteProps> = ({showModal, closeModal, 
     setFormErrors(errors);
     setFormValues(values);
   }
+
   const validate = ():boolean => {
     let errors = {...formErrors};
     errors.status = formValues.status ? null : 'maintenance.errors.statusRequired';
@@ -80,12 +87,12 @@ const StepCompleteModal: React.FC<StepCompleteProps> = ({showModal, closeModal, 
       step.completedById = profile && profile.id;
       step.completedByName = profile && profile.name;
       step.status = formValues.status;
-      step.information = formValues.information;
+      step.information = formValues.information || '';
+      step.photo = formValues.photo || '';
       updateMaintenanceLog(log);
       closeModal(true);
     }
   };
-
 
   return (
     <IonModal isOpen={showModal}>
@@ -99,51 +106,58 @@ const StepCompleteModal: React.FC<StepCompleteProps> = ({showModal, closeModal, 
           <IonTitle>{t('maintenance.modals.stepComplete', {step: step.name})}</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent>
+        <IonContent>
+          <IonList>
+            <IonListHeader>
+              <h3>{t('maintenance.logs.status.choose')}</h3>
+            </IonListHeader>
+            <IonRadioGroup value={formValues.status} onIonChange={e => handleChange('status', e.detail.value)}>
+              <IonItem>
+                <IonLabel>{t('maintenance.logs.status.completed')}</IonLabel>
+                <IonRadio slot="start" value="completed" />
+              </IonItem>
+              <IonItem>
+                <IonLabel>{t('maintenance.logs.status.incomplete')}</IonLabel>
+                <IonRadio slot="start" value="incomplete" />
+              </IonItem>
+              <IonItem>
+                <IonLabel>{t('maintenance.logs.status.repairs')}</IonLabel>
+                <IonRadio slot="start" value="repairs-needed" />
+              </IonItem>
+            </IonRadioGroup>
 
-        <form noValidate onSubmit={save}>
-        <IonList>
-          <IonListHeader>
-            <h3>{t('maintenance.logs.status.choose')}</h3>
-          </IonListHeader>
-          <IonRadioGroup value={formValues.status} onIonChange={e => handleChange('status', e.detail.value)}>
+            {formSubmitted && formErrors.status && <IonText color="danger">
+              <p className="ion-padding-start">
+                {t(formErrors.status)}
+              </p>
+            </IonText>}
+          </IonList>
+
+          <IonList lines="none">
+            {/* eslint-disable-next-line react/jsx-no-undef */}
+            <IonItemDivider>{t('maintenance.logs.infolabel')}</IonItemDivider>
             <IonItem>
-              <IonLabel>{t('maintenance.logs.status.completed')}</IonLabel>
-              <IonRadio slot="start" value="completed" />
+              <IonTextarea // disabled={formValues.status !== 'incomplete' && formValues.status !== 'repairs-needed'}
+                value={formValues.information}
+                debounce={2000}
+                inputmode="text"
+                rows={5}
+                placeholder={t('maintenance.logs.infoplaceholder')}
+                onIonChange={e => handleChange('information', e.detail.value!)}></IonTextarea>
             </IonItem>
             <IonItem>
-              <IonLabel>{t('maintenance.logs.status.incomplete')}</IonLabel>
-              <IonRadio slot="start" value="incomplete" />
+              <PhotoUpload setPhotoUrl={setPhoto} photoUrl={formValues.photo} ></PhotoUpload>
             </IonItem>
-            <IonItem>
-              <IonLabel>{t('maintenance.logs.status.repairs')}</IonLabel>
-              <IonRadio slot="start" value="repairs-needed" />
-            </IonItem>
-          </IonRadioGroup>
-
-          {formSubmitted && formErrors.status && <IonText color="danger">
-            <p className="ion-padding-start">
-              {t(formErrors.status)}
-            </p>
-          </IonText>}
-        </IonList>
-
-        <IonList>
-          {/* eslint-disable-next-line react/jsx-no-undef */}
-          <IonItemDivider>{t('maintenance.logs.infolabel')}</IonItemDivider>
-          <IonItem>
-            <IonTextarea disabled={formValues.status !== 'incomplete' && formValues.status !== 'repairs-needed'}
-                         value={formValues.information} onIonChange={e => handleChange('information', e.detail.value!)}></IonTextarea>
-          </IonItem>
-        </IonList>
-
-        <IonRow>
-          <IonCol>
-            <IonButton type="submit" expand="block">{t('maintenance.buttons.completeStep')}</IonButton>
-          </IonCol>
-        </IonRow>
-        </form>
-      </IonContent>
+          </IonList>
+        </IonContent>
+        <IonFooter>
+          <IonToolbar>
+            <IonButton type="submit" expand="block" color={"primary"} onClick={save}>
+              <IonIcon icon={saveOutline} slot={"primary"}/>
+              {t('maintenance.buttons.completeStep')}
+            </IonButton>
+          </IonToolbar>
+        </IonFooter>
     </IonModal>
   );
 };

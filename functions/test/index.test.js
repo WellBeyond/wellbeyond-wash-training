@@ -12,6 +12,11 @@ const test = require('firebase-functions-test')({
   vapidPublicKey: "BHJpZ40fEe6ot9o-q-bTDdgZD92afqZzCAKmV5O4s453LWeHq0-Hp1PwcpRFBH4zWPb7QKogwcramZvsGwPNQ-M"
 }, '../.firebase/wellbeyond-development-private-key.json');
 
+
+const expect = require('chai').expect;
+// eslint-disable-next-line no-unused-vars
+const should = require('chai').should();
+
 // Mock functions config values
 test.mockConfig({ intercom: {
   api_key: process.env.INTERCOM_API_KEY || 'intercomapikey',
@@ -30,6 +35,8 @@ const getUserIdHash = test.wrap(myFunctions.getUserIdHash);
 const getIntercomTags = test.wrap(myFunctions.getIntercomTags);
 const getIntercomCompanies = test.wrap(myFunctions.getIntercomCompanies);
 const updateIntercomUser = test.wrap(myFunctions.updateIntercomUser);
+const translateText = test.wrap(myFunctions.translateText);
+
 
 describe('updateIntercomUser', () => {
   it('should update Intercom', (done) => {
@@ -83,5 +90,20 @@ describe('getUserIdHash', () => {
 
     hash = getUserIdHash({platform: 'web'}, {auth: {token: {uid: 'TMxgSoJjHWgNi9FzmoWM8oiC2JN2', email: 'daveh957@gmail.com'}}});
     console.log('getUserIdHash = ' + hash.hash);
+  });
+});
+
+describe('translateText', () => {
+  it('should translate a string from English to French', (done) => {
+    translateText({text: 'Hello', target: 'fr'}).then((result) => {
+      expect(result, 'Bonjour');
+      done();
+    });
+  });
+  it('should translate an array from English to French', (done) => {
+    translateText({text: ['Hello', 'Goodbye'], target: 'fr'}).then((result) => {
+      expect(result, ['Bonjour', 'Au revoir']);
+      done();
+    });
   });
 });

@@ -253,7 +253,8 @@
       "notStarted": "Wali lama bilaabin",
       "completed": "Si guul leh loo dhammeeyay",
       "incomplete": "Aan dhameystiri karin",
-      "repairs-needed": "Dayactir ayaa loo baahan yahay"
+      "repairs-needed": "Dayactir ayaa loo baahan yahay",
+      "repairsNeeded": "Dayactir ayaa loo baahan yahay"
     },
     "logs": {
       "listhdr": "Dayactirka Dhawaan",
@@ -277,7 +278,8 @@
       "incompleteCount": "Lama dhammaystiri karo {{count}} tallaabo",
       "incompleteCount_plural": "Aan dhameystiri karin {{count}} talaabo",
       "repairsCount": "Dayactirka looga baahan yahay {{count}} tallaabo",
-      "repairsCount_plural": "Dayactirka looga baahan yahay {{count}} talaabo"
+      "repairsCount_plural": "Dayactirka looga baahan yahay {{count}} talaabo",
+      "infoplaceholder": "Ku qor qoraalka halkan"
     },
     "buttons": {
       "archive": "Tuur",
@@ -286,7 +288,10 @@
       "start": "Bilow Liis Cusub",
       "startChecklist": "Bilow liiska hubinta",
       "complete": "Cusboonaysiinta Xaaladda",
-      "completeStep": "Lagu dhammeeyay tallaabadan"
+      "completeStep": "Keydso",
+      "addPhoto": "Ku dar Sawir",
+      "updatePhoto": "Beddel Sawirka",
+      "deletePhoto": "Ka saar Sawirka"
     },
     "messages": {
       "step-completed": "Tallaabada lagu calaamadeeyay inay u dhammaatay si guul leh",

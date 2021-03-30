@@ -31,7 +31,7 @@ const MaintenanceLogStatus: React.FC<MaintenanceLogStatusProps> = ({ log}) => {
   }, [log]);
 
   return (
-          <p>
+          <div>
             {log.completed ?
               <div>{t('maintenance.logs.completedOn', {date: log.completed})}</div>
               :
@@ -43,7 +43,7 @@ const MaintenanceLogStatus: React.FC<MaintenanceLogStatusProps> = ({ log}) => {
             {completeCount ? <div><IonText color="success">{t('maintenance.logs.completedCount', {count: completeCount})}</IonText></div> : undefined}
             {incompleteCount ? <div><IonText color="warning">{t('maintenance.logs.incompleteCount', {count: incompleteCount})}</IonText></div> : undefined}
             {repairsCount ? <div><IonText color="danger">{t('maintenance.logs.repairsCount', {count: repairsCount})}</IonText></div> : undefined}
-          </p>
+          </div>
   );
 };
 

@@ -20,6 +20,7 @@ export interface MaintenanceStep {
   completedById?: string;
   completedByName?: string;
   information?: string;
+  photo?: string;
 }
 
 export interface SystemType {
