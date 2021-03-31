@@ -8,6 +8,7 @@
     "about": "About WellBeyond",
     "privacy": "Privacy Policy",
     "terms": "Terms Of Service",
+    "home": "Home",
     "training": "Training",
     "maintenance": "Maintenance",
     "account": "Account",
@@ -17,8 +18,7 @@
     "support": "Support",
     "darkMode": "Dark Mode",
     "notificationsOn": "Allow Notifications",
-    "pleaseWait": "Please wait...",
-    "menuText": "Menu"
+    "pleaseWait": "Please wait..."
   },
   "pages": {
     "homePage": {

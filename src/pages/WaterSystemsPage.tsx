@@ -8,6 +8,9 @@ import {
   IonText,
 } from '@ionic/react';
 
+import {Image} from 'cloudinary-react';
+import {cloudinaryConfig} from "../CLOUDINARY_CONFIG";
+
 import './HomePage.scss';
 import HeaderLogo from '../components/HeaderLogo';
 
@@ -41,36 +44,66 @@ const WaterSystemsPage: React.FC<WaterSystemsPageProps> = ({defaultLanguage}) =>
 
   return(
     <IonPage ref={pageRef} id="water-systems-page" >
-      <HeaderLogo pageTitle={t('pages.waterSystemsPage.pageTitle')} menuText={t('menu.menuText')}/>
+      <HeaderLogo pageTitle={t('pages.waterSystemsPage.pageTitle')} />
       <IonContent fullscreen={true}>
           <IonItemGroup className="page-items" >
             <IonItem routerLink="#" className="page-item" detail={false}>
               <div className="photo">
-                <img src="assets/img/home-page/icon-maint-oversight.jpg" alt="Maintenance oversight logo" />
+                <Image
+                  cloudName={cloudinaryConfig.cloudName}
+                  publicId="images/home-page/icon-maint-oversight"
+                  alt="Maintenance oversight logo"
+                  quality="auto"
+                  width="auto"
+                  crop="scale" />
                 <IonText className="subsection ion-text-uppercase">{t('pages.waterSystemsPage.drillLogs')}</IonText>
               </div>
             </IonItem>
             <IonItem routerLink="#" className="page-item" detail={false}>
               <div className="photo">
-                <img src="assets/img/home-page/icon-system-diag.jpg" alt="Water systems logo" />
+                <Image
+                  cloudName={cloudinaryConfig.cloudName}
+                  publicId="images/home-page/icon-system-diag"
+                  alt="Water systems logo"
+                  quality="auto"
+                  width="auto"
+                  crop="scale" />
                 <IonText className="subsection ion-text-uppercase">{t('pages.waterSystemsPage.diagnostics')}</IonText>
               </div>
             </IonItem>
             <IonItem routerLink="/tabs/maintenance" className="page-item" detail={false}>
               <div className="photo">
-                <img src="assets/img/home-page/icon-maint-checklist.jpg" alt="Maintenance checklist logo" />
+                <Image
+                  cloudName={cloudinaryConfig.cloudName}
+                  publicId="images/home-page/icon-maint-checklist"
+                  alt="Maintenance checklist logo"
+                  quality="auto"
+                  width="auto"
+                  crop="scale" />
                 <IonText className="subsection ion-text-uppercase">{t('pages.waterSystemsPage.maintenanceChecklists')}</IonText>
               </div>
             </IonItem>
             <IonItem routerLink="#" className="page-item" detail={false}>
               <div className="photo">
-                <img src="assets/img/home-page/icon-site-observation.jpg" alt="Misc reporting logo" />
+                <Image
+                  cloudName={cloudinaryConfig.cloudName}
+                  publicId="images/home-page/icon-site-observation"
+                  alt="Misc reporting logo"
+                  quality="auto"
+                  width="auto"
+                  crop="scale" />
                 <IonText className="subsection ion-text-uppercase">{t('pages.waterSystemsPage.fieldReporting')}</IonText>
               </div>
             </IonItem>
             <IonItem routerLink="#" className="page-item" detail={false}>
               <div className="photo">
-                <img src="assets/img/home-page/icon-maint-req.jpg" alt="Misc reporting logo" />
+                <Image
+                  cloudName={cloudinaryConfig.cloudName}
+                  publicId="images/home-page/icon-maint-req"
+                  alt="Misc reporting logo"
+                  quality="auto"
+                  width="auto"
+                  crop="scale" />
                 <IonText className="subsection ion-text-uppercase">{t('pages.waterSystemsPage.submitTicket')}</IonText>
               </div>
             </IonItem>
