@@ -1,0 +1,30 @@
+.page-header {
+  display: flex;
+  .menu-text {
+    color: blue;
+    margin-top: 0.8rem;
+    z-index: 1;
+  }
+  .header-logo {
+    display: flex;
+    margin: 0;
+    justify-content: center;
+    box-shadow: none;
+    width: 100%;
+    font-weight: 500;
+    color: black;
+  }
+  .header-logo ion-card-content {
+    padding: 5%;
+    margin-right: 18%;
+  }
+  .well-beyond-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: large;
+    img {
+      width: 70%;
+    }
+  }
+}

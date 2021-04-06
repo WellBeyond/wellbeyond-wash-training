@@ -1,7 +1,8 @@
 {
   "app": {
     "title": "WellBe ሞባይል መተግበሪያ",
-    "logo": "WellBe Logo Logo"
+    "logo": "WellBe Logo Logo",
+    "landing": "የመነሻ ማያ ገጽ"
   },
   "menu": {
     "about": "ስለ WellBeyond",
@@ -16,7 +17,8 @@
     "darkMode": "ጨለማ ሁኔታ",
     "pleaseWait": "እባክህ በትእግስት ተጠባበቅ...",
     "notificationsOn": "ማስታወቂያዎች ፍቀድ",
-    "maintenance": "ጥገና"
+    "maintenance": "ጥገና",
+    "home": "ቤት"
   },
   "buttons": {
     "previous": "የቀድሞው",
@@ -303,6 +305,33 @@
     "errors": {
       "checklistRequired": "እባክዎ ለ {{System}} ከዝርዝሩ ዝርዝር ውስጥ አንዱን ይምረጡ",
       "statusRequired": "እባክዎን ለዚህ እርምጃ ሁኔታ ያቅርቡ"
+    }
+  },
+  "pages": {
+    "homePage": {
+      "trainingTopics": "የሥልጠና ርዕሶች",
+      "waterSystems": "የውሃ ስርዓቶች",
+      "impactReporting": "ተጽዕኖ ሪፖርት ማድረግ",
+      "miscReporting": "Misc ሪፖርት ማድረግ"
+    },
+    "waterSystemsPage": {
+      "pageTitle": "የውሃ ስርዓቶች",
+      "drillLogs": "የመቆፈሪያ ምዝግብ ማስታወሻዎች",
+      "diagnostics": "ዲያግኖስቲክስ",
+      "maintenanceChecklists": "የጥገና ማረጋገጫ ዝርዝሮች",
+      "fieldReporting": "የመስክ ሪፖርት ማድረግ",
+      "submitTicket": "ቲኬት ያስገቡ"
+    },
+    "impactReportingPage": {
+      "pageTitle": "ተጽዕኖ ሪፖርት ማድረግ",
+      "instructions": "መመሪያዎች",
+      "surveys": "የዳሰሳ ጥናቶች (ፒዲኤፍ)",
+      "surveyInput": "የዳሰሳ ጥናት ግብዓት"
+    },
+    "miscReportingPage": {
+      "pageTitle": "ሪፖርት ማድረግ",
+      "schoolAttendance": "የትምህርት ቤት መገኘት",
+      "cropYield": "የሰብል ምርት"
     }
   }
 }

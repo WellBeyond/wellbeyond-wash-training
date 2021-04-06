@@ -16,6 +16,7 @@ import {
   bookOutline,
   constructOutline,
   fingerPrint,
+  homeOutline,
   globe,
   logIn,
   logOut,
@@ -37,6 +38,7 @@ const routes = {
   appPages: [
     { title: 'menu.training', path: '/tabs/training', icon: bookOutline },
     { title: 'menu.maintenance', path: '/tabs/maintenance', icon: constructOutline },
+    { title: 'menu.home', path: '/tabs/home', icon: homeOutline}
   ],
   loggedInPages: [
     { title: 'menu.account', path: '/account', icon: person },

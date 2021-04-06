@@ -1,7 +1,8 @@
 {
   "app": {
     "title": "WellBeyond मोबाइल ऐप",
-    "logo": "WellBeyond लोगो"
+    "logo": "WellBeyond लोगो",
+    "landing": "होम स्क्रीन"
   },
   "menu": {
     "about": "WellBeyond के बारे में",
@@ -16,7 +17,8 @@
     "darkMode": "डार्क मोड",
     "pleaseWait": "कृपया प्रतीक्षा कीजिये...",
     "notificationsOn": "नोटिफिकेशन की अनुमति दें",
-    "maintenance": "रखरखाव"
+    "maintenance": "रखरखाव",
+    "home": "घर"
   },
   "buttons": {
     "previous": "पिछला",
@@ -303,6 +305,33 @@
     "errors": {
       "checklistRequired": "कृपया <span>0 में से</span> किसी एक चेकलिस्ट का चयन करें",
       "statusRequired": "कृपया इस चरण के लिए एक स्थिति प्रदान करें"
+    }
+  },
+  "pages": {
+    "homePage": {
+      "trainingTopics": "प्रशिक्षण विषय",
+      "waterSystems": "पानी की व्यवस्था",
+      "impactReporting": "प्रभाव रिपोर्टिंग",
+      "miscReporting": "विविध रिपोर्टिंग"
+    },
+    "waterSystemsPage": {
+      "pageTitle": "पानी की व्यवस्था",
+      "drillLogs": "ड्रिल लॉग्स",
+      "diagnostics": "निदान",
+      "maintenanceChecklists": "रखरखाव की जाँच",
+      "fieldReporting": "फील्ड रिपोर्टिंग",
+      "submitTicket": "टिकट जमा करें"
+    },
+    "impactReportingPage": {
+      "pageTitle": "प्रभाव रिपोर्टिंग",
+      "instructions": "अनुदेश",
+      "surveys": "सर्वेक्षण (पीडीएफ)",
+      "surveyInput": "सर्वे इनपुट"
+    },
+    "miscReportingPage": {
+      "pageTitle": "रिपोर्टिंग",
+      "schoolAttendance": "विद्यालय उपस्तिथि",
+      "cropYield": "फसल की उपज"
     }
   }
 }

@@ -1,12 +1,14 @@
 {
   "app": {
     "title": "WellBeyond Mobile App",
-    "logo": "WellBeyond Logo"
+    "logo": "WellBeyond Logo",
+    "landing": "Home Screen"
   },
   "menu": {
     "about": "About WellBeyond",
     "privacy": "Privacy Policy",
     "terms": "Terms Of Service",
+    "home": "Home",
     "training": "Training",
     "maintenance": "Maintenance",
     "account": "Account",
@@ -17,6 +19,33 @@
     "darkMode": "Dark Mode",
     "notificationsOn": "Allow Notifications",
     "pleaseWait": "Please wait..."
+  },
+  "pages": {
+    "homePage": {
+      "trainingTopics": "Training Topics",
+      "waterSystems": "Water Systems",
+      "impactReporting": "Impact Reporting",
+      "miscReporting": "Misc Reporting"
+    },
+    "waterSystemsPage": {
+      "pageTitle": "Water Systems",
+      "drillLogs": "Drill Logs",
+      "diagnostics": "Diagnostics",
+      "maintenanceChecklists": "Maintenance Checklists",
+      "fieldReporting": "Field Reporting",
+      "submitTicket": "Submit A Ticket"
+    },
+    "impactReportingPage" : {
+      "pageTitle": "Impact Reporting",
+      "instructions": "Instructions",
+      "surveys": "Surveys (PDF)",
+      "surveyInput": "Survey Input"
+    },
+    "miscReportingPage": {
+      "pageTitle": "Reporting",
+      "schoolAttendance": "School Attendance",
+      "cropYield": "Crop Yield"
+    }
   },
   "buttons": {
     "previous": "Prev",
@@ -88,9 +117,9 @@
       "sendPasswordReset": "Send Email"
     },
     "messages": {
-      "loginInfo": "Please login to get started using the WellBeyond Wash Training Application.",
-      "signupInfo": "Please register to get started using the WellBeyond WASH Training Application.",
-      "registerInfo": "Please complete your registration to get started using the WellBeyond WASH Training Application.",
+      "loginInfo": "Please login to get started using the Well Beyond Application.",
+      "signupInfo": "Please register to get started using the Well Beyond Application.",
+      "registerInfo": "Please complete your registration to get started using the Well Beyond Application.",
       "passwordChanged": "Password updated",
       "emailChanged": "Email updated",
       "profileChanged": "Profile updated",

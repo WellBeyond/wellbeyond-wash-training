@@ -1,7 +1,8 @@
 {
   "app": {
     "title": "WellBeyond Mobile App",
-    "logo": "WellBeyond Logo"
+    "logo": "WellBeyond Logo",
+    "landing": "Écran d'accueil"
   },
   "menu": {
     "about": "À propos de WellBeyond",
@@ -16,7 +17,8 @@
     "darkMode": "Mode sombre",
     "pleaseWait": "S'il vous plaît, attendez...",
     "notificationsOn": "Autoriser les notifications",
-    "maintenance": "Entretien"
+    "maintenance": "Entretien",
+    "home": "Accueil"
   },
   "buttons": {
     "previous": "Précédent",
@@ -303,6 +305,33 @@
     "errors": {
       "checklistRequired": "Veuillez sélectionner l&#39;une des listes de contrôle pour {{System}}",
       "statusRequired": "Veuillez fournir un statut pour cette étape"
+    }
+  },
+  "pages": {
+    "homePage": {
+      "trainingTopics": "Sujets de formation",
+      "waterSystems": "Systèmes d'eau",
+      "impactReporting": "Rapports d'impact",
+      "miscReporting": "Rapports divers"
+    },
+    "waterSystemsPage": {
+      "pageTitle": "Systèmes d'eau",
+      "drillLogs": "Journaux de forage",
+      "diagnostics": "Diagnostique",
+      "maintenanceChecklists": "Listes de contrôle de maintenance",
+      "fieldReporting": "Rapports sur le terrain",
+      "submitTicket": "Soumettre un ticket"
+    },
+    "impactReportingPage": {
+      "pageTitle": "Rapports d'impact",
+      "instructions": "Instructions",
+      "surveys": "Sondages (PDF)",
+      "surveyInput": "Entrée de l'enquête"
+    },
+    "miscReportingPage": {
+      "pageTitle": "Rapports",
+      "schoolAttendance": "Fréquentation scolaire",
+      "cropYield": "Le rendement des cultures"
     }
   }
 }

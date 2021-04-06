@@ -1,7 +1,8 @@
 {
   "app": {
     "title": "Programu ya Simu ya WellBeyond",
-    "logo": "WellBeyond Alama"
+    "logo": "WellBeyond Alama",
+    "landing": "Skrini ya Nyumbani"
   },
   "menu": {
     "about": "Kuhusu WellBeyond",
@@ -16,7 +17,8 @@
     "darkMode": "Njia ya Giza",
     "pleaseWait": "Tafadhali subiri...",
     "notificationsOn": "Ruhusu Arifa",
-    "maintenance": "Matengenezo"
+    "maintenance": "Matengenezo",
+    "home": "Nyumbani"
   },
   "buttons": {
     "previous": "Iliyopita",
@@ -303,6 +305,33 @@
     "errors": {
       "checklistRequired": "Tafadhali chagua orodha moja ya orodha ya {{System}}",
       "statusRequired": "Tafadhali toa hali ya hatua hii"
+    }
+  },
+  "pages": {
+    "homePage": {
+      "trainingTopics": "Mada za Mafunzo",
+      "waterSystems": "Mifumo ya Maji",
+      "impactReporting": "Kuripoti Athari",
+      "miscReporting": "Kuripoti Misc"
+    },
+    "waterSystemsPage": {
+      "pageTitle": "Mifumo ya Maji",
+      "drillLogs": "Piga magogo",
+      "diagnostics": "Utambuzi",
+      "maintenanceChecklists": "Orodha za matengenezo",
+      "fieldReporting": "Taarifa ya Shambani",
+      "submitTicket": "Tuma Tiketi"
+    },
+    "impactReportingPage": {
+      "pageTitle": "Kuripoti Athari",
+      "instructions": "Maagizo",
+      "surveys": "Utafiti (PDF)",
+      "surveyInput": "Ingizo la Utafiti"
+    },
+    "miscReportingPage": {
+      "pageTitle": "Kuripoti",
+      "schoolAttendance": "Mahudhurio ya Shule",
+      "cropYield": "Mazao ya Mazao"
     }
   }
 }

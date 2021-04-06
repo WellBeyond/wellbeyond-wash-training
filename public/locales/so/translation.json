@@ -1,7 +1,8 @@
 {
   "app": {
     "title": "WellBeyond Mobile App",
-    "logo": "Calaamadaha WellBeyond"
+    "logo": "Calaamadaha WellBeyond",
+    "landing": "Shaashadda Guriga"
   },
   "menu": {
     "about": "Ku saabsan WellBeyond",
@@ -16,7 +17,8 @@
     "darkMode": "Habka Mugdiga ah",
     "notificationsOn": "Oggolow ogeysiisyada",
     "pleaseWait": "Fadlan sug...",
-    "maintenance": "Dayactirka"
+    "maintenance": "Dayactirka",
+    "home": "Hoyga"
   },
   "buttons": {
     "previous": "Hore",
@@ -303,6 +305,33 @@
     "errors": {
       "checklistRequired": "Fadlan ka dooro mid ka mid ah liistada hubinta ee {{System}}",
       "statusRequired": "Fadlan xaalad ku bixi tallaabadaas"
+    }
+  },
+  "pages": {
+    "homePage": {
+      "trainingTopics": "Mawduucyada Tababarka",
+      "waterSystems": "Nidaamyada Biyaha",
+      "impactReporting": "Warbixinta Saamaynta",
+      "miscReporting": "Warbixinta Misc"
+    },
+    "waterSystemsPage": {
+      "pageTitle": "Nidaamyada Biyaha",
+      "drillLogs": "Diiwaanada Qodida",
+      "diagnostics": "Cilad-sheegid",
+      "maintenanceChecklists": "Liiska Hubinta Dayactirka",
+      "fieldReporting": "Warbixinta Goobta",
+      "submitTicket": "Gudbi Tigidh"
+    },
+    "impactReportingPage": {
+      "pageTitle": "Warbixinta Saamaynta",
+      "instructions": "Tilmaamaha",
+      "surveys": "Daraasado (PDF)",
+      "surveyInput": "Galinta Sahanka"
+    },
+    "miscReportingPage": {
+      "pageTitle": "Warbixinta",
+      "schoolAttendance": "Imaanshaha Dugsiga",
+      "cropYield": "Soo Saarista Dalagyada"
     }
   }
 }

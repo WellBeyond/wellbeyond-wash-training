@@ -1,20 +1,18 @@
 import React, {useEffect, useRef} from 'react';
 
 import {
-  IonButtons,
   IonContent,
-  IonHeader,
   IonItem,
   IonItemGroup,
   IonList,
   IonLoading,
-  IonMenuButton,
   IonPage,
-  IonTitle,
-  IonToolbar
 } from '@ionic/react';
 
-import './TrainingPage.scss'
+import './TrainingPage.scss';
+import './HomePage.scss';
+import HeaderLogo from '../components/HeaderLogo';
+
 
 import {Trans, useTranslation} from "react-i18next";
 import i18n from '../i18n';
@@ -57,26 +55,19 @@ const TrainingPage: React.FC<TrainingPageProps> = ({ subjects, topics, topic, or
 
   return (
     <IonPage ref={pageRef} id="subject-list">
-        <IonHeader translucent={true}>
-        <IonToolbar>
-          <IonButtons slot="start">
-            <IonMenuButton />
-          </IonButtons>
-          {topic || topics.length < 2 ?
-            <IonTitle>{t('resources.subjects.name_plural')}</IonTitle>
-            :
-            <IonTitle>{t('resources.topics.name_plural')}</IonTitle>
-          }
-        </IonToolbar>
-      </IonHeader>
+      {topic || topics.length < 2 ?
+        <HeaderLogo pageTitle={t('resources.subjects.name_plural')} />
+        :
+        <HeaderLogo pageTitle={t('resources.topics.name_plural')} />
+      }
 
       <IonContent fullscreen={true}>
         {organization && topics && subjects ?
           topic || topics.length < 2 ?
             (subjects.length ?
-            (<IonList>
+            (<IonList className="subject-list">
               {subjects.map((subject, index: number) => (
-                <IonItemGroup key={`subject-${index}`}>
+                <IonItemGroup key={`subject-${index}`} className="subject-group">
                     <SubjectItem subject={subject} />
                 </IonItemGroup>))
               }
@@ -97,9 +88,9 @@ const TrainingPage: React.FC<TrainingPageProps> = ({ subjects, topics, topic, or
             </IonList>
             )
           :
-            (<IonList>
+            (<IonList className="topic-list ion-no-border">
               {topics.map((topic, index: number) => (
-                <IonItemGroup key={`topic-${index}`}>
+                <IonItemGroup key={`topic-${index}`} className="topic-group">
                     <TopicItem topic={topic} />
                 </IonItemGroup>))
               }
