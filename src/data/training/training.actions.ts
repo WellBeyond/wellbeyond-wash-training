@@ -27,18 +27,18 @@ export const loadTrainingData = (organizationId:string) => (async (dispatch: Rea
   if (listeners.lessons && typeof listeners.lessons === 'function') {
     listeners.lessons();
   }
-    listenForTrainingData('lessons', organizationId, (lessons:Lesson[]) => {
-      if (lessons && lessons.length) {
-        lessons.forEach(lesson => {
-          if (lesson.questions) {
-            lesson.questions = lesson.questions.filter((q:Question) => q.questionType && q.questionText && q.correctAnswer);
-          }
-        });
-      }
-      dispatch(setLessons(lessons));
-    }).then(listener => {
-      listeners.lessons = listener;
-    });
+  listenForTrainingData('lessons', organizationId, (lessons:Lesson[]) => {
+    if (lessons && lessons.length) {
+      lessons.forEach(lesson => {
+        if (lesson.questions) {
+          lesson.questions = lesson.questions.filter((q:Question) => q.questionType && q.questionText && q.correctAnswer);
+        }
+      });
+    }
+    dispatch(setLessons(lessons));
+  }).then(listener => {
+    listeners.lessons = listener;
+  });
 });
 
 export const setData = (data: Partial<TrainingState>) => ({

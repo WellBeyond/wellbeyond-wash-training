@@ -6,13 +6,6 @@ export interface Registration {
   community?: string;
 }
 
-export interface Answer {
-  question: string;
-  answerBefore?: string | number;
-  answerAfter?: string | number;
-  correctAnswer?: string | number;
-}
-
 export interface IntercomUser {
   user_id: string;
   user_hash: string;

@@ -4,6 +4,7 @@ import 'firebase/firestore';
 import {Checklist, MaintenanceLog, System} from '../../models/Maintenance';
 import {checkIsAdmin} from "../user/userApi";
 import {MaintenanceLogs} from "./maintenance.state";
+import {isPlatform} from "@ionic/react";
 
 export const listenForMaintenanceData = async (collectionPath:string, organizationId:string, callback:any) : Promise<any> => {
   const isAdmin:boolean = await checkIsAdmin();
@@ -77,6 +78,9 @@ interface MaintenanceData {
 }
 
 const cacheImagesAndVideos = ({systems, checklists}:MaintenanceData) => {
+  if (isPlatform('hybrid')) {
+    return;
+  }
   const images:string[] = [];
   const videos:string[] = [];
   if (systems && systems.length) {
