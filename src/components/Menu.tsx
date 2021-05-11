@@ -22,6 +22,7 @@ import {
   logOut,
   moonOutline,
   notificationsOutline,
+  pulse,
   person
 } from 'ionicons/icons';
 import {useTranslation} from "react-i18next";
@@ -38,6 +39,7 @@ const routes = {
   appPages: [
     { title: 'menu.training', path: '/tabs/training', icon: bookOutline },
     { title: 'menu.maintenance', path: '/tabs/maintenance', icon: constructOutline },
+    { title: 'menu.diagnostic', path: '/tabs/diagnostic', icon: pulse },
     { title: 'menu.home', path: '/tabs/home', icon: homeOutline}
   ],
   loggedInPages: [

@@ -43,7 +43,8 @@
     "react-scripts": "3.4.1",
     "react-zoom-pan-pinch": "^1.6.1",
     "reselect": "^4.0.0",
-    "video-react": "^0.14.1"
+    "video-react": "^0.14.1",
+    "wellbeyond-diagnostic-engine": "git+https://github.com/WellBeyond/wellbeyond-diagnostic-engine.git"
   },
   "scripts": {
     "lint:fix": "eslint src/**/*.js --fix",

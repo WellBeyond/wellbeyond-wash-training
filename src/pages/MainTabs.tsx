@@ -21,6 +21,7 @@ import MaintenanceStepPage from "./MaintenanceStepPage";
 import WaterSystemsPage from './WaterSystemsPage';
 import ImpactReportingPage from './ImpactReportingPage';
 import MiscReportingPage from './MiscReportingPage';
+import DiagnosticPage from "./DiagnosticPage";
 
 interface OwnProps {}
 
@@ -84,6 +85,7 @@ const MainTabs: React.FC<MainTabsProps> = ({isLoggedIn, isRegistered, acceptedTe
           <Route path="/tabs/systems/:systemId" component={SystemPage} exact={true} />
           <Route path="/tabs/maintenance/:mlId" component={MaintenanceLogPage} exact={true} />
           <Route path="/tabs/maintenance/:mlId/step/:stepId" component={MaintenanceStepPage} exact={true} />
+          <Route path="/tabs/diagnostic" component={DiagnosticPage} exact={true} />
         </Switch>
       </IonRouterOutlet>
   );
