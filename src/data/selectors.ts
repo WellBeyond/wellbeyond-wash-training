@@ -143,6 +143,20 @@ export const getSystemsForOrganization = createSelector(
     return [];
   }
 );
+export const getSystemsForCommunity = createSelector(
+  getSystemsForOrganization, getUserId, getUserCommunity,
+  (systems, userId, community) => {
+    if (systems) {
+      if (community) {
+        return systems.filter((s) => s.community === community || !s.community)
+      }
+      else if (userId) {
+        return systems;
+      }
+    }
+    return [];
+  }
+);
 export const getTrainingSession = createSelector(
   getTrainingSessions, getTrainingSessionIdParam,
   (sessions, id) => {

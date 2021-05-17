@@ -35,6 +35,7 @@ export interface System {
   id: string;
   name: string;
   organizationId: string;
+  community: string;
   systemTypeId: string;
   systemTypeIds: string[];
   latitude: number;
@@ -61,6 +62,7 @@ export interface MaintenanceLog {
   id: string;
   name: string;
   organizationId: string;
+  community: string;
   systemId: string;
   checklistId: string;
   userId?: string;
