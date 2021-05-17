@@ -148,7 +148,7 @@ export const getSystemsForCommunity = createSelector(
   (systems, userId, community) => {
     if (systems) {
       if (community) {
-        return systems.filter((s) => s.community === community || !s.community)
+        return systems.filter((s) => s.community === community || !s.community || !community)
       }
       else if (userId) {
         return systems;
