@@ -3,7 +3,7 @@ import {isPlatform} from "@ionic/react";
 import {
   authCheck,
   checkIsAdmin,
-  createOrUpdateTrainingSession,
+  createOrUpdateTrainingSession, getAdminProfile,
   listenForOrganizationData,
   listenForTrainingSessions,
   listenForUserProfile,
@@ -191,8 +191,12 @@ export const watchAuthState = () => async (dispatch: React.Dispatch<any>) => {
               name: profile.name || undefined,
               user_hash: result.data.hash
             };
-            checkIsAdmin().then((isAdmin) => {
-              dispatch(setIsAdmin(!!isAdmin));
+            getAdminProfile().then((admin) => {
+              dispatch(setIsAdmin(!!admin.isAdmin));
+              dispatch(setIsMaintenanceUser(!!(
+                admin.isAdmin ||
+                admin.isClientAdmin ||
+                admin.isMaintenanceUser)));
             });
             console.log('Intercom User: ', intercomUser);
             // @ts-ignore
@@ -306,6 +310,13 @@ export const setIsAdmin = (isAdmin: boolean) => {
   } as const);
 };
 
+export const setIsMaintenanceUser = (isMaintenanceUser: boolean) => {
+  return ({
+    type: 'set-is-maintenance-user',
+    isMaintenanceUser
+  } as const);
+};
+
 export const setIsRegistered = (registered: boolean) => {
   return ({
     type: 'set-is-registered',
@@ -371,6 +382,7 @@ export type UserActions =
   | ActionType<typeof resetData>
   | ActionType<typeof setIsLoggedIn>
   | ActionType<typeof setIsAdmin>
+  | ActionType<typeof setIsMaintenanceUser>
   | ActionType<typeof setIsRegistered>
   | ActionType<typeof setDefaultLanguage>
   | ActionType<typeof setDarkMode>

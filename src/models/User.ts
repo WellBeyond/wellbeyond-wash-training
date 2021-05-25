@@ -35,6 +35,9 @@ export interface UserProfile {
 export interface Admin {
   id: string;
   isAdmin?: boolean;
+  isClientAdmin?: boolean;
+  isMaintenanceUser?: boolean;
+  organizations?: string[];
 }
 
 export interface Community {

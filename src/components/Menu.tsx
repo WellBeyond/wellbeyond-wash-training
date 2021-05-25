@@ -22,6 +22,7 @@ import {
   logOut,
   moonOutline,
   notificationsOutline,
+  gitNetworkOutline,
   person
 } from 'ionicons/icons';
 import {useTranslation} from "react-i18next";
@@ -37,7 +38,8 @@ import * as selectors from "../data/selectors";
 const routes = {
   appPages: [
     { title: 'menu.training', path: '/tabs/training', icon: bookOutline },
-    { title: 'menu.maintenance', path: '/tabs/maintenance', icon: constructOutline },
+    { title: 'menu.maintenance', path: '/tabs/maintenance', icon: constructOutline, maintenance: true },
+    { title: 'menu.diagnostic', path: '/tabs/diagnostic', icon: gitNetworkOutline, maintenance: true },
     { title: 'menu.home', path: '/tabs/home', icon: homeOutline}
   ],
   loggedInPages: [
@@ -59,12 +61,14 @@ interface Pages {
   path: string,
   src?: string,
   icon: string,
-  routerDirection?: string
+  routerDirection?: string,
+  maintenance?: boolean
 }
 interface StateProps {
   darkMode: boolean;
   notificationsOn: boolean;
   isLoggedIn?: boolean;
+  isMaintenanceUser?: boolean;
   menuEnabled: boolean;
   subjects: Subject[];
   topics: Topic[];
@@ -77,13 +81,17 @@ interface DispatchProps {
 
 interface MenuProps extends RouteComponentProps, StateProps, DispatchProps { }
 
-const Menu: React.FC<MenuProps> = ({ darkMode, notificationsOn, isLoggedIn, menuEnabled, subjects, topics, setDarkMode, enableNotifications }) => {
+const Menu: React.FC<MenuProps> = ({ darkMode, notificationsOn, isLoggedIn, isMaintenanceUser, menuEnabled, subjects, topics, setDarkMode, enableNotifications }) => {
   const location = useLocation();
   const { t } = useTranslation(['translation'], {i18n} );
 
   function renderlistItems(list: Pages[]) {
     return list
-      .filter(route => !!route.path)
+      .filter(route =>
+      {
+        if (route.maintenance && !isMaintenanceUser) return false;
+        return !!route.path;
+      })
       .map(p => (
         <IonMenuToggle key={p.title} auto-hide="false">
           <IonItem detail={false} routerLink={p.path} routerDirection="none" className={location.pathname.startsWith(p.path) ? 'selected' : undefined}>
@@ -152,6 +160,7 @@ const Menu: React.FC<MenuProps> = ({ darkMode, notificationsOn, isLoggedIn, menu
 
 export default connect<{}, StateProps, {}>({
   mapStateToProps: (state) => ({
+    isMaintenanceUser: state.user.isMaintenanceUser,
     darkMode: state.user.darkMode,
     notificationsOn: state.user.notificationsOn,
     isLoggedIn: state.user.isLoggedIn,

@@ -38,6 +38,15 @@ export const getChecklists = (state: AppState) => {
 export const getMaintenanceLogs = (state: AppState) => {
   return state.maintenance.maintenanceLogs;
 }
+export const getSymptoms = (state: AppState) => {
+  return state.diagnostic.symptoms;
+}
+export const getSolutions = (state: AppState) => {
+  return state.diagnostic.solutions;
+}
+export const getFacts = (state: AppState) => {
+  return state.diagnostic.facts;
+}
 export const getUserId = (state: AppState) => {
   return state.user.profile && state.user.profile.id;
 }
@@ -148,7 +157,7 @@ export const getSystemsForCommunity = createSelector(
   (systems, userId, community) => {
     if (systems) {
       if (community) {
-        return systems.filter((s) => s.community === community || !s.community || !community)
+        return systems.filter((s) => s.community === community || !s.community)
       }
       else if (userId) {
         return systems;
@@ -268,6 +277,23 @@ export const getChecklistsForSystem = createSelector(
         return !c.systemTypeId ||                                                                 // applies to all system types
           c.systemTypeId === system.systemTypeId ||                                               // system has a single type
           (system.systemTypeIds && system.systemTypeIds.find((t) => t === c.systemTypeId)); // system has multiple types
+      });
+    }
+    return [];
+  }
+);
+
+export const getSymptomsForSystem = createSelector(
+  getSymptoms, getSystem,
+  (symptoms, system) => {
+    if (symptoms && system) {
+      return symptoms.filter((s) => {
+        // @ts-ignore
+        return !s.systemTypeId ||
+          // @ts-ignore                                                            // applies to all system types
+          s.systemTypeId === system.systemTypeId ||                                               // system has a single type
+          // @ts-ignore
+          (system.systemTypeIds && system.systemTypeIds.find((t) => t === s.systemTypeId)); // system has multiple types
       });
     }
     return [];

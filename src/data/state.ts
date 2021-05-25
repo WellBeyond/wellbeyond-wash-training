@@ -1,5 +1,6 @@
 import {combineReducers} from './combineReducers';
 import {maintenanceReducer} from './maintenance/maintenance.reducer';
+import {diagnosticReducer} from './diagnostic/diagnostic.reducer';
 import {trainingReducer} from './training/training.reducer';
 import {userReducer} from './user/user.reducer';
 
@@ -16,6 +17,12 @@ export const initialState: AppState = {
     checklists: [],
     maintenanceLogs: {}
   },
+  diagnostic: {
+    symptoms: [],
+    solutions: [],
+    facts: [],
+    diagnosticLogs: {}
+  },
   user: {
     darkMode: false,
     notificationsOn: true,
@@ -27,6 +34,7 @@ export const initialState: AppState = {
 export const reducers = combineReducers({
   data: trainingReducer,
   maintenance: maintenanceReducer,
+  diagnostic: diagnosticReducer,
   user: userReducer
 });
 

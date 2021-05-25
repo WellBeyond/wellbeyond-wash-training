@@ -5,6 +5,7 @@ export interface UserState {
   id?: string;
   defaultLanguage?: string;
   isAdmin?: boolean;
+  isMaintenanceUser?: boolean;
   isLoggedIn?: boolean;
   isRegistered?: boolean;
   acceptedTerms?: boolean;

@@ -1,11 +1,11 @@
 import 'firebase/auth';
 import 'firebase/firestore';
 import {TrainingSession} from "../../models/Training";
-import {UserProfile} from "../../models/User";
+import {Admin, UserProfile} from "../../models/User";
 import firebase from "firebase/app";
 import {TrainingSessions} from "../training/training.state";
 
-let unsubUser:any, unsubAdmin:any, unsubLessons:any, unsubTraningSessions:any;
+let unsubUser:any, unsubAdmin:any, unsubLessons:any, unsubTrainingSessions:any;
 
 
 export const getCurrentUser = () => {
@@ -27,8 +27,8 @@ export const logout = () => {
   if (unsubLessons) {
     unsubLessons();
   }
-  if (unsubTraningSessions) {
-    unsubTraningSessions();
+  if (unsubTrainingSessions) {
+    unsubTrainingSessions();
   }
   return firebase.auth().signOut();
 };
@@ -86,7 +86,7 @@ export const listenForTrainingSessions = async (callback:any) : Promise<any> => 
   const query:firebase.firestore.Query<firebase.firestore.DocumentData> = firebase.firestore()
     .collection('sessions')
     .where('userId', '==', user.uid);
-  return unsubTraningSessions = query
+  return unsubTrainingSessions = query
     .onSnapshot(querySnapshot => {
       querySnapshot.forEach(function(doc) {
         if (doc.exists) {
@@ -113,7 +113,7 @@ export const registerWithEmail = async (email: string, password: string) => {
     .createUserWithEmailAndPassword(email, password).catch(err => {
     console.log(err);
     if (err.code === 'auth/email-already-in-use') {
-      loginWithEmail(email, password).catch(err2 => { // Try to login using the provided password instead
+      loginWithEmail(email, password).catch(_err2 => { // Try to login using the provided password instead
         throw(err); // Throw the original error if it failed
       })
     }
@@ -134,7 +134,7 @@ export const getUserProfile:() => Promise<UserProfile | void> = async () => {
     return;
   }
 
-  var userRef = firebase
+  const userRef = firebase
     .firestore()
     .collection("users")
     .doc(user ? user.uid : undefined);
@@ -160,6 +160,32 @@ export const getUserProfile:() => Promise<UserProfile | void> = async () => {
     })
     .catch(error => {
       console.log("Error getting document:", error);
+    });
+};
+
+
+export const getAdminProfile:() => Promise<Admin> = async () => {
+  let user = firebase.auth().currentUser;
+  console.log(user);
+
+  if (!user || !user.uid) {
+    return {id: ''} as Admin;
+  }
+
+  return firebase
+    .firestore()
+    .collection("admins")
+    .doc(user.uid)
+    .get()
+    .then(doc => {
+      if (doc.exists) {
+        return ({...doc.data(), id: user && user.uid} as Admin);
+      } else {
+        return  {id: user && user.uid} as Admin;
+      }
+    })
+    .catch(() => {
+      return {id: user && user.uid} as Admin;
     });
 };
 

@@ -158,9 +158,6 @@ export default connect<OwnProps, StateProps, DispatchProps>({
     system: selectors.getSystem(state, ownProps),
     checklists: selectors.getChecklistsForSystem(state, ownProps),
     maintenanceLogs: selectors.getMaintenanceLogs(state),
-    userId: selectors.getUserId(state),
-    organization: selectors.getUserOrganization(state),
-    community: selectors.getUserCommunity(state),
   }),
   component: SystemPage
 });

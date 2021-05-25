@@ -5,11 +5,13 @@ import {IonCard, IonCardContent, IonCardHeader, IonLabel} from '@ionic/react';
 
 interface SystemItemProps {
   system: System;
+  target?: string;
 }
 
-const SystemItem: React.FC<SystemItemProps> = ({ system}) => {
+const SystemItem: React.FC<SystemItemProps> = ({ system, target}) => {
+  target = target || 'systems';
   return (
-      <IonCard button className="system-card" routerLink={`/tabs/systems/${system.id}`}>
+      <IonCard button className="system-card" routerLink={`/tabs/${target}/${system.id}`}>
         <IonCardHeader>
             <IonLabel>
               <h2>{system.name}</h2>
