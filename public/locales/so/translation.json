@@ -18,7 +18,7 @@
     "notificationsOn": "Oggolow ogeysiisyada",
     "pleaseWait": "Fadlan sug...",
     "maintenance": "Dayactirka",
-    "home": "Hoyga"
+    "home": "Guri"
   },
   "buttons": {
     "previous": "Hore",
@@ -90,9 +90,9 @@
       "sendPasswordReset": "U dir Email"
     },
     "messages": {
-      "loginInfo": "Fadlan soo gal si aad u bilowdo adeegsiga Codsiga Tababbarka Wash ee WellBeyond.",
-      "signupInfo": "Fadlan isdiiwaangeli si aad u bilowdo adeegsiga Codsiga Tababbarka WellBeyond WASH.",
-      "registerInfo": "Fadlan dhammaystir diiwaangelintaada si aad u bilowdo adeegsiga Codsiga Tababbarka WellBeyond WASH.",
+      "loginInfo": "Fadlan soo gal si aad u bilowdo adeegsiga Well Beyond Application.",
+      "signupInfo": "Fadlan isdiiwaangali si aad ugubilaabato adeegsiga Well Beyond Application.",
+      "registerInfo": "Fadlan buuxi diiwaangelintaada si aad u bilowdo adeegsiga Codsiga Well Beyond.",
       "passwordChanged": "Password la cusbooneysiiyay",
       "emailChanged": "Emailka waa la cusboonaysiiyay",
       "profileChanged": "Macluumaadka waa la cusbooneysiiyay",
@@ -205,13 +205,15 @@
       "intro": {
         "title": "Hordhac",
         "completed": "Adigu horay ayaad u dhammaysay qaybtani, laakiin waad ku soo noqon kartaa halkan wakhti kasta oo aad dib u eegto.",
-        "firsttime": "Kahor intaadan bilaabin barnaamijka, waxaan ku weydiinaynaa dhowr su'aalood si aan u aragno inta aad horay u taqaanay. Waxaan markale ku weydiin doonaa su'aalahan ka dib markaad dhammaystirto cutubka."
+        "firsttime": "Kahor intaadan bilaabin barnaamijka, waxaan ku weydiinaynaa dhowr su'aalood si aan u aragno inta aad horay u taqaanay. Waxaan markale ku weydiin doonaa su'aalahan ka dib markaad dhammaystirto cutubka.",
+        "firsttime2": "Aan ku bilowno moduleka."
       },
       "summary": {
         "title": "Casharka Oo Dhameystiran",
         "completed": "Waxaad si guul leh u dhammaystiratay cutubkan oo aad si sax ah uga jawaabtay {{score}} % su&#39;aalaha.",
         "nextLesson": "Qeybta xigta waa {{lesson}} . Guji marka xigta markaad diyaar u tahay inaad bilowdo.",
-        "allDone": "Waxaad dhammaystirtay dhammaan qaybaha &#39; <span>0&#39;</span> ."
+        "allDone": "Waxaad dhammaystirtay dhammaan qaybaha &#39; <span>0&#39;</span> .",
+        "completed2": "Waxaad si guul leh u dhameystirtay qaybtaan."
       },
       "questions": {
         "title": "Su&#39;aasha {{num}} ee {{count}}",

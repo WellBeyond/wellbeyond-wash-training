@@ -90,9 +90,9 @@
       "sendPasswordReset": "ኢሜል ይላኩ"
     },
     "messages": {
-      "loginInfo": "የ WellBeyond Wash Training መተግበሪያን በመጠቀም ለመጀመር እባክዎን ይግቡ ፡፡",
-      "signupInfo": "እባክዎን WellBeyond WASH Training መተግበሪያን ለመጠቀም ለመጀመር ይመዝገቡ ፡፡",
-      "registerInfo": "የ WellBeyond WASH ስልጠና መተግበሪያን ለመጠቀም ለመጀመር እባክዎን ምዝገባዎን ይሙሉ ፡፡",
+      "loginInfo": "ደህና ባሻገር መተግበሪያን በመጠቀም ለመጀመር እባክዎ ይግቡ።",
+      "signupInfo": "እባክዎን ከ Well Beyond ትግበራ ለመጠቀም ለመጀመር ይመዝገቡ ፡፡",
+      "registerInfo": "Well Beyond Application ን ለመጠቀም እባክዎ ምዝገባዎን ያጠናቅቁ።",
       "passwordChanged": "የይለፍ ቃል ዘምኗል",
       "emailChanged": "ኢሜል ዘምኗል",
       "profileChanged": "መገለጫ ዘምኗል",
@@ -205,13 +205,15 @@
       "intro": {
         "title": "መግቢያ",
         "completed": "ይህንን ሞጁል ቀድሞውኑ አጠናቀውታል ፣ ግን በማንኛውም ጊዜ ለመገኘት ወደዚህ መምጣት ይችላሉ ፡፡",
-        "firsttime": "ሞጁሉን ከመጀመርዎ በፊት እርስዎ ምን ያህል ያውቁ እንደነበሩ ለመመልከት ጥቂት ጥያቄዎችን ልንጠይቅዎ እንችላለን ሞጁሉን ከጨረሱ በኋላ እንደገና እነዚህን ጥያቄዎች እንጠይቃለን ፡፡"
+        "firsttime": "ሞጁሉን ከመጀመርዎ በፊት እርስዎ ምን ያህል ያውቁ እንደነበሩ ለመመልከት ጥቂት ጥያቄዎችን ልንጠይቅዎ እንችላለን ሞጁሉን ከጨረሱ በኋላ እንደገና እነዚህን ጥያቄዎች እንጠይቃለን ፡፡",
+        "firsttime2": "በሞጁሉ እንጀምር ፡፡"
       },
       "summary": {
         "title": "ትምህርት ተጠናቋል",
         "completed": "ይህንን ሞጁል በተሳካ ሁኔታ አጠናቀዋል እናም ለጥያቄዎች {{score}} % በትክክል መልስ ሰጡ ፡፡",
         "nextLesson": "ቀጣዩ ሞጁል <span>0 ነው</span> ፡፡ ለመጀመር ዝግጁ ሲሆኑ ቀጥሎ ጠቅ ያድርጉ።",
-        "allDone": "ሁሉንም ሞጁሎች ለ {{subject}} ጨርሰዋል ፡፡"
+        "allDone": "ሁሉንም ሞጁሎች ለ {{subject}} ጨርሰዋል ፡፡",
+        "completed2": "ይህንን ሞጁል በተሳካ ሁኔታ አጠናቀዋል ፡፡"
       },
       "questions": {
         "title": "ጥያቄ {{num}} ከ {{count}}",
@@ -312,7 +314,7 @@
       "trainingTopics": "የሥልጠና ርዕሶች",
       "waterSystems": "የውሃ ስርዓቶች",
       "impactReporting": "ተጽዕኖ ሪፖርት ማድረግ",
-      "miscReporting": "Misc ሪፖርት ማድረግ"
+      "miscReporting": "ምስክ ሪፖርት ማድረግ"
     },
     "waterSystemsPage": {
       "pageTitle": "የውሃ ስርዓቶች",

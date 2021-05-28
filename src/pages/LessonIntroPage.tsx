@@ -102,7 +102,10 @@ const LessonIntroPage: React.FC<LessonIntroProps> = ({ subject,lesson, lessonPro
                 {lessonProgress && lessonProgress.completed ?
                   <p>{t('resources.lessons.intro.completed')}</p>
                   :
-                  <p>{t('resources.lessons.intro.firsttime')} </p>
+                  lesson.questions.length ?
+                    <p>{t('resources.lessons.intro.firsttime')} </p>
+                    :
+                    <p>{t('resources.lessons.intro.firsttime2')} </p>
                 }
               </IonCardContent>
             </IonCard>

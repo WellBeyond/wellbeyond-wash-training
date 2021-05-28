@@ -90,14 +90,14 @@
       "register": "Jiandikishe"
     },
     "messages": {
-      "loginInfo": "Tafadhali ingia ili uanze kutumia Programu ya mafunzo ya WellBeyond Wash.",
-      "signupInfo": "Tafadhali jiandikishe ili uanze kutumia Maombi ya Mafunzo ya WellBeyond WASH.",
+      "loginInfo": "Tafadhali ingia ili uanze kutumia Programu ya Well Beyond.",
+      "signupInfo": "Tafadhali jiandikishe ili uanze kutumia Programu ya Well Beyond.",
       "passwordChanged": "Nywila imesasishwa",
       "emailChanged": "Barua pepe imesasishwa",
       "profileChanged": "Profaili imesasishwa",
       "passwordResetInfo": "Ni sawa, sote tunasahau nywila zetu. Tuambie barua pepe ambayo umesajili na, na tutakutumia kiunga ambacho unaweza kutumia ili kuiweka upya.",
       "passwordResetSent": "Barua pepe imetumwa kwa {{email}} na kiungo cha kuweka upya nywila yako. Hakikisha kuangalia folda yako ya SPAM kisha urudi hapa kuingia baada ya kuweka nywila mpya.",
-      "registerInfo": "Tafadhali kamilisha usajili wako ili uanze kutumia Maombi ya Mafunzo ya WellBeyond WASH."
+      "registerInfo": "Tafadhali kamilisha usajili wako ili uanze kutumia Programu ya Well Beyond."
     },
     "pages": {
       "signup": "Jisajili",
@@ -205,13 +205,15 @@
       "intro": {
         "title": "Utangulizi",
         "completed": "Tayari umekamilisha moduli hii, lakini unaweza kurudi hapa wakati wowote kukagua.",
-        "firsttime": "Kabla ya kuanza moduli, tutakuuliza maswali machache ili kuona ni kiasi gani tayari unajua. Tutakuuliza maswali haya tena baada ya kumaliza moduli."
+        "firsttime": "Kabla ya kuanza moduli, tutakuuliza maswali machache ili kuona ni kiasi gani tayari unajua. Tutakuuliza maswali haya tena baada ya kumaliza moduli.",
+        "firsttime2": "Wacha tuanze na moduli."
       },
       "summary": {
         "title": "Somo Kamili",
         "completed": "Umemaliza kumaliza moduli hii na umejibu kwa usahihi {{score}} % ya maswali.",
         "nextLesson": "Moduli inayofuata ni {{lesson}} . Bonyeza ijayo wakati uko tayari kuanza.",
-        "allDone": "Umekamilisha moduli zote kwa {{subject}} ."
+        "allDone": "Umekamilisha moduli zote kwa {{subject}} .",
+        "completed2": "Umekamilisha moduli hii."
       },
       "questions": {
         "title": "Swali {{num}} la {{count}}",

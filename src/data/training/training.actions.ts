@@ -1,43 +1,19 @@
 import {ActionType} from '../../util/types';
-import {listenForTrainingData,} from './trainingApi'
+import {listenForTrainingTopics,listenForTrainingSubjects,listenForTrainingLessons} from './trainingApi'
 import {TrainingState} from './training.state';
-import {Lesson, Question, Subject, Topic} from '../../models/Training';
-
-const listeners:{topics?:any, subjects?:any, lessons?:any} = {};
+import {Lesson, Subject, Topic} from '../../models/Training';
 
 export const loadTrainingData = (organizationId:string) => (async (dispatch: React.Dispatch<any>) => {
-  if (listeners.topics && typeof listeners.topics === 'function') {
-    listeners.topics();
-  }
-  listenForTrainingData('topics', organizationId, (topics: Topic[]) => {
+
+  listenForTrainingTopics((topics: Topic[]) => {
     dispatch(setTopics(topics));
-  }).then(listener => {
-    listeners.topics = listener;
   });
 
-  if (listeners.subjects && typeof listeners.subjects === 'function') {
-    listeners.subjects();
-  }
-  listenForTrainingData('subjects', organizationId, (subjects: Subject[]) => {
+  listenForTrainingSubjects( organizationId, (subjects: Subject[]) => {
     dispatch(setSubjects(subjects));
-  }).then(listener => {
-    listeners.subjects = listener;
-  });
-
-  if (listeners.lessons && typeof listeners.lessons === 'function') {
-    listeners.lessons();
-  }
-  listenForTrainingData('lessons', organizationId, (lessons:Lesson[]) => {
-    if (lessons && lessons.length) {
-      lessons.forEach(lesson => {
-        if (lesson.questions) {
-          lesson.questions = lesson.questions.filter((q:Question) => q.questionType && q.questionText && q.correctAnswer);
-        }
-      });
-    }
-    dispatch(setLessons(lessons));
-  }).then(listener => {
-    listeners.lessons = listener;
+    listenForTrainingLessons( subjects, (lessons: Lesson[]) => {
+      dispatch(setLessons(lessons));
+    });
   });
 });
 

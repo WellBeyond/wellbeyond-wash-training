@@ -42,6 +42,7 @@ export interface Subject {
   id: string;
   topicId?: string;
   organizationId?: string;
+  organizations?: string[];
   locale?: string;
   name: string;
   description: string;
