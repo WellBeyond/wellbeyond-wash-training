@@ -51,7 +51,7 @@ export const listenForTrainingSubjects = async (organizationId: string, callback
           id: doc.id,
           ...doc.data()
         } as Subject;
-        if (row.organizationId === organizationId ||
+        if (isAdmin || row.organizationId === organizationId ||
           (row.organizations && row.organizations.includes(organizationId))) {
           results.push(row);
         }
@@ -77,7 +77,7 @@ export const listenForTrainingLessons = async (subjects: Subject[], callback:any
   if (!isAdmin) {
     query = query.where('isPublished', '==', true);
   }
-  if (lessonIds.length < 11) {
+  if (lessonIds.length && lessonIds.length < 11) {
     query = query.where(firebase.firestore.FieldPath.documentId(), 'in', lessonIds);
   }
   return query
@@ -88,7 +88,7 @@ export const listenForTrainingLessons = async (subjects: Subject[], callback:any
           id: doc.id,
           ...doc.data()
         } as Lesson;
-        if (lessonIds.includes(row.id)) {
+        if (isAdmin || lessonIds.includes(row.id)) {
           results.push(row);
         }
       });
