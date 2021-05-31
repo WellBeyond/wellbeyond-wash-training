@@ -6,26 +6,93 @@ import {getLessonIconUrl} from "../../util/cloudinary";
 import {checkIsAdmin} from "../user/userApi";
 import {isPlatform} from "@ionic/react";
 
-export const listenForTrainingData = async (collectionPath:string, organizationId:string, callback:any) : Promise<any> => {
-  const isAdmin:boolean = await checkIsAdmin();
-  let query:firebase.firestore.Query<firebase.firestore.DocumentData> = firebase.firestore().collection(collectionPath);
-  if (!isAdmin && collectionPath !== 'topics') {
-    query = query.where('organizationId', '==', organizationId);
-    query = query.where('isPublished', '==', true);
+let topicListener:any;
+let subjectListener:any;
+let lessonListener:any;
+
+export const listenForTrainingTopics = async (callback:any) : Promise<any> => {
+  if (topicListener && typeof topicListener === 'function') {
+    topicListener();
+    topicListener = undefined;
   }
-  return query
+  let query:firebase.firestore.Query<firebase.firestore.DocumentData> = firebase.firestore().collection('topics');
+    topicListener = query
     .onSnapshot(querySnapshot => {
-      let results:any[] = [];
+      let results:Topic[] = [];
       querySnapshot.forEach(doc => {
         // doc.data() is never undefined for query doc snapshots
         results.push({
           id: doc.id,
           ...doc.data()
-        });
+        } as Topic);
       });
-      const trainingData:any ={};
-      trainingData[collectionPath] = results;
-      cacheImagesAndVideos(trainingData as TrainingData);
+      cacheImagesAndVideos({topics: results} as TrainingData);
+      callback(results);
+    });
+};
+
+export const listenForTrainingSubjects = async (organizationId: string, callback:any) : Promise<any> => {
+  if (subjectListener && typeof subjectListener === 'function') {
+    subjectListener();
+    subjectListener = undefined;
+  }
+
+  const isAdmin:boolean = await checkIsAdmin();
+  let query:firebase.firestore.Query<firebase.firestore.DocumentData> = firebase.firestore().collection('subjects');
+  if (!isAdmin) {
+    query = query.where('isPublished', '==', true);
+  }
+  return query
+    .onSnapshot(querySnapshot => {
+      let results:Subject[] = [];
+      querySnapshot.forEach(doc => {
+        // doc.data() is never undefined for query doc snapshots
+        const row = {
+          id: doc.id,
+          ...doc.data()
+        } as Subject;
+        if (isAdmin || row.organizationId === organizationId ||
+          (row.organizations && row.organizations.includes(organizationId))) {
+          results.push(row);
+        }
+      });
+      cacheImagesAndVideos({topics: results} as TrainingData);
+      callback(results);
+    });
+};
+
+export const listenForTrainingLessons = async (subjects: Subject[], callback:any) : Promise<any> => {
+  if (lessonListener && typeof lessonListener === 'function') {
+    lessonListener();
+    lessonListener = undefined;
+  }
+  const lessonIds:string[] = [];
+  subjects.forEach((subject) => {
+    if (subject.lessons) {
+      subject.lessons.forEach((l) => {l.lessonId && lessonIds.push(l.lessonId)});
+    }
+  });
+  const isAdmin:boolean = await checkIsAdmin();
+  let query:firebase.firestore.Query<firebase.firestore.DocumentData> = firebase.firestore().collection('lessons');
+  if (!isAdmin) {
+    query = query.where('isPublished', '==', true);
+  }
+  if (lessonIds.length && lessonIds.length < 11) {
+    query = query.where(firebase.firestore.FieldPath.documentId(), 'in', lessonIds);
+  }
+  return query
+    .onSnapshot(querySnapshot => {
+      let results:Lesson[] = [];
+      querySnapshot.forEach(doc => {
+        const row = {
+          id: doc.id,
+          ...doc.data()
+        } as Lesson;
+        if (isAdmin || lessonIds.includes(row.id)) {
+          results.push(row);
+        }
+      });
+      cacheImagesAndVideos({lessons: results} as TrainingData);
       callback(results);
     });
 };

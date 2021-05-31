@@ -55,7 +55,7 @@ const LessonSummaryPage: React.FC<LessonSummaryProps> = ({ history, subject, les
   useEffect(() => {
     if (subject && lesson && lessons && lessonProgress) {
       i18n.changeLanguage(subject.locale || 'en');
-      const lastPage = ('/tabs/subjects/' + subject.id + '/lessons/' + lesson.id) + (lesson.pages && lesson.pages.length ?  + ('/page/' + lesson.pages.length) : '/intro');
+      const lastPage = ('/tabs/subjects/' + subject.id + '/lessons/' + lesson.id) + ((lesson.pages && lesson.pages.length ?  ('/page/' + lesson.pages.length) : '/intro'));
       const lastQuestion = lesson.questions && lesson.questions.length ? ('/tabs/subjects/' + subject.id + '/lessons/' + lesson.id + '/question/' + lesson.questions.length) : lastPage;
 
       const idx = subject.lessons.findIndex((l) => l.lessonId === lesson.id);
@@ -102,7 +102,11 @@ const LessonSummaryPage: React.FC<LessonSummaryProps> = ({ history, subject, les
               <IonCardTitle><h2>{lesson.name}</h2></IonCardTitle>
             </IonCardHeader>
             <IonCardContent className='lesson-text'>
-              <p>{t('resources.lessons.summary.completed', {score: lessonProgress.score})}</p>
+              {nextLesson ?
+                <p>{t('resources.lessons.summary.completed', {score: lessonProgress.score})}</p>
+                :
+                <p>{t('resources.lessons.summary.completed2')}</p>
+              }
               {nextLesson ?
                 <p>{t('resources.lessons.summary.nextLesson', {lesson: nextLesson.name})}</p>
                 :

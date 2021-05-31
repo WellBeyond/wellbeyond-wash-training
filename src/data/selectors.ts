@@ -109,7 +109,11 @@ export const getSubjectsForOrganization = createSelector(
   (subjects, userId, organizationId) => {
     if (subjects) {
       if (organizationId) {
-        return subjects.filter((s) => s.organizationId === organizationId)
+        return subjects.filter((s) => {
+          return s.organizationId === organizationId ||
+            (s.organizations && s.organizations.includes(organizationId));
+
+        })
       }
       else if (userId) {
         return subjects;
