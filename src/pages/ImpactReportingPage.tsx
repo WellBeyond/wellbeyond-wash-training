@@ -8,6 +8,7 @@ import {
   IonText,
 } from '@ionic/react';
 
+import * as selectors from '../data/selectors';
 import {Image} from 'cloudinary-react';
 import {cloudinaryConfig} from "../CLOUDINARY_CONFIG";
 
@@ -19,20 +20,30 @@ import i18n from '../i18n';
 import {connect} from '../data/connect';
 
 import {RouteComponentProps} from "react-router";
+import { Organization } from '../models/User';
+import { Form, FormType } from '../models/Form';
 
 interface OwnProps extends RouteComponentProps {
 }
 
 interface StateProps {
-  defaultLanguage?: string
+  defaultLanguage?: string;
+  organization?: Organization;
+  community?: string;
+  formType?: FormType;
+  formTypes: FormType[],
+  forms?: Form[],
 }
 
 interface DispatchProps {
+  // getFormType: typeof selectors.getFormType;
+  // getForms: typeof selectors.getForms;
+  // getForm: typeof selectors.getForm;
 }
 
 type ImpactReportingPageProps = OwnProps & StateProps & DispatchProps;
 
-const ImpactReportingPage: React.FC<ImpactReportingPageProps> = ({defaultLanguage}) => {
+const ImpactReportingPage: React.FC<ImpactReportingPageProps> = ({defaultLanguage, forms, organization, formTypes, formType}) => {
 
   const pageRef = useRef<HTMLElement>(null);
 
@@ -42,12 +53,19 @@ const ImpactReportingPage: React.FC<ImpactReportingPageProps> = ({defaultLanguag
     i18n.changeLanguage(defaultLanguage || 'en');
   }, [defaultLanguage]);
 
+  const getSpecificForm = (formTypes: any[], formTypeName: any) => {
+    const element = formTypes.find(item => item.name === formTypeName);
+    if (element)
+      return element.id
+    return '#'
+  }
+
   return(
     <IonPage ref={pageRef} id="water-systems-page" >
       <HeaderLogo pageTitle={t('pages.impactReportingPage.pageTitle')} />
       <IonContent fullscreen={true}>
           <IonItemGroup className="page-items" >
-            <IonItem routerLink="#" className="page-item" detail={false}>
+            <IonItem routerLink={`/tabs/impactReports/forms/form-types/${getSpecificForm(formTypes, 'Instructions')}`} className="page-item" detail={false}>
               <div className="photo">
                 <Image
                   cloudName={cloudinaryConfig.cloudName}
@@ -59,7 +77,7 @@ const ImpactReportingPage: React.FC<ImpactReportingPageProps> = ({defaultLanguag
                 <IonText className="subsection ion-text-uppercase">{t('pages.impactReportingPage.instructions')}</IonText>
               </div>
             </IonItem>
-            <IonItem routerLink="#" className="page-item" detail={false}>
+            <IonItem routerLink={`/tabs/impactReports/forms/form-types/${getSpecificForm(formTypes, 'Surveys')}`} className="page-item" detail={false}>
               <div className="photo">
                 <Image
                   cloudName={cloudinaryConfig.cloudName}
@@ -71,7 +89,7 @@ const ImpactReportingPage: React.FC<ImpactReportingPageProps> = ({defaultLanguag
                 <IonText className="subsection ion-text-uppercase">{t('pages.impactReportingPage.surveys')}</IonText>
               </div>
             </IonItem>
-            <IonItem routerLink="#" className="page-item" detail={false}>
+            <IonItem routerLink={`/tabs/impactReports/forms/form-types/${getSpecificForm(formTypes, 'Survey Input')}`} className="page-item" detail={false}>
               <div className="photo">
                 <Image
                   cloudName={cloudinaryConfig.cloudName}
@@ -91,7 +109,11 @@ const ImpactReportingPage: React.FC<ImpactReportingPageProps> = ({defaultLanguag
 
 export default connect<OwnProps, StateProps, DispatchProps>({
   mapStateToProps: (state, ownProps) => ({
-    defaultLanguage: state.user.defaultLanguage
+    defaultLanguage: state.user.defaultLanguage,
+    formTypes: selectors.getFormTypes(state),
+    formType: selectors.getFormType(state, ownProps),
+    organization: selectors.getUserOrganization(state),
+    form: selectors.getForms(state),
   }),
   component: React.memo(ImpactReportingPage)
 });

@@ -1,0 +1,32 @@
+#form-page {
+  .form-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    border: none;
+    justify-content: space-between;
+
+    img {
+      width: 100%;
+      min-height: 153px;
+      object-fit: cover;
+    }
+
+    .Form-item {
+      text-align: center;
+    }
+  }
+}
+ion-item-group.formType-group.md.item-group-md.item.hydrated {
+  width: 50%;
+}
+
+ion-content {
+  height: 70%;
+  text-align: center;
+}
+
+.no-content-text {
+  padding-top: 40%;
+  font-size: larger;
+}

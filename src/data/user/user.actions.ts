@@ -4,8 +4,10 @@ import {
   authCheck,
   checkIsAdmin,
   createOrUpdateTrainingSession,
+  createOrUpdateFormSession,
   listenForOrganizationData,
   listenForTrainingSessions,
+  listenForFormSessions,
   listenForUserProfile,
   logout,
   updateProfile
@@ -19,6 +21,9 @@ import firebase from 'firebase/app';
 import 'firebase/functions';
 import 'firebase/messaging';
 import {TrainingSessions} from "../training/training.state";
+import {FormSessions} from "../form/form.state";
+import { FormRecord, FormProgress, FormSession } from '../../models/Form';
+// import { FormSession } from '../form/form.state';
 
 declare var intercom: any;
 
@@ -35,8 +40,13 @@ export const loadTrainingSessions = () => async (dispatch: React.Dispatch<any>) 
   });
 }
 
+export const loadFormSessions = () => async (dispatch: React.Dispatch<any>) => {
+  await listenForFormSessions((sessions:FormSessions) => {
+    dispatch(setForm2Sessions(sessions));
+  });
+}
+
 const requestNotificationPermission = async (dispatch: React.Dispatch<any>) =>  {
-  console.log('Requesting permission...');
   if (isPlatform('hybrid')) {
     // Request permission to use push notifications
     // iOS will prompt user and return if they granted permission or not
@@ -258,6 +268,11 @@ export const startTrainingSession = (session: TrainingSession) => async (dispatc
   dispatch(setTrainingSession(session));
 };
 
+export const startFormSession = (formSession: FormSession) => async (dispatch: React.Dispatch<any>): Promise<any> => {
+  dispatch(setFormSession(formSession));
+  return createOrUpdateFormSession(formSession);
+};
+
 export const updateTrainingSession = (session: TrainingSession) => async (dispatch: React.Dispatch<any>) => {
   createOrUpdateTrainingSession(session);
   dispatch(setTrainingSession(session));
@@ -269,6 +284,15 @@ export const updateTrainingLesson = (session: TrainingSession|undefined, lesson:
     session.lessons[lesson.lessonId] = lesson;
     createOrUpdateTrainingSession(session);
     dispatch(setTrainingSession(session));
+  }
+};
+
+export const updateForm = (formSession: FormSession|undefined, form: FormProgress) => async (dispatch: React.Dispatch<any>) => {
+  if (formSession) {
+    formSession.forms = formSession.forms || {};
+    formSession.forms[form.formId] = form;
+    createOrUpdateFormSession(formSession);
+    dispatch(setFormSession(formSession));
   }
 };
 
@@ -355,13 +379,33 @@ export const setTrainingSessions = (sessions: TrainingSessions) => ({
   sessions
 } as const);
 
+export const setFormSessions = (formSessions: FormSessions) => ({
+  type: 'set-form-sessions',
+  formSessions
+} as const);
+
+export const setForm2Sessions = (formSessions: FormSessions) => ({
+  type: 'set-form-sessions',
+  formSessions
+} as const);
+
 export const setTrainingSession = (session: TrainingSession) => ({
   type: 'set-training-session',
   session
 } as const);
 
+export const setFormSession = (formSession: FormSession) => ({
+  type: 'set-form-session',
+  formSession
+} as const);
+
 export const setSessionArchived = (session: TrainingSession) => ({
   type: 'set-session-archived',
+  session
+} as const);
+
+export const setFormSessionArchived = (session: FormRecord) => ({
+  type: 'set-form-session-archived',
   session
 } as const);
 
@@ -382,3 +426,6 @@ export type UserActions =
   | ActionType<typeof setTrainingSessions>
   | ActionType<typeof setTrainingSession>
   | ActionType<typeof setSessionArchived>
+  | ActionType<typeof setFormSessionArchived>
+  | ActionType<typeof setFormSession>
+  | ActionType<typeof setFormSessions>
