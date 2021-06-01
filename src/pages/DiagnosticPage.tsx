@@ -80,7 +80,7 @@ const DiagnosticPage: React.FC<DiagnosticPageProps> = ({ systems, organization, 
           (<IonList>
             {systems.length ? systemList.map((system, index: number) => (
                 <IonItemGroup key={`system-${index}`}>
-                  <SystemItem system={system} target="diagnose"/>
+                  <SystemItem system={system} target="symptoms"/>
                 </IonItemGroup>))
               :
               <IonItemGroup>

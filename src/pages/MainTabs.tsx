@@ -87,7 +87,8 @@ const MainTabs: React.FC<MainTabsProps> = ({isLoggedIn, isRegistered, acceptedTe
           <Route path="/tabs/maintenance/:mlId" component={MaintenanceLogPage} exact={true} />
           <Route path="/tabs/maintenance/:mlId/step/:stepId" component={MaintenanceStepPage} exact={true} />
           <Route path="/tabs/diagnostic" component={DiagnosticPage} exact={true} />
-          <Route path="/tabs/diagnose/:systemId" component={SymptomsPage} exact={true} />
+          <Route path="/tabs/systems/:systemId/symptoms" component={SymptomsPage} exact={true} />
+          <Route path="/tabs/diagnostic/:mlId" component={MaintenanceLogPage} exact={true} />
         </Switch>
       </IonRouterOutlet>
   );

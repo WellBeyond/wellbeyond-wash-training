@@ -47,6 +47,9 @@ export const getSolutions = (state: AppState) => {
 export const getFacts = (state: AppState) => {
   return state.diagnostic.facts;
 }
+export const getDiagnosticLogs = (state: AppState) => {
+  return state.diagnostic.diagnosticLogs;
+}
 export const getUserId = (state: AppState) => {
   return state.user.profile && state.user.profile.id;
 }
@@ -85,8 +88,11 @@ const getTrainingSessionIdParam  = (_state: AppState, props: any) => {
 const getSystemIdParam = (_state: AppState, props: any) => {
   return props.match.params['systemId'];
 }
-const getMaintenceLogIdParam = (_state: AppState, props: any) => {
+const getMaintenanceLogIdParam = (_state: AppState, props: any) => {
   return props.match.params['mlId'];
+}
+const getDiagnosticLogIdParam = (_state: AppState, props: any) => {
+  return props.match.params['dlId'];
 }
 const getStepIdParam = (_state: AppState, props: any) => {
   return props.match.params['stepId'];
@@ -143,9 +149,12 @@ export const getTopicsForOrganization = createSelector(
   }
 );
 export const getSystemsForOrganization = createSelector(
-  getSystems, getUserId, getUserOrganizationId,
-  (systems, userId, organizationId) => {
+  getSystems, getUserId, getUserOrganizationId, getIsAdmin,
+  (systems, userId, organizationId, isAdmin) => {
     if (systems) {
+      if (isAdmin) {
+        return systems;
+      }
       if (organizationId) {
         return systems.filter((s) => s.organizationId === organizationId)
       }
@@ -157,9 +166,12 @@ export const getSystemsForOrganization = createSelector(
   }
 );
 export const getSystemsForCommunity = createSelector(
-  getSystemsForOrganization, getUserId, getUserCommunity,
-  (systems, userId, community) => {
+  getSystemsForOrganization, getUserId, getUserCommunity, getIsAdmin,
+  (systems, userId, community, isAdmin) => {
     if (systems) {
+      if (isAdmin) {
+        return systems;
+      }
       if (community) {
         return systems.filter((s) => s.community === community || !s.community)
       }
@@ -258,7 +270,16 @@ export const getSubjectLessons = createSelector(
 );
 
 export const getMaintenanceLog = createSelector(
-  getMaintenanceLogs, getMaintenceLogIdParam,
+  getMaintenanceLogs, getMaintenanceLogIdParam,
+  (logs, id) => {
+    if (logs && id && typeof id === 'string') {
+      return logs[id];
+    }
+  }
+);
+
+export const getDiagnosticLog = createSelector(
+  getDiagnosticLogs, getDiagnosticLogIdParam,
   (logs, id) => {
     if (logs && id && typeof id === 'string') {
       return logs[id];

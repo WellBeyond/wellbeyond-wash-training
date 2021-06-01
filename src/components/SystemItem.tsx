@@ -9,9 +9,9 @@ interface SystemItemProps {
 }
 
 const SystemItem: React.FC<SystemItemProps> = ({ system, target}) => {
-  target = target || 'systems';
+  target = target ? ('/'+ target) : '';
   return (
-      <IonCard button className="system-card" routerLink={`/tabs/${target}/${system.id}`}>
+      <IonCard button className="system-card" routerLink={`/tabs/systems/${system.id}${target}`}>
         <IonCardHeader>
             <IonLabel>
               <h2>{system.name}</h2>
