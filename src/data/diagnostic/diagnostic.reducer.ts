@@ -18,6 +18,12 @@ export const diagnosticReducer = (state: DiagnosticState, action: DiagnosticActi
     case 'set-diagnostic-logs': {
       return {...state, diagnosticLogs: action.logs};
     }
+    case 'set-engine': {
+      return {...state, engine: action.engine};
+    }
+    case 'set-almanac': {
+      return {...state, almanac: action.almanac};
+    }
     case 'set-diagnostic-log': {
       let diagnosticLogs = Object.assign({}, state.diagnosticLogs);
       if (action.log.id) {

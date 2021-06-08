@@ -2,6 +2,7 @@ import {ActionType} from '../../util/types';
 import {createOrUpdateDiagnosticLog, listenForDiagnosticData, listenForDiagnosticLogs} from "./diagnosticApi";
 import {DiagnosticLogs, DiagnosticState} from "./diagnostic.state";
 import {Symptom, Solution, DiagnosticLog, FactQuestion} from "../../models/Diagnostic";
+import {Diagnostics, Almanac} from 'wellbeyond-diagnostic-engine'
 import {System} from "../../models/Maintenance";
 import React from "react";
 
@@ -100,6 +101,16 @@ export const setDiagnosticLogs = (logs: DiagnosticLogs) => ({
   logs
 } as const);
 
+export const setEngine = (engine: Diagnostics) => ({
+  type: 'set-engine',
+  engine
+} as const);
+
+export const setAlmanac = (almanac: Almanac) => ({
+  type: 'set-almanac',
+  almanac
+} as const);
+
 
 export type DiagnosticActions =
   | ActionType<typeof setData>
@@ -109,3 +120,5 @@ export type DiagnosticActions =
   | ActionType<typeof setDiagnosticLogs>
   | ActionType<typeof setDiagnosticLog>
   | ActionType<typeof setDiagnosticLogArchived>
+  | ActionType<typeof setEngine>
+  | ActionType<typeof setAlmanac>

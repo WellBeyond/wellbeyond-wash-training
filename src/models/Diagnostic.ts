@@ -1,4 +1,4 @@
-import {Symptom, Solution, FactQuestion} from 'wellbeyond-diagnostic-engine';
+import {Symptom, Solution, FactQuestion, } from 'wellbeyond-diagnostic-engine';
 
 export interface DiagnosticLog {
   id: string;
@@ -10,6 +10,7 @@ export interface DiagnosticLog {
   archived?: boolean;
   started?: Date;
   completed?: Date;
+  symptoms?: string[];
 }
 
 export type {

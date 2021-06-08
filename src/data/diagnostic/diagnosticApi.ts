@@ -55,7 +55,7 @@ export const createOrUpdateDiagnosticLog = async (log:DiagnosticLog) => {
   log.userId  = log.userId  || user.uid;
   return firebase
     .firestore()
-    .collection('maintenanceLogs')
+    .collection('diagnosticLogs')
     .doc(log.id)
     .set(log, {merge: true})
     .then(() => {

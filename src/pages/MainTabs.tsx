@@ -23,6 +23,7 @@ import ImpactReportingPage from './ImpactReportingPage';
 import MiscReportingPage from './MiscReportingPage';
 import DiagnosticPage from "./DiagnosticPage";
 import SymptomsPage from "./SymptomsPage";
+import DiagnosticLogPage from "./DiagnosticLogPage";
 
 interface OwnProps {}
 
@@ -88,7 +89,7 @@ const MainTabs: React.FC<MainTabsProps> = ({isLoggedIn, isRegistered, acceptedTe
           <Route path="/tabs/maintenance/:mlId/step/:stepId" component={MaintenanceStepPage} exact={true} />
           <Route path="/tabs/diagnostic" component={DiagnosticPage} exact={true} />
           <Route path="/tabs/systems/:systemId/symptoms" component={SymptomsPage} exact={true} />
-          <Route path="/tabs/diagnostic/:mlId" component={MaintenanceLogPage} exact={true} />
+          <Route path="/tabs/diagnostic/:dlId" component={DiagnosticLogPage} exact={true} />
         </Switch>
       </IonRouterOutlet>
   );

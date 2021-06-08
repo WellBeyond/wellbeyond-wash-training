@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {
   IonButton,
   IonButtons,
@@ -14,7 +14,7 @@ import {
   IonPage,
   IonTitle,
   IonToolbar,
-  IonCheckbox,
+  IonCheckbox, NavContext,
 } from '@ionic/react';
 import {Checklist, MaintenanceLog, System} from '../models/Maintenance';
 import {connect} from '../data/connect';
@@ -23,9 +23,9 @@ import './SystemPage.scss';
 import {RouteComponentProps} from "react-router";
 import {Trans, useTranslation} from "react-i18next";
 import i18n from '../i18n';
-import {Symptom} from "wellbeyond-diagnostic-engine";
-import {updateDiagnosticLog} from "../data/diagnostic/diagnostic.actions";
-import SystemItem from "../components/SystemItem";
+import {Diagnostics, Symptom} from "wellbeyond-diagnostic-engine";
+import {loadDiagnosticLogs, setEngine, updateDiagnosticLog} from "../data/diagnostic/diagnostic.actions";
+import {DiagnosticLog} from "../models/Diagnostic";
 
 interface SymptomMap {
   [id: string]: boolean;
@@ -43,15 +43,29 @@ interface StateProps {
 
 interface DispatchProps {
   updateDiagnosticLog: typeof updateDiagnosticLog
+  loadDiagnosticLogs: typeof loadDiagnosticLogs
+  setEngine: typeof setEngine
 }
 
 interface SymptomsProps extends OwnProps, StateProps, DispatchProps { }
 
-const SymptomsPage: React.FC<SymptomsProps> = ({ system,  symptoms,  defaultLanguage, userId, updateDiagnosticLog}) => {
+const SymptomsPage: React.FC<SymptomsProps> = ({ system,  symptoms,  defaultLanguage, userId, updateDiagnosticLog, loadDiagnosticLogs, setEngine}) => {
 
+  const {navigate} = useContext(NavContext);
   const { t } = useTranslation(['translation'], {i18n} );
 
   const [currentSymptoms, setCurrentSymptoms] = useState<SymptomMap>({});
+  const [error, setError] = useState<string>('');
+
+
+  useEffect(() => {
+    if (system && symptoms) {
+      i18n.changeLanguage(defaultLanguage || 'en');
+      loadDiagnosticLogs(system);
+    }
+
+  }, [system, symptoms, defaultLanguage, loadDiagnosticLogs]);
+
 
   const setSymptomChecked = (symptom:Symptom, checked:boolean) => {
     const updated = {...currentSymptoms};
@@ -59,7 +73,36 @@ const SymptomsPage: React.FC<SymptomsProps> = ({ system,  symptoms,  defaultLang
     setCurrentSymptoms(updated);
   }
 
+  const validate = ():boolean => {
+    for (const symptom in currentSymptoms) {
+      if (currentSymptoms[symptom]) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   const start = () => {
+    if (validate()) {
+      const now = new Date();
+      const log:DiagnosticLog = {
+        id: system.id + ':' + now.getTime(),
+        started: now,
+        name: system.name + ' - ' + now.toLocaleDateString(),
+        organizationId: system.organizationId,
+        community: system.community,
+        systemId: system.id,
+        userId: userId,
+        archived: false,
+        symptoms: symptoms.filter(s =>{return currentSymptoms[s.id]}).map(s => {return s.id})
+      };
+      updateDiagnosticLog(log);
+      setEngine(new Diagnostics());
+      navigate('/tabs/diagnostic/'+ log.id, 'forward');
+    }
+    else {
+      setError('maintenance.errors.selectSymptom');
+    }
   }
 
   return (
@@ -75,11 +118,14 @@ const SymptomsPage: React.FC<SymptomsProps> = ({ system,  symptoms,  defaultLang
 
       { system && symptoms &&
         <IonContent fullscreen={true}>
-            (<IonList>
+            <IonList>
+              <IonListHeader>
+                <h4>{t('diagnostic.headers.symptoms', {systemName: system.name})}</h4>
+              </IonListHeader>
               {symptoms.length ? symptoms.map((symptom, index: number) => (
                   <IonItem key={`symptom-${index}`}>
                     <IonLabel>{symptom.name}</IonLabel>
-                    <IonCheckbox color="primary" checked={currentSymptoms[symptom.id]} slot="start" onIonChange={e => setSymptomChecked(symptom, e.detail.checked)} ></IonCheckbox>
+                    <IonCheckbox color="primary" checked={!!currentSymptoms[symptom.id]} slot="start" onIonChange={e => setSymptomChecked(symptom, !!e.detail.checked)} ></IonCheckbox>
                   </IonItem>))
                 :
                   <IonItem>
@@ -89,13 +135,13 @@ const SymptomsPage: React.FC<SymptomsProps> = ({ system,  symptoms,  defaultLang
                     </p>
                   </IonItem>
               }
-            </IonList>)
+            </IonList>
         </IonContent>
       }
 
       <IonFooter>
         <IonToolbar>
-          <IonButton expand="block" fill="solid" color="primary" onClick={start}>{t('maintenance.buttons.start')}</IonButton>
+          <IonButton expand="block" fill="solid" color="primary" onClick={start}>{t('diagnostic.buttons.start')}</IonButton>
         </IonToolbar>
       </IonFooter>
     </IonPage>
@@ -104,7 +150,9 @@ const SymptomsPage: React.FC<SymptomsProps> = ({ system,  symptoms,  defaultLang
 
 export default connect<OwnProps, StateProps, DispatchProps>({
   mapDispatchToProps: {
-    updateDiagnosticLog
+    updateDiagnosticLog,
+    loadDiagnosticLogs,
+    setEngine
   },
   mapStateToProps: (state, ownProps) => ({
     system: selectors.getSystem(state, ownProps),

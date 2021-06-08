@@ -50,6 +50,9 @@ export const getFacts = (state: AppState) => {
 export const getDiagnosticLogs = (state: AppState) => {
   return state.diagnostic.diagnosticLogs;
 }
+export const getDiagnosticEngine = (state: AppState) => {
+  return state.diagnostic.engine;
+}
 export const getUserId = (state: AppState) => {
   return state.user.profile && state.user.profile.id;
 }
@@ -325,6 +328,19 @@ export const getSymptomsForSystem = createSelector(
   }
 );
 
+export const getSymptomsForDiagnosis = createSelector(
+  getSymptoms, getDiagnosticLog,
+  (symptoms, log) => {
+    if (symptoms && log && log.symptoms) {
+      return symptoms.filter((s) => {
+        // @ts-ignore
+        return log.symptoms.indexOf(s.id) > -1;
+      });
+    }
+    return [];
+  }
+);
+
 export const getChecklistForLog = createSelector(
   getChecklists, getMaintenanceLog,
   (checklists, log) => {
@@ -336,6 +352,16 @@ export const getChecklistForLog = createSelector(
 
 export const getSystemForLog = createSelector(
   getSystems, getMaintenanceLog,
+  (systems, log) => {
+    if (systems && log) {
+      return systems.find((s) => s.id === log.systemId);
+    }
+    return [];
+  }
+);
+
+export const getSystemForDiagnostic = createSelector(
+  getSystems, getDiagnosticLog,
   (systems, log) => {
     if (systems && log) {
       return systems.find((s) => s.id === log.systemId);

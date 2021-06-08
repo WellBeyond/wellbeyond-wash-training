@@ -21,7 +21,9 @@ export const initialState: AppState = {
     symptoms: [],
     solutions: [],
     facts: [],
-    diagnosticLogs: {}
+    diagnosticLogs: {},
+    engine: undefined,
+    almanac: undefined
   },
   user: {
     darkMode: false,

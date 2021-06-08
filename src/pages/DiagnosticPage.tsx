@@ -6,7 +6,7 @@ import {
   IonHeader,
   IonItem,
   IonItemGroup,
-  IonList,
+  IonList, IonListHeader,
   IonLoading,
   IonMenuButton,
   IonPage,
@@ -37,6 +37,7 @@ interface StateProps {
 
 interface DispatchProps {
 }
+
 
 type DiagnosticPageProps = OwnProps & StateProps & DispatchProps;
 
@@ -78,6 +79,9 @@ const DiagnosticPage: React.FC<DiagnosticPageProps> = ({ systems, organization, 
       <IonContent fullscreen={true}>
         {organization && systems ?
           (<IonList>
+            <IonListHeader>
+              <h4>{t('diagnostic.headers.systems')}</h4>
+            </IonListHeader>
             {systems.length ? systemList.map((system, index: number) => (
                 <IonItemGroup key={`system-${index}`}>
                   <SystemItem system={system} target="symptoms"/>

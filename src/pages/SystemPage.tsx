@@ -61,7 +61,6 @@ const SystemPage: React.FC<SystemProps> = ({ system,  maintenanceLogs,  checklis
 
   useEffect(() => {
     if (system && checklists) {
-      // For now, let anyone teach the system
       i18n.changeLanguage(defaultLanguage || 'en');
       loadMaintenanceLogs(system);
     }
