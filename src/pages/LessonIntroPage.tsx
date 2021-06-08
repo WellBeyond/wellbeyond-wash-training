@@ -102,7 +102,7 @@ const LessonIntroPage: React.FC<LessonIntroProps> = ({ subject,lesson, lessonPro
                 {lessonProgress && lessonProgress.completed ?
                   <p>{t('resources.lessons.intro.completed')}</p>
                   :
-                  lesson.questions.length ?
+                  lesson.questions && lesson.questions.length ?
                     <p>{t('resources.lessons.intro.firsttime')} </p>
                     :
                     <p>{t('resources.lessons.intro.firsttime2')} </p>
