@@ -1,5 +1,3 @@
-import {Answer} from "./User";
-
 export interface LessonPage {
   title: string,
   text: string,
@@ -44,12 +42,20 @@ export interface Subject {
   id: string;
   topicId?: string;
   organizationId?: string;
+  organizations?: string[];
   locale?: string;
   name: string;
   description: string;
   photo: string;
   lessons: Array<{lessonId: string}>; // Ordered list of lesson ids
   groupTypes?: GroupType[];
+}
+
+export interface Answer {
+  question: string;
+  answerBefore?: string | number;
+  answerAfter?: string | number;
+  correctAnswer?: string | number;
 }
 
 export interface PageView {

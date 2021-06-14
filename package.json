@@ -54,6 +54,7 @@
     "deploy": "firebase deploy --only hosting:wellbeyond-wash-training",
     "deploy-functions": "firebase deploy --only functions",
     "deploy-rules": "firebase deploy --only firestore:rules",
+    "preview": "firebase hosting:channel:deploy frontend-preview",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "resources": "cordova-res ios && cordova-res android && node tools/resources.js",

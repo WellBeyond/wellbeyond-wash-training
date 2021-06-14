@@ -108,7 +108,7 @@ const MaintenancePage: React.FC<MaintenancePageProps> = ({ systems, organization
 
 export default connect<OwnProps, StateProps, DispatchProps>({
   mapStateToProps: (state) => ({
-    systems: selectors.getSystemsForOrganization(state),
+    systems: selectors.getSystemsForCommunity(state),
     organization: selectors.getUserOrganization(state),
     defaultLanguage: state.user.defaultLanguage
   }),

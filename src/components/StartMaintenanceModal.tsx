@@ -72,6 +72,7 @@ const StartMaintenanceModal: React.FC<StartMaintenanceProps> = ({showModal, clos
         started: now,
         name: checklist.name + ' - ' + now.toLocaleDateString(),
         organizationId: system.organizationId,
+        community: system.community,
         checklistId: checklist.id,
         systemId: system.id,
         userId: profile.id,

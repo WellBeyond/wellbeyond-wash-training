@@ -18,7 +18,7 @@
     "pleaseWait": "S'il vous plaît, attendez...",
     "notificationsOn": "Autoriser les notifications",
     "maintenance": "Entretien",
-    "home": "Accueil"
+    "home": "Domicile"
   },
   "buttons": {
     "previous": "Précédent",
@@ -90,14 +90,14 @@
       "register": "S'inscrire"
     },
     "messages": {
-      "loginInfo": "Veuillez vous connecter pour commencer à utiliser l'application de formation WellBeyond Wash.",
-      "signupInfo": "Veuillez vous inscrire pour commencer à utiliser l'application de formation WellBeyond WASH.",
+      "loginInfo": "Veuillez vous connecter pour commencer à utiliser l'application Well Beyond.",
+      "signupInfo": "Veuillez vous inscrire pour commencer à utiliser l'application Well Beyond.",
       "passwordChanged": "Mot de passe mis à jour",
       "emailChanged": "Courriel mis à jour",
       "profileChanged": "Profil mis à jour",
       "passwordResetInfo": "C'est bon, nous oublions tous nos mots de passe. Dites-nous simplement l'e-mail avec lequel vous vous êtes inscrit et nous vous enverrons un lien que vous pourrez utiliser pour le réinitialiser.",
       "passwordResetSent": "Un e-mail a été envoyé à {{email}} avec un lien pour réinitialiser votre mot de passe. Assurez-vous de vérifier votre dossier SPAM puis revenez ici pour vous connecter après avoir défini un nouveau mot de passe.",
-      "registerInfo": "Veuillez compléter votre inscription pour commencer à utiliser l'application de formation WellBeyond WASH."
+      "registerInfo": "Veuillez compléter votre inscription pour commencer à utiliser l'application Well Beyond."
     },
     "pages": {
       "signup": "S'inscrire",
@@ -205,13 +205,15 @@
       "intro": {
         "title": "introduction",
         "completed": "Vous avez déjà terminé ce module, mais vous pouvez revenir ici à tout moment pour passer en revue.",
-        "firsttime": "Avant de commencer le module, nous allons vous poser quelques questions pour voir ce que vous savez déjà. Nous vous poserons à nouveau ces questions après avoir terminé le module."
+        "firsttime": "Avant de commencer le module, nous allons vous poser quelques questions pour voir ce que vous savez déjà. Nous vous poserons à nouveau ces questions après avoir terminé le module.",
+        "firsttime2": "Commençons avec le module."
       },
       "summary": {
         "title": "Leçon terminée",
         "completed": "Vous avez terminé ce module avec succès et répondu correctement à {{score}} % des questions.",
         "nextLesson": "Le module suivant est {{lesson}} . Cliquez sur suivant lorsque vous êtes prêt à commencer.",
-        "allDone": "Vous avez terminé tous les modules pour {{subject}} ."
+        "allDone": "Vous avez terminé tous les modules pour {{subject}} .",
+        "completed2": "Vous avez terminé avec succès ce module."
       },
       "questions": {
         "title": "Question {{num}} sur {{count}}",

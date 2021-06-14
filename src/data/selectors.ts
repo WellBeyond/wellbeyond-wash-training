@@ -102,7 +102,11 @@ export const getSubjectsForOrganization = createSelector(
   (subjects, userId, organizationId) => {
     if (subjects) {
       if (organizationId) {
-        return subjects.filter((s) => s.organizationId === organizationId)
+        return subjects.filter((s) => {
+          return s.organizationId === organizationId ||
+            (s.organizations && s.organizations.includes(organizationId));
+
+        })
       }
       else if (userId) {
         return subjects;
@@ -182,6 +186,20 @@ export const getSystemsForOrganization = createSelector(
     if (systems) {
       if (organizationId) {
         return systems.filter((s) => s.organizationId === organizationId)
+      }
+      else if (userId) {
+        return systems;
+      }
+    }
+    return [];
+  }
+);
+export const getSystemsForCommunity = createSelector(
+  getSystemsForOrganization, getUserId, getUserCommunity,
+  (systems, userId, community) => {
+    if (systems) {
+      if (community) {
+        return systems.filter((s) => s.community === community || !s.community || !community)
       }
       else if (userId) {
         return systems;

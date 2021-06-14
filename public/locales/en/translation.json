@@ -249,11 +249,13 @@
       "intro": {
         "title": "Introduction",
         "completed": "You have already completed this module, but you can come back here any time to review.",
-        "firsttime": "Before you start the module, we\"re going to ask you a few questions to see how much you already know.  We\"ll ask you these questions again after you have completed the module."
+        "firsttime": "Before you start the module, we\"re going to ask you a few questions to see how much you already know.  We\"ll ask you these questions again after you have completed the module.",
+        "firsttime2": "Let's get started with the module."
       },
       "summary": {
         "title": "Lesson Complete",
         "completed": "You have successfully completed this module and correctly answered {{score}}% of the questions.",
+        "completed2": "You have successfully completed this module.",
         "nextLesson": "The next module is {{lesson}}. Click next when you are ready to begin.",
         "allDone": "You have completed all the modules for {{subject}}."
       },

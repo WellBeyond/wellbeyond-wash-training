@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   IonButton,
   IonButtons,
@@ -57,12 +57,6 @@ const StepCompleteModal: React.FC<StepCompleteProps> = ({showModal, closeModal, 
     setFormErrors({status: null});
   }, [showModal, step]);
 
-  const setPhoto = useCallback((url:string) => {
-    let values = {...formValues};
-    values.photo = url;
-    setFormValues(values);
-  }, [formValues]);
-
   const handleChange = (field:string, value:string) => {
     let errors = {...formErrors};
     let values = {...formValues};
@@ -91,6 +85,21 @@ const StepCompleteModal: React.FC<StepCompleteProps> = ({showModal, closeModal, 
       step.photo = formValues.photo || '';
       updateMaintenanceLog(log);
       closeModal(true);
+    }
+  }
+
+  const setPhoto = (url:string) => {
+    let values = {...formValues};
+    values.photo = url;
+    setFormValues(values);
+    if(validate() && step && log) {
+      step.completed = new Date();
+      step.completedById = profile && profile.id;
+      step.completedByName = profile && profile.name;
+      step.status = formValues.status;
+      step.information = formValues.information || '';
+      step.photo = url;
+      updateMaintenanceLog(log);
     }
   };
 
