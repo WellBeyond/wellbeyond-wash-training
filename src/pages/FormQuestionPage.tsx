@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useCallback} from 'react';
+import React, {useState} from 'react';
 import {RouteComponentProps} from 'react-router';
 
 import './LessonPage.scss';
@@ -27,18 +27,16 @@ import i18n from '../i18n';
 
 import {connect} from '../data/connect';
 import * as selectors from '../data/selectors';
-//remove this next line
 import {Form, FormType, FormQuestion, FormProgress, FormSession} from '../models/Form'
-//remove this next line
 
 import {updateForm, startFormSession} from "../data/user/user.actions";
 import PhotoUpload from '../components/PhotoUpload';
 import { Answer } from '../data/form/form.state';
 import {Organization} from "../models/User";
 
+type showWarningType = Record<string, boolean>;
 
 interface OwnProps extends RouteComponentProps {
-  // question: Question;
   idx: number;
   activeSession?: FormSession;
   form: Form;
@@ -50,6 +48,8 @@ interface OwnProps extends RouteComponentProps {
   hasNext: boolean;
   hasPrevious: boolean;
   answer: Answer;
+  showWarning : showWarningType;
+  setShowWarning: (showWarning: showWarningType) => void;
 }
 
 interface StateProps {
@@ -84,6 +84,8 @@ const FormQuestionPage: React.FC<FormQuestionPageProps> = ({
   userId,
   hasNext,
   hasPrevious,
+  showWarning,
+  setShowWarning,
   getNextQuestion,
   getPreviousQuestion,
   startFormSession,
@@ -91,11 +93,10 @@ const FormQuestionPage: React.FC<FormQuestionPageProps> = ({
 }) => {
 
   const { t } = useTranslation(['translation'], {i18n} );
-  const [lockAnswer, setLockAnswer] = useState<boolean>();
+  const [lockAnswer] = useState<boolean>();
 
   const handleAnswer = (value:(string|number|undefined | null)) => {
     if (value === answer[`${currentIdx}`]) return
-    console.log({ value, ans: answer[`${currentIdx}`] })
     setAnswer({...answer, [`${currentIdx}`]: value })
   }
 
@@ -127,24 +128,16 @@ const FormQuestionPage: React.FC<FormQuestionPageProps> = ({
     }
 
     activeSession.id = userId + ':' + activeSession.formId + ':' + (activeSession.started && activeSession.started.getTime());
-    // forms.forEach((f) => {
-    //   if (activeSession.forms && f.id) {
-    //     activeSession.forms[f.id] = {
-    //       id: f.id,
-    //       formId: f.id,
-    //       answers: answer,
-    //     };
-    //   }
-    // });
-
-
-    console.log('Active session in else', activeSession, organization)
     await startFormSession(activeSession)
     setFormSubmitted(true);
    }
   }
 
   const handleNext = () => {
+    if (question.isRequired && !answer[`${currentIdx}`]) {
+      setShowWarning({ [`${currentIdx}`]: true });
+      return;
+    }
     getNextQuestion();
     return;
   }
@@ -167,8 +160,6 @@ const FormQuestionPage: React.FC<FormQuestionPageProps> = ({
                         <IonLabel>{t('resources.forms.labels.yes')}</IonLabel>
                         <IonRadio disabled={lockAnswer} slot="start" value="yes" />
                       </IonItem>
-            {/* {console.log(question.isRequired )} */}
-
                       <IonItem>
                         <IonLabel>{t('resources.forms.labels.no')}</IonLabel>
                         <IonRadio disabled={lockAnswer} slot="start" value="no" />
@@ -229,6 +220,7 @@ const FormQuestionPage: React.FC<FormQuestionPageProps> = ({
                   </IonList>
                 )
               }
+              {question.isRequired && showWarning[`${currentIdx}`] && <IonLabel className="warning">This question is required.</IonLabel>}
             </IonCardContent>
           </IonCard>
         </IonContent>

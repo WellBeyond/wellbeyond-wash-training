@@ -13,7 +13,7 @@ import './HomePage.scss';
 import HeaderLogo from '../components/HeaderLogo';
 
 
-import {Trans, useTranslation} from "react-i18next";
+import {useTranslation} from "react-i18next";
 import i18n from '../i18n';
 import * as selectors from '../data/selectors';
 import {connect} from '../data/connect';

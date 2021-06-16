@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState, useCallback} from 'react';
+import React, {useEffect, useState, useCallback} from 'react';
 import {
   IonButtons,
   IonContent,
@@ -6,18 +6,15 @@ import {
   IonPage,
   IonTitle,
   IonToolbar,
-  NavContext
 } from '@ionic/react';
 import './Login.scss';
 import {useTranslation} from "react-i18next";
 import i18n from '../i18n';
 import {connect} from '../data/connect';
 import {RouteComponentProps} from 'react-router';
-import {GroupType, Lesson, Subject, TrainingSession} from "../models/Training";
-import {Form, FormQuestion, FormType, FormSession} from "../models/Form";
+import {Form, FormType} from "../models/Form";
 
 import * as selectors from "../data/selectors";
-import BackToSubjectLink from "../components/BackToSubject";
 import {startTrainingSession} from "../data/user/user.actions";
 import {Organization} from "../models/User";
 import FormQuestionPage from './FormQuestionPage';
@@ -45,7 +42,6 @@ interface StartTrainingSessionProps extends OwnProps, StateProps, DispatchProps 
 const StartTrainingSession: React.FC<StartTrainingSessionProps> = ({ form, formType, userId, organization, community, startTrainingSession }) => {
 
   const { t } = useTranslation(['translation'], {i18n} );
-  const {navigate} = useContext(NavContext);
 
   const [currentIdx, setCurrentIdx] = useState<number>(0);
   const [question, setQuestion] = useState<any>({});
@@ -53,6 +49,7 @@ const StartTrainingSession: React.FC<StartTrainingSessionProps> = ({ form, formT
   const [answer, setAnswer] = useState<Answer>({});
   const [hasNext, setHasNext] = useState<boolean>(false);
   const [hasPrevious, setHasPrevious] = useState<boolean>(false);
+  const [showWarning, setShowWarning] = useState<Record<string, boolean>>({});
 
   const nextExists = useCallback((idx: number) => (idx + 1) < (form?.questions?.length || 0), [form]);
   const prevExists = (idx: number) => (idx - 1) >= 0;
@@ -109,6 +106,8 @@ const StartTrainingSession: React.FC<StartTrainingSessionProps> = ({ form, formT
             setAnswer={setAnswer}
             hasNext={hasNext}
             hasPrevious={hasPrevious}
+            showWarning={showWarning}
+            setShowWarning={setShowWarning}
             getNextQuestion={getNextQuestion}
             getPreviousQuestion={getPreviousQuestion}
             setFormSubmitted={setFormSubmitted} />

@@ -1,9 +1,8 @@
-import React, {useEffect, useRef} from 'react';
+import React, {useEffect} from 'react';
 
 import {
   IonContent,
   IonToolbar,
-  IonPage,
   IonButton,
   IonButtons,
   IonFooter,
@@ -20,7 +19,6 @@ import * as selectors from '../data/selectors';
 import {connect} from '../data/connect';
 import {FormType, Form} from '../models/Form';
 import {NavLink} from "react-router-dom";
-import {RouteComponentProps} from "react-router";
 // import { Form } from '../models/Form';
 
 interface OwnProps {
