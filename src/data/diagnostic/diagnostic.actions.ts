@@ -1,12 +1,12 @@
 import {ActionType} from '../../util/types';
 import {createOrUpdateDiagnosticLog, listenForDiagnosticData, listenForDiagnosticLogs} from "./diagnosticApi";
 import {DiagnosticLogs, DiagnosticState} from "./diagnostic.state";
-import {Symptom, Solution, DiagnosticLog, FactQuestion} from "../../models/Diagnostic";
-import {Diagnostics, Almanac} from 'wellbeyond-diagnostic-engine'
+import {Symptom, Solution, DiagnosticLog, Diagnostic} from "../../models/Diagnostic";
+import {DiagnosticEngine, Almanac} from 'wellbeyond-diagnostic-engine'
 import {System} from "../../models/Maintenance";
 import React from "react";
 
-const listeners:{symptoms?:any, solutions?:any, facts?: any, diagnosticLogs?:any} = {};
+const listeners:{symptoms?:any, solutions?:any, diagnostics?: any, diagnosticLogs?:any} = {};
 
 export const loadDiagnosticData = (organizationId:string) => (async (dispatch: React.Dispatch<any>) => {
   if (listeners.symptoms && typeof listeners.symptoms === 'function') {
@@ -27,13 +27,13 @@ export const loadDiagnosticData = (organizationId:string) => (async (dispatch: R
     listeners.solutions = listener;
   });
 
-  if (listeners.facts && typeof listeners.facts === 'function') {
-    listeners.facts();
+  if (listeners.diagnostics && typeof listeners.diagnostics === 'function') {
+    listeners.diagnostics();
   }
-  listenForDiagnosticData('facts', organizationId, (facts: FactQuestion[]) => {
-    dispatch(setFacts(facts));
+  listenForDiagnosticData('diagnostics', organizationId, (diagnostics: Diagnostic[]) => {
+    dispatch(setDiagnostics(diagnostics));
   }).then(listener => {
-    listeners.facts = listener;
+    listeners.diagnostics = listener;
   });
 });
 
@@ -81,9 +81,9 @@ export const setSolutions = (solutions: Solution[]) => ({
   solutions
 } as const);
 
-export const setFacts = (facts: FactQuestion[]) => ({
-  type: 'set-facts',
-  facts
+export const setDiagnostics = (diagnostics: Diagnostic[]) => ({
+  type: 'set-diagnostics',
+  diagnostics
 } as const);
 
 export const setDiagnosticLog = (log: DiagnosticLog) => ({
@@ -101,8 +101,8 @@ export const setDiagnosticLogs = (logs: DiagnosticLogs) => ({
   logs
 } as const);
 
-export const setEngine = (engine: Diagnostics) => ({
-  type: 'set-engine',
+export const setDiagnosticEngine = (engine: DiagnosticEngine) => ({
+  type: 'set-diagnostic-engine',
   engine
 } as const);
 
@@ -116,9 +116,9 @@ export type DiagnosticActions =
   | ActionType<typeof setData>
   | ActionType<typeof setSymptoms>
   | ActionType<typeof setSolutions>
-  | ActionType<typeof setFacts>
+  | ActionType<typeof setDiagnostics>
   | ActionType<typeof setDiagnosticLogs>
   | ActionType<typeof setDiagnosticLog>
   | ActionType<typeof setDiagnosticLogArchived>
-  | ActionType<typeof setEngine>
+  | ActionType<typeof setDiagnosticEngine>
   | ActionType<typeof setAlmanac>

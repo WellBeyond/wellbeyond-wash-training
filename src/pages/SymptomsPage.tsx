@@ -23,8 +23,8 @@ import './SystemPage.scss';
 import {RouteComponentProps} from "react-router";
 import {Trans, useTranslation} from "react-i18next";
 import i18n from '../i18n';
-import {Diagnostics, Symptom} from "wellbeyond-diagnostic-engine";
-import {loadDiagnosticLogs, setEngine, updateDiagnosticLog} from "../data/diagnostic/diagnostic.actions";
+import {DiagnosticEngine, Symptom} from "wellbeyond-diagnostic-engine";
+import {loadDiagnosticLogs, setDiagnosticEngine, updateDiagnosticLog} from "../data/diagnostic/diagnostic.actions";
 import {DiagnosticLog} from "../models/Diagnostic";
 
 interface SymptomMap {
@@ -44,12 +44,12 @@ interface StateProps {
 interface DispatchProps {
   updateDiagnosticLog: typeof updateDiagnosticLog
   loadDiagnosticLogs: typeof loadDiagnosticLogs
-  setEngine: typeof setEngine
+  setDiagnosticEngine: typeof setDiagnosticEngine
 }
 
 interface SymptomsProps extends OwnProps, StateProps, DispatchProps { }
 
-const SymptomsPage: React.FC<SymptomsProps> = ({ system,  symptoms,  defaultLanguage, userId, updateDiagnosticLog, loadDiagnosticLogs, setEngine}) => {
+const SymptomsPage: React.FC<SymptomsProps> = ({ system,  symptoms,  defaultLanguage, userId, updateDiagnosticLog, loadDiagnosticLogs, setDiagnosticEngine}) => {
 
   const {navigate} = useContext(NavContext);
   const { t } = useTranslation(['translation'], {i18n} );
@@ -97,7 +97,7 @@ const SymptomsPage: React.FC<SymptomsProps> = ({ system,  symptoms,  defaultLang
         symptoms: symptoms.filter(s =>{return currentSymptoms[s.id]}).map(s => {return s.id})
       };
       updateDiagnosticLog(log);
-      setEngine(new Diagnostics());
+      setDiagnosticEngine(new DiagnosticEngine());
       navigate('/tabs/diagnostic/'+ log.id, 'forward');
     }
     else {
@@ -152,7 +152,7 @@ export default connect<OwnProps, StateProps, DispatchProps>({
   mapDispatchToProps: {
     updateDiagnosticLog,
     loadDiagnosticLogs,
-    setEngine
+    setDiagnosticEngine
   },
   mapStateToProps: (state, ownProps) => ({
     system: selectors.getSystem(state, ownProps),

@@ -12,13 +12,13 @@ export const diagnosticReducer = (state: DiagnosticState, action: DiagnosticActi
     case 'set-solutions': {
       return {...state, solutions: action.solutions};
     }
-    case 'set-facts': {
-      return {...state, facts: action.facts};
+    case 'set-diagnostics': {
+      return {...state, diagnostics: action.diagnostics};
     }
     case 'set-diagnostic-logs': {
       return {...state, diagnosticLogs: action.logs};
     }
-    case 'set-engine': {
+    case 'set-diagnostic-engine': {
       return {...state, engine: action.engine};
     }
     case 'set-almanac': {

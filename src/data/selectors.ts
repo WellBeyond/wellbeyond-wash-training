@@ -44,8 +44,8 @@ export const getSymptoms = (state: AppState) => {
 export const getSolutions = (state: AppState) => {
   return state.diagnostic.solutions;
 }
-export const getFacts = (state: AppState) => {
-  return state.diagnostic.facts;
+export const getDiagnostics = (state: AppState) => {
+  return state.diagnostic.diagnostics;
 }
 export const getDiagnosticLogs = (state: AppState) => {
   return state.diagnostic.diagnosticLogs;
@@ -316,12 +316,17 @@ export const getSymptomsForSystem = createSelector(
   (symptoms, system) => {
     if (symptoms && system) {
       return symptoms.filter((s) => {
-        // @ts-ignore
-        return !s.systemTypeId ||
-          // @ts-ignore                                                            // applies to all system types
-          s.systemTypeId === system.systemTypeId ||                                               // system has a single type
-          // @ts-ignore
-          (system.systemTypeIds && system.systemTypeIds.find((t) => t === s.systemTypeId)); // system has multiple types
+        if (!s.systemTypeIds  || !s.systemTypeIds.length) {
+          return true;
+        }
+        if (!system.systemTypeIds  || !system.systemTypeIds.length) {
+          return false;
+        }
+        let contains:boolean = false;
+        system.systemTypeIds.forEach(val => {
+          if (s.systemTypeIds && s.systemTypeIds.includes(val)) contains = true;
+        });
+        return contains;
       });
     }
     return [];

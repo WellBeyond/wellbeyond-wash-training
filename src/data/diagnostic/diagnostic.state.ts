@@ -1,12 +1,12 @@
-import {Symptom, Solution, FactQuestion, DiagnosticLog} from '../../models/Diagnostic';
-import {Diagnostics, Almanac} from 'wellbeyond-diagnostic-engine'
+import {Symptom, Solution, Diagnostic, DiagnosticLog} from '../../models/Diagnostic';
+import {DiagnosticEngine, Almanac} from 'wellbeyond-diagnostic-engine'
 
 export interface DiagnosticState {
   symptoms: Symptom[];
   solutions: Solution[];
-  facts: FactQuestion[];
+  diagnostics: Diagnostic[];
   diagnosticLogs: DiagnosticLogs;
-  engine?: Diagnostics;
+  engine?: DiagnosticEngine;
   almanac?: Almanac;
 }
 

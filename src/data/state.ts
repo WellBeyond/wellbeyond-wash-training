@@ -20,7 +20,7 @@ export const initialState: AppState = {
   diagnostic: {
     symptoms: [],
     solutions: [],
-    facts: [],
+    diagnostics: [],
     diagnosticLogs: {},
     engine: undefined,
     almanac: undefined
