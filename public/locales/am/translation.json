@@ -18,7 +18,11 @@
     "pleaseWait": "እባክህ በትእግስት ተጠባበቅ...",
     "notificationsOn": "ማስታወቂያዎች ፍቀድ",
     "maintenance": "ጥገና",
-    "home": "ቤት"
+    "home": "ቤት",
+    "waterSystems": "የውሃ ስርዓቶች",
+    "impactReporting": "ተጽዕኖ ሪፖርት ማድረግ",
+    "forms": "ቅጾች",
+    "miscReporting": "ምስክ ሪፖርት ማድረግ"
   },
   "buttons": {
     "previous": "የቀድሞው",
@@ -26,7 +30,8 @@
     "done": "ተጠናቅቋል",
     "close": "ገጠመ",
     "cancel": "ይቅር",
-    "ok": "እሺ"
+    "ok": "እሺ",
+    "submit": "አስገባ"
   },
   "registration": {
     "modals": {
@@ -213,14 +218,14 @@
         "completed": "ይህንን ሞጁል በተሳካ ሁኔታ አጠናቀዋል እናም ለጥያቄዎች {{score}} % በትክክል መልስ ሰጡ ፡፡",
         "nextLesson": "ቀጣዩ ሞጁል <span>0 ነው</span> ፡፡ ለመጀመር ዝግጁ ሲሆኑ ቀጥሎ ጠቅ ያድርጉ።",
         "allDone": "ሁሉንም ሞጁሎች ለ {{subject}} ጨርሰዋል ፡፡",
-        "completed2": "ይህንን ሞጁል በተሳካ ሁኔታ አጠናቀዋል ፡፡"
+        "completed2": "ይህንን ሞጁል በተሳካ ሁኔታ አጠናቀዋል።"
       },
       "questions": {
         "title": "ጥያቄ {{num}} ከ {{count}}",
         "right": "ጥሩ ስራ ፣ በትክክል አገኘኸው ፡፡",
         "wrong": "ይቅርታ ፣ ተሳስተሃል ፡፡ ትክክለኛው መልስ ነው"
       },
-      "attestationHeader": "እባክዎ ከዚህ በታች ባለው ሳጥን ላይ ምልክት በማድረግ ይህንን መረጃ ማካሄድዎን ያረጋግጡ ፡፡",
+      "attestationHeader": "እባክዎ ከዚህ በታች ባለው ሳጥን ላይ ምልክት በማድረግ ይህንን መረጃ እንደተገነዘቡ ያረጋግጡ ፡፡",
       "completed": "ተጠናቋል",
       "introduction": "መግቢያ"
     },
@@ -233,6 +238,38 @@
       "name": "የውሃ ስርዓት",
       "name_plural": "የውሃ ስርዓቶች",
       "nonefound": "የውሃ ስርዓቶች አልተገኙም"
+    },
+    "forms": {
+      "name": "ቅጽ",
+      "name_plural": "ቅጾች",
+      "startSessionTitle": "ቅጽ ይጀምሩ",
+      "startSessionDescription": "ዝግጁ ሲሆኑ በደግነት የመነሻ ቁልፍን ጠቅ ያድርጉ",
+      "startSessionCTA": "ለጥያቄዎች መልስ መስጠት ይጀምሩ",
+      "nonefound": "በዚህ ምድብ ውስጥ ምንም ቅጾች አልተፈጠሩም",
+      "pages": {
+        "start": "መልስ",
+        "questions": "የቅጽ ጥያቄዎች"
+      },
+      "questions": {
+        "title": "{{count}} ጥያቄ {{num}}",
+        "right": "ግሩም ሥራ በትክክል አገኙት",
+        "wrong": "ይቅርታ ፣ ተሳስተሃል ትክክለኛው መልስ ነው",
+        "placeholder": {
+          "enterNumber": "ይህ ጥያቄ የቁጥር ግቤት ወይም መልስ ይፈልጋል",
+          "openEnded": "ይህ ጥያቄ ክፍት ነው ተጠናቅቋል ፡፡",
+          "imageUpload": "አንድ ምስል ይስቀሉ",
+          "more": "በተቻለ መጠን ብዙ ዝርዝሮችን ለማከል ነፃነት ይሰማዎት"
+        }
+      },
+      "labels": {
+        "yes": "አዎ",
+        "no": "አይ"
+      },
+      "submit_success": {
+        "title": "ቅጽ ገብቷል",
+        "body": "የእርስዎ መልሶች በተሳካ ሁኔታ ገብተዋል",
+        "back_to_forms": "ወደ ቅጾች ተመለስ"
+      }
     }
   },
   "maintenance": {
@@ -314,7 +351,8 @@
       "trainingTopics": "የሥልጠና ርዕሶች",
       "waterSystems": "የውሃ ስርዓቶች",
       "impactReporting": "ተጽዕኖ ሪፖርት ማድረግ",
-      "miscReporting": "ምስክ ሪፖርት ማድረግ"
+      "miscReporting": "ምስክ ሪፖርት ማድረግ",
+      "forms": "ቅጾች"
     },
     "waterSystemsPage": {
       "pageTitle": "የውሃ ስርዓቶች",
@@ -328,7 +366,8 @@
       "pageTitle": "ተጽዕኖ ሪፖርት ማድረግ",
       "instructions": "መመሪያዎች",
       "surveys": "የዳሰሳ ጥናቶች (ፒዲኤፍ)",
-      "surveyInput": "የዳሰሳ ጥናት ግብዓት"
+      "surveyInput": "የዳሰሳ ጥናት ግብዓት",
+      "forms": "ቅጾች"
     },
     "miscReportingPage": {
       "pageTitle": "ሪፖርት ማድረግ",
