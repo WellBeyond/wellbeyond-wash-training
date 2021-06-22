@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState, Fragment} from 'react';
 import {
   IonButtons, IonCardHeader, IonCardSubtitle, IonCardTitle,
   IonContent,
@@ -9,7 +9,7 @@ import {
   IonRadioGroup,
   IonTitle,
   IonToolbar,
-  IonCardContent, IonCard, IonFooter, IonButton
+  IonCardContent, IonCard, IonFooter, IonButton, NavContext, IonCheckbox
 } from '@ionic/react';
 import {System} from '../models/Maintenance';
 import {DiagnosticLog} from '../models/Diagnostic';
@@ -17,11 +17,11 @@ import {connect} from '../data/connect';
 import * as selectors from '../data/selectors';
 import './DiagnosticPage.scss';
 import {RouteComponentProps} from "react-router";
-import {useTranslation} from "react-i18next";
+import {Trans, useTranslation} from "react-i18next";
 import i18n from '../i18n';
 import BackToSystemLink from "../components/BackToSystem";
 import {DiagnosticEngine, Diagnostic, Solution, Symptom, EngineResult} from "wellbeyond-diagnostic-engine";
-import {Answer} from "../models/Training";
+import SolutionModal from "../components/SolutionModal";
 
 interface ResolveFunc {
   (answer:string): void;
@@ -53,10 +53,22 @@ interface SystemProps extends OwnProps, StateProps, DispatchProps { }
 const DiagnosticLogPage: React.FC<SystemProps> = ({ system,  log, symptoms, diagnostics, solutions, engine}) => {
 
   const { t } = useTranslation(['translation'], {i18n} );
+  const {navigate} = useContext(NavContext);
+
   const [nextQuestion, setNextQuestion] = useState<NextQuestion>();
   const [result, setResult] = useState<EngineResult>();
   const [answer, setAnswer] = useState<string>();
   const [showNext, setShowNext] = useState<boolean>(false);
+  const [showModal, setShowModal] = useState<boolean>(false);
+
+  const closeModal = (goback?:boolean) => {
+    setShowModal(false);
+  }
+
+  const openModal = () => {
+    setShowModal(true);
+  }
+
 
   const diagnosticCallback = async function (diagnostic:Diagnostic) {
     const promise = new Promise<string>((resolve, _reject) => {
@@ -82,6 +94,7 @@ const DiagnosticLogPage: React.FC<SystemProps> = ({ system,  log, symptoms, diag
         resolve: resolve
       };
       setNextQuestion(nextQuestion);
+      setShowNext(!solution.askDidItWork);
     });
     return promise;
   }
@@ -94,8 +107,8 @@ const DiagnosticLogPage: React.FC<SystemProps> = ({ system,  log, symptoms, diag
   }
 
   const handleNext = () => {
-    if (nextQuestion && nextQuestion.resolve && answer) {
-      nextQuestion.resolve(answer);
+    if (nextQuestion && nextQuestion.resolve) {
+      nextQuestion.resolve(answer || 'no answer');
       setAnswer(undefined);
       setShowNext(false);
     }
@@ -155,38 +168,113 @@ const DiagnosticLogPage: React.FC<SystemProps> = ({ system,  log, symptoms, diag
                     </IonItem>
                   </IonRadioGroup>
                 </IonList>
+                {(nextQuestion.diagnostic.photos &&
+                  <IonList>
+                    {nextQuestion.diagnostic.photos.length ? nextQuestion.diagnostic.photos.map((photo:any, index: number) => (
+                        <IonItem key={`photo-${index}`}>
+                          <IonCard className="lesson-card">
+                            <IonCardHeader>
+                                <IonLabel>
+                                  <h2>{photo.title}</h2>
+                                </IonLabel>
+                            </IonCardHeader>
+
+                            <IonCardContent>
+                              <IonItem button detail={false} lines="none" className="lesson-item">
+                                <img src={photo.url} crossOrigin='anonymous' alt={photo.title} />
+                              </IonItem>
+                              <IonItem button detail={false} lines="none" className="lesson-item">
+                                <div dangerouslySetInnerHTML={{__html: photo.description}}></div>
+                              </IonItem>
+                            </IonCardContent>
+                          </IonCard>
+                        </IonItem>))
+                      :
+                      undefined
+                    }
+                  </IonList>
+                )}
               </IonCardContent>
             </IonCard>
           )}
 
-          {(nextQuestion && nextQuestion.solution &&
-            <IonCard className='lesson-card'>
-              <IonCardHeader>
-                <IonCardSubtitle>{nextQuestion.solution.name}</IonCardSubtitle>
-                <IonCardTitle><h2>Did this fix the problem?</h2></IonCardTitle>
-              </IonCardHeader>
-              <IonCardContent className='question-answer'>
-                <IonList>
-                  <IonRadioGroup value={answer} onIonChange={e => handleAnswer(e.detail.value)}>
-                    <IonItem>
-                      <IonLabel>{t('training.labels.yes')}</IonLabel>
-                      <IonRadio slot="start" value="yes" />
-                    </IonItem>
-                    <IonItem>
-                      <IonLabel>{t('training.labels.no')}</IonLabel>
-                      <IonRadio slot="start" value="no" />
-                    </IonItem>
-                  </IonRadioGroup>
-                </IonList>
-              </IonCardContent>
-            </IonCard>
+          {(nextQuestion && nextQuestion.solution && nextQuestion.symptom &&
+            <Fragment>
+              <IonCard className='lesson-card'>
+                <IonCardHeader>
+                  <IonCardTitle><h2>{nextQuestion.solution.name}</h2></IonCardTitle>
+                </IonCardHeader>
+                <IonCardContent className='solution-description'>
+
+                  {(nextQuestion.solution.instructions &&
+                  <IonItem detail={false} lines="none" className="lesson-item">
+                    <div dangerouslySetInnerHTML={{__html: nextQuestion.solution.instructions}}></div>
+                  </IonItem>
+                  )}
+                  {(nextQuestion.solution.photos &&
+                    <IonList>
+                      {nextQuestion.solution.photos.length ? nextQuestion.solution.photos.map((photo:any, index: number) => (
+                          <IonItem key={`photo-${index}`}>
+                            <IonCard className="lesson-card">
+                              <IonCardHeader>
+                                <IonLabel>
+                                  <h2>{photo.title}</h2>
+                                </IonLabel>
+                              </IonCardHeader>
+
+                              <IonCardContent>
+                                <IonItem detail={false} lines="none" className="lesson-item">
+                                  <img src={photo.url} crossOrigin='anonymous' alt={photo.title} />
+                                </IonItem>
+                                <IonItem detail={false} lines="none" className="lesson-item">
+                                  <div dangerouslySetInnerHTML={{__html: photo.description}}></div>
+                                </IonItem>
+                              </IonCardContent>
+                            </IonCard>
+                          </IonItem>))
+                        :
+                        undefined
+                      }
+                    </IonList>
+                  )}
+                </IonCardContent>
+              </IonCard>
+              {(nextQuestion.solution.askDidItWork &&
+              <IonCard className='lesson-card'>
+                <IonCardHeader>
+                  <IonCardTitle><h2>Did this fix the problem?</h2></IonCardTitle>
+                </IonCardHeader>
+                <IonCardContent className='question-answer'>
+                  <IonList>
+                    <IonRadioGroup value={answer} onIonChange={e => handleAnswer(e.detail.value)}>
+                      <IonItem>
+                        <IonLabel>Yes, that fixed the problem</IonLabel>
+                        <IonRadio slot="start" value="yes" />
+                      </IonItem>
+                      <IonItem>
+                        <IonLabel>No the problem is still there</IonLabel>
+                        <IonRadio slot="start" value="no" />
+                      </IonItem>
+                      <IonItem>
+                        <IonLabel>I'm not able to do this</IonLabel>
+                        <IonRadio slot="start" value="unable" />
+                      </IonItem>
+                    </IonRadioGroup>
+                  </IonList>
+                </IonCardContent>
+              </IonCard>
+              )}
+              <SolutionModal showModal={showModal} closeModal={closeModal} log={log} symptom={nextQuestion.symptom} solution={nextQuestion.solution} />
+            </Fragment>
           )}
         </IonContent>
         : undefined
       }
       <IonFooter>
         <IonToolbar>
+          {(nextQuestion &&
             <IonButton  expand="block" fill="solid" color="primary" disabled={!showNext} onClick={handleNext}>{t('buttons.next')}</IonButton>
+          )}
         </IonToolbar>
       </IonFooter>
     </IonPage>
