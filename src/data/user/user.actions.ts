@@ -2,8 +2,8 @@ import React from 'react';
 import {isPlatform} from "@ionic/react";
 import {
   authCheck,
-  checkIsAdmin,
-  createOrUpdateTrainingSession, getAdminProfile,
+  createOrUpdateTrainingSession,
+  getAdminProfile,
   listenForOrganizationData,
   listenForTrainingSessions,
   listenForUserProfile,

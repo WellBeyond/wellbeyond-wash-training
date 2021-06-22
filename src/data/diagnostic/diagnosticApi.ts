@@ -4,7 +4,7 @@ import 'firebase/firestore';
 import {DiagnosticLog} from '../../models/Diagnostic';
 import {checkIsAdmin} from "../user/userApi";
 import {DiagnosticLogs} from "./diagnostic.state";
-import { System } from '../../models/Maintenance';
+import {System} from '../../models/Maintenance';
 
 export const listenForDiagnosticData = async (collectionPath:string, organizationId:string, callback:any) : Promise<any> => {
   const isAdmin:boolean = await checkIsAdmin();

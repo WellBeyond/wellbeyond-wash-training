@@ -1,5 +1,5 @@
 import {ActionType} from '../../util/types';
-import {listenForTrainingTopics,listenForTrainingSubjects,listenForTrainingLessons} from './trainingApi'
+import {listenForTrainingLessons, listenForTrainingSubjects, listenForTrainingTopics} from './trainingApi'
 import {TrainingState} from './training.state';
 import {Lesson, Subject, Topic} from '../../models/Training';
 

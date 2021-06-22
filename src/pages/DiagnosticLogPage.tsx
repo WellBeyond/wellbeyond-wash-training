@@ -9,7 +9,7 @@ import {
   IonRadioGroup,
   IonTitle,
   IonToolbar,
-  IonCardContent, IonCard, IonFooter, IonButton, NavContext, IonCheckbox
+  IonCardContent, IonCard, IonFooter, IonButton, NavContext, IonCheckbox, IonText
 } from '@ionic/react';
 import {System} from '../models/Maintenance';
 import {DiagnosticLog} from '../models/Diagnostic';
@@ -152,10 +152,13 @@ const DiagnosticLogPage: React.FC<SystemProps> = ({ system,  log, symptoms, diag
               </IonCardHeader>
             </IonCard>
           )}
+          {(nextQuestion && nextQuestion.symptom &&
+              <IonText color={'danger'} className="ion-text-center ion-text-uppercase"><h2>{nextQuestion.symptom.name}</h2></IonText>
+          )}
           {(nextQuestion && nextQuestion.diagnostic &&
             <IonCard>
               <IonCardHeader>
-                <IonCardTitle><h2>{nextQuestion.diagnostic.name}</h2></IonCardTitle>
+                <IonCardTitle><h3>{nextQuestion.diagnostic.name}</h3></IonCardTitle>
               </IonCardHeader>
               <IonCardContent className='question-answer'>
                 <IonList>
@@ -184,7 +187,7 @@ const DiagnosticLogPage: React.FC<SystemProps> = ({ system,  log, symptoms, diag
                           <IonCard className="lesson-card">
                             <IonCardHeader>
                                 <IonLabel>
-                                  <h2>{photo.title}</h2>
+                                  <h4>{photo.title}</h4>
                                 </IonLabel>
                             </IonCardHeader>
 
@@ -211,7 +214,7 @@ const DiagnosticLogPage: React.FC<SystemProps> = ({ system,  log, symptoms, diag
                           <IonCard className="lesson-card">
                             <IonCardHeader>
                               <IonLabel>
-                                <h2>{video.title}</h2>
+                                <h4>{video.title}</h4>
                               </IonLabel>
                             </IonCardHeader>
 
@@ -238,7 +241,7 @@ const DiagnosticLogPage: React.FC<SystemProps> = ({ system,  log, symptoms, diag
             <Fragment>
               <IonCard className='lesson-card'>
                 <IonCardHeader>
-                  <IonCardTitle><h2>{nextQuestion.solution.name}</h2></IonCardTitle>
+                  <IonCardTitle><h3>{nextQuestion.solution.name}</h3></IonCardTitle>
                 </IonCardHeader>
                 <IonCardContent className='solution-description'>
 
@@ -254,7 +257,7 @@ const DiagnosticLogPage: React.FC<SystemProps> = ({ system,  log, symptoms, diag
                             <IonCard className="lesson-card">
                               <IonCardHeader>
                                 <IonLabel>
-                                  <h2>{photo.title}</h2>
+                                  <h4>{photo.title}</h4>
                                 </IonLabel>
                               </IonCardHeader>
 
@@ -281,7 +284,7 @@ const DiagnosticLogPage: React.FC<SystemProps> = ({ system,  log, symptoms, diag
                             <IonCard className="lesson-card">
                               <IonCardHeader>
                                 <IonLabel>
-                                  <h2>{video.title}</h2>
+                                  <h4>{video.title}</h4>
                                 </IonLabel>
                               </IonCardHeader>
 
@@ -305,7 +308,7 @@ const DiagnosticLogPage: React.FC<SystemProps> = ({ system,  log, symptoms, diag
               {(nextQuestion.solution.askDidItWork &&
               <IonCard className='lesson-card'>
                 <IonCardHeader>
-                  <IonCardTitle><h2>Did this fix the problem?</h2></IonCardTitle>
+                  <IonCardTitle><h3>Did this fix the problem?</h3></IonCardTitle>
                 </IonCardHeader>
                 <IonCardContent className='question-answer'>
                   <IonList>

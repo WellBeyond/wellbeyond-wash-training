@@ -1,8 +1,8 @@
 import {ActionType} from '../../util/types';
 import {createOrUpdateDiagnosticLog, listenForDiagnosticData, listenForDiagnosticLogs} from "./diagnosticApi";
 import {DiagnosticLogs, DiagnosticState} from "./diagnostic.state";
-import {Symptom, Solution, DiagnosticLog, Diagnostic} from "../../models/Diagnostic";
-import {DiagnosticEngine, Almanac} from 'wellbeyond-diagnostic-engine'
+import {Diagnostic, DiagnosticLog, Solution, Symptom} from "../../models/Diagnostic";
+import {Almanac, DiagnosticEngine} from 'wellbeyond-diagnostic-engine'
 import {System} from "../../models/Maintenance";
 import React from "react";
 
