@@ -22,6 +22,7 @@ import i18n from '../i18n';
 import BackToSystemLink from "../components/BackToSystem";
 import {DiagnosticEngine, Diagnostic, Solution, Symptom, EngineResult} from "wellbeyond-diagnostic-engine";
 import SolutionModal from "../components/SolutionModal";
+import VideoPlayer from "../components/VideoPlayer";
 
 interface ResolveFunc {
   (answer:string): void;
@@ -130,6 +131,7 @@ const DiagnosticLogPage: React.FC<SystemProps> = ({ system,  log, symptoms, diag
   }, [system, symptoms, engine, log, diagnostics, solutions, diagnosticCallback, solutionCallback]);
 
 
+  // @ts-ignore
   return (
     <IonPage id="step-list">
       <IonHeader translucent={true}>
@@ -168,6 +170,13 @@ const DiagnosticLogPage: React.FC<SystemProps> = ({ system,  log, symptoms, diag
                     </IonItem>
                   </IonRadioGroup>
                 </IonList>
+
+                {(nextQuestion.diagnostic.instructions &&
+                  <IonItem detail={false} lines="none" className="lesson-item">
+                    <div dangerouslySetInnerHTML={{__html: nextQuestion.diagnostic.instructions}}></div>
+                  </IonItem>
+                )}
+
                 {(nextQuestion.diagnostic.photos &&
                   <IonList>
                     {nextQuestion.diagnostic.photos.length ? nextQuestion.diagnostic.photos.map((photo:any, index: number) => (
@@ -185,6 +194,33 @@ const DiagnosticLogPage: React.FC<SystemProps> = ({ system,  log, symptoms, diag
                               </IonItem>
                               <IonItem button detail={false} lines="none" className="lesson-item">
                                 <div dangerouslySetInnerHTML={{__html: photo.description}}></div>
+                              </IonItem>
+                            </IonCardContent>
+                          </IonCard>
+                        </IonItem>))
+                      :
+                      undefined
+                    }
+                  </IonList>
+                )}
+
+                {(nextQuestion.diagnostic.videos &&
+                  <IonList>
+                    {nextQuestion.diagnostic.videos.length ? nextQuestion.diagnostic.videos.map((video:any, index: number) => (
+                        <IonItem key={`video-${index}`}>
+                          <IonCard className="lesson-card">
+                            <IonCardHeader>
+                              <IonLabel>
+                                <h2>{video.title}</h2>
+                              </IonLabel>
+                            </IonCardHeader>
+
+                            <IonCardContent>
+                              <IonItem detail={false} lines="none" className="lesson-item">
+                                {nextQuestion.diagnostic && <VideoPlayer id={`video-${nextQuestion.diagnostic.id}-${index}`} src={video.url}  />}
+                              </IonItem>
+                              <IonItem button detail={false} lines="none" className="lesson-item">
+                                <div dangerouslySetInnerHTML={{__html: video.description}}></div>
                               </IonItem>
                             </IonCardContent>
                           </IonCard>
@@ -228,6 +264,33 @@ const DiagnosticLogPage: React.FC<SystemProps> = ({ system,  log, symptoms, diag
                                 </IonItem>
                                 <IonItem detail={false} lines="none" className="lesson-item">
                                   <div dangerouslySetInnerHTML={{__html: photo.description}}></div>
+                                </IonItem>
+                              </IonCardContent>
+                            </IonCard>
+                          </IonItem>))
+                        :
+                        undefined
+                      }
+                    </IonList>
+                  )}
+
+                  {(nextQuestion.solution.videos &&
+                    <IonList>
+                      {nextQuestion.solution.videos.length ? nextQuestion.solution.videos.map((video:any, index: number) => (
+                          <IonItem key={`video-${index}`}>
+                            <IonCard className="lesson-card">
+                              <IonCardHeader>
+                                <IonLabel>
+                                  <h2>{video.title}</h2>
+                                </IonLabel>
+                              </IonCardHeader>
+
+                              <IonCardContent>
+                                <IonItem detail={false} lines="none" className="lesson-item">
+                                  {nextQuestion.solution && <VideoPlayer id={`video-${nextQuestion.solution.id}-${index}`} src={video.url}  />}
+                                </IonItem>
+                                <IonItem button detail={false} lines="none" className="lesson-item">
+                                  <div dangerouslySetInnerHTML={{__html: video.description}}></div>
                                 </IonItem>
                               </IonCardContent>
                             </IonCard>
