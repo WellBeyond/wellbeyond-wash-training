@@ -1,11 +1,13 @@
 import 'firebase/auth';
 import 'firebase/firestore';
 import {TrainingSession} from "../../models/Training";
+import {FormSession} from "../../models/Form";
 import {UserProfile} from "../../models/User";
 import firebase from "firebase/app";
 import {TrainingSessions} from "../training/training.state";
+import {FormSessions} from "../form/form.state";
 
-let unsubUser:any, unsubAdmin:any, unsubLessons:any, unsubTraningSessions:any;
+let unsubUser:any, unsubAdmin:any, unsubLessons:any, unsubTraningSessions:any, unsubFormSessions:any;
 
 
 export const getCurrentUser = () => {
@@ -30,6 +32,9 @@ export const logout = () => {
   if (unsubTraningSessions) {
     unsubTraningSessions();
   }
+  if (unsubFormSessions) {
+    unsubFormSessions();
+  }
   return firebase.auth().signOut();
 };
 
@@ -38,10 +43,8 @@ export const authCheck = async (callback: any) => {
     // Listen for authentication state to change.
     firebase.auth().onAuthStateChanged(async user => {
       if (user != null) {
-        console.log("We are authenticated now!");
         return resolve(await callback(user));
       } else {
-        console.log("We did not authenticate.");
         callback(null);
         return resolve(null);
       }
@@ -101,6 +104,32 @@ export const listenForTrainingSessions = async (callback:any) : Promise<any> => 
     });
 };
 
+export const listenForFormSessions = async (callback:any) : Promise<any> => {
+  const user = firebase.auth().currentUser;
+  if (!user || !user.uid) {
+    return Promise.resolve();
+  }
+  const results = {} as FormSessions;
+  const query:firebase.firestore.Query<firebase.firestore.DocumentData> = firebase.firestore()
+    .collection('formSessions')
+    .where('userId', '==', user.uid);
+  console.log({ query })
+
+  return unsubFormSessions = query
+    .onSnapshot(querySnapshot => {
+      querySnapshot.forEach(function(doc) {
+
+        if (doc.exists) {
+          const data = {id: doc.id, ...doc.data()} as FormSession;
+          if (!data.archived) {
+            // @ts-ignore id is always defined
+            results[data.id] = data;
+          }
+        }
+      });
+      callback(results);
+    });
+};
 /**
  *
  * @param email
@@ -291,6 +320,27 @@ export const createOrUpdateTrainingSession = async (session:TrainingSession) => 
     .set(session, {merge: true})
     .then(() => {
       return session;
+    })
+}
+
+
+export const createOrUpdateFormSession = async (formSession:FormSession) => {
+  let user = firebase.auth().currentUser;
+  if (!user || !user.uid) {
+    console.log('user is undefined')
+    return Promise.resolve();
+  }
+  formSession.started = formSession.started || new Date();
+  if (!formSession.id) {
+    formSession.id = (user && user.uid) + ':' + formSession.formTypeId + ':' + formSession.started.getTime();
+  }
+  return firebase
+    .firestore()
+    .collection('formSessions')
+    .doc(formSession.id)
+    .set(formSession, {merge: true})
+    .then(() => {
+      return formSession;
     })
     .catch(error => {
       console.log("Error writing document:", error);

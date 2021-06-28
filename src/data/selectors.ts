@@ -4,6 +4,8 @@ import {Lesson} from '../models/Training';
 import queryString from 'query-string';
 import i18n from '../i18n';
 import {Organization} from "../models/User";
+import { Form } from '../models/Form';
+import { FormSessions } from './form/form.state';
 
 export const getLoading  = (state: AppState) => {
   return !!state.data.loading;
@@ -67,7 +69,7 @@ const getPageIdParam = (_state: AppState, props: any) => {
   return props.match.params['pageId'];
 }
 const getQuestionIdParam = (_state: AppState, props: any) => {
-  return props.match.params['questionId'];
+  return props.match?.params?.questionId;
 }
 const getTrainingSessionIdParam  = (_state: AppState, props: any) => {
   const values = queryString.parse(props.location.search);
@@ -113,6 +115,40 @@ export const getSubjectsForOrganization = createSelector(
     return [];
   }
 );
+export const getFormSessions = (state: AppState) => {
+  return state.user.formSessions;
+}
+export const getFormTypes = (state: AppState) => {
+  return state.form.formTypes;
+}
+export const getForms = (state: AppState) => {
+  return state.form.forms;
+}
+const getFormTypeIdParam = (_state: AppState, props: any) => {
+  return props.match?.params?.formTypeId
+}
+const getFormIdParam = (_state: AppState, props: any) => {
+  return props.match?.params?.formId;
+}
+const getFormSessionIdParam  = (_state: AppState, props: any) => {
+  const values: { fsId?: string } = queryString.parse(props.location?.search);
+  return values?.['fsId'];
+}
+
+export const getFormsForOrganization = createSelector(
+  getForms, getUserId, getUserOrganizationId,
+  (forms, userId, organizationId) => {
+    if (forms) {
+      if (organizationId) {
+        return forms.filter((s: Form) => s.organization === organizationId)
+      }
+      else if (userId) {
+        return forms;
+      }
+    }
+    return [];
+  }
+);
 export const getSubjectsForTopic = createSelector(
   getSubjectsForOrganization, getTopicIdParam,
   (subjects, id) => {
@@ -128,6 +164,17 @@ export const getTopicsForOrganization = createSelector(
     if (topics && subjects) {
       return topics.filter((t) => {
         return subjects.find((s) => t.id === s.topicId);
+      });
+    }
+    return [];
+  }
+);
+export const getFormTypesForOrganization = createSelector(
+  getFormTypes, getFormsForOrganization,
+  (formTypes, forms) => {
+    if (formTypes && forms) {
+      return formTypes.filter((t) => {
+        return forms.find((s) => t.id === s.id);
       });
     }
     return [];
@@ -169,6 +216,14 @@ export const getTrainingSession = createSelector(
     }
   }
 );
+export const getFormSession = createSelector(
+  getFormSessions, getFormSessionIdParam,
+  (formSessions: FormSessions | undefined, id: string | undefined) => {
+    if (formSessions && id && typeof id === 'string') {
+      return formSessions?.[id];
+    }
+  }
+);
 export const getSubject = createSelector(
   getSubjects, getSubjectIdParam,
   (subjects, id) => {
@@ -187,6 +242,25 @@ export const getTopic = createSelector(
     if (topics && id) {
       const topic = topics.find(s => s.id === id);
       return topic;
+    }
+  }
+);
+export const getFormType = createSelector(
+  getFormTypes, getFormTypeIdParam,
+  (formTypes, id) => {
+    if (formTypes && id) {
+      let formTypeId = id.split('=')?.[1] || id
+      const formType = formTypes.find(s => s.id === formTypeId);
+      return formType;
+    }
+  }
+);
+export const getForm = createSelector(
+  getForms, getFormIdParam,
+  (forms, id) => {
+    if (forms && id) {
+      const form = forms.find(s => s.id === id);
+      return form;
     }
   }
 );
@@ -211,6 +285,14 @@ export const getQuestion = createSelector(
   }
 );
 
+export const getFormQuestion = createSelector(
+  getLesson, getQuestionIdParam,
+  (form, id) => {
+    const idx = parseInt(id) - 1;
+    return form?.questions?.[idx];
+  }
+);
+
 export const getPageIdx = createSelector(
   getLesson, getPageIdParam,
   (lesson, id) => {
@@ -227,11 +309,28 @@ export const getQuestionIdx = createSelector(
   }
 );
 
+export const getFormQuestionIdx = createSelector(
+  getForm, getQuestionIdParam,
+  (form, id) => {
+    const idx = parseInt(id) - 1;
+    return form?.questions?.length && form.questions.length > idx ? idx : -1;
+  }
+);
+
 export const getLessonProgress = createSelector(
   getTrainingSession, getLessonIdParam, getUserId,
   (activeSession, id, userId) => {
     if (activeSession && id) {
       return (activeSession && activeSession.lessons &&  activeSession.lessons[id]) || {id: id, lessonId: id, answers: []}
+    }
+  }
+);
+
+export const getFormProgress = createSelector(
+  getFormSession, getQuestionIdParam, getUserId,
+  (activeSession, id, userId) => {
+    if (activeSession && id) {
+      return activeSession?.questions?.[id] || {id: id, questionId: id, answers: []}
     }
   }
 );

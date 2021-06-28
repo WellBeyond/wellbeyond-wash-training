@@ -18,7 +18,11 @@
     "pleaseWait": "S'il vous plaît, attendez...",
     "notificationsOn": "Autoriser les notifications",
     "maintenance": "Entretien",
-    "home": "Domicile"
+    "home": "Domicile",
+    "waterSystems": "Systèmes d'eau",
+    "impactReporting": "Rapports d'impact",
+    "forms": "Formes",
+    "miscReporting": "Rapports divers"
   },
   "buttons": {
     "previous": "Précédent",
@@ -26,7 +30,8 @@
     "done": "Terminé",
     "close": "proche",
     "cancel": "Annuler",
-    "ok": "D'accord"
+    "ok": "D'accord",
+    "submit": "Soumettre"
   },
   "registration": {
     "modals": {
@@ -206,7 +211,7 @@
         "title": "introduction",
         "completed": "Vous avez déjà terminé ce module, mais vous pouvez revenir ici à tout moment pour passer en revue.",
         "firsttime": "Avant de commencer le module, nous allons vous poser quelques questions pour voir ce que vous savez déjà. Nous vous poserons à nouveau ces questions après avoir terminé le module.",
-        "firsttime2": "Commençons avec le module."
+        "firsttime2": "Commençons par le module."
       },
       "summary": {
         "title": "Leçon terminée",
@@ -220,7 +225,7 @@
         "right": "Excellent travail, vous avez bien compris.",
         "wrong": "Désolé, vous vous êtes trompé. La bonne réponse est"
       },
-      "attestationHeader": "Veuillez confirmer que vous avez pris connaissance de ces informations en cochant la case ci-dessous.",
+      "attestationHeader": "Veuillez confirmer que vous comprenez ces informations en cochant la case ci-dessous.",
       "completed": "Terminé",
       "introduction": "introduction"
     },
@@ -233,6 +238,38 @@
       "name": "Système d'eau",
       "name_plural": "Systèmes d'eau",
       "nonefound": "Aucun système d'eau trouvé"
+    },
+    "forms": {
+      "name": "Forme",
+      "name_plural": "Formes",
+      "startSessionTitle": "Formulaire de démarrage",
+      "startSessionDescription": "Lorsque vous êtes prêt, veuillez cliquer sur le bouton Démarrer",
+      "startSessionCTA": "Commencez à répondre aux questions",
+      "nonefound": "Aucun formulaire n'a été créé dans cette catégorie",
+      "pages": {
+        "start": "Répondre",
+        "questions": "Formulaire de questions"
+      },
+      "questions": {
+        "title": "Question {{num}} sur {{count}}",
+        "right": "Super boulot, tu as bien compris.",
+        "wrong": "Désolé, vous vous êtes trompé. La bonne réponse est",
+        "placeholder": {
+          "enterNumber": "Cette question nécessitait une saisie ou une réponse numérique",
+          "openEnded": "Cette question est ouverte.",
+          "imageUpload": "Télécharger une image",
+          "more": "N'hésitez pas à ajouter le plus de détails possible"
+        }
+      },
+      "labels": {
+        "yes": "Oui",
+        "no": "Non"
+      },
+      "submit_success": {
+        "title": "Formulaire soumis",
+        "body": "Vos réponses ont été soumises avec succès",
+        "back_to_forms": "Retour aux formulaires"
+      }
     }
   },
   "maintenance": {
@@ -314,7 +351,8 @@
       "trainingTopics": "Sujets de formation",
       "waterSystems": "Systèmes d'eau",
       "impactReporting": "Rapports d'impact",
-      "miscReporting": "Rapports divers"
+      "miscReporting": "Rapports divers",
+      "forms": "Formes"
     },
     "waterSystemsPage": {
       "pageTitle": "Systèmes d'eau",
@@ -328,7 +366,8 @@
       "pageTitle": "Rapports d'impact",
       "instructions": "Instructions",
       "surveys": "Sondages (PDF)",
-      "surveyInput": "Entrée de l'enquête"
+      "surveyInput": "Entrée de l'enquête",
+      "forms": "Formes"
     },
     "miscReportingPage": {
       "pageTitle": "Rapports",

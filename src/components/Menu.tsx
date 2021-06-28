@@ -22,7 +22,10 @@ import {
   logOut,
   moonOutline,
   notificationsOutline,
-  person
+  person,
+  informationCircleSharp,
+  infiniteOutline,
+  receiptOutline,
 } from 'ionicons/icons';
 import {useTranslation} from "react-i18next";
 import i18n from '../i18n';
@@ -36,9 +39,13 @@ import * as selectors from "../data/selectors";
 
 const routes = {
   appPages: [
+    { title: 'menu.home', path: '/tabs/home', icon: homeOutline},
     { title: 'menu.training', path: '/tabs/training', icon: bookOutline },
-    { title: 'menu.maintenance', path: '/tabs/maintenance', icon: constructOutline },
-    { title: 'menu.home', path: '/tabs/home', icon: homeOutline}
+    // { title: 'menu.maintenance', path: '/tabs/maintenance', icon: constructOutline },
+    { title: 'menu.waterSystems', path: '/tabs/water-systems', icon: constructOutline },
+    { title: "menu.forms", path: '/tabs/forms', icon: receiptOutline},
+    { title: "menu.impactReporting", path: '/tabs/impact-reports', icon: informationCircleSharp},
+    { title: "menu.miscReporting", path: '/tabs/reports', icon: infiniteOutline}
   ],
   loggedInPages: [
     { title: 'menu.account', path: '/account', icon: person },

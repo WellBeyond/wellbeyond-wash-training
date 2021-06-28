@@ -18,7 +18,11 @@
     "pleaseWait": "Tafadhali subiri...",
     "notificationsOn": "Ruhusu Arifa",
     "maintenance": "Matengenezo",
-    "home": "Nyumbani"
+    "home": "Nyumbani",
+    "waterSystems": "Mifumo ya Maji",
+    "impactReporting": "Kuripoti Athari",
+    "forms": "Fomu",
+    "miscReporting": "Kuripoti Misc"
   },
   "buttons": {
     "previous": "Iliyopita",
@@ -26,7 +30,8 @@
     "done": "Imemaliza",
     "close": "Karibu",
     "cancel": "Ghairi",
-    "ok": "sawa"
+    "ok": "sawa",
+    "submit": "Wasilisha"
   },
   "registration": {
     "modals": {
@@ -213,14 +218,14 @@
         "completed": "Umemaliza kumaliza moduli hii na umejibu kwa usahihi {{score}} % ya maswali.",
         "nextLesson": "Moduli inayofuata ni {{lesson}} . Bonyeza ijayo wakati uko tayari kuanza.",
         "allDone": "Umekamilisha moduli zote kwa {{subject}} .",
-        "completed2": "Umekamilisha moduli hii."
+        "completed2": "Umefanikiwa kumaliza moduli hii."
       },
       "questions": {
         "title": "Swali {{num}} la {{count}}",
         "right": "Kazi kubwa, umeiweka sawa.",
         "wrong": "Samahani, umekosea. Jibu sahihi ni"
       },
-      "attestationHeader": "Tafadhali thibitisha kwamba unachukua habari hii kwa kuangalia kisanduku hapa chini.",
+      "attestationHeader": "Tafadhali thibitisha kuwa unaelewa habari hii kwa kuangalia kisanduku hapo chini.",
       "completed": "Imekamilika",
       "introduction": "Utangulizi"
     },
@@ -233,6 +238,38 @@
       "name": "Mfumo wa Maji",
       "name_plural": "Mifumo ya Maji",
       "nonefound": "Hakuna Mifumo ya Maji Iliyopatikana"
+    },
+    "forms": {
+      "name": "Fomu",
+      "name_plural": "Fomu",
+      "startSessionTitle": "Anza Fomu",
+      "startSessionDescription": "Unapokuwa tayari, bonyeza kwa upole kitufe cha kuanza",
+      "startSessionCTA": "Anza Kujibu Maswali",
+      "nonefound": "Hakuna Fomu Zilizoundwa katika Jamii Hii",
+      "pages": {
+        "start": "Kujibu",
+        "questions": "Maswali ya fomu"
+      },
+      "questions": {
+        "title": "Swali {{num}} kati ya {{count}}",
+        "right": "Kazi nzuri, umeipata vizuri.",
+        "wrong": "Samahani, umekosea. Jibu sahihi ni",
+        "placeholder": {
+          "enterNumber": "Swali hili lilihitaji ingizo au jibu la nambari",
+          "openEnded": "Swali hili liko wazi.",
+          "imageUpload": "Pakia picha",
+          "more": "Jisikie huru kuongeza maelezo mengi iwezekanavyo"
+        }
+      },
+      "labels": {
+        "yes": "Ndio",
+        "no": "Hapana"
+      },
+      "submit_success": {
+        "title": "Fomu Iliyowasilishwa",
+        "body": "Majibu yako yamewasilishwa kwa mafanikio",
+        "back_to_forms": "Rudi kwenye fomu"
+      }
     }
   },
   "maintenance": {
@@ -314,7 +351,8 @@
       "trainingTopics": "Mada za Mafunzo",
       "waterSystems": "Mifumo ya Maji",
       "impactReporting": "Kuripoti Athari",
-      "miscReporting": "Kuripoti Misc"
+      "miscReporting": "Kuripoti Misc",
+      "forms": "Fomu"
     },
     "waterSystemsPage": {
       "pageTitle": "Mifumo ya Maji",
@@ -328,7 +366,8 @@
       "pageTitle": "Kuripoti Athari",
       "instructions": "Maagizo",
       "surveys": "Utafiti (PDF)",
-      "surveyInput": "Ingizo la Utafiti"
+      "surveyInput": "Ingizo la Utafiti",
+      "forms": "Fomu"
     },
     "miscReportingPage": {
       "pageTitle": "Kuripoti",
