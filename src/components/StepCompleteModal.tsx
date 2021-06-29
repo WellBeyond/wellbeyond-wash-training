@@ -149,7 +149,7 @@ const StepCompleteModal: React.FC<StepCompleteProps> = ({showModal, closeModal, 
             <IonItem>
               <IonTextarea // disabled={formValues.status !== 'incomplete' && formValues.status !== 'repairs-needed'}
                 value={formValues.information}
-                debounce={2000}
+                debounce={500}
                 inputmode="text"
                 rows={5}
                 placeholder={t('maintenance.logs.infoplaceholder')}

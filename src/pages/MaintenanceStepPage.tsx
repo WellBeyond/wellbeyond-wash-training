@@ -28,6 +28,9 @@ import BackToMaintenanceLogLink from "../components/BackToMaintenanceLog";
 import VideoPlayer from "../components/VideoPlayer";
 import StepCompleteModal from "../components/StepCompleteModal";
 import MaintenanceStepStatus from "../components/MaintenanceStepStatus";
+import {Image} from "cloudinary-react";
+import {cloudinaryConfig} from "../CLOUDINARY_CONFIG";
+import {getPublicId} from "../util/cloudinary";
 
 interface OwnProps extends RouteComponentProps {
   log: MaintenanceLog;
@@ -81,7 +84,13 @@ const MaintenanceStepPage: React.FC<SystemProps> = ({ log, checklistStep,  maint
             <IonGrid>
               <IonRow>
                 <IonCol>
-                  <img src={checklistStep.photo} crossOrigin='anonymous' alt={checklistStep.name}/>
+                  <Image
+                    alt={checklistStep.name}
+                    cloudName={cloudinaryConfig.cloudName}
+                    publicId={getPublicId(checklistStep.photo)}
+                    quality="auto"
+                    width="auto"
+                    crop="scale"/>
                 </IonCol>
               </IonRow>
               {checklistStep.photoCaption &&

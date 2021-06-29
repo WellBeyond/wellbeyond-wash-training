@@ -32,6 +32,9 @@ import BackToSystemLink from "../components/BackToSystem";
 import {Diagnostic, DiagnosticEngine, EngineResult, Solution, Symptom} from "wellbeyond-diagnostic-engine";
 import SolutionModal from "../components/SolutionModal";
 import VideoPlayer from "../components/VideoPlayer";
+import {Image} from "cloudinary-react";
+import {cloudinaryConfig} from "../CLOUDINARY_CONFIG";
+import {getPublicId} from "../util/cloudinary";
 
 interface ResolveFunc {
   (answer:string): void;
@@ -205,7 +208,13 @@ const DiagnosticLogPage: React.FC<SystemProps> = ({ system,  log, symptoms, diag
 
                             <IonCardContent>
                               <IonItem button detail={false} lines="none" className="lesson-item">
-                                <img src={photo.url} crossOrigin='anonymous' alt={photo.title} />
+                                <Image
+                                  alt={photo.title}
+                                  cloudName={cloudinaryConfig.cloudName}
+                                  publicId={getPublicId(photo.url)}
+                                  quality="auto"
+                                  width="auto"
+                                  crop="scale"/>
                               </IonItem>
                               <IonItem button detail={false} lines="none" className="lesson-item">
                                 <div dangerouslySetInnerHTML={{__html: photo.description}}></div>
@@ -275,7 +284,13 @@ const DiagnosticLogPage: React.FC<SystemProps> = ({ system,  log, symptoms, diag
 
                               <IonCardContent>
                                 <IonItem detail={false} lines="none" className="lesson-item">
-                                  <img src={photo.url} crossOrigin='anonymous' alt={photo.title} />
+                                  <Image
+                                    alt={photo.title}
+                                    cloudName={cloudinaryConfig.cloudName}
+                                    publicId={getPublicId(photo.url)}
+                                    quality="auto"
+                                    width="auto"
+                                    crop="scale"/>
                                 </IonItem>
                                 <IonItem detail={false} lines="none" className="lesson-item">
                                   <div dangerouslySetInnerHTML={{__html: photo.description}}></div>

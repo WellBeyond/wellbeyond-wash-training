@@ -101,8 +101,9 @@ const SolutionModal: React.FC<StepCompleteProps> = ({answer, showModal, closeMod
           <IonItem>
             <IonTextarea // disabled={formValues.status !== 'incomplete' && formValues.status !== 'repairs-needed'}
               value={formValues.information}
-              debounce={2000}
+              debounce={500}
               inputmode="text"
+              autofocus={true}
               rows={5}
               placeholder={t('diagnostic.solution.infoplaceholder')}
               onIonChange={e => handleChange('information', e.detail.value!)}></IonTextarea>
