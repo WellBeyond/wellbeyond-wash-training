@@ -2,21 +2,21 @@ import React, {useContext, useEffect, useState} from 'react';
 import {
   IonButton,
   IonButtons,
-  IonContent, IonFooter,
+  IonCheckbox,
+  IonContent,
+  IonFooter,
   IonHeader,
   IonItem,
-  IonItemDivider,
-  IonItemGroup,
   IonLabel,
   IonList,
   IonListHeader,
   IonMenuButton,
-  IonPage,
+  IonPage, IonText,
   IonTitle,
   IonToolbar,
-  IonCheckbox, NavContext,
+  NavContext,
 } from '@ionic/react';
-import {Checklist, MaintenanceLog, System} from '../models/Maintenance';
+import {System} from '../models/Maintenance';
 import {connect} from '../data/connect';
 import * as selectors from '../data/selectors';
 import './SystemPage.scss';
@@ -71,6 +71,9 @@ const SymptomsPage: React.FC<SymptomsProps> = ({ system,  symptoms,  defaultLang
     const updated = {...currentSymptoms};
     updated[symptom.id] = checked;
     setCurrentSymptoms(updated);
+    if (checked) {
+      setError('');
+    }
   }
 
   const validate = ():boolean => {
@@ -96,12 +99,13 @@ const SymptomsPage: React.FC<SymptomsProps> = ({ system,  symptoms,  defaultLang
         archived: false,
         symptoms: symptoms.filter(s =>{return currentSymptoms[s.id]}).map(s => {return s.id})
       };
+      setError('');
       updateDiagnosticLog(log);
       setDiagnosticEngine(new DiagnosticEngine());
       navigate('/tabs/diagnostic/'+ log.id, 'forward');
     }
     else {
-      setError('maintenance.errors.selectSymptom');
+      setError('diagnostic.errors.selectSymptom');
     }
   }
 
@@ -136,6 +140,12 @@ const SymptomsPage: React.FC<SymptomsProps> = ({ system,  symptoms,  defaultLang
                   </IonItem>
               }
             </IonList>
+
+          {error && <IonText color="danger">
+            <p className="ion-padding-start">
+              {t(error)}
+            </p>
+          </IonText>}
         </IonContent>
       }
 

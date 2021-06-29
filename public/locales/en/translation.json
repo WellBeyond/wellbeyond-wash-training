@@ -343,14 +343,26 @@
       "symptoms": "Which symptom(s) are you seeing with {{systemName}}?"
     },
     "buttons": {
-      "start": "Diagnose the Problem"
+      "start": "Diagnose the Problem",
+      "continue": "Continue"
     },
     "messages": {
       "noSystems": "No water systems have been identified for your organization.  Please contact {{contactName}} at {{contactEmail}} if you have questions.",
       "noSymptoms": "The diagnostic engine has not been configured for your organization."
     },
+    "modals": {
+      "solution": "Additional Documentation"
+    },
+    "solution": {
+      "infolabel": "How did you make the repair?",
+      "infoplaceholder": "Please describe what you did to fix the problem",
+      "photolabel": "Please add a photo of the repair"
+    },
     "errors": {
-      "selectSymptom": "Please select at least one of the symptoms shown to begin the diagnostic process."
+      "selectSymptom": "Please select at least one of the symptoms shown to begin the diagnostic process.",
+      "informationRequired": "Additional information is required",
+      "photoRequired": "A photo is required",
+      "photoOrInfoRequired": "Please add a description or a photo so that we can ensure the repair was made properly."
     }
   }
 }

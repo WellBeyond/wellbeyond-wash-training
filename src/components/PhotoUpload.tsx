@@ -83,13 +83,13 @@ const PhotoUpload: React.FC<PhotoUploadProps> = ({photoUrl, setPhotoUrl}) => {
         {photoUrl ?
           <IonRow>
             <IonCol size="6">
-              <IonButton onClick={handleTakePhoto} size={"small"} color={"success"}>
+              <IonButton onClick={handleTakePhoto} size={"small"} color={"success"} expand={"block"}>
                 <IonIcon  icon={cameraOutline} slot={"start"}/>
                 {t('maintenance.buttons.updatePhoto')}
               </IonButton>
             </IonCol>
             <IonCol size="6">
-              <IonButton onClick={removePhoto} size={"small"} color={"danger"}>
+              <IonButton onClick={removePhoto} size={"small"} color={"danger"} expand={"block"}>
                 <IonIcon  icon={closeCircleOutline} slot={"start"}/>
                 {t('maintenance.buttons.deletePhoto')}
               </IonButton>
@@ -98,7 +98,7 @@ const PhotoUpload: React.FC<PhotoUploadProps> = ({photoUrl, setPhotoUrl}) => {
          :
           <IonRow>
             <IonCol size="12">
-              <IonButton onClick={handleTakePhoto} size={"small"} color={"success"}>
+              <IonButton onClick={handleTakePhoto} size={"small"} color={"success"} expand={"block"}>
                 <IonIcon  icon={cameraOutline} slot={"start"}/>
                 {t('maintenance.buttons.addPhoto')}
               </IonButton>

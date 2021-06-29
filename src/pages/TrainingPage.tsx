@@ -1,13 +1,6 @@
 import React, {useEffect, useRef} from 'react';
 
-import {
-  IonContent,
-  IonItem,
-  IonItemGroup,
-  IonList,
-  IonLoading,
-  IonPage,
-} from '@ionic/react';
+import {IonContent, IonItem, IonItemGroup, IonList, IonLoading, IonPage,} from '@ionic/react';
 
 import './TrainingPage.scss';
 import './HomePage.scss';

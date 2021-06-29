@@ -1,15 +1,24 @@
-import React, {useContext, useEffect, useState, Fragment} from 'react';
+import React, {Fragment, useContext, useEffect, useState} from 'react';
 import {
-  IonButtons, IonCardHeader, IonCardSubtitle, IonCardTitle,
+  IonButton,
+  IonButtons,
+  IonCard,
+  IonCardContent,
+  IonCardHeader,
+  IonCardTitle,
   IonContent,
-  IonHeader, IonItem, IonLabel,
+  IonFooter,
+  IonHeader,
+  IonItem,
+  IonLabel,
   IonList,
-  IonListHeader,
-  IonPage, IonRadio,
+  IonPage,
+  IonRadio,
   IonRadioGroup,
+  IonText,
   IonTitle,
   IonToolbar,
-  IonCardContent, IonCard, IonFooter, IonButton, NavContext, IonCheckbox, IonText
+  NavContext
 } from '@ionic/react';
 import {System} from '../models/Maintenance';
 import {DiagnosticLog} from '../models/Diagnostic';
@@ -17,10 +26,10 @@ import {connect} from '../data/connect';
 import * as selectors from '../data/selectors';
 import './DiagnosticPage.scss';
 import {RouteComponentProps} from "react-router";
-import {Trans, useTranslation} from "react-i18next";
+import {useTranslation} from "react-i18next";
 import i18n from '../i18n';
 import BackToSystemLink from "../components/BackToSystem";
-import {DiagnosticEngine, Diagnostic, Solution, Symptom, EngineResult} from "wellbeyond-diagnostic-engine";
+import {Diagnostic, DiagnosticEngine, EngineResult, Solution, Symptom} from "wellbeyond-diagnostic-engine";
 import SolutionModal from "../components/SolutionModal";
 import VideoPlayer from "../components/VideoPlayer";
 
@@ -62,42 +71,15 @@ const DiagnosticLogPage: React.FC<SystemProps> = ({ system,  log, symptoms, diag
   const [showNext, setShowNext] = useState<boolean>(false);
   const [showModal, setShowModal] = useState<boolean>(false);
 
-  const closeModal = (goback?:boolean) => {
+  const closeModal = (next?:boolean, information?:string, photo?:string) => {
     setShowModal(false);
+    if (next) {
+      handleNext();
+    }
   }
 
   const openModal = () => {
     setShowModal(true);
-  }
-
-
-  const diagnosticCallback = async function (diagnostic:Diagnostic) {
-    const promise = new Promise<string>((resolve, _reject) => {
-      console.log('Asking question ...', diagnostic);
-      const symptom = symptoms && symptoms.find(s => s.id === diagnostic.symptomId);
-      const nextQuestion = {
-        symptom: symptom,
-        diagnostic: diagnostic,
-        resolve: resolve
-      };
-      setNextQuestion(nextQuestion);
-    });
-    return promise;
-  }
-
-  const solutionCallback = async function (solution:Solution) {
-    const promise = new Promise<string>((resolve, _reject) => {
-      console.log('Checking to see if this worked...', solution);
-      const symptom = symptoms && symptoms.find(s => s.id === solution.symptomId);
-      const nextQuestion = {
-        symptom: symptom,
-        solution: solution,
-        resolve: resolve
-      };
-      setNextQuestion(nextQuestion);
-      setShowNext(!solution.askDidItWork);
-    });
-    return promise;
   }
 
   const handleAnswer = (value:(string)) => {
@@ -117,6 +99,36 @@ const DiagnosticLogPage: React.FC<SystemProps> = ({ system,  log, symptoms, diag
 
 
   useEffect(() => {
+
+    const diagnosticCallback = async function (diagnostic:Diagnostic) {
+      const promise = new Promise<string>((resolve, _reject) => {
+        console.log('Asking question ...', diagnostic);
+        const symptom = symptoms && symptoms.find(s => s.id === diagnostic.symptomId);
+        const nextQuestion = {
+          symptom: symptom,
+          diagnostic: diagnostic,
+          resolve: resolve
+        };
+        setNextQuestion(nextQuestion);
+      });
+      return promise;
+    }
+
+    const solutionCallback = async function (solution:Solution) {
+      const promise = new Promise<string>((resolve, _reject) => {
+        console.log('Checking to see if this worked...', solution);
+        const symptom = symptoms && symptoms.find(s => s.id === solution.symptomId);
+        const nextQuestion = {
+          symptom: symptom,
+          solution: solution,
+          resolve: resolve
+        };
+        setNextQuestion(nextQuestion);
+        setShowNext(!solution.askDidItWork);
+      });
+      return promise;
+    }
+
     if (system && engine && log && symptoms && diagnostics && solutions) {
       if (!engine.initialized) {
         engine.initialize(symptoms, solutions, diagnostics, diagnosticCallback, solutionCallback);
@@ -128,7 +140,7 @@ const DiagnosticLogPage: React.FC<SystemProps> = ({ system,  log, symptoms, diag
         }
       }
     }
-  }, [system, symptoms, engine, log, diagnostics, solutions, diagnosticCallback, solutionCallback]);
+  }, [system, symptoms, engine, log, diagnostics, solutions]);
 
 
   // @ts-ignore
@@ -330,7 +342,7 @@ const DiagnosticLogPage: React.FC<SystemProps> = ({ system,  log, symptoms, diag
                 </IonCardContent>
               </IonCard>
               )}
-              <SolutionModal showModal={showModal} closeModal={closeModal} log={log} symptom={nextQuestion.symptom} solution={nextQuestion.solution} />
+              <SolutionModal showModal={showModal} closeModal={closeModal} log={log} answer={answer || ''} symptom={nextQuestion.symptom} solution={nextQuestion.solution} />
             </Fragment>
           )}
         </IonContent>
@@ -338,9 +350,13 @@ const DiagnosticLogPage: React.FC<SystemProps> = ({ system,  log, symptoms, diag
       }
       <IonFooter>
         <IonToolbar>
-          {(nextQuestion &&
-            <IonButton  expand="block" fill="solid" color="primary" disabled={!showNext} onClick={handleNext}>{t('buttons.next')}</IonButton>
-          )}
+          {nextQuestion &&
+            (nextQuestion.solution && nextQuestion.solution.askForPhotoAfter && answer === 'yes' ?
+              <IonButton  expand="block" fill="solid" color="primary" disabled={!showNext} onClick={openModal}>{t('buttons.next')}</IonButton>
+              :
+              <IonButton  expand="block" fill="solid" color="primary" disabled={!showNext} onClick={handleNext}>{t('buttons.next')}</IonButton>
+            )
+          }
         </IonToolbar>
       </IonFooter>
     </IonPage>

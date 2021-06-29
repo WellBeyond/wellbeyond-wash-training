@@ -1,5 +1,5 @@
 import React from 'react';
-import { IonCardContent, IonCard, IonText, IonMenuButton, IonHeader } from '@ionic/react';
+import {IonCard, IonCardContent, IonHeader, IonMenuButton, IonText} from '@ionic/react';
 import {Image} from 'cloudinary-react';
 import {cloudinaryConfig} from "../CLOUDINARY_CONFIG";
 

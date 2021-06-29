@@ -1,4 +1,4 @@
-import {Symptom, Solution, Diagnostic, } from 'wellbeyond-diagnostic-engine';
+import {Diagnostic, Solution, Symptom,} from 'wellbeyond-diagnostic-engine';
 
 export interface DiagnosticLog {
   id: string;

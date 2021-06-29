@@ -1,12 +1,6 @@
 import React, {useEffect, useRef} from 'react';
 
-import {
-  IonContent,
-  IonItem,
-  IonItemGroup,
-  IonPage,
-  IonText,
-} from '@ionic/react';
+import {IonContent, IonItem, IonItemGroup, IonPage, IonText,} from '@ionic/react';
 
 import {Image} from 'cloudinary-react';
 import {cloudinaryConfig} from "../CLOUDINARY_CONFIG";

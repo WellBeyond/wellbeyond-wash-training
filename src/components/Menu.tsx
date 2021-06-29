@@ -16,13 +16,13 @@ import {
   bookOutline,
   constructOutline,
   fingerPrint,
-  homeOutline,
+  gitNetworkOutline,
   globe,
+  homeOutline,
   logIn,
   logOut,
   moonOutline,
   notificationsOutline,
-  gitNetworkOutline,
   person
 } from 'ionicons/icons';
 import {useTranslation} from "react-i18next";

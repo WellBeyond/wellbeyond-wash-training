@@ -3,6 +3,7 @@ import {
   IonButton,
   IonButtons,
   IonContent,
+  IonFooter,
   IonHeader,
   IonIcon,
   IonItem,
@@ -16,7 +17,7 @@ import {
   IonText,
   IonTextarea,
   IonTitle,
-  IonToolbar, IonFooter,
+  IonToolbar,
 } from '@ionic/react';
 import {useTranslation} from "react-i18next";
 import i18n from "../i18n";

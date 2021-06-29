@@ -30,7 +30,7 @@ import i18n from '../i18n';
 import {connect} from '../data/connect';
 import * as selectors from '../data/selectors';
 
-import {Lesson, LessonProgress, Question, Subject, TrainingSession, Answer} from '../models/Training';
+import {Answer, Lesson, LessonProgress, Question, Subject, TrainingSession} from '../models/Training';
 import {updateTrainingLesson} from "../data/user/user.actions";
 import BackToLessonsLink from "../components/BackToLessons";
 

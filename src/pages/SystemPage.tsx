@@ -2,7 +2,8 @@ import React, {useEffect, useState} from 'react';
 import {
   IonButton,
   IonButtons,
-  IonContent, IonFooter,
+  IonContent,
+  IonFooter,
   IonHeader,
   IonItem,
   IonItemDivider,
