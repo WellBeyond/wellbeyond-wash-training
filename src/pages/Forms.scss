@@ -34,3 +34,22 @@ ion-content {
 .warning {
   color: red;
 }
+
+.photo-gallery {
+  display: flex;
+  overflow: wrap;
+
+  .photo {
+    display: flex;
+    flex-direction: column;
+
+    img {
+      width: 200px;
+
+      .input-wrapper {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  }
+}
