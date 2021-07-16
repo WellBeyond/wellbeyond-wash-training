@@ -9,7 +9,6 @@ export const listenForFormTypeData = async (collectionPath:string, organizationI
   const isAdmin:boolean = await checkIsAdmin();
   let query:firebase.firestore.Query<firebase.firestore.DocumentData> = firebase.firestore().collection(collectionPath);
   if(!isAdmin) {
-    query = query.where('organizationId', '==', organizationId);
     if (collectionPath !== 'formTypes') {
       query = query.where('isPublished', '==', true);
     }
@@ -51,7 +50,6 @@ export const listenForFormData = async (collectionPath:string, formTypeId:string
           query = query.where('isPublished', '==', true);
         }
       }
-  console.log('within the listen: ', formTypeId)
   return query
     .onSnapshot(querySnapshot => {
       let results:any[] = [];
@@ -63,7 +61,6 @@ export const listenForFormData = async (collectionPath:string, formTypeId:string
       });
       const formData:any = {};
       formData[collectionPath] = results;
-      console.log({results, formData, collectionPath})
       cacheImagesAndVideos(formData as FormData);
 
       callback(results);
@@ -71,8 +68,6 @@ export const listenForFormData = async (collectionPath:string, formTypeId:string
 };
 
 export const cacheImagesAndVideos = ({forms, formTypes}:FormData) => {
-  console.log('one form at a time')
-
   if (isPlatform('hybrid')) {
     return;
   }
@@ -81,8 +76,6 @@ export const cacheImagesAndVideos = ({forms, formTypes}:FormData) => {
   const videos:string[] = [];
   if (forms && forms.length) {
     forms.forEach(form => {
-      console.log('one form at a time', form)
-
       if (form.photos && form.photos.length) {
         form.photos.forEach(photo => {
           photo.url && images.push(photo.url);

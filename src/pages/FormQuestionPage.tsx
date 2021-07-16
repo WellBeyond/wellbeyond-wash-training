@@ -21,6 +21,7 @@ import {
   IonRadioGroup,
   IonToolbar,
   IonTextarea,
+  IonImg,
 } from '@ionic/react'
 import {useTranslation} from "react-i18next";
 import i18n from '../i18n';
@@ -118,7 +119,6 @@ const FormQuestionPage: React.FC<FormQuestionPageProps> = ({
 
   const handleSubmit = async () => {
    if (activeSession) {
-    console.log('Active session in if', activeSession)
    } else {
     const activeSession = {
       id: '',
@@ -156,7 +156,6 @@ const FormQuestionPage: React.FC<FormQuestionPageProps> = ({
 
   const removePhoto = (photo: string) => () => {
     const photoList = photos.filter(p => p !== photo)
-    console.log({ photoList })
     setPhotos(photoList);
     setAnswer({...answer, [`${currentIdx}`]: photoList })
   }
@@ -164,7 +163,7 @@ const FormQuestionPage: React.FC<FormQuestionPageProps> = ({
   return (
     <>
         {form && question &&
-        <IonContent fullscreen={true}>
+        <IonContent fullscreen={true} id="form-question-page">
           <IonCard className='lesson-card'>
             <IonCardHeader>
               <IonCardSubtitle>{t('resources.forms.questions.title', {num:currentIdx + 1, count:form.questions.length})}</IonCardSubtitle>
@@ -233,10 +232,14 @@ const FormQuestionPage: React.FC<FormQuestionPageProps> = ({
                   <IonList>
                     <IonItem className="photo-gallery">
                       {photos?.map(photo => (
-                        <IonItem className="photo">
-                          <img src={photo} alt={photo} />
-                          <IonButton fill="solid" color="primary" onClick={removePhoto(photo)}>{t('buttons.remove')}</IonButton>
-                        </IonItem>
+                        <IonContent className="photo">
+                          <IonItem>
+                            <IonImg src={photo} alt={photo}></IonImg>
+                          </IonItem>
+                          <IonItem>
+                            <IonButton fill="solid" color="primary" onClick={removePhoto(photo)}>{t('buttons.removePhoto')}</IonButton>
+                          </IonItem>
+                        </IonContent>
                       ))}
                     </IonItem>
 

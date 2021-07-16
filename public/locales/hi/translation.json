@@ -31,7 +31,8 @@
     "close": "बंद करे",
     "cancel": "रद्द करना",
     "ok": "ठीक",
-    "submit": "प्रस्तुत"
+    "submit": "प्रस्तुत",
+    "removePhoto": "फोटो हटाएं"
   },
   "registration": {
     "modals": {

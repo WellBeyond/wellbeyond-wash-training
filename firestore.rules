@@ -70,7 +70,7 @@ service cloud.firestore {
       allow create: if request.auth.uid != null && request.resource.data.userId == request.auth.uid;
       allow read, write: if resource.data.organizationId in get(/databases/$(database)/documents/admins/$(request.auth.uid)).data.organizations;
     }
-    
+
     // Match any document in the 'systems' collection
     match /systems/{systemId} {
       allow read: if true;
