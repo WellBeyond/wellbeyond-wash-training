@@ -31,7 +31,8 @@
     "close": "Karibu",
     "cancel": "Ghairi",
     "ok": "sawa",
-    "submit": "Wasilisha"
+    "submit": "Wasilisha",
+    "removePhoto": "Ondoa Picha"
   },
   "registration": {
     "modals": {

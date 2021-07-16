@@ -31,7 +31,8 @@
     "close": "proche",
     "cancel": "Annuler",
     "ok": "D'accord",
-    "submit": "Soumettre"
+    "submit": "Soumettre",
+    "removePhoto": "Retirer photo"
   },
   "registration": {
     "modals": {

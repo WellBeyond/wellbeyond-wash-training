@@ -21,6 +21,7 @@ import {
   IonRadioGroup,
   IonToolbar,
   IonTextarea,
+  IonImg,
 } from '@ionic/react'
 import {useTranslation} from "react-i18next";
 import i18n from '../i18n';
@@ -93,7 +94,10 @@ const FormQuestionPage: React.FC<FormQuestionPageProps> = ({
 }) => {
 
   const { t } = useTranslation(['translation'], {i18n} );
+
   const [lockAnswer] = useState<boolean>();
+  const [photos, setPhotos] = useState<any[]>([]);
+  const [photoChanged, setPhotoChanged] = useState(false);
 
   const handleAnswer = (value:(string|number|undefined | null)) => {
     if (value === answer[`${currentIdx}`]) return
@@ -101,12 +105,20 @@ const FormQuestionPage: React.FC<FormQuestionPageProps> = ({
   }
 
   const setPhoto = (url:string) => {
-    setAnswer({ ...answer, [`${currentIdx}`]: url });
+    // let photos: Array<any> = answer[`${currentIdx}`] ? Array(answer[`${currentIdx}`]) : []
+    if (photos.find(p => p === url)) return
+    if (photos.length === 0 && photoChanged) {
+      setPhotoChanged(false);
+      return;
+    }
+    setPhotos([...photos, url])
+    setAnswer({...answer, [`${currentIdx}`]: [...photos, url] })
+    setPhotoChanged(true);
+    // setAnswer({ ...answer, [`${currentIdx}`]: url });
   };
 
   const handleSubmit = async () => {
    if (activeSession) {
-    console.log('Active session in if', activeSession)
    } else {
     const activeSession = {
       id: '',
@@ -142,10 +154,16 @@ const FormQuestionPage: React.FC<FormQuestionPageProps> = ({
     return;
   }
 
+  const removePhoto = (photo: string) => () => {
+    const photoList = photos.filter(p => p !== photo)
+    setPhotos(photoList);
+    setAnswer({...answer, [`${currentIdx}`]: photoList })
+  }
+
   return (
     <>
         {form && question &&
-        <IonContent fullscreen={true}>
+        <IonContent fullscreen={true} id="form-question-page">
           <IonCard className='lesson-card'>
             <IonCardHeader>
               <IonCardSubtitle>{t('resources.forms.questions.title', {num:currentIdx + 1, count:form.questions.length})}</IonCardSubtitle>
@@ -186,7 +204,7 @@ const FormQuestionPage: React.FC<FormQuestionPageProps> = ({
                 (question && question.questionType === 'number' &&
                   <IonList>
                     <IonItem>
-                      <IonInput required={question.isRequired} disabled={lockAnswer} type="number" value={answer[`${currentIdx}`]} placeholder={t('resources.forms.questions.placeholder.enterNumber')} onIonChange={e => handleAnswer(parseInt(e.detail.value!, 10))}/>
+                      <IonInput required={question.isRequired} disabled={lockAnswer} type="number" value={answer[`${currentIdx}`]?.toString()} placeholder={t('resources.forms.questions.placeholder.enterNumber')} onIonChange={e => handleAnswer(parseInt(e.detail.value!, 10))}/>
                     </IonItem>
                   </IonList>
                 )
@@ -195,7 +213,7 @@ const FormQuestionPage: React.FC<FormQuestionPageProps> = ({
                 (question && question.questionType === 'open-ended' &&
                   <IonList>
                     <IonItem>
-                      <IonInput required={question.isRequired} disabled={lockAnswer} type="text" value={answer[`${currentIdx}`]} placeholder={t('resources.forms.questions.placeholder.openEnded')} onIonChange={e => handleAnswer(e.detail.value)}/>
+                      <IonInput required={question.isRequired} disabled={lockAnswer} type="text" value={answer[`${currentIdx}`]?.toString()} placeholder={t('resources.forms.questions.placeholder.openEnded')} onIonChange={e => handleAnswer(e.detail.value)}/>
                     </IonItem>
                   </IonList>
                 )
@@ -212,10 +230,23 @@ const FormQuestionPage: React.FC<FormQuestionPageProps> = ({
               {
                 (question && question.questionType === 'photo' &&
                   <IonList>
-                    <IonItem>
-                      <IonInput disabled={lockAnswer} type="text" value={answer[`${currentIdx}`]} placeholder={t('resources.forms.questions.placeholder.imageUpload')} onIonChange={e => handleAnswer(e.detail.value)}/>
-                      <PhotoUpload setPhotoUrl={setPhoto} photoUrl={answer[`${currentIdx}`]?.toString()}></PhotoUpload>
+                    <IonItem className="photo-gallery">
+                      {photos?.map(photo => (
+                        <IonContent className="photo">
+                          <IonItem>
+                            <IonImg src={photo} alt={photo}></IonImg>
+                          </IonItem>
+                          <IonItem>
+                            <IonButton fill="solid" color="primary" onClick={removePhoto(photo)}>{t('buttons.removePhoto')}</IonButton>
+                          </IonItem>
+                        </IonContent>
+                      ))}
+                    </IonItem>
 
+
+                    <IonItem>
+                      {/* <IonInput disabled={lockAnswer} type="text" value={answer[`${currentIdx}`]?.toString()} placeholder={t('resources.forms.questions.placeholder.imageUpload')} onIonChange={e => handleAnswer(e.detail.value)}/> */}
+                      <PhotoUpload setPhotoUrl={setPhoto} ></PhotoUpload>
                     </IonItem>
                   </IonList>
                 )

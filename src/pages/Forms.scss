@@ -34,3 +34,22 @@ ion-content {
 .warning {
   color: red;
 }
+
+#form-question-page {
+  ion-content.photo.md.hydrated {
+    min-height: 400px;
+  }
+
+  ion-img.md.hydrated {
+    width: 200px;
+  }
+
+  .photo {
+    display: flex;
+    overflow: wrap;
+  }
+  .photo-gallery {
+    display: flex;
+    overflow: wrap;
+  }
+}

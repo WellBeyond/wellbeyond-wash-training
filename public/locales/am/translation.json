@@ -31,7 +31,8 @@
     "close": "ገጠመ",
     "cancel": "ይቅር",
     "ok": "እሺ",
-    "submit": "አስገባ"
+    "submit": "አስገባ",
+    "removePhoto": "ፎቶን ያስወግዱ"
   },
   "registration": {
     "modals": {

@@ -113,7 +113,6 @@ export const listenForFormSessions = async (callback:any) : Promise<any> => {
   const query:firebase.firestore.Query<firebase.firestore.DocumentData> = firebase.firestore()
     .collection('formSessions')
     .where('userId', '==', user.uid);
-  console.log({ query })
 
   return unsubFormSessions = query
     .onSnapshot(querySnapshot => {
@@ -327,7 +326,6 @@ export const createOrUpdateTrainingSession = async (session:TrainingSession) => 
 export const createOrUpdateFormSession = async (formSession:FormSession) => {
   let user = firebase.auth().currentUser;
   if (!user || !user.uid) {
-    console.log('user is undefined')
     return Promise.resolve();
   }
   formSession.started = formSession.started || new Date();

@@ -60,7 +60,8 @@
     "close": "Close",
     "cancel": "Cancel",
     "ok": "OK",
-    "submit": "Submit"
+    "submit": "Submit",
+    "removePhoto": "Remove Photo"
   },
   "registration": {
     "modals": {

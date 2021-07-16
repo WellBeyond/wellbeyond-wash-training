@@ -68,7 +68,6 @@ const StartTrainingSession: React.FC<StartTrainingSessionProps> = ({ form, formT
 
   const getNextQuestion = () => {
     if (!hasNext) return;
-    console.log(question.isRequired)
     setCurrentIdx(currentIdx + 1)
     setQuestion(form?.questions[currentIdx + 1])
     setHasNext(nextExists(currentIdx + 1))

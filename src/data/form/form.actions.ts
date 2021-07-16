@@ -18,7 +18,6 @@ export const loadFormTypesData = (organizationId:string) => (async (dispatch: Re
 });
 
 export const loadFormsData = (formTypeId: string) => (async (dispatch: React.Dispatch<any>) => {
-  console.log('within loadFormsData ')
   if (listeners.forms && typeof listeners.forms === 'function') {
     listeners.forms();
   }
