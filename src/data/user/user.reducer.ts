@@ -34,12 +34,22 @@ export function userReducer(state: UserState, action: UserActions): UserState {
     case 'set-training-sessions': {
       return { ...state, sessions: action.sessions };
     }
+    case 'set-form-sessions': {
+      return { ...state, formSessions: action.formSessions };
+    }
     case 'set-training-session': {
       let sessions = Object.assign({}, state.sessions);
       if (action.session.id) {
         sessions[action.session.id] = action.session;
       }
       return { ...state, sessions: sessions };
+    }
+    case 'set-form-session': {
+      let formSessions = Object.assign({}, state.formSessions);
+      if (action.formSession.id) {
+        formSessions[action.formSession.id] = action.formSession;
+      }
+      return { ...state, formSessions: formSessions };
     }
     case 'set-session-archived': {
       let sessions = {...state.sessions} as TrainingSessions;
@@ -57,5 +67,7 @@ export function userReducer(state: UserState, action: UserActions): UserState {
       newState.intercomUser = undefined;
       newState.sessions = {};
       return newState;
+    default:
+      return state
   }
 }

@@ -29,6 +29,20 @@
       ]
     },
     {
+      "collectionGroup": "forms",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "organizationId",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "isPublished",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
       "collectionGroup": "checklists",
       "queryScope": "COLLECTION",
       "fields": [

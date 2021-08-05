@@ -18,7 +18,11 @@
     "notificationsOn": "Oggolow ogeysiisyada",
     "pleaseWait": "Fadlan sug...",
     "maintenance": "Dayactirka",
-    "home": "Guri"
+    "home": "Guri",
+    "waterSystems": "Nidaamyada Biyaha",
+    "impactReporting": "Warbixinta Saamaynta",
+    "forms": "Foomamka",
+    "miscReporting": "Warbixinta Misc"
   },
   "buttons": {
     "previous": "Hore",
@@ -26,7 +30,9 @@
     "done": "La dhammeeyay",
     "close": "Xidh",
     "cancel": "Jooji",
-    "ok": "OK"
+    "ok": "OK",
+    "submit": "Gudbi",
+    "removePhoto": "Ka saar Sawirka"
   },
   "registration": {
     "modals": {
@@ -206,7 +212,7 @@
         "title": "Hordhac",
         "completed": "Adigu horay ayaad u dhammaysay qaybtani, laakiin waad ku soo noqon kartaa halkan wakhti kasta oo aad dib u eegto.",
         "firsttime": "Kahor intaadan bilaabin barnaamijka, waxaan ku weydiinaynaa dhowr su'aalood si aan u aragno inta aad horay u taqaanay. Waxaan markale ku weydiin doonaa su'aalahan ka dib markaad dhammaystirto cutubka.",
-        "firsttime2": "Aan ku bilowno moduleka."
+        "firsttime2": "Aynu ku bilowno moduleka."
       },
       "summary": {
         "title": "Casharka Oo Dhameystiran",
@@ -220,7 +226,7 @@
         "right": "Shaqo fiican, waad saxday.",
         "wrong": "Waan ka xumahay, waad khaldantay Jawaabta saxda ahi waa"
       },
-      "attestationHeader": "Fadlan xaqiiji inaad adigu howshaas fulisay adiga oo calaamadeeya sanduuqa hoose.",
+      "attestationHeader": "Fadlan xaqiiji inaad fahantay macluumaadkan adiga oo calaamadeeya sanduuqa hoose.",
       "completed": "Dhameystiray",
       "introduction": "Hordhac"
     },
@@ -233,6 +239,38 @@
       "name": "Nidaamka Biyaha",
       "name_plural": "Nidaamyada Biyaha",
       "nonefound": "Lama helin Nidaam Biyood"
+    },
+    "forms": {
+      "name": "Foom",
+      "name_plural": "Foomamka",
+      "startSessionTitle": "Foomka Bilowga",
+      "startSessionDescription": "Markaad diyaar noqoto, si naxariis leh u guji badhanka bilowga",
+      "startSessionCTA": "Bilow Kajawaabida Su'aalaha",
+      "nonefound": "Wax Foomam Ah Looma Abuurin Qeybtaan",
+      "pages": {
+        "start": "Kajawaabida",
+        "questions": "Foomka Su'aalaha"
+      },
+      "questions": {
+        "title": "Su&#39;aasha {{num}} ee {{count}}",
+        "right": "Shaqo fiican, waad saxday.",
+        "wrong": "Waan ka xumahay, waad khaldantay Jawaabta saxda ah ayaa ah",
+        "placeholder": {
+          "enterNumber": "Su'aashani waxay u baahnayd talo tiro ama jawaab",
+          "openEnded": "Su'aashani waa furan tahay dhammaatay.",
+          "imageUpload": "Sawir galiya",
+          "more": "Xor ayaad u tahay inaad ku darto faahfaahinta ugu badan ee suurtogalka ah"
+        }
+      },
+      "labels": {
+        "yes": "Haa",
+        "no": "Maya"
+      },
+      "submit_success": {
+        "title": "Foom La Gudbiyey",
+        "body": "Jawaabahaaga si guul leh ayaa loo gudbiyay",
+        "back_to_forms": "Ku noqo foomamka"
+      }
     }
   },
   "maintenance": {
@@ -314,7 +352,8 @@
       "trainingTopics": "Mawduucyada Tababarka",
       "waterSystems": "Nidaamyada Biyaha",
       "impactReporting": "Warbixinta Saamaynta",
-      "miscReporting": "Warbixinta Misc"
+      "miscReporting": "Warbixinta Misc",
+      "forms": "Foomamka"
     },
     "waterSystemsPage": {
       "pageTitle": "Nidaamyada Biyaha",
@@ -328,7 +367,8 @@
       "pageTitle": "Warbixinta Saamaynta",
       "instructions": "Tilmaamaha",
       "surveys": "Daraasado (PDF)",
-      "surveyInput": "Galinta Sahanka"
+      "surveyInput": "Galinta Sahanka",
+      "forms": "Foomamka"
     },
     "miscReportingPage": {
       "pageTitle": "Warbixinta",

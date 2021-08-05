@@ -12,6 +12,10 @@
     "training": "Training",
     "maintenance": "Maintenance",
     "diagnostic": "Diagnostics",
+    "waterSystems": "Water Systems",
+    "impactReporting": "Impact Reporting",
+    "forms": "Forms",
+    "miscReporting": "Misc Reporting",
     "account": "Account",
     "login": "Login",
     "logout": "Logout",
@@ -26,6 +30,7 @@
       "trainingTopics": "Training Topics",
       "waterSystems": "Water Systems",
       "impactReporting": "Impact Reporting",
+      "forms": "Forms",
       "miscReporting": "Misc Reporting"
     },
     "waterSystemsPage": {
@@ -40,7 +45,8 @@
       "pageTitle": "Impact Reporting",
       "instructions": "Instructions",
       "surveys": "Surveys (PDF)",
-      "surveyInput": "Survey Input"
+      "surveyInput": "Survey Input",
+      "forms": "Forms"
     },
     "miscReportingPage": {
       "pageTitle": "Reporting",
@@ -54,7 +60,9 @@
     "done": "Done",
     "close": "Close",
     "cancel": "Cancel",
-    "ok": "OK"
+    "ok": "OK",
+    "submit": "Submit",
+    "removePhoto": "Remove Photo"
   },
   "registration": {
     "modals": {
@@ -258,9 +266,41 @@
         "right": "Great job, you got it right.",
         "wrong": "Sorry, you got it wrong. The correct answer is "
       },
-      "attestationHeader": "Please confirm that you undertand this information by checking the box below.",
+      "attestationHeader": "Please confirm that you understand this information by checking the box below.",
       "completed": "Completed",
       "introduction": "Introduction"
+    },
+    "forms": {
+      "name": "Form",
+      "name_plural": "Forms",
+      "startSessionTitle": "Start Form",
+      "startSessionDescription": "When you are ready, kindly click the start button",
+      "startSessionCTA": "Start Answering Questions",
+      "nonefound": "No Forms Have Been Created in This Category",
+      "pages": {
+        "start": "Answering",
+        "questions": "Form Questions"
+      },
+      "questions": {
+        "title": "Question {{num}} of {{count}}",
+        "right": "Great job, you got it right.",
+        "wrong": "Sorry, you got it wrong. The correct answer is ",
+        "placeholder" : {
+          "enterNumber": "This question required a numeric input or answer",
+          "openEnded": "This question is open ended.",
+          "imageUpload": "Upload an image",
+          "more": "Feel free to add as much details as possible"
+        }
+      },
+      "labels" :{
+        "yes":"Yes",
+        "no": "No"
+      },
+      "submit_success": {
+        "title": "Form Submitted",
+        "body": "Your answers have been submitted successfully",
+        "back_to_forms": "Back to forms"
+      }
     }
   },
   "maintenance" :

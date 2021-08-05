@@ -18,7 +18,11 @@
     "pleaseWait": "कृपया प्रतीक्षा कीजिये...",
     "notificationsOn": "नोटिफिकेशन की अनुमति दें",
     "maintenance": "रखरखाव",
-    "home": "घर"
+    "home": "घर",
+    "waterSystems": "जल प्रणाली",
+    "impactReporting": "प्रभाव रिपोर्टिंग",
+    "forms": "फार्म",
+    "miscReporting": "विविध रिपोर्टिंग"
   },
   "buttons": {
     "previous": "पिछला",
@@ -26,7 +30,9 @@
     "done": "किया हुआ",
     "close": "बंद करे",
     "cancel": "रद्द करना",
-    "ok": "ठीक"
+    "ok": "ठीक",
+    "submit": "प्रस्तुत",
+    "removePhoto": "फोटो हटाएं"
   },
   "registration": {
     "modals": {
@@ -220,7 +226,7 @@
         "right": "बढ़िया काम है, आपने सही किया।",
         "wrong": "क्षमा करें, आपको यह गलत लगा। सही जवाब है"
       },
-      "attestationHeader": "कृपया पुष्टि करें कि आप नीचे दिए गए बॉक्स की जाँच करके यह जानकारी देते हैं।",
+      "attestationHeader": "कृपया पुष्टि करें कि आप नीचे दिए गए बॉक्स को चेक करके इस जानकारी को समझते हैं।",
       "completed": "पूरा कर लिया है",
       "introduction": "परिचय"
     },
@@ -233,6 +239,38 @@
       "name": "पानी की व्यवस्था",
       "name_plural": "पानी की व्यवस्था",
       "nonefound": "कोई जल प्रणाली नहीं मिली"
+    },
+    "forms": {
+      "name": "प्रपत्र",
+      "name_plural": "फार्म",
+      "startSessionTitle": "फॉर्म शुरू करें",
+      "startSessionDescription": "जब आप तैयार हों, तो कृपया स्टार्ट बटन पर क्लिक करें",
+      "startSessionCTA": "सवालों के जवाब देना शुरू करें",
+      "nonefound": "इस श्रेणी में कोई प्रपत्र नहीं बनाया गया है",
+      "pages": {
+        "start": "उत्तर देना",
+        "questions": "फॉर्म प्रश्न"
+      },
+      "questions": {
+        "title": "{{count}} का प्रश्न {{num}}",
+        "right": "बढ़िया काम, आपने सही समझा।",
+        "wrong": "क्षमा करें, आपने गलत किया। सही उत्तर है",
+        "placeholder": {
+          "enterNumber": "इस प्रश्न के लिए एक संख्यात्मक इनपुट या उत्तर की आवश्यकता है",
+          "openEnded": "यह प्रश्न ओपन एंडेड है।",
+          "imageUpload": "एक छवि अपलोड करें",
+          "more": "अधिक से अधिक विवरण जोड़ने के लिए स्वतंत्र महसूस करें"
+        }
+      },
+      "labels": {
+        "yes": "हाँ",
+        "no": "नहीं न"
+      },
+      "submit_success": {
+        "title": "फॉर्म जमा किया गया",
+        "body": "आपके उत्तर सफलतापूर्वक सबमिट कर दिए गए हैं",
+        "back_to_forms": "फ़ॉर्म पर वापस जाएं"
+      }
     }
   },
   "maintenance": {
@@ -314,7 +352,8 @@
       "trainingTopics": "प्रशिक्षण विषय",
       "waterSystems": "जल प्रणाली",
       "impactReporting": "प्रभाव रिपोर्टिंग",
-      "miscReporting": "विविध रिपोर्टिंग"
+      "miscReporting": "विविध रिपोर्टिंग",
+      "forms": "फार्म"
     },
     "waterSystemsPage": {
       "pageTitle": "जल प्रणाली",
@@ -328,7 +367,8 @@
       "pageTitle": "प्रभाव रिपोर्टिंग",
       "instructions": "अनुदेश",
       "surveys": "सर्वेक्षण (पीडीएफ)",
-      "surveyInput": "सर्वेक्षण इनपुट"
+      "surveyInput": "सर्वेक्षण इनपुट",
+      "forms": "फार्म"
     },
     "miscReportingPage": {
       "pageTitle": "रिपोर्टिंग",

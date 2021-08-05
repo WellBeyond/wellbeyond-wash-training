@@ -13,12 +13,20 @@ import i18n from '../i18n';
 import {connect} from '../data/connect';
 
 import {RouteComponentProps} from "react-router";
+import * as selectors from '../data/selectors';
+import { Organization } from '../models/User';
+import { FormType, Form } from '../models/Form';
 
 interface OwnProps extends RouteComponentProps {
 }
 
 interface StateProps {
-  defaultLanguage?: string
+  defaultLanguage?: string;
+  organization?: Organization;
+  community?: string;
+  formType?: FormType;
+  formTypes: FormType[],
+  forms?: Form[],
 }
 
 interface DispatchProps {
@@ -26,7 +34,7 @@ interface DispatchProps {
 
 type MiscReportingPageProps = OwnProps & StateProps & DispatchProps;
 
-const MiscReportingPage: React.FC<MiscReportingPageProps> = ({defaultLanguage}) => {
+const MiscReportingPage: React.FC<MiscReportingPageProps> = ({defaultLanguage, forms, formTypes}) => {
 
   const pageRef = useRef<HTMLElement>(null);
 
@@ -36,12 +44,19 @@ const MiscReportingPage: React.FC<MiscReportingPageProps> = ({defaultLanguage}) 
     i18n.changeLanguage(defaultLanguage || 'en');
   }, [defaultLanguage]);
 
+  const getSpecificForm = (formTypes: any[], formTypeName: any) => {
+    const element = formTypes.find(item => item.name === formTypeName);
+    if (element)
+      return element.id
+    return '#'
+  }
+
   return(
     <IonPage ref={pageRef} id="water-systems-page" >
       <HeaderLogo pageTitle={t('pages.miscReportingPage.pageTitle')} />
       <IonContent fullscreen={true}>
           <IonItemGroup className="page-items" >
-            <IonItem routerLink="#" className="page-item" detail={false}>
+            <IonItem routerLink={`/tabs/miscReporting/forms/form-types/${getSpecificForm(formTypes, 'School Attendance')}`} className="page-item" detail={false}>
               <div className="photo">
                 <Image
                   cloudName={cloudinaryConfig.cloudName}
@@ -53,7 +68,7 @@ const MiscReportingPage: React.FC<MiscReportingPageProps> = ({defaultLanguage}) 
                 <IonText className="subsection ion-text-uppercase">{t('pages.miscReportingPage.schoolAttendance')}</IonText>
               </div>
             </IonItem>
-            <IonItem routerLink="#" className="page-item" detail={false}>
+            <IonItem routerLink={`/tabs/miscReporting/forms/form-types/${getSpecificForm(formTypes, 'Crop Yield')}`} className="page-item" detail={false}>
               <div className="photo">
                 <Image
                   cloudName={cloudinaryConfig.cloudName}
@@ -73,7 +88,11 @@ const MiscReportingPage: React.FC<MiscReportingPageProps> = ({defaultLanguage}) 
 
 export default connect<OwnProps, StateProps, DispatchProps>({
   mapStateToProps: (state, ownProps) => ({
-    defaultLanguage: state.user.defaultLanguage
+    defaultLanguage: state.user.defaultLanguage,
+    formTypes: selectors.getFormTypes(state),
+    formType: selectors.getFormType(state, ownProps),
+    organization: selectors.getUserOrganization(state),
+    form: selectors.getForms(state),
   }),
   component: React.memo(MiscReportingPage)
 });

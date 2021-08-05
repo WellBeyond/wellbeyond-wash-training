@@ -1,5 +1,6 @@
 import {IntercomUser, Organization, UserProfile} from "../../models/User";
 import {TrainingSessions} from "../training/training.state";
+import { FormSessions } from "../form/form.state";
 
 export interface UserState {
   id?: string;
@@ -16,4 +17,5 @@ export interface UserState {
   profile?: UserProfile;
   organizations?: Organization[];
   sessions?: TrainingSessions;
+  formSessions?: FormSessions;
 }
