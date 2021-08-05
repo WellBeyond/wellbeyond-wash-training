@@ -97,7 +97,16 @@ const SymptomsPage: React.FC<SymptomsProps> = ({ system,  symptoms,  defaultLang
         systemId: system.id,
         userId: userId,
         archived: false,
-        symptoms: symptoms.filter(s =>{return currentSymptoms[s.id]}).map(s => {return s.id})
+        status: 'open',
+        symptoms: symptoms.filter(s =>{return currentSymptoms[s.id]}).map(s => {
+          return {
+            symptomId: s.id,
+            symptom: s.name,
+            resolved: false
+          }
+        }),
+        diagnosticResults: [],
+        solutionResults: []
       };
       setError('');
       updateDiagnosticLog(log);

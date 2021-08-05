@@ -20,8 +20,8 @@ import {
   IonToolbar,
   NavContext
 } from '@ionic/react';
-import {System} from '../models/Maintenance';
 import {DiagnosticLog} from '../models/Diagnostic';
+import {System} from '../models/Maintenance';
 import {connect} from '../data/connect';
 import * as selectors from '../data/selectors';
 import './DiagnosticPage.scss';
@@ -35,6 +35,7 @@ import VideoPlayer from "../components/VideoPlayer";
 import {Image} from "cloudinary-react";
 import {cloudinaryConfig} from "../CLOUDINARY_CONFIG";
 import {getPublicId} from "../util/cloudinary";
+import {updateDiagnosticLog} from "../data/diagnostic/diagnostic.actions";
 
 interface ResolveFunc {
   (answer:string): void;
@@ -59,11 +60,13 @@ interface StateProps {
   engine?: DiagnosticEngine
 }
 
-interface DispatchProps { }
+interface DispatchProps {
+  updateDiagnosticLog: typeof updateDiagnosticLog;
+}
 
 interface SystemProps extends OwnProps, StateProps, DispatchProps { }
 
-const DiagnosticLogPage: React.FC<SystemProps> = ({ system,  log, symptoms, diagnostics, solutions, engine}) => {
+const DiagnosticLogPage: React.FC<SystemProps> = ({ system,  log, symptoms, diagnostics, solutions, engine, updateDiagnosticLog}) => {
 
   const { t } = useTranslation(['translation'], {i18n} );
   const {navigate} = useContext(NavContext);
@@ -77,7 +80,7 @@ const DiagnosticLogPage: React.FC<SystemProps> = ({ system,  log, symptoms, diag
   const closeModal = (next?:boolean, information?:string, photo?:string) => {
     setShowModal(false);
     if (next) {
-      handleNext();
+      handleNext(information, photo);
     }
   }
 
@@ -92,14 +95,56 @@ const DiagnosticLogPage: React.FC<SystemProps> = ({ system,  log, symptoms, diag
     }
   }
 
-  const handleNext = () => {
+  const logDiagnostic = (diagnostic:Diagnostic, answer?:string) => {
+    if (log && log.diagnosticResults) {
+      log.diagnosticResults.push(
+        {
+          diagnosticId: diagnostic.id,
+          question: diagnostic.name,
+          answer: answer || 'unknown'
+        }
+      );
+      updateDiagnosticLog(log);
+    }
+  }
+
+  const logSolution = (symptom:Symptom, solution:Solution, answer?:string, information?:string, photo?:string) => {
+    if (log && log.solutionResults) {
+      log.solutionResults.push(
+        {
+          symptomId: symptom.id,
+          symptom: symptom.name,
+          solutionId: solution.id,
+          solution: solution.name,
+          didItWork: answer || 'unknown',
+          information: information || '',
+          photo: photo || ''
+        }
+      );
+      if (answer === 'yes' && log.symptoms) {
+        const sr = log.symptoms.find(s => s.symptomId === symptom.id);
+        if (sr) {
+          sr.resolved = true;
+        }
+        log.status = (log.symptoms.find(s => !s.resolved)) ? 'partial' : 'resolved';
+      }
+      updateDiagnosticLog(log);
+    }
+  }
+
+  const handleNext = (information?:string, photo?:string) => {
     if (nextQuestion && nextQuestion.resolve) {
-      nextQuestion.resolve(answer || 'no answer');
+      if (nextQuestion.diagnostic) {
+        logDiagnostic(nextQuestion.diagnostic, answer);
+      }
+      if (nextQuestion.symptom && nextQuestion.solution) {
+        logSolution(nextQuestion.symptom, nextQuestion.solution, answer, information, photo);
+      }
+      nextQuestion.resolve(answer || 'unknown');
       setAnswer(undefined);
       setShowNext(false);
     }
   }
-
 
   useEffect(() => {
 
@@ -136,14 +181,20 @@ const DiagnosticLogPage: React.FC<SystemProps> = ({ system,  log, symptoms, diag
       if (!engine.initialized) {
         engine.initialize(symptoms, solutions, diagnostics, diagnosticCallback, solutionCallback);
         if (log.symptoms && log.symptoms.length) {
-          engine.run(log.symptoms, system.systemTypeIds).then((result) => {
+          engine.run(log.symptoms.map(s => s.symptomId), system.systemTypeIds).then((result) => {
             setNextQuestion(undefined);
             setResult(result);
+            if (log) {
+              log.completed = new Date();
+              log.engineResult = result;
+              log.status = log.status === 'open' ? 'unresolved' : log.status;
+              updateDiagnosticLog(log);
+            }
           });
         }
       }
     }
-  }, [system, symptoms, engine, log, diagnostics, solutions]);
+  }, [system, symptoms, engine, log, diagnostics, solutions, updateDiagnosticLog]);
 
 
   // @ts-ignore
@@ -165,6 +216,8 @@ const DiagnosticLogPage: React.FC<SystemProps> = ({ system,  log, symptoms, diag
               <IonCardHeader>
                 <IonCardTitle><h2>Diagnostic Engine Complete</h2></IonCardTitle>
               </IonCardHeader>
+              <IonCardContent className='diagnostic-result'>
+              </IonCardContent>
             </IonCard>
           )}
           {(nextQuestion && nextQuestion.symptom &&
@@ -369,7 +422,7 @@ const DiagnosticLogPage: React.FC<SystemProps> = ({ system,  log, symptoms, diag
             (nextQuestion.solution && nextQuestion.solution.askForPhotoAfter && answer === 'yes' ?
               <IonButton  expand="block" fill="solid" color="primary" disabled={!showNext} onClick={openModal}>{t('buttons.next')}</IonButton>
               :
-              <IonButton  expand="block" fill="solid" color="primary" disabled={!showNext} onClick={handleNext}>{t('buttons.next')}</IonButton>
+              <IonButton  expand="block" fill="solid" color="primary" disabled={!showNext} onClick={() => handleNext()}>{t('buttons.next')}</IonButton>
             )
           }
         </IonToolbar>
@@ -379,6 +432,9 @@ const DiagnosticLogPage: React.FC<SystemProps> = ({ system,  log, symptoms, diag
 };
 
 export default connect<OwnProps, StateProps, DispatchProps>({
+  mapDispatchToProps: {
+    updateDiagnosticLog
+  },
   mapStateToProps: (state, ownProps) => ({
     system: selectors.getSystemForDiagnostic(state, ownProps),
     log: selectors.getDiagnosticLog(state, ownProps),

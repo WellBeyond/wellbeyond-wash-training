@@ -1,4 +1,27 @@
-import {Diagnostic, Solution, Symptom,} from 'wellbeyond-diagnostic-engine';
+import {Diagnostic, EngineResult, Solution, Symptom,} from 'wellbeyond-diagnostic-engine';
+
+export interface SolutionResult {
+  symptomId: string;
+  solutionId: string;
+  symptom: string;
+  solution: string;
+  didItWork?: string;
+  photo?: string;
+  information?: string;
+}
+
+export interface DiagnosticResult {
+  diagnosticId: string;
+  question: string;
+  answer?: string;
+}
+
+
+export interface SymptomResult {
+  symptomId: string;
+  symptom: string;
+  resolved: boolean;
+}
 
 export interface DiagnosticLog {
   id: string;
@@ -10,7 +33,11 @@ export interface DiagnosticLog {
   archived?: boolean;
   started?: Date;
   completed?: Date;
-  symptoms?: string[];
+  status: 'open' | 'resolved' | 'partial' | 'unresolved';
+  symptoms?: SymptomResult[];
+  diagnosticResults: DiagnosticResult[];
+  solutionResults: SolutionResult[];
+  engineResult?: EngineResult;
 }
 
 export type {
