@@ -1,4 +1,4 @@
-import React, {Fragment, useContext, useEffect, useState} from 'react';
+import React, {Fragment, useEffect, useState} from 'react';
 import {
   IonButton,
   IonButtons,
@@ -17,8 +17,7 @@ import {
   IonRadioGroup,
   IonText,
   IonTitle,
-  IonToolbar,
-  NavContext
+  IonToolbar
 } from '@ionic/react';
 import {DiagnosticLog} from '../models/Diagnostic';
 import {System} from '../models/Maintenance';
@@ -70,7 +69,6 @@ interface SystemProps extends OwnProps, StateProps, DispatchProps { }
 const DiagnosticLogPage: React.FC<SystemProps> = ({ system,  log, symptoms, diagnostics, solutions, engine, updateDiagnosticLog}) => {
 
   const { t } = useTranslation(['translation'], {i18n} );
-  const {navigate} = useContext(NavContext);
 
   const [nextQuestion, setNextQuestion] = useState<NextQuestion>();
   const [result, setResult] = useState<EngineResult>();

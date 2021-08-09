@@ -16,7 +16,6 @@ import {
   bookOutline,
   constructOutline,
   fingerPrint,
-  gitNetworkOutline,
   globe,
   homeOutline,
   logIn,

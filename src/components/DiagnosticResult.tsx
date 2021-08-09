@@ -1,4 +1,4 @@
-import React, {Fragment, useEffect, useState} from 'react';
+import React, {Fragment} from 'react';
 import {DiagnosticLog} from '../models/Diagnostic';
 import {System} from '../models/Maintenance';
 import {IonIcon, IonItem, IonLabel, IonList, IonListHeader, IonNote, IonText} from '@ionic/react';
