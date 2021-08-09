@@ -1,4 +1,4 @@
-export const firebaseConfig = process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'development' ? {
+export const firebaseConfig = process.env.NODE_ENV === 'production' ? {
   apiKey: "AIzaSyBOZ-rANGB1rL4g_v6zqyJpJpdMxQREORs",
   authDomain: "app.wellbeyondwater.com",
   databaseURL: "https://wellbeyond-wash-training.firebaseio.com",
