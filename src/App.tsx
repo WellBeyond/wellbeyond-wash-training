@@ -194,6 +194,6 @@ const IonicAppConnected = connect<{}, StateProps, DispatchProps>({
     intercomUser: selectors.getIntercomUser(state),
     userOrganizationId: selectors.getUserOrganizationId(state),
   }),
-  mapDispatchToProps: { loadTrainingSessions,loadMaintenanceData, loadTrainingData, loadOrganizations, loadFormTypesData, watchAuthState, logoutUser, loadFormSessions},
+  mapDispatchToProps: { loadTrainingSessions, loadMaintenanceData, loadDiagnosticData, loadTrainingData, loadOrganizations, loadFormTypesData, watchAuthState, logoutUser, loadFormSessions},
   component: IonicApp
 });
