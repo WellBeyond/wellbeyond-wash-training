@@ -37,7 +37,6 @@ export interface DiagnosticLog {
   symptoms?: SymptomResult[];
   diagnosticResults: DiagnosticResult[];
   solutionResults: SolutionResult[];
-  engineResult?: EngineResult;
 }
 
 export type {

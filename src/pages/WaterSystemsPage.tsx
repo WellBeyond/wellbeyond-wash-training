@@ -68,7 +68,7 @@ const WaterSystemsPage: React.FC<WaterSystemsPageProps> = ({defaultLanguage, for
                 <IonText className="subsection ion-text-uppercase">{t('pages.waterSystemsPage.drillLogs')}</IonText>
               </div>
             </IonItem>
-            <IonItem routerLink="#" className="page-item" detail={false}>
+            <IonItem routerLink="/tabs/diagnostic" className="page-item" detail={false}>
               <div className="photo">
                 <Image
                   cloudName={cloudinaryConfig.cloudName}

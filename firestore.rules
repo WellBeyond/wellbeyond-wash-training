@@ -114,5 +114,23 @@ service cloud.firestore {
       allow create: if request.auth.uid != null && request.resource.data.userId == request.auth.uid;
       allow read, write: if resource.data.organizationId in get(/databases/$(database)/documents/admins/$(request.auth.uid)).data.organizations;
     }
+    match /diagnosticLogs/{document=**} {
+      allow read, update, delete: if request.auth.uid == resource.data.userId;
+      allow read, update: if resource.data.organizationId == get(/databases/$(database)/documents/users/$(request.auth.uid)).data.organizationId;
+      allow create: if request.auth.uid != null && request.resource.data.userId == request.auth.uid;
+      allow read, write: if resource.data.organizationId in get(/databases/$(database)/documents/admins/$(request.auth.uid)).data.organizations;
+    }
+    match /symptoms/{symptomId} {
+      allow read: if true;
+      allow write: if get(/databases/$(database)/documents/admins/$(request.auth.uid)).data.isAdmin == true;
+    }
+    match /diagnostics/{diagnosticId} {
+      allow read: if true;
+      allow write: if get(/databases/$(database)/documents/admins/$(request.auth.uid)).data.isAdmin == true;
+    }
+    match /solutions/{solutionId} {
+      allow read: if true;
+      allow write: if get(/databases/$(database)/documents/admins/$(request.auth.uid)).data.isAdmin == true;
+    }
   }
 }

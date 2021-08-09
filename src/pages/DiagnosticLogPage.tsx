@@ -36,6 +36,7 @@ import {Image} from "cloudinary-react";
 import {cloudinaryConfig} from "../CLOUDINARY_CONFIG";
 import {getPublicId} from "../util/cloudinary";
 import {updateDiagnosticLog} from "../data/diagnostic/diagnostic.actions";
+import DiagnosticResult from "../components/DiagnosticResult";
 
 interface ResolveFunc {
   (answer:string): void;
@@ -184,17 +185,19 @@ const DiagnosticLogPage: React.FC<SystemProps> = ({ system,  log, symptoms, diag
           engine.run(log.symptoms.map(s => s.symptomId), system.systemTypeIds).then((result) => {
             setNextQuestion(undefined);
             setResult(result);
-            if (log) {
-              log.completed = new Date();
-              log.engineResult = result;
-              log.status = log.status === 'open' ? 'unresolved' : log.status;
-              updateDiagnosticLog(log);
-            }
           });
         }
       }
     }
   }, [system, symptoms, engine, log, diagnostics, solutions, updateDiagnosticLog]);
+
+  useEffect(() => {
+    if (result && log && !log.completed) {
+      log.completed = new Date();
+      log.status = log.status === 'open' ? 'unresolved' : log.status;
+      updateDiagnosticLog(log);
+    }
+  }, [result, log, updateDiagnosticLog]);
 
 
   // @ts-ignore
@@ -211,12 +214,13 @@ const DiagnosticLogPage: React.FC<SystemProps> = ({ system,  log, symptoms, diag
 
       { system && log ?
         <IonContent fullscreen={true}>
-          {(result &&
+          {(result && log && system &&
             <IonCard>
               <IonCardHeader>
-                <IonCardTitle><h2>Diagnostic Engine Complete</h2></IonCardTitle>
+                <IonCardTitle><h2>{t('diagnostic.headers.complete.' + log.status, {systemName: system.name})}</h2></IonCardTitle>
               </IonCardHeader>
               <IonCardContent className='diagnostic-result'>
+                <DiagnosticResult log={log} system={system} />
               </IonCardContent>
             </IonCard>
           )}

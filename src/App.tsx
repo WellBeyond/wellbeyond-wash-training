@@ -90,7 +90,7 @@ interface DispatchProps {
 interface IonicAppProps extends StateProps, DispatchProps { }
 
 
-const IonicApp: React.FC<IonicAppProps> = ({ darkMode, loading, isLoggedIn, isAdmin, intercomUser, userOrganizationId, loadMaintenanceData, loadTrainingData, loadTrainingSessions, loadFormSessions, loadOrganizations, loadFormTypesData, watchAuthState, logoutUser}) => {
+const IonicApp: React.FC<IonicAppProps> = ({ darkMode, loading, isLoggedIn, isAdmin, intercomUser, userOrganizationId, loadMaintenanceData, loadDiagnosticData, loadTrainingData, loadTrainingSessions, loadFormSessions, loadOrganizations, loadFormTypesData, watchAuthState, logoutUser}) => {
 
   const { t } = useTranslation(['translation'], {i18n} );
 
@@ -132,7 +132,7 @@ const IonicApp: React.FC<IonicAppProps> = ({ darkMode, loading, isLoggedIn, isAd
       loadMaintenanceData(userOrganizationId);
       loadDiagnosticData(userOrganizationId);
     }
-  }, [userOrganizationId, loadTrainingData, loadMaintenanceData, loadFormTypesData]);
+  }, [userOrganizationId, loadTrainingData, loadMaintenanceData, loadFormTypesData, loadDiagnosticData]);
 
   useEffect(() => {
     if (isAdmin) {
@@ -141,7 +141,7 @@ const IonicApp: React.FC<IonicAppProps> = ({ darkMode, loading, isLoggedIn, isAd
       loadDiagnosticData('');
       loadFormTypesData('')
     }
-  }, [isAdmin, loadTrainingData, loadMaintenanceData, loadFormTypesData]);
+  }, [isAdmin, loadTrainingData, loadMaintenanceData, loadFormTypesData, loadDiagnosticData]);
 
 
   // @ts-ignore

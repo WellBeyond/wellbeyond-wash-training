@@ -380,7 +380,16 @@
   "diagnostic" :  {
     "headers": {
       "systems": "Which system are you having trouble with?",
-      "symptoms": "Which symptom(s) are you seeing with {{systemName}}?"
+      "symptoms": "Which symptom(s) are you seeing with {{systemName}}?",
+      "complete": {
+        "open": "Unable to continue diagnosis",
+        "resolved": "Success - Problems solved",
+        "partial": "Some problems still unresolved",
+        "unresolved": "Unable to fix problems"
+      },
+      "problems": "Problems Identified",
+      "diagnosticResults": "Questions Asked",
+      "solutionResults": "Solutions Attempted"
     },
     "buttons": {
       "start": "Diagnose the Problem",
