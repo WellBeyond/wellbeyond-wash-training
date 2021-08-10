@@ -22,7 +22,8 @@
     "waterSystems": "Mifumo ya Maji",
     "impactReporting": "Kuripoti Athari",
     "forms": "Fomu",
-    "miscReporting": "Kuripoti Misc"
+    "miscReporting": "Kuripoti Misc",
+    "diagnostic": "Utambuzi"
   },
   "buttons": {
     "previous": "Iliyopita",
@@ -259,7 +260,8 @@
           "enterNumber": "Swali hili lilihitaji ingizo au jibu la nambari",
           "openEnded": "Swali hili liko wazi.",
           "imageUpload": "Pakia picha",
-          "more": "Jisikie huru kuongeza maelezo mengi iwezekanavyo"
+          "more": "Jisikie huru kuongeza maelezo mengi iwezekanavyo",
+          "detail": "Tafadhali toa habari zaidi ikiwezekana"
         }
       },
       "labels": {
@@ -374,6 +376,43 @@
       "pageTitle": "Kuripoti",
       "schoolAttendance": "Mahudhurio ya Shule",
       "cropYield": "Mazao ya Mazao"
+    }
+  },
+  "diagnostic": {
+    "headers": {
+      "systems": "Je! Unapata shida na mfumo gani?",
+      "symptoms": "Je! Ni dalili gani unaziona na {{systemName}} ?",
+      "complete": {
+        "open": "Imeshindwa kuendelea na utambuzi",
+        "resolved": "Mafanikio - Matatizo yametatuliwa",
+        "partial": "Shida zingine bado hazijasuluhishwa",
+        "unresolved": "Imeshindwa kurekebisha shida"
+      },
+      "problems": "Matatizo Yanayotambuliwa",
+      "diagnosticResults": "Maswali Yalioulizwa",
+      "solutionResults": "Suluhisho Zimejaribiwa"
+    },
+    "buttons": {
+      "start": "Tambua Tatizo",
+      "continue": "Endelea"
+    },
+    "messages": {
+      "noSystems": "Hakuna mifumo ya maji iliyotambuliwa kwa shirika lako. Tafadhali wasiliana na {{contactName}} kwa {{contactEmail}} ikiwa una maswali.",
+      "noSymptoms": "Injini ya uchunguzi haijasanidiwa kwa shirika lako."
+    },
+    "modals": {
+      "solution": "Nyaraka za Ziada"
+    },
+    "solution": {
+      "infolabel": "Ulifanyaje ukarabati?",
+      "infoplaceholder": "Tafadhali eleza kile ulichofanya kurekebisha tatizo",
+      "photolabel": "Tafadhali ongeza picha ya ukarabati"
+    },
+    "errors": {
+      "selectSymptom": "Tafadhali chagua angalau moja ya dalili zilizoonyeshwa ili kuanza mchakato wa utambuzi.",
+      "informationRequired": "Maelezo ya ziada yanahitajika",
+      "photoRequired": "Picha inahitajika",
+      "photoOrInfoRequired": "Tafadhali ongeza maelezo au picha ili tuweze kuhakikisha kuwa ukarabati ulifanywa vizuri."
     }
   }
 }

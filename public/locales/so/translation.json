@@ -22,7 +22,8 @@
     "waterSystems": "Nidaamyada Biyaha",
     "impactReporting": "Warbixinta Saamaynta",
     "forms": "Foomamka",
-    "miscReporting": "Warbixinta Misc"
+    "miscReporting": "Warbixinta Misc",
+    "diagnostic": "Baadhitaano"
   },
   "buttons": {
     "previous": "Hore",
@@ -259,7 +260,8 @@
           "enterNumber": "Su'aashani waxay u baahnayd talo tiro ama jawaab",
           "openEnded": "Su'aashani waa furan tahay dhammaatay.",
           "imageUpload": "Sawir galiya",
-          "more": "Xor ayaad u tahay inaad ku darto faahfaahinta ugu badan ee suurtogalka ah"
+          "more": "Xor ayaad u tahay inaad ku darto faahfaahinta ugu badan ee suurtogalka ah",
+          "detail": "Fadlan bixi macluumaad dheeraad ah haddii ay suurtogal tahay"
         }
       },
       "labels": {
@@ -374,6 +376,43 @@
       "pageTitle": "Warbixinta",
       "schoolAttendance": "Imaanshaha Dugsiga",
       "cropYield": "Soo Saarista Dalagyada"
+    }
+  },
+  "diagnostic": {
+    "headers": {
+      "systems": "Nidaamkee ayaad dhib ku qabtaa?",
+      "symptoms": "Waa kuwee astaamaha aad ku aragto {{systemName}} ?",
+      "complete": {
+        "open": "Aan awoodin sii wadista ogaanshaha",
+        "resolved": "Guusha - Dhibaatooyinka waa la xaliyay",
+        "partial": "Dhibaatooyinka qaarkood weli lama xalin",
+        "unresolved": "Ma hagaajin karo dhibaatooyinka"
+      },
+      "problems": "Dhibaatooyinka La Aqoonsaday",
+      "diagnosticResults": "Su'aalaha La Waydiiyay",
+      "solutionResults": "Xalal Isku day"
+    },
+    "buttons": {
+      "start": "Baadh Dhibaatada",
+      "continue": "Sii wad"
+    },
+    "messages": {
+      "noSystems": "Wax nidaam biyo ah looma aqoonsan ururkaaga. Fadlan la xiriir {{contactName}} at {{contactEmail}} haddii aad su&#39;aalo qabtid.",
+      "noSymptoms": "Mashiinka ogaanshaha looma habayn ururkaaga."
+    },
+    "modals": {
+      "solution": "Diiwaangelin Dheeraad ah"
+    },
+    "solution": {
+      "infolabel": "Sidee u samaysay dayactirka?",
+      "infoplaceholder": "Fadlan sharax waxaad samaysay si aad u hagaajiso dhibaatada",
+      "photolabel": "Fadlan ku dar sawirka dayactirka"
+    },
+    "errors": {
+      "selectSymptom": "Fadlan dooro ugu yaraan mid ka mid ah calaamadaha la muujiyey si loo bilaabo habka ogaanshaha.",
+      "informationRequired": "Macluumaad dheeraad ah ayaa loo baahan yahay",
+      "photoRequired": "Sawir ayaa loo baahan yahay",
+      "photoOrInfoRequired": "Fadlan ku dar sharaxaad ama sawir si aan u hubinno in dayactirka si habboon loo sameeyey."
     }
   }
 }

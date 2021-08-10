@@ -22,7 +22,8 @@
     "waterSystems": "የውሃ ስርዓቶች",
     "impactReporting": "ተጽዕኖ ሪፖርት ማድረግ",
     "forms": "ቅጾች",
-    "miscReporting": "ምስክ ሪፖርት ማድረግ"
+    "miscReporting": "ምስክ ሪፖርት ማድረግ",
+    "diagnostic": "ዲያግኖስቲክስ"
   },
   "buttons": {
     "previous": "የቀድሞው",
@@ -259,7 +260,8 @@
           "enterNumber": "ይህ ጥያቄ የቁጥር ግቤት ወይም መልስ ይፈልጋል",
           "openEnded": "ይህ ጥያቄ ክፍት ነው ተጠናቅቋል ፡፡",
           "imageUpload": "አንድ ምስል ይስቀሉ",
-          "more": "በተቻለ መጠን ብዙ ዝርዝሮችን ለማከል ነፃነት ይሰማዎት"
+          "more": "በተቻለ መጠን ብዙ ዝርዝሮችን ለማከል ነፃነት ይሰማዎት",
+          "detail": "የሚቻል ከሆነ ተጨማሪ መረጃ ያቅርቡ"
         }
       },
       "labels": {
@@ -374,6 +376,43 @@
       "pageTitle": "ሪፖርት ማድረግ",
       "schoolAttendance": "የትምህርት ቤት መገኘት",
       "cropYield": "የሰብል ምርት"
+    }
+  },
+  "diagnostic": {
+    "headers": {
+      "systems": "በየትኛው ስርዓት ላይ እየተቸገሩ ነው?",
+      "symptoms": "{{systemName}} ጋር የትኛውን ምልክት (ምልክቶች) እያዩ ነው?",
+      "complete": {
+        "open": "ምርመራውን መቀጠል አልተቻለም",
+        "resolved": "ስኬት - ችግሮች ተፈትተዋል",
+        "partial": "አንዳንድ ችግሮች አሁንም አልተፈቱም",
+        "unresolved": "ችግሮችን ማስተካከል አልተቻለም"
+      },
+      "problems": "ችግሮች ተለይተዋል",
+      "diagnosticResults": "የተጠየቁ ጥያቄዎች",
+      "solutionResults": "መፍትሄዎች ሞክረዋል"
+    },
+    "buttons": {
+      "start": "ችግሩን ለይቶ ማወቅ",
+      "continue": "ቀጥል"
+    },
+    "messages": {
+      "noSystems": "ለድርጅትዎ ምንም የውሃ ስርዓቶች ተለይተዋል። ጥያቄዎች ካሉዎት እባክዎን {{contactName}} በ {{contactEmail}}",
+      "noSymptoms": "የምርመራ ሞተር ለድርጅትዎ አልተዋቀረም።"
+    },
+    "modals": {
+      "solution": "ተጨማሪ ሰነድ"
+    },
+    "solution": {
+      "infolabel": "ጥገናውን እንዴት አደረጉት?",
+      "infoplaceholder": "እባክዎን ችግሩን ለማስተካከል ያደረጉትን ይግለጹ",
+      "photolabel": "እባክዎ የጥገናውን ፎቶ ያክሉ"
+    },
+    "errors": {
+      "selectSymptom": "የምርመራውን ሂደት ለመጀመር እባክዎን ከሚታዩት ምልክቶች ቢያንስ አንዱን ይምረጡ።",
+      "informationRequired": "ተጨማሪ መረጃ ያስፈልጋል",
+      "photoRequired": "ፎቶ ያስፈልጋል",
+      "photoOrInfoRequired": "ጥገናው በትክክል መሠራቱን ለማረጋገጥ እባክዎን መግለጫ ወይም ፎቶ ያክሉ።"
     }
   }
 }

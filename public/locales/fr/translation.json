@@ -22,7 +22,8 @@
     "waterSystems": "Systèmes d'eau",
     "impactReporting": "Rapports d'impact",
     "forms": "Formes",
-    "miscReporting": "Rapports divers"
+    "miscReporting": "Rapports divers",
+    "diagnostic": "Diagnostique"
   },
   "buttons": {
     "previous": "Précédent",
@@ -259,7 +260,8 @@
           "enterNumber": "Cette question nécessitait une saisie ou une réponse numérique",
           "openEnded": "Cette question est ouverte.",
           "imageUpload": "Télécharger une image",
-          "more": "N'hésitez pas à ajouter le plus de détails possible"
+          "more": "N'hésitez pas à ajouter le plus de détails possible",
+          "detail": "Veuillez fournir plus d'informations si possible"
         }
       },
       "labels": {
@@ -374,6 +376,43 @@
       "pageTitle": "Rapports",
       "schoolAttendance": "Fréquentation scolaire",
       "cropYield": "Le rendement des cultures"
+    }
+  },
+  "diagnostic": {
+    "headers": {
+      "systems": "Avec quel système rencontrez-vous des problèmes ?",
+      "symptoms": "Quel(s) symptôme(s) voyez-vous avec {{systemName}} ?",
+      "complete": {
+        "open": "Impossible de poursuivre le diagnostic",
+        "resolved": "Succès - Problèmes résolus",
+        "partial": "Quelques problèmes toujours non résolus",
+        "unresolved": "Impossible de résoudre les problèmes"
+      },
+      "problems": "Problèmes identifiés",
+      "diagnosticResults": "Questions posées",
+      "solutionResults": "Solutions tentées"
+    },
+    "buttons": {
+      "start": "Diagnostiquer le problème",
+      "continue": "Continuer"
+    },
+    "messages": {
+      "noSystems": "Aucun système d&#39;approvisionnement en eau n&#39;a été identifié pour votre organisation. Veuillez contacter {{contactName}} à {{contactEmail}} si vous avez des questions.",
+      "noSymptoms": "Le moteur de diagnostic n'a pas été configuré pour votre organisation."
+    },
+    "modals": {
+      "solution": "Documentation supplémentaire"
+    },
+    "solution": {
+      "infolabel": "Comment as-tu fait la réparation ?",
+      "infoplaceholder": "Veuillez décrire ce que vous avez fait pour résoudre le problème",
+      "photolabel": "Veuillez ajouter une photo de la réparation"
+    },
+    "errors": {
+      "selectSymptom": "Veuillez sélectionner au moins un des symptômes affichés pour commencer le processus de diagnostic.",
+      "informationRequired": "Des informations supplémentaires sont requises",
+      "photoRequired": "Une photo est requise",
+      "photoOrInfoRequired": "Veuillez ajouter une description ou une photo afin que nous puissions nous assurer que la réparation a été effectuée correctement."
     }
   }
 }
