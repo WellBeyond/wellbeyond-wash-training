@@ -161,7 +161,6 @@ const FormQuestionPage: React.FC<FormQuestionPageProps> = ({
     setAnswer({...answer, [`${currentIdx}`]: photoList })
   }
 
-  console.log({ answer })
   return (
     <>
         {form && question &&
@@ -169,7 +168,6 @@ const FormQuestionPage: React.FC<FormQuestionPageProps> = ({
           <IonCard className='lesson-card'>
             <IonCardHeader>
               <IonCardSubtitle>{t('resources.forms.questions.title', {num:currentIdx + 1, count:form.questions.length})}</IonCardSubtitle>
-              {console.log({form})}
               <IonCardTitle><h2>{question.questionText}</h2></IonCardTitle>
             </IonCardHeader>
             <IonCardContent className='question-answer'>

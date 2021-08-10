@@ -88,8 +88,6 @@ const StartTrainingSession: React.FC<StartTrainingSessionProps> = ({ form, formT
     setHasPrevious(prevExists(currentIdx - 1))
   }
 
-  console.log({ question: form?.questions })
-
   const Component: React.FC<any> = question?.["multi-step-question"] ? MultiStepQuestion : FormQuestionPage;
   return (
     <IonPage id="start-session-page">
