@@ -18,7 +18,8 @@ import * as selectors from "../data/selectors";
 import {startTrainingSession} from "../data/user/user.actions";
 import {Organization} from "../models/User";
 import FormQuestionPage from './FormQuestionPage';
-import { Answer } from '../data/form/form.state';
+import SFormQuestionPage from './FormQuestionPageSection';
+import { Answer, AnswerExt } from '../data/form/form.state';
 import BackToFormLink from '../components/BackToForm';
 import FormSubmitSuccessPage from './FormSubmitSuccessPage';
 
@@ -39,6 +40,11 @@ interface DispatchProps {
 
 interface StartTrainingSessionProps extends OwnProps, StateProps, DispatchProps { }
 
+const MultiStepQuestion: React.FC<any> = ({ question, ...props}: { question: { "multi-step-question": Array<typeof FormQuestionPage>}, currentIdx: number }) => {
+  // return <>{question?.["multi-step-question"].map((ques: any, idx: number) => <FormQuestionPage  {...props} question={ques} currentIdx={props.currentIdx + idx} />)}</>
+  return <SFormQuestionPage  {...props} questions={question["multi-step-question"]} />
+}
+
 const StartTrainingSession: React.FC<StartTrainingSessionProps> = ({ form, formType, userId, organization, community, startTrainingSession }) => {
 
   const { t } = useTranslation(['translation'], {i18n} );
@@ -46,7 +52,7 @@ const StartTrainingSession: React.FC<StartTrainingSessionProps> = ({ form, formT
   const [currentIdx, setCurrentIdx] = useState<number>(0);
   const [question, setQuestion] = useState<any>({});
   const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
-  const [answer, setAnswer] = useState<Answer>({});
+  const [answer, setAnswer] = useState<AnswerExt<Answer>>({});
   const [hasNext, setHasNext] = useState<boolean>(false);
   const [hasPrevious, setHasPrevious] = useState<boolean>(false);
   const [showWarning, setShowWarning] = useState<Record<string, boolean>>({});
@@ -82,6 +88,7 @@ const StartTrainingSession: React.FC<StartTrainingSessionProps> = ({ form, formT
     setHasPrevious(prevExists(currentIdx - 1))
   }
 
+  const Component: React.FC<any> = question?.["multi-step-question"] ? MultiStepQuestion : FormQuestionPage;
   return (
     <IonPage id="start-session-page">
       <IonHeader>
@@ -97,7 +104,7 @@ const StartTrainingSession: React.FC<StartTrainingSessionProps> = ({ form, formT
       <IonContent>
         {formSubmitted && <FormSubmitSuccessPage />}
         {!formSubmitted && (
-          <FormQuestionPage
+          <Component
             form={form}
             question={question}
             currentIdx={currentIdx}

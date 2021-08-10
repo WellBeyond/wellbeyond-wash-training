@@ -12,5 +12,6 @@ export interface FormSessions {
 }
 
 // export type Answer = Record<string, string | number | undefined | null | Array<any | undefined>>;
-export type Answer = Record<string, string | number | undefined | null | any[]>;
+export type Answer = Record<string, string | number | undefined | null | any[] | Record<string, string | number>>;
+export type AnswerExt<T> =  Record<string, string | number | undefined | null | any[] | T>
 

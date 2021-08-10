@@ -289,7 +289,8 @@
           "enterNumber": "This question required a numeric input or answer",
           "openEnded": "This question is open ended.",
           "imageUpload": "Upload an image",
-          "more": "Feel free to add as much details as possible"
+          "more": "Feel free to add as much details as possible",
+          "detail": "Please provide more information if possible"
         }
       },
       "labels" :{
