@@ -11,13 +11,15 @@ export enum FormQuestionType {
   Video = "video",
   YesNo = "yes-no",
   Mcq = "choose-one",
-  AI = "additional-info"
+  AI = "additional-info",
+  Cm = "multi-select"
 }
 
 export interface FormQuestion {
   id?: string;
   questionType: FormQuestionType;
   questionText: string;
+  questionDescription: string
   choices?: Array<{value: string}>;
   isRequired: boolean;
   photo?: string;
