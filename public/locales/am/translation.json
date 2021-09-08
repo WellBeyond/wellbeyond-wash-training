@@ -20,9 +20,9 @@
     "maintenance": "ጥገና",
     "home": "ቤት",
     "waterSystems": "የውሃ ስርዓቶች",
-    "impactReporting": "ተጽዕኖ ሪፖርት ማድረግ",
+    "impactReporting": "ተፅዕኖ ሪፖርት ማድረግ",
     "forms": "ቅጾች",
-    "miscReporting": "ምስክ ሪፖርት ማድረግ",
+    "miscReporting": "የተሳሳተ ዘገባ",
     "diagnostic": "ዲያግኖስቲክስ"
   },
   "buttons": {
@@ -32,7 +32,7 @@
     "close": "ገጠመ",
     "cancel": "ይቅር",
     "ok": "እሺ",
-    "submit": "አስገባ",
+    "submit": "አስረክብ",
     "removePhoto": "ፎቶን ያስወግዱ"
   },
   "registration": {
@@ -227,7 +227,7 @@
         "right": "ጥሩ ስራ ፣ በትክክል አገኘኸው ፡፡",
         "wrong": "ይቅርታ ፣ ተሳስተሃል ፡፡ ትክክለኛው መልስ ነው"
       },
-      "attestationHeader": "እባክዎ ከዚህ በታች ባለው ሳጥን ላይ ምልክት በማድረግ ይህንን መረጃ እንደተገነዘቡ ያረጋግጡ ፡፡",
+      "attestationHeader": "እባክዎን ከዚህ በታች ባለው ሳጥን ላይ ምልክት በማድረግ ይህንን መረጃ መረዳትዎን ያረጋግጡ።",
       "completed": "ተጠናቋል",
       "introduction": "መግቢያ"
     },
@@ -244,23 +244,23 @@
     "forms": {
       "name": "ቅጽ",
       "name_plural": "ቅጾች",
-      "startSessionTitle": "ቅጽ ይጀምሩ",
+      "startSessionTitle": "የመነሻ ቅጽ",
       "startSessionDescription": "ዝግጁ ሲሆኑ በደግነት የመነሻ ቁልፍን ጠቅ ያድርጉ",
       "startSessionCTA": "ለጥያቄዎች መልስ መስጠት ይጀምሩ",
       "nonefound": "በዚህ ምድብ ውስጥ ምንም ቅጾች አልተፈጠሩም",
       "pages": {
-        "start": "መልስ",
+        "start": "መልስ በመስጠት",
         "questions": "የቅጽ ጥያቄዎች"
       },
       "questions": {
-        "title": "{{count}} ጥያቄ {{num}}",
-        "right": "ግሩም ሥራ በትክክል አገኙት",
-        "wrong": "ይቅርታ ፣ ተሳስተሃል ትክክለኛው መልስ ነው",
+        "title": "ጥያቄ {{num}} ከ {{count}}",
+        "right": "በጣም ጥሩ ሥራ ፣ በትክክል ተረድተዋል።",
+        "wrong": "ይቅርታ ፣ ተሳስተሃል። ትክክለኛው መልስ ነው",
         "placeholder": {
-          "enterNumber": "ይህ ጥያቄ የቁጥር ግቤት ወይም መልስ ይፈልጋል",
-          "openEnded": "ይህ ጥያቄ ክፍት ነው ተጠናቅቋል ፡፡",
-          "imageUpload": "አንድ ምስል ይስቀሉ",
-          "more": "በተቻለ መጠን ብዙ ዝርዝሮችን ለማከል ነፃነት ይሰማዎት",
+          "enterNumber": "ይህ ጥያቄ የቁጥር ግብዓት ወይም መልስ ይፈልጋል",
+          "openEnded": "ይህ ጥያቄ ክፍት ሆኖ ተጠናቀቀ።",
+          "imageUpload": "ምስል ይስቀሉ",
+          "more": "በተቻለ መጠን ብዙ ዝርዝሮችን ለማከል ነፃነት ይሰማዎ",
           "detail": "የሚቻል ከሆነ ተጨማሪ መረጃ ያቅርቡ"
         }
       },
@@ -381,7 +381,7 @@
   "diagnostic": {
     "headers": {
       "systems": "በየትኛው ስርዓት ላይ እየተቸገሩ ነው?",
-      "symptoms": "{{systemName}} ጋር የትኛውን ምልክት (ምልክቶች) እያዩ ነው?",
+      "symptoms": "{{systemName}} ጋር የትኛውን ችግር (ቶች) እያዩ ነው?",
       "complete": {
         "open": "ምርመራውን መቀጠል አልተቻለም",
         "resolved": "ስኬት - ችግሮች ተፈትተዋል",
@@ -409,7 +409,7 @@
       "photolabel": "እባክዎ የጥገናውን ፎቶ ያክሉ"
     },
     "errors": {
-      "selectSymptom": "የምርመራውን ሂደት ለመጀመር እባክዎን ከሚታዩት ምልክቶች ቢያንስ አንዱን ይምረጡ።",
+      "selectSymptom": "የምርመራውን ሂደት ለመጀመር እባክዎን ከሚታዩት ችግሮች መካከል ቢያንስ አንዱን ይምረጡ።",
       "informationRequired": "ተጨማሪ መረጃ ያስፈልጋል",
       "photoRequired": "ፎቶ ያስፈልጋል",
       "photoOrInfoRequired": "ጥገናው በትክክል መሠራቱን ለማረጋገጥ እባክዎን መግለጫ ወይም ፎቶ ያክሉ።"

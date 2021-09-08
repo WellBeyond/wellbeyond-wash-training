@@ -1,0 +1,84 @@
+{
+  "_from": "@capacitor-community/fcm@^1.1.2",
+  "_id": "@capacitor-community/fcm@1.1.2",
+  "_inBundle": false,
+  "_integrity": "sha512-8h2gGaEMiiT7i7H/++ghjxtl9FFumda078nZIbxm0fmscgHTK3go4t+j79/uBOPIbq90rSsn5WToefdaJ3lKug==",
+  "_location": "/@capacitor-community/fcm",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "range",
+    "registry": true,
+    "raw": "@capacitor-community/fcm@^1.1.2",
+    "name": "@capacitor-community/fcm",
+    "escapedName": "@capacitor-community%2ffcm",
+    "scope": "@capacitor-community",
+    "rawSpec": "^1.1.2",
+    "saveSpec": null,
+    "fetchSpec": "^1.1.2"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/@capacitor-community/fcm/-/fcm-1.1.2.tgz",
+  "_shasum": "e833aaaf2c5fc156c72ddf6c730c2ddf299f4492",
+  "_spec": "@capacitor-community/fcm@^1.1.2",
+  "_where": "C:\\Users\\daveh\\Workspaces\\wellbeyond\\wellbeyond-wash-training",
+  "author": {
+    "name": "Stewan Silva"
+  },
+  "bugs": {
+    "url": "https://github.com/capacitor-community/fcm/issues"
+  },
+  "bundleDependencies": false,
+  "capacitor": {
+    "ios": {
+      "src": "ios"
+    },
+    "android": {
+      "src": "android"
+    }
+  },
+  "dependencies": {
+    "@capacitor/core": "^2.0.0"
+  },
+  "deprecated": false,
+  "description": "Brings Firebase Cloud Messaging features to Capacitor",
+  "devDependencies": {
+    "all-contributors-cli": "^6.16.0",
+    "typescript": "^2.6.2"
+  },
+  "files": [
+    "dist/",
+    "ios/",
+    "android/",
+    "CapacitorCommunityFcm.podspec"
+  ],
+  "homepage": "https://github.com/capacitor-community/fcm#readme",
+  "keywords": [
+    "capacitor",
+    "plugin",
+    "native",
+    "fcm",
+    "firebase cloud messaging"
+  ],
+  "license": "MIT",
+  "main": "dist/esm/index.js",
+  "name": "@capacitor-community/fcm",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/capacitor-community/fcm.git"
+  },
+  "scripts": {
+    "build": "npm run clean && tsc",
+    "clean": "rm -rf ./dist",
+    "contributors:add": "all-contributors add",
+    "contributors:gen": "all-contributors generate",
+    "prepublishOnly": "npm run build",
+    "release:major": "standard-version release --release-as major",
+    "release:minor": "standard-version release --release-as minor",
+    "release:patch": "standard-version release --release-as patch",
+    "watch": "tsc --watch"
+  },
+  "types": "dist/esm/index.d.ts",
+  "version": "1.1.2"
+}

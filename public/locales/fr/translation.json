@@ -242,7 +242,7 @@
       "nonefound": "Aucun système d'eau trouvé"
     },
     "forms": {
-      "name": "Forme",
+      "name": "Former",
       "name_plural": "Formes",
       "startSessionTitle": "Formulaire de démarrage",
       "startSessionDescription": "Lorsque vous êtes prêt, veuillez cliquer sur le bouton Démarrer",
@@ -257,7 +257,7 @@
         "right": "Super boulot, tu as bien compris.",
         "wrong": "Désolé, vous vous êtes trompé. La bonne réponse est",
         "placeholder": {
-          "enterNumber": "Cette question nécessitait une saisie ou une réponse numérique",
+          "enterNumber": "Cette question nécessitait une saisie numérique ou une réponse",
           "openEnded": "Cette question est ouverte.",
           "imageUpload": "Télécharger une image",
           "more": "N'hésitez pas à ajouter le plus de détails possible",
@@ -381,7 +381,7 @@
   "diagnostic": {
     "headers": {
       "systems": "Avec quel système rencontrez-vous des problèmes ?",
-      "symptoms": "Quel(s) symptôme(s) voyez-vous avec {{systemName}} ?",
+      "symptoms": "Quel(s) problème(s) voyez-vous avec {{systemName}} ?",
       "complete": {
         "open": "Impossible de poursuivre le diagnostic",
         "resolved": "Succès - Problèmes résolus",
@@ -409,7 +409,7 @@
       "photolabel": "Veuillez ajouter une photo de la réparation"
     },
     "errors": {
-      "selectSymptom": "Veuillez sélectionner au moins un des symptômes affichés pour commencer le processus de diagnostic.",
+      "selectSymptom": "Veuillez sélectionner au moins un des problèmes affichés pour commencer le processus de diagnostic.",
       "informationRequired": "Des informations supplémentaires sont requises",
       "photoRequired": "Une photo est requise",
       "photoOrInfoRequired": "Veuillez ajouter une description ou une photo afin que nous puissions nous assurer que la réparation a été effectuée correctement."

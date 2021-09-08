@@ -381,7 +381,7 @@
   "diagnostic" :  {
     "headers": {
       "systems": "Which system are you having trouble with?",
-      "symptoms": "Which symptom(s) are you seeing with {{systemName}}?",
+      "symptoms": "Which problem(s) are you seeing with {{systemName}}?",
       "complete": {
         "open": "Unable to continue diagnosis",
         "resolved": "Success - Problems solved",
@@ -409,7 +409,7 @@
       "photolabel": "Please add a photo of the repair"
     },
     "errors": {
-      "selectSymptom": "Please select at least one of the symptoms shown to begin the diagnostic process.",
+      "selectSymptom": "Please select at least one of the problems shown to begin the diagnostic process.",
       "informationRequired": "Additional information is required",
       "photoRequired": "A photo is required",
       "photoOrInfoRequired": "Please add a description or a photo so that we can ensure the repair was made properly."

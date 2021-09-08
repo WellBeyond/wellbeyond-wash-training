@@ -20,9 +20,9 @@
     "maintenance": "Dayactirka",
     "home": "Guri",
     "waterSystems": "Nidaamyada Biyaha",
-    "impactReporting": "Warbixinta Saamaynta",
+    "impactReporting": "Warbixinta Saameynta",
     "forms": "Foomamka",
-    "miscReporting": "Warbixinta Misc",
+    "miscReporting": "Warbixinta Khaldan",
     "diagnostic": "Baadhitaano"
   },
   "buttons": {
@@ -33,7 +33,7 @@
     "cancel": "Jooji",
     "ok": "OK",
     "submit": "Gudbi",
-    "removePhoto": "Ka saar Sawirka"
+    "removePhoto": "Saar Sawirka"
   },
   "registration": {
     "modals": {
@@ -227,7 +227,7 @@
         "right": "Shaqo fiican, waad saxday.",
         "wrong": "Waan ka xumahay, waad khaldantay Jawaabta saxda ahi waa"
       },
-      "attestationHeader": "Fadlan xaqiiji inaad fahantay macluumaadkan adiga oo calaamadeeya sanduuqa hoose.",
+      "attestationHeader": "Fadlan xaqiiji inaad fahansan tahay macluumaadkan adiga oo calaamadeeya sanduuqa hoose.",
       "completed": "Dhameystiray",
       "introduction": "Hordhac"
     },
@@ -242,24 +242,24 @@
       "nonefound": "Lama helin Nidaam Biyood"
     },
     "forms": {
-      "name": "Foom",
+      "name": "Foomka",
       "name_plural": "Foomamka",
       "startSessionTitle": "Foomka Bilowga",
-      "startSessionDescription": "Markaad diyaar noqoto, si naxariis leh u guji badhanka bilowga",
-      "startSessionCTA": "Bilow Kajawaabida Su'aalaha",
-      "nonefound": "Wax Foomam Ah Looma Abuurin Qeybtaan",
+      "startSessionDescription": "Markaad diyaar u tahay, si naxariis leh guji badhanka bilowga",
+      "startSessionCTA": "Bilow Ka Jawaabista Su'aalaha",
+      "nonefound": "Ma jiro Foomam lagu Sameeyay Qeybtan",
       "pages": {
-        "start": "Kajawaabida",
-        "questions": "Foomka Su'aalaha"
+        "start": "Jawaab",
+        "questions": "Su'aalaha Foomka"
       },
       "questions": {
         "title": "Su&#39;aasha {{num}} ee {{count}}",
-        "right": "Shaqo fiican, waad saxday.",
-        "wrong": "Waan ka xumahay, waad khaldantay Jawaabta saxda ah ayaa ah",
+        "right": "Shaqo fiican, waad saxday",
+        "wrong": "Waan ka xunnahay, waad khaldantay Jawaabta saxda ah waa",
         "placeholder": {
-          "enterNumber": "Su'aashani waxay u baahnayd talo tiro ama jawaab",
-          "openEnded": "Su'aashani waa furan tahay dhammaatay.",
-          "imageUpload": "Sawir galiya",
+          "enterNumber": "Su'aashani waxay u baahnayd soo gelinta tirooyinka ama jawaab",
+          "openEnded": "Su'aashani way furantahay",
+          "imageUpload": "Soo rar sawir",
           "more": "Xor ayaad u tahay inaad ku darto faahfaahinta ugu badan ee suurtogalka ah",
           "detail": "Fadlan bixi macluumaad dheeraad ah haddii ay suurtogal tahay"
         }
@@ -269,7 +269,7 @@
         "no": "Maya"
       },
       "submit_success": {
-        "title": "Foom La Gudbiyey",
+        "title": "Foomka La Gudbiyey",
         "body": "Jawaabahaaga si guul leh ayaa loo gudbiyay",
         "back_to_forms": "Ku noqo foomamka"
       }
@@ -381,7 +381,7 @@
   "diagnostic": {
     "headers": {
       "systems": "Nidaamkee ayaad dhib ku qabtaa?",
-      "symptoms": "Waa kuwee astaamaha aad ku aragto {{systemName}} ?",
+      "symptoms": "Dhibaatooyinkee ayaad ku aragtaa {{systemName}} ?",
       "complete": {
         "open": "Aan awoodin sii wadista ogaanshaha",
         "resolved": "Guusha - Dhibaatooyinka waa la xaliyay",
@@ -409,7 +409,7 @@
       "photolabel": "Fadlan ku dar sawirka dayactirka"
     },
     "errors": {
-      "selectSymptom": "Fadlan dooro ugu yaraan mid ka mid ah calaamadaha la muujiyey si loo bilaabo habka ogaanshaha.",
+      "selectSymptom": "Fadlan dooro ugu yaraan mid ka mid ah dhibaatooyinka la muujiyay si loo bilaabo habka ogaanshaha.",
       "informationRequired": "Macluumaad dheeraad ah ayaa loo baahan yahay",
       "photoRequired": "Sawir ayaa loo baahan yahay",
       "photoOrInfoRequired": "Fadlan ku dar sharaxaad ama sawir si aan u hubinno in dayactirka si habboon loo sameeyey."

@@ -144,7 +144,7 @@ const SymptomsPage: React.FC<SymptomsProps> = ({ system,  symptoms,  defaultLang
                   <IonItem>
                     <p>
                       <Trans
-                        i18nKey="maintenance.messages.noSymptoms"/>
+                        i18nKey="diagnostic.messages.noSymptoms"/>
                     </p>
                   </IonItem>
               }

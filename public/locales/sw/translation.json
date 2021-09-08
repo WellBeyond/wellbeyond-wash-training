@@ -247,7 +247,7 @@
       "startSessionTitle": "Anza Fomu",
       "startSessionDescription": "Unapokuwa tayari, bonyeza kwa upole kitufe cha kuanza",
       "startSessionCTA": "Anza Kujibu Maswali",
-      "nonefound": "Hakuna Fomu Zilizoundwa katika Jamii Hii",
+      "nonefound": "Hakuna Aina Zilizoundwa katika Jamii Hii",
       "pages": {
         "start": "Kujibu",
         "questions": "Maswali ya fomu"
@@ -380,15 +380,15 @@
   },
   "diagnostic": {
     "headers": {
-      "systems": "Je! Unapata shida na mfumo gani?",
-      "symptoms": "Je! Ni dalili gani unaziona na {{systemName}} ?",
+      "systems": "Je! Unasumbuliwa na mfumo gani?",
+      "symptoms": "Je! Unaona shida zipi na {{systemName}} ?",
       "complete": {
         "open": "Imeshindwa kuendelea na utambuzi",
-        "resolved": "Mafanikio - Matatizo yametatuliwa",
+        "resolved": "Mafanikio - Shida zimetatuliwa",
         "partial": "Shida zingine bado hazijasuluhishwa",
         "unresolved": "Imeshindwa kurekebisha shida"
       },
-      "problems": "Matatizo Yanayotambuliwa",
+      "problems": "Matatizo Kutambuliwa",
       "diagnosticResults": "Maswali Yalioulizwa",
       "solutionResults": "Suluhisho Zimejaribiwa"
     },
@@ -409,7 +409,7 @@
       "photolabel": "Tafadhali ongeza picha ya ukarabati"
     },
     "errors": {
-      "selectSymptom": "Tafadhali chagua angalau moja ya dalili zilizoonyeshwa ili kuanza mchakato wa utambuzi.",
+      "selectSymptom": "Tafadhali chagua angalau moja ya shida zilizoonyeshwa ili kuanza mchakato wa utambuzi.",
       "informationRequired": "Maelezo ya ziada yanahitajika",
       "photoRequired": "Picha inahitajika",
       "photoOrInfoRequired": "Tafadhali ongeza maelezo au picha ili tuweze kuhakikisha kuwa ukarabati ulifanywa vizuri."
