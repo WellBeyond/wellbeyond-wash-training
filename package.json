@@ -17,7 +17,7 @@
     "@types/react-dom": "^17.0.9",
     "@types/react-router": "^5.1.16",
     "@types/react-router-dom": "^5.1.8",
-    "capacitor-firebase-auth": "^2.4.0",
+    "capacitor-firebase-auth": "file:plugins/capacitor-firebase-auth",
     "cloudinary-core": "^2.11.4",
     "cloudinary-react": "^1.7.0",
     "cordova-plugin-intercom": "file:plugins/cordova-plugin-intercom",
