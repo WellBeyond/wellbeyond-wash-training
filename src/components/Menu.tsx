@@ -24,7 +24,6 @@ import {
   notificationsOutline,
   person,
   informationCircleSharp,
-  infiniteOutline,
 } from 'ionicons/icons';
 import {useTranslation} from "react-i18next";
 import i18n from '../i18n';

@@ -286,7 +286,7 @@
         "right": "Great job, you got it right.",
         "wrong": "Sorry, you got it wrong. The correct answer is ",
         "placeholder" : {
-          "enterNumber": "This question required a numeric input or answer",
+          "enterNumber": "This question requires a numeric input or answer",
           "openEnded": "This question is open ended.",
           "imageUpload": "Upload an image",
           "more": "Feel free to add as much details as possible",

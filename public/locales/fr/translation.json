@@ -257,7 +257,7 @@
         "right": "Super boulot, tu as bien compris.",
         "wrong": "Désolé, vous vous êtes trompé. La bonne réponse est",
         "placeholder": {
-          "enterNumber": "Cette question nécessitait une saisie numérique ou une réponse",
+          "enterNumber": "Cette question nécessite une entrée numérique ou une réponse",
           "openEnded": "Cette question est ouverte.",
           "imageUpload": "Télécharger une image",
           "more": "N'hésitez pas à ajouter le plus de détails possible",
