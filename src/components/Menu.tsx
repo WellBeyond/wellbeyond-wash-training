@@ -44,7 +44,7 @@ const routes = {
     { title: 'menu.waterSystems', path: '/tabs/water-systems', icon: constructOutline },
     // { title: "menu.forms", path: '/tabs/forms', icon: receiptOutline},
     { title: "menu.impactReporting", path: '/tabs/impact-reports', icon: informationCircleSharp},
-    { title: "menu.miscReporting", path: '/tabs/reports', icon: infiniteOutline}
+    // { title: "menu.miscReporting", path: '/tabs/reports', icon: infiniteOutline}
   ],
   loggedInPages: [
     { title: 'menu.account', path: '/account', icon: person },
