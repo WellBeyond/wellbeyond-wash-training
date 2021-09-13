@@ -25,7 +25,6 @@ import {
   person,
   informationCircleSharp,
   infiniteOutline,
-  receiptOutline,
 } from 'ionicons/icons';
 import {useTranslation} from "react-i18next";
 import i18n from '../i18n';
@@ -43,7 +42,7 @@ const routes = {
     { title: 'menu.training', path: '/tabs/training', icon: bookOutline },
     // { title: 'menu.maintenance', path: '/tabs/maintenance', icon: constructOutline },
     { title: 'menu.waterSystems', path: '/tabs/water-systems', icon: constructOutline },
-    { title: "menu.forms", path: '/tabs/forms', icon: receiptOutline},
+    // { title: "menu.forms", path: '/tabs/forms', icon: receiptOutline},
     { title: "menu.impactReporting", path: '/tabs/impact-reports', icon: informationCircleSharp},
     { title: "menu.miscReporting", path: '/tabs/reports', icon: infiniteOutline}
   ],

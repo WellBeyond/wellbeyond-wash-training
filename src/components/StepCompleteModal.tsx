@@ -18,6 +18,7 @@ import {
   IonTextarea,
   IonTitle,
   IonToolbar,
+  IonImg,
 } from '@ionic/react';
 import {useTranslation} from "react-i18next";
 import i18n from "../i18n";
@@ -52,6 +53,8 @@ const StepCompleteModal: React.FC<StepCompleteProps> = ({showModal, closeModal, 
   const [formValues, setFormValues] = useState<any>({});
   const [formErrors, setFormErrors] = useState<any>({});
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [photos, setPhotos] = useState<any[]>([]);
+  const [photoChanged, setPhotoChanged] = useState(false);
 
   useEffect(() =>{
     setFormValues({status: step.status, information: step.information, photo: step.photo});
@@ -89,10 +92,22 @@ const StepCompleteModal: React.FC<StepCompleteProps> = ({showModal, closeModal, 
     }
   }
 
+  // const setPhotoz = (url:string) => {
+  //   setAnswer({...answer, [`${currentIdx}`]: [...photos, url] })
+  // };
+
   const setPhoto = (url:string) => {
+    if (photos.find(p => p === url)) return
+    if (photos.length === 0 && photoChanged) {
+      setPhotoChanged(false);
+      return;
+    }
+    setPhotos([...photos, url])
+
     let values = {...formValues};
-    values.photo = url;
+    values.photo = [...photos, url];
     setFormValues(values);
+    setPhotoChanged(true);
     if(validate() && step && log) {
       step.completed = new Date();
       step.completedById = profile && profile.id;
@@ -103,6 +118,13 @@ const StepCompleteModal: React.FC<StepCompleteProps> = ({showModal, closeModal, 
       updateMaintenanceLog(log);
     }
   };
+
+  const removePhoto = (photo: string) => () => {
+    const photoList = photos.filter(p => p !== photo)
+    setPhotos(photoList);
+    let values = {...formValues};
+    setFormValues({...values, photoList })
+  }
 
   return (
     <IonModal isOpen={showModal}>
@@ -155,9 +177,23 @@ const StepCompleteModal: React.FC<StepCompleteProps> = ({showModal, closeModal, 
                 placeholder={t('maintenance.logs.infoplaceholder')}
                 onIonChange={e => handleChange('information', e.detail.value!)}></IonTextarea>
             </IonItem>
-            <IonItem>
-              <PhotoUpload setPhotoUrl={setPhoto} photoUrl={formValues.photo} ></PhotoUpload>
-            </IonItem>
+            <IonList>
+              <IonItem>
+                {photos?.map(photo => (
+                  <IonContent className="photo">
+                    <IonItem>
+                      <IonImg src={photo} alt={photo}></IonImg>
+                    </IonItem>
+                    <IonItem>
+                      <IonButton fill="solid" color="primary" onClick={removePhoto(photo)}>{t('buttons.removePhoto')}</IonButton>
+                    </IonItem>
+                  </IonContent>
+                ))}
+              </IonItem>
+              <IonItem>
+                  <PhotoUpload setPhotoUrl={setPhoto} ></PhotoUpload>
+              </IonItem>
+            </IonList>
           </IonList>
         </IonContent>
         <IonFooter>

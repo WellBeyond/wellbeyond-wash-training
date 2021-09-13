@@ -208,6 +208,11 @@ const FormQuestionPage: React.FC<FormQuestionPageProps> = ({
                         </IonItem>
                       })}
                     </IonRadioGroup>
+                    {/* <IonInput required={question.isRequired} disabled={lockAnswer} type="text" value={answer[`${currentIdx}`]?.[`${idx}`]?.toString()} placeholder={t('resources.forms.questions.placeholder.openEnded')} onIonChange={e => handleAnswer(e.detail.value, idx)}/>
+                     */}
+                    <IonInput disabled={lockAnswer} type="text" value={answer[`${currentIdx}`]?.toString()} placeholder={t('resources.forms.questions.placeholder.detail')} onIonChange={e => handleAnswer(e.detail.value, idx)}/>
+
+
                   </IonList>
                 )
               }

@@ -106,7 +106,6 @@ const FormQuestionPage: React.FC<FormQuestionPageProps> = ({
   }
 
   const setPhoto = (url:string) => {
-    // let photos: Array<any> = answer[`${currentIdx}`] ? Array(answer[`${currentIdx}`]) : []
     if (photos.find(p => p === url)) return
     if (photos.length === 0 && photoChanged) {
       setPhotoChanged(false);
@@ -115,7 +114,6 @@ const FormQuestionPage: React.FC<FormQuestionPageProps> = ({
     setPhotos([...photos, url])
     setAnswer({...answer, [`${currentIdx}`]: [...photos, url] })
     setPhotoChanged(true);
-    // setAnswer({ ...answer, [`${currentIdx}`]: url });
   };
 
   const handleSubmit = async () => {
@@ -198,6 +196,7 @@ const FormQuestionPage: React.FC<FormQuestionPageProps> = ({
                         </IonItem>
                       })}
                     </IonRadioGroup>
+                    <IonInput disabled={lockAnswer} type="text" value={answer[`${currentIdx}`]?.toString()} placeholder={t('resources.forms.questions.placeholder.detail')} onIonChange={e => handleAnswer(e.detail.value)}/>
                   </IonList>
                 )
               }
@@ -259,7 +258,6 @@ const FormQuestionPage: React.FC<FormQuestionPageProps> = ({
                     </IonItem>
 
                     <IonItem>
-                      {/* <IonInput disabled={lockAnswer} type="text" value={answer[`${currentIdx}`]?.toString()} placeholder={t('resources.forms.questions.placeholder.imageUpload')} onIonChange={e => handleAnswer(e.detail.value)}/> */}
                       <PhotoUpload setPhotoUrl={setPhoto} ></PhotoUpload>
                     </IonItem>
                   </IonList>

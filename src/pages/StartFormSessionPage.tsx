@@ -94,7 +94,7 @@ const StartTrainingSession: React.FC<StartTrainingSessionProps> = ({ form, formT
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
-            <BackToFormLink formType={formType}/>
+            <BackToFormLink formType={formType} form={form}/>
           </IonButtons>
           {/* <IonTitle>{t('resources.forms.pages.start')}</IonTitle> */}
           <IonTitle>{t('resources.forms.pages.start')} {form.name} {t('resources.forms.pages.questions')}</IonTitle>

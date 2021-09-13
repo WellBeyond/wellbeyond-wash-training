@@ -4,21 +4,21 @@ import {arrowBack} from 'ionicons/icons';
 import { Form, FormType } from '../models/Form';
 
 
-interface BackToLessonsProps {
+interface BackToFormProps {
   form?: Form;
   formType?: FormType;
 }
 
-const BackToFormLink: React.FC<BackToLessonsProps> = ({ form, formType }) => {
+const BackToFormLink: React.FC<BackToFormProps> = ({ form, formType }) => {
 
   const {navigate} = useContext(NavContext);
   const [backLink, setBackLink] = useState<string>('/tabs/impact-reports');
 
   useEffect(() => {
-    if (formType) {
-      setBackLink(`/tabs/impact-reports/form-types/${formType?.id}`);
+    if (form) {
+      setBackLink(`/tabs/formTypes/${formType?.id}/forms/${form?.id}`);
     }
-  }, [formType]);
+  }, [form, formType]);
 
   return (
     <IonButton onClick={()=>{navigate(backLink, 'back')}}>
