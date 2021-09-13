@@ -71,18 +71,6 @@ const ImpactReportingPage: React.FC<ImpactReportingPageProps> = ({defaultLanguag
                 <IonText className="subsection ion-text-uppercase">{t('pages.impactReportingPage.instructions')}</IonText>
               </div>
             </IonItem>
-            <IonItem routerLink={`/tabs/impactReports/forms/form-types/${getSpecificForm(formTypes, 'Surveys')}`} className="page-item" detail={false}>
-              <div className="photo">
-                <Image
-                  cloudName={cloudinaryConfig.cloudName}
-                  publicId="images/home-page/icon-maint-checklist"
-                  alt="Surveys logo"
-                  quality="auto"
-                  width="auto"
-                  crop="scale" />
-                <IonText className="subsection ion-text-uppercase">{t('pages.impactReportingPage.surveys')}</IonText>
-              </div>
-            </IonItem>
             <IonItem routerLink={`/tabs/impactReports/forms/form-types/${getSpecificForm(formTypes, 'Survey Input')}`} className="page-item" detail={false}>
               <div className="photo">
                 <Image
