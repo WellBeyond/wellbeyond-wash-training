@@ -104,7 +104,7 @@ const WaterSystemsPage: React.FC<WaterSystemsPageProps> = ({defaultLanguage, for
                 <IonText className="subsection ion-text-uppercase">{t('pages.waterSystemsPage.fieldReporting')}</IonText>
               </div>
             </IonItem>
-            <IonItem routerLink={`/tabs/waterSystems/forms/form-types/${getSpecificForm(formTypes, 'Ticket submission')}` || `/tabs/waterSystems/forms/form-types/${getSpecificForm(formTypes, 'Submit a Ticket')}`} className="page-item" detail={false}>
+            <IonItem routerLink={`/tabs/waterSystems/forms/form-types/${getSpecificForm(formTypes, 'Submit a Ticket')}`} className="page-item" detail={false}>
               <div className="photo">
                 <Image
                   cloudName={cloudinaryConfig.cloudName}
