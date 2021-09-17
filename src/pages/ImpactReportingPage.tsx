@@ -30,9 +30,7 @@ interface StateProps {
 }
 
 interface DispatchProps {
-  // getFormType: typeof selectors.getFormType;
-  // getForms: typeof selectors.getForms;
-  // getForm: typeof selectors.getForm;
+
 }
 
 type ImpactReportingPageProps = OwnProps & StateProps & DispatchProps;
@@ -95,7 +93,7 @@ export default connect<OwnProps, StateProps, DispatchProps>({
     formTypes: selectors.getFormTypes(state),
     formType: selectors.getFormType(state, ownProps),
     organization: selectors.getUserOrganization(state),
-    form: selectors.getForms(state),
+    form: selectors.getFormsForOrganization(state),
   }),
   component: React.memo(ImpactReportingPage)
 });

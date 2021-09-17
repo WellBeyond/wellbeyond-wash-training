@@ -92,7 +92,7 @@ export default connect<OwnProps, StateProps, DispatchProps>({
     formTypes: selectors.getFormTypes(state),
     formType: selectors.getFormType(state, ownProps),
     organization: selectors.getUserOrganization(state),
-    form: selectors.getForms(state),
+    form: selectors.getFormsForOrganization(state),
   }),
   component: React.memo(MiscReportingPage)
 });

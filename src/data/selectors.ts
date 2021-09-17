@@ -154,11 +154,14 @@ const getFormSessionIdParam  = (_state: AppState, props: any) => {
 }
 
 export const getFormsForOrganization = createSelector(
-  getForms, getUserId, getUserOrganizationId,
-  (forms, userId, organizationId) => {
+  getForms, getUserId, getUserOrganizationId, getIsAdmin,
+  (forms, userId, organizationId, isAdmin) => {
     if (forms) {
+      if (isAdmin) {
+        return forms
+      }
       if (organizationId) {
-        return forms.filter((s: Form) => s.organization === organizationId)
+        return forms.filter((s: Form) => s ? s.organizationId?.includes(organizationId) : [])
       }
       else if (userId) {
         return forms;

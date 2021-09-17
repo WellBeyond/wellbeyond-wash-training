@@ -108,7 +108,7 @@ const FormTypePage: React.FC<SubjectProps> = ({ formType, forms, loadFormsData, 
 export default connect<OwnProps, StateProps, DispatchProps>({
   mapStateToProps: (state, ownProps) => ({
     formType: selectors.getFormType(state, ownProps),
-    forms: selectors.getForms(state),
+    forms: selectors.getFormsForOrganization(state),
     userId: selectors.getUserId(state),
     organization: selectors.getUserOrganization(state),
     community: selectors.getUserCommunity(state),

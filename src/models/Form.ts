@@ -31,6 +31,7 @@ export interface FormQuestion {
 export interface Form {
   id: string
   organization?: string;
+  organizationId?: string[];
   locale?: string;
   type: string;
   name: string;
