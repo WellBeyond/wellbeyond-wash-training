@@ -390,7 +390,9 @@
       },
       "problems": "ችግሮች ተለይተዋል",
       "diagnosticResults": "የተጠየቁ ጥያቄዎች",
-      "solutionResults": "መፍትሄዎች ሞክረዋል"
+      "solutionResults": "መፍትሄዎች ሞክረዋል",
+      "noQuestionsAsked": "ምንም ጥያቄዎች አልተጠየቁም",
+      "noSolutionsAttempted": "ምንም መፍትሄዎች አልተሞከሩም"
     },
     "buttons": {
       "start": "ችግሩን ለይቶ ማወቅ",
@@ -401,7 +403,8 @@
       "noSymptoms": "የምርመራ ሞተር ለድርጅትዎ አልተዋቀረም።"
     },
     "modals": {
-      "solution": "ተጨማሪ ሰነድ"
+      "solution": "ተጨማሪ ሰነድ",
+      "unresolved": "ይቅርታ ፣ ችግሩን መመርመር አልቻልንም"
     },
     "solution": {
       "infolabel": "ጥገናውን እንዴት አደረጉት?",
@@ -413,6 +416,12 @@
       "informationRequired": "ተጨማሪ መረጃ ያስፈልጋል",
       "photoRequired": "ፎቶ ያስፈልጋል",
       "photoOrInfoRequired": "ጥገናው በትክክል መሠራቱን ለማረጋገጥ እባክዎን መግለጫ ወይም ፎቶ ያክሉ።"
+    },
+    "unresolved": {
+      "explanation": "አንዳንድ ጊዜ አብሮገነብ ደንቦቻችንን በመጠቀም ችግሩን ማወቅ አንችልም። ተጨማሪ ዝርዝሮችን ከሰጡ ፣ ለማስተካከል የሚረዳ አንድ ሰው እንዲደርስልን እናደርጋለን።",
+      "infolabel": "ችግሩን በዝርዝር ይግለጹ",
+      "infoplaceholder": "እባክዎን ስለችግሩ ማንኛውንም ተጨማሪ መረጃ እዚህ ያቅርቡ",
+      "photolabel": "እባክዎ የችግሩን ፎቶ ያክሉ"
     }
   }
 }

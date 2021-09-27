@@ -257,7 +257,7 @@
         "right": "Shaqo fiican, waad saxday",
         "wrong": "Waan ka xunnahay, waad khaldantay Jawaabta saxda ah waa",
         "placeholder": {
-          "enterNumber": "Su'aashani waxay u baahan tahay gelitaan lambar ama jawaab",
+          "enterNumber": "Su'aashani waxay u baahan tahay gelinta tirooyinka ama jawaab",
           "openEnded": "Su'aashani way furantahay",
           "imageUpload": "Soo rar sawir",
           "more": "Xor ayaad u tahay inaad ku darto faahfaahinta ugu badan ee suurtogalka ah",
@@ -390,7 +390,9 @@
       },
       "problems": "Dhibaatooyinka La Aqoonsaday",
       "diagnosticResults": "Su'aalaha La Waydiiyay",
-      "solutionResults": "Xalal Isku day"
+      "solutionResults": "Xalal Isku day",
+      "noQuestionsAsked": "Wax Su'aalo Ah La Waydiinayo",
+      "noSolutionsAttempted": "Wax Xal Ah Ma Isku dayin"
     },
     "buttons": {
       "start": "Baadh Dhibaatada",
@@ -401,7 +403,8 @@
       "noSymptoms": "Mashiinka ogaanshaha looma habayn ururkaaga."
     },
     "modals": {
-      "solution": "Diiwaangelin Dheeraad ah"
+      "solution": "Diiwaangelin Dheeraad ah",
+      "unresolved": "Waan ka xunahay, ma ogaan karno Dhibaatada"
     },
     "solution": {
       "infolabel": "Sidee u samaysay dayactirka?",
@@ -413,6 +416,12 @@
       "informationRequired": "Macluumaad dheeraad ah ayaa loo baahan yahay",
       "photoRequired": "Sawir ayaa loo baahan yahay",
       "photoOrInfoRequired": "Fadlan ku dar sharaxaad ama sawir si aan u hubinno in dayactirka si habboon loo sameeyey."
+    },
+    "unresolved": {
+      "explanation": "Mararka qaarkood ma ogaan karno dhibaatada annaga oo adeegsanayna xeerarkeenna ku dhisan. Haddii aad bixiso tafaasiil dheeraad ah, waxaannu heli doonnaa qof kaa caawiya hagaajinta.",
+      "infolabel": "Sharaxaad ka bixi dhibaatada si faahfaahsan",
+      "infoplaceholder": "Fadlan bixi wixii macluumaad dheeraad ah oo ku saabsan dhibaatada halkan",
+      "photolabel": "Fadlan ku dar sawirka dhibaatada"
     }
   }
 }

@@ -21,9 +21,9 @@ const DiagnosticResult: React.FC<DiagnosticResultProps> = ({ log, system}) => {
       {log.symptoms &&
         <Fragment>
           <IonListHeader>
-            <h4>
-              {t('diagnostic.headers.problems')}
-            </h4>
+            <h3>
+              <IonText className="ion-text-uppercase">{t('diagnostic.headers.problems')}</IonText>
+            </h3>
           </IonListHeader>
           <IonList>
             {log.symptoms.map((s, idx) => (
@@ -42,16 +42,22 @@ const DiagnosticResult: React.FC<DiagnosticResultProps> = ({ log, system}) => {
       {log.diagnosticResults &&
       <Fragment>
         <IonListHeader>
-          <h4>
-            {t('diagnostic.headers.diagnosticResults')}
-          </h4>
+          {log.diagnosticResults.length ?
+            <h3>
+              <IonText className="ion-text-uppercase">{t('diagnostic.headers.diagnosticResults')}</IonText>
+            </h3>
+            :
+            <h3>
+              <IonText className="ion-text-uppercase" color={"danger"}>{t('diagnostic.headers.noQuestionsAsked')}</IonText>
+            </h3>
+          }
         </IonListHeader>
         <IonList>
           {log.diagnosticResults.map((s, idx) => (
             <IonItem>
               <IonLabel className="ion-text-wrap">{s.question}</IonLabel>
               <IonNote slot={'end'}>
-                <IonText className="ion-text-md-capitalize">{s.answer}</IonText>
+                <IonText className="ion-text-uppercase">{s.answer}</IonText>
               </IonNote>
             </IonItem>
           ))}
@@ -61,9 +67,15 @@ const DiagnosticResult: React.FC<DiagnosticResultProps> = ({ log, system}) => {
       {log.solutionResults &&
       <Fragment>
         <IonListHeader>
-          <h4>
-            {t('diagnostic.headers.solutionResults')}
-          </h4>
+          {log.solutionResults.length ?
+            <h3>
+              <IonText className="ion-text-uppercase">{t('diagnostic.headers.solutionResults')}</IonText>
+            </h3>
+            :
+            <h3>
+              <IonText className="ion-text-uppercase" color={"danger"}>{t('diagnostic.headers.noSolutionsAttempted')}</IonText>
+            </h3>
+          }
         </IonListHeader>
         <IonList>
           {log.solutionResults.map((s, idx) => (

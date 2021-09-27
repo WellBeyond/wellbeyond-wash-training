@@ -390,7 +390,9 @@
       },
       "problems": "Problems Identified",
       "diagnosticResults": "Questions Asked",
-      "solutionResults": "Solutions Attempted"
+      "noQuestionsAsked": "No Questions Asked",
+      "solutionResults": "Solutions Attempted",
+      "noSolutionsAttempted": "No Solutions Attempted"
     },
     "buttons": {
       "start": "Diagnose the Problem",
@@ -401,12 +403,19 @@
       "noSymptoms": "The diagnostic engine has not been configured for your organization."
     },
     "modals": {
-      "solution": "Additional Documentation"
+      "solution": "Additional Documentation",
+      "unresolved": "Sorry, We Couldn't Diagnose the Problem"
     },
     "solution": {
       "infolabel": "How did you make the repair?",
       "infoplaceholder": "Please describe what you did to fix the problem",
       "photolabel": "Please add a photo of the repair"
+    },
+    "unresolved": {
+      "explanation": "Sometimes we can't figure out the problem using our built-in rules.  If you provide additional details, we will have someone reach out to help you fix it.",
+      "infolabel": "Describe the problem in detail",
+      "infoplaceholder": "Please provide any additional information about the problem here",
+      "photolabel": "Please add a photo of the problem"
     },
     "errors": {
       "selectSymptom": "Please select at least one of the problems shown to begin the diagnostic process.",
