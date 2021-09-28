@@ -186,7 +186,7 @@ const FormQuestionPage: React.FC<FormQuestionPageProps> = ({
                     {/*@ts-ignore*/}
                     <IonRadioGroup value={answer[`${currentIdx}`]?.[`${idx}`]} onIonChange={e => { handleAnswer(e.detail.value, idx)}}>
                       <IonItem>
-                        <IonLabel>{t('resources.forms.labels.yes')}</IonLabel>
+                        <IonLabel className="ion-text-wrap">{t('resources.forms.labels.yes')}</IonLabel>
                         <IonRadio disabled={lockAnswer} slot="start" value="yes" />
                       </IonItem>
                       <IonItem>

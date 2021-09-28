@@ -221,7 +221,7 @@ const LessonPagePage: React.FC<LessonPageProps> = ({ history, subject, lesson, p
                 {t('resources.lessons.attestationHeader')}
               </IonListHeader>
               <IonItem>
-                <IonLabel>
+                <IonLabel className="ion-text-wrap">
                   {page.attestation}
                 </IonLabel>
                 <IonCheckbox color="primary" checked={pageView.attestationChecked} slot="start" onIonChange={(e:CustomEvent) => setAttestationChecked(e.detail.checked)}>

@@ -109,7 +109,7 @@ const StartMaintenanceModal: React.FC<StartMaintenanceProps> = ({showModal, clos
           <IonRadioGroup value={checklist} onIonChange={e => setChecklist(e.detail.value)}>
             {checklists.map((cl, idx) =>  {
               return <IonItem key={`cl-${cl.id}`}>
-                <IonLabel>
+                <IonLabel className="ion-text-wrap">
                   <div>{cl.name}</div>
                   <div>
                     <small>{t('maintenance.checklist.stepCount', {count: cl.steps.length})}</small>

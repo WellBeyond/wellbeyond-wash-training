@@ -23,7 +23,7 @@ const TopicItem: React.FC<TopicItemProps> = ({ topic}) => {
             width="auto"
             crop="scale"/>
         </IonCardContent>
-        <IonLabel>
+        <IonLabel className="ion-text-wrap">
               <h2>{topic.name}</h2>
             </IonLabel>
       </IonCard>
