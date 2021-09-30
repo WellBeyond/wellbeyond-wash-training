@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {RouteComponentProps} from 'react-router';
 
 import './LessonPage.scss';
@@ -80,7 +80,6 @@ const FormQuestionPage: React.FC<FormQuestionPageProps> = ({
   activeSession,
   answer,
   setAnswer,
-  organization,
   organizations,
   community,
   userId,
@@ -100,9 +99,27 @@ const FormQuestionPage: React.FC<FormQuestionPageProps> = ({
   const [photos, setPhotos] = useState<any[]>([]);
   const [photoChanged, setPhotoChanged] = useState(false);
 
-  const handleAnswer = (value:(string|number|undefined | null)) => {
+  useEffect(() => {
+    if (question && question.questionType === 'photo') {
+      // @ts-ignore
+      setPhotos(answer[`${currentIdx}`] || [])
+    }
+  }, [question, answer, currentIdx])
+
+  const handleAnswer = (value:any) => {
     if (value === answer[`${currentIdx}`]) return
     setAnswer({...answer, [`${currentIdx}`]: value })
+  }
+
+  const handleMultiSelect = (key: string) => (event: any) => {
+    // @ts-ignore
+    let ans = { ...answer[currentIdx] }
+    if (!event.detail.checked) {
+      delete ans[key]
+    } else {
+      ans = {...ans, [key]: event.detail.value }
+    }
+    handleAnswer(ans)
   }
 
   const setPhoto = (url:string) => {
@@ -111,7 +128,6 @@ const FormQuestionPage: React.FC<FormQuestionPageProps> = ({
       setPhotoChanged(false);
       return;
     }
-    setPhotos([...photos, url])
     setAnswer({...answer, [`${currentIdx}`]: [...photos, url] })
     setPhotoChanged(true);
   };
@@ -119,6 +135,12 @@ const FormQuestionPage: React.FC<FormQuestionPageProps> = ({
   const handleSubmit = async () => {
    if (activeSession) {
    } else {
+     let questionsWithoutAnswers= form.questions
+     let answersToQuestions = answer
+     questionsWithoutAnswers.forEach((question, index) => {
+       // @ts-ignore
+      question.answer = answersToQuestions[index] || ''
+    })
     const activeSession = {
       id: '',
       name: '',
@@ -130,6 +152,8 @@ const FormQuestionPage: React.FC<FormQuestionPageProps> = ({
       community: community || '',
       formTypeId: form.formTypeId,
       started: new Date(),
+      formQuestionsWithAnswers: form.questions,
+      // photos: photos,
       forms: {
         [form.id] : {
           formId: form.id,
@@ -137,7 +161,6 @@ const FormQuestionPage: React.FC<FormQuestionPageProps> = ({
         }
       },
     }
-
     activeSession.id = userId + ':' + activeSession.formId + ':' + (activeSession.started && activeSession.started.getTime());
     await startFormSession(activeSession)
     setFormSubmitted(true);
@@ -150,7 +173,6 @@ const FormQuestionPage: React.FC<FormQuestionPageProps> = ({
       return;
     }
     getNextQuestion();
-    return;
   }
 
   const removePhoto = (photo: string) => () => {
@@ -188,29 +210,34 @@ const FormQuestionPage: React.FC<FormQuestionPageProps> = ({
               {
                 (question && question.questionType === 'choose-one' && question.choices &&
                   <IonList>
-                    <IonRadioGroup onIonChange={e => handleAnswer(e.detail.value)}>
+                    <IonRadioGroup value={answer[`${currentIdx}`]} onIonChange={e => handleAnswer(e.detail.value)}>
                       {question.choices.map((choice, cidx) =>  {
-                        return <IonItem key={`l-${form.id}-q${idx}-choice-${cidx}`}>
+                        return <IonItem key={`l-${form.id}-q${currentIdx}-choice-${cidx}`}>
                           <IonLabel>{choice.value}</IonLabel>
                           <IonRadio disabled={lockAnswer} slot="start" value={choice.value} />
                         </IonItem>
                       })}
                     </IonRadioGroup>
-                    <IonInput disabled={lockAnswer} type="text" value={answer[`${currentIdx}`]?.toString()} placeholder={t('resources.forms.questions.placeholder.detail')} onIonChange={e => handleAnswer(e.detail.value)}/>
+                    <IonCard></IonCard>
                   </IonList>
                 )
               }
               {
                 (question && question.questionType === 'multi-select' && question.choices &&
                   <IonList>
-                    <IonRadioGroup value={answer[`${currentIdx}`]?.toString()} onIonChange={e => handleAnswer(e.detail.value)}>
                       {question.choices.map((choice, cidx) =>  {
-                        return <IonItem key={`l-${form.id}-q${idx}-choice-${cidx}`}>
-                          <IonLabel>{choice.value}</IonLabel>
-                          <IonCheckbox disabled={lockAnswer} slot="start" value={choice.value} />
-                        </IonItem>
+                        return (
+                          <IonItem key={`l-${form.id}-q${currentIdx}-choice-${cidx}`}>
+                            <IonLabel>{choice.value}</IonLabel>
+                            <IonCheckbox disabled={lockAnswer} slot="start"
+                              value={choice.value}
+                              onIonChange={handleMultiSelect(cidx.toString())}
+                              // @ts-ignore
+                              checked={ !!answer[`${currentIdx}`]?.[cidx.toString()] }
+                            />
+                          </IonItem>
+                        )
                       })}
-                    </IonRadioGroup>
                   </IonList>
                 )
               }
@@ -218,7 +245,13 @@ const FormQuestionPage: React.FC<FormQuestionPageProps> = ({
                 (question && question.questionType === 'number' &&
                   <IonList>
                     <IonItem>
-                      <IonInput required={question.isRequired} disabled={lockAnswer} type="number" value={answer[`${currentIdx}`]?.toString()} placeholder={t('resources.forms.questions.placeholder.enterNumber')} onIonChange={e => handleAnswer(parseInt(e.detail.value!, 10))}/>
+                      <IonInput
+                        required={question.isRequired}
+                        disabled={lockAnswer}
+                        type="number"
+                        value={answer[`${currentIdx}`]?.toString()}
+                        placeholder={t('resources.forms.questions.placeholder.enterNumber')}
+                        onIonChange={e => handleAnswer(parseInt(e.detail.value!, 10))}/>
                     </IonItem>
                   </IonList>
                 )
@@ -266,7 +299,6 @@ const FormQuestionPage: React.FC<FormQuestionPageProps> = ({
               {question.isRequired && showWarning[`${currentIdx}`] && <IonLabel className="warning">This question is required.</IonLabel>}
             </IonCardContent>
           </IonCard>
-          {/* <IonInput type="text" placeholder={t('resources.forms.questions.placeholder.detail')} onIonChange={e => handleAnswer(e.detail.value)}/> */}
         </IonContent>
         }
       <IonFooter>

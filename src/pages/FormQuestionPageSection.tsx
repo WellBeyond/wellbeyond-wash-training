@@ -112,8 +112,18 @@ const FormQuestionPage: React.FC<FormQuestionPageProps> = ({
     setAnswer({...answer, [`${currentIdx}`]: nestedAnswer })
   }
 
+  const handleMultiSelect = (key: string) => (event: any) => {
+    // @ts-ignore
+    let ans = { ...answer[currentIdx] }
+    if (!event.detail.checked) {
+      delete ans[key]
+    } else {
+      ans = {...ans, [key]: event.detail.value }
+    }
+    handleAnswer(ans, idx)
+  }
+
   const setPhoto = (url:string, index: number) => {
-    // let photos: Array<any> = answer[`${currentIdx}`] ? Array(answer[`${currentIdx}`]) : []
     if (photos.find(p => p === url)) return
     if (photos.length === 0 && photoChanged) {
       setPhotoChanged(false);
@@ -216,17 +226,22 @@ const FormQuestionPage: React.FC<FormQuestionPageProps> = ({
                   </IonList>
                 )
               }
-                 {
+               {
                 (question && question.questionType === 'multi-select' && question.choices &&
                   <IonList>
-                    <IonRadioGroup onIonChange={e => handleAnswer(e.detail.value, idx)}>
                       {question.choices.map((choice, cidx) =>  {
-                        return <IonItem key={`l-${form.id}-q${idx}-choice-${cidx}`}>
-                          <IonLabel>{choice.value}</IonLabel>
-                          <IonCheckbox disabled={lockAnswer} slot="start" value={choice.value} />
-                        </IonItem>
+                        return (
+                          <IonItem key={`l-${form.id}-q${currentIdx}-choice-${cidx}`}>
+                            <IonLabel>{choice.value}</IonLabel>
+                            <IonCheckbox disabled={lockAnswer} slot="start"
+                              value={choice.value}
+                              onIonChange={handleMultiSelect(cidx.toString())}
+                              // @ts-ignore
+                              checked={ !!answer[`${currentIdx}`]?.[cidx.toString()] }
+                            />
+                          </IonItem>
+                        )
                       })}
-                    </IonRadioGroup>
                   </IonList>
                 )
               }

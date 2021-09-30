@@ -81,7 +81,7 @@ const FormTypePage: React.FC<SubjectProps> = ({ formType, forms, loadFormsData, 
                   <h2>{form?.name}</h2>
                   <h3><em dangerouslySetInnerHTML={{__html: form?.description}} /></h3>
                 </IonCardTitle>
-                {console.log('in form type page', form)}
+                {/* {console.log('in form type page', form)} */}
               </IonCardHeader>
               <IonCardContent>
                 <IonList>

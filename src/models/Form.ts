@@ -1,5 +1,5 @@
 import { MediaItem } from "./Maintenance";
-import { Answer as FormAnswer } from "../data/form/form.state";
+import { Answer as FormAnswer} from "../data/form/form.state";
 
 export enum FormQuestionType {
   Text = "text",
@@ -26,6 +26,7 @@ export interface FormQuestion {
   helpText?: string;
   photoCaption?: string;
   questionAnswer?: string;
+  answer: FormAnswer;
 }
 
 export interface Form {
@@ -50,7 +51,6 @@ export interface FormType {
   name?: string;
   description?: string;
   photo?: string;
-  // forms: Array<{formId: string}>;
 }
 
 export interface FormProgress {

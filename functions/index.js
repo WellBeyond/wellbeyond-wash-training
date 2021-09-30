@@ -35,6 +35,7 @@ exports.getUserHash = functions.https.onCall((data, context) => {
   return {email: context.auth.token.email, hash: hash};
 });
 exports.getUserIdHash = functions.https.onCall((data, context) => {
+  response.set('Access-Control-Allow-Origin', '*');
   const platform = (data && data.platform) || 'web';
   const identifier = context.auth.token.uid;
   const secret = functions.config().intercom[platform+'_verification_secret'] || INTERCOM_SECRET_KEY;

@@ -41,7 +41,6 @@ interface DispatchProps {
 interface StartTrainingSessionProps extends OwnProps, StateProps, DispatchProps { }
 
 const MultiStepQuestion: React.FC<any> = ({ question, ...props}: { question: { "multi-step-question": Array<typeof FormQuestionPage>}, currentIdx: number }) => {
-  // return <>{question?.["multi-step-question"].map((ques: any, idx: number) => <FormQuestionPage  {...props} question={ques} currentIdx={props.currentIdx + idx} />)}</>
   return <SFormQuestionPage  {...props} questions={question["multi-step-question"]} />
 }
 
