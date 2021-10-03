@@ -210,7 +210,7 @@ const FormQuestionPage: React.FC<FormQuestionPageProps> = ({
               {
                 (question && question.questionType === 'choose-one' && question.choices &&
                   <IonList>
-                    <IonRadioGroup value={answer[`${currentIdx}`]} onIonChange={e => handleAnswer(e.detail.value)}>
+                    <IonRadioGroup key={`l-${form.id}-q${currentIdx}`} value={answer[`${currentIdx}`]} onIonChange={e => handleAnswer(e.detail.value)}>
                       {question.choices.map((choice, cidx) =>  {
                         return <IonItem key={`l-${form.id}-q${currentIdx}-choice-${cidx}`}>
                           <IonLabel>{choice.value}</IonLabel>
@@ -218,7 +218,6 @@ const FormQuestionPage: React.FC<FormQuestionPageProps> = ({
                         </IonItem>
                       })}
                     </IonRadioGroup>
-                    <IonCard></IonCard>
                   </IonList>
                 )
               }
