@@ -213,7 +213,7 @@ const FormQuestionPage: React.FC<FormQuestionPageProps> = ({
                     <IonRadioGroup key={`l-${form.id}-q${currentIdx}`} value={answer[`${currentIdx}`]} onIonChange={e => handleAnswer(e.detail.value)}>
                       {question.choices.map((choice, cidx) =>  {
                         return <IonItem key={`l-${form.id}-q${currentIdx}-choice-${cidx}`}>
-                          <IonLabel>{choice.value}</IonLabel>
+                          <IonLabel className="ion-text-wrap">{choice.value}</IonLabel>
                           <IonRadio disabled={lockAnswer} slot="start" value={choice.value} />
                         </IonItem>
                       })}

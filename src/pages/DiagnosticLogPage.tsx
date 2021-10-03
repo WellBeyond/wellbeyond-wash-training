@@ -30,6 +30,7 @@ import i18n from '../i18n';
 import BackToSystemLink from "../components/BackToSystem";
 import {Diagnostic, DiagnosticEngine, EngineResult, Solution, Symptom} from "wellbeyond-diagnostic-engine";
 import SolutionModal from "../components/SolutionModal";
+import ProblemUnresolvedModal from "../components/ProblemUnresolvedModal";
 import VideoPlayer from "../components/VideoPlayer";
 import {Image} from "cloudinary-react";
 import {cloudinaryConfig} from "../CLOUDINARY_CONFIG";
@@ -75,6 +76,7 @@ const DiagnosticLogPage: React.FC<SystemProps> = ({ system,  log, symptoms, diag
   const [answer, setAnswer] = useState<string>();
   const [showNext, setShowNext] = useState<boolean>(false);
   const [showModal, setShowModal] = useState<boolean>(false);
+  const [showUnresolvedModal, setShowUnresolvedModal] = useState<boolean>(false);
 
   const closeModal = (next?:boolean, information?:string, photo?:string) => {
     setShowModal(false);
@@ -86,6 +88,14 @@ const DiagnosticLogPage: React.FC<SystemProps> = ({ system,  log, symptoms, diag
   const openModal = () => {
     setShowModal(true);
   }
+
+  const closeUnresolvedModal = (information?:string, photo?:string) => {
+    setShowUnresolvedModal(false);
+    log.information = information || '';
+    log.photo = photo || ''
+    updateDiagnosticLog(log);
+  }
+
 
   const handleAnswer = (value:(string)) => {
     if (value) {
@@ -194,6 +204,9 @@ const DiagnosticLogPage: React.FC<SystemProps> = ({ system,  log, symptoms, diag
       log.completed = new Date();
       log.status = log.status === 'open' ? 'unresolved' : log.status;
       updateDiagnosticLog(log);
+      if (log.status === 'unresolved') {
+        setShowUnresolvedModal(true);
+      }
     }
   }, [result, log, updateDiagnosticLog]);
 
@@ -213,14 +226,18 @@ const DiagnosticLogPage: React.FC<SystemProps> = ({ system,  log, symptoms, diag
       { system && log ?
         <IonContent fullscreen={true}>
           {(result && log && system &&
-            <IonCard>
-              <IonCardHeader>
-                <IonCardTitle><h2>{t('diagnostic.headers.complete.' + log.status, {systemName: system.name})}</h2></IonCardTitle>
-              </IonCardHeader>
-              <IonCardContent className='diagnostic-result'>
-                <DiagnosticResult log={log} system={system} />
-              </IonCardContent>
-            </IonCard>
+            <Fragment>
+              <IonCard>
+                <IonCardHeader>
+                  <IonCardTitle><h2>{t('diagnostic.headers.complete.' + log.status, {systemName: system.name})}</h2></IonCardTitle>
+                </IonCardHeader>
+                <IonCardContent className='diagnostic-result'>
+                  <DiagnosticResult log={log} system={system} />
+                </IonCardContent>
+              </IonCard>
+
+              <ProblemUnresolvedModal showModal={showUnresolvedModal} closeModal={closeUnresolvedModal} log={log}  />
+            </Fragment>
           )}
           {(nextQuestion && nextQuestion.symptom &&
               <IonText color={'danger'} className="ion-text-center ion-text-uppercase"><h2>{nextQuestion.symptom.name}</h2></IonText>

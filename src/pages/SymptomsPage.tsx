@@ -137,7 +137,7 @@ const SymptomsPage: React.FC<SymptomsProps> = ({ system,  symptoms,  defaultLang
               </IonListHeader>
               {symptoms.length ? symptoms.map((symptom, index: number) => (
                   <IonItem key={`symptom-${index}`}>
-                    <IonLabel>{symptom.name}</IonLabel>
+                    <IonLabel className="ion-text-wrap">{symptom.name}</IonLabel>
                     <IonCheckbox color="primary" checked={!!currentSymptoms[symptom.id]} slot="start" onIonChange={e => setSymptomChecked(symptom, !!e.detail.checked)} ></IonCheckbox>
                   </IonItem>))
                 :

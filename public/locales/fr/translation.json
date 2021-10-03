@@ -390,7 +390,9 @@
       },
       "problems": "Problèmes identifiés",
       "diagnosticResults": "Questions posées",
-      "solutionResults": "Solutions tentées"
+      "solutionResults": "Solutions tentées",
+      "noQuestionsAsked": "Aucune question posée",
+      "noSolutionsAttempted": "Aucune solution tentée"
     },
     "buttons": {
       "start": "Diagnostiquer le problème",
@@ -401,7 +403,8 @@
       "noSymptoms": "Le moteur de diagnostic n'a pas été configuré pour votre organisation."
     },
     "modals": {
-      "solution": "Documentation supplémentaire"
+      "solution": "Documentation supplémentaire",
+      "unresolved": "Désolé, nous n'avons pas pu diagnostiquer le problème"
     },
     "solution": {
       "infolabel": "Comment as-tu fait la réparation ?",
@@ -413,6 +416,12 @@
       "informationRequired": "Des informations supplémentaires sont requises",
       "photoRequired": "Une photo est requise",
       "photoOrInfoRequired": "Veuillez ajouter une description ou une photo afin que nous puissions nous assurer que la réparation a été effectuée correctement."
+    },
+    "unresolved": {
+      "explanation": "Parfois, nous ne pouvons pas comprendre le problème en utilisant nos règles intégrées. Si vous fournissez des détails supplémentaires, quelqu'un vous contactera pour vous aider à résoudre le problème.",
+      "infolabel": "Décrivez le problème en détail",
+      "infoplaceholder": "Veuillez fournir des informations supplémentaires sur le problème ici",
+      "photolabel": "Merci d'ajouter une photo du problème"
     }
   }
 }

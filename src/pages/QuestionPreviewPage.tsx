@@ -174,7 +174,7 @@ const QuestionPreviewPage: React.FC<QuestionPageProps> = ({ history, subject, le
                   <IonRadioGroup value={answer} onIonChange={e => handleAnswer(e.detail.value)}>
                     {question.choices.map((choice, idx) =>  {
                       return <IonItem key={`choice-${idx}`}>
-                        <IonLabel>{choice.value}</IonLabel>
+                        <IonLabel className="ion-text-wrap">{choice.value}</IonLabel>
                         <IonRadio slot="start" value={choice.value} />
                       </IonItem>
                     })}

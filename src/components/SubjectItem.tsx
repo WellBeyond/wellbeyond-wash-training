@@ -12,7 +12,7 @@ const SubjectItem: React.FC<SubjectItemProps> = ({ subject}) => {
       <IonCard className="subject-card">
         <IonCardHeader>
           <IonItem button detail={false} lines="none" className="subject-item" routerLink={`/tabs/subjects/${subject.id}`}>
-            <IonLabel>
+            <IonLabel className="ion-text-wrap">
               <h2>{subject.name}</h2>
             </IonLabel>
           </IonItem>

@@ -418,6 +418,10 @@ export const getSymptomsForSystem = createSelector(
   (symptoms, system) => {
     if (symptoms && system) {
       return symptoms.filter((s) => {
+        //@ts-ignore
+        if (s.hidden) {
+          return false;
+        }
         if (!s.systemTypeIds  || !s.systemTypeIds.length) {
           return true;
         }

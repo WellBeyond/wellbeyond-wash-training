@@ -24,7 +24,7 @@ const StepItem: React.FC<StepItemProps> = ({ log, step, idx}) => {
       <IonCard button className="step-card" routerLink={`/tabs/maintenance/${log.id}/step/${idx}`}>
         <IonCardHeader>
           <IonItem detail={false} lines="none" className="step-item">
-            <IonLabel>
+            <IonLabel className="ion-text-wrap">
               <h2>{step.name}</h2>
             </IonLabel>
           </IonItem>

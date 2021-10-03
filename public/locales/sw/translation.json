@@ -390,7 +390,9 @@
       },
       "problems": "Matatizo Kutambuliwa",
       "diagnosticResults": "Maswali Yalioulizwa",
-      "solutionResults": "Suluhisho Zimejaribiwa"
+      "solutionResults": "Suluhisho Zimejaribiwa",
+      "noQuestionsAsked": "Hakuna Maswali Yaliyoulizwa",
+      "noSolutionsAttempted": "Hakuna Suluhisho Zilizojaribiwa"
     },
     "buttons": {
       "start": "Tambua Tatizo",
@@ -401,7 +403,8 @@
       "noSymptoms": "Injini ya uchunguzi haijasanidiwa kwa shirika lako."
     },
     "modals": {
-      "solution": "Nyaraka za Ziada"
+      "solution": "Nyaraka za Ziada",
+      "unresolved": "Samahani, Hatukuweza Kugundua Tatizo"
     },
     "solution": {
       "infolabel": "Ulifanyaje ukarabati?",
@@ -413,6 +416,12 @@
       "informationRequired": "Maelezo ya ziada yanahitajika",
       "photoRequired": "Picha inahitajika",
       "photoOrInfoRequired": "Tafadhali ongeza maelezo au picha ili tuweze kuhakikisha kuwa ukarabati ulifanywa vizuri."
+    },
+    "unresolved": {
+      "explanation": "Wakati mwingine hatuwezi kujua shida kwa kutumia sheria zetu zilizojengwa. Ikiwa utatoa maelezo ya ziada, tutakuwa na mtu atakayewasiliana kukusaidia kuirekebisha.",
+      "infolabel": "Eleza shida kwa undani",
+      "infoplaceholder": "Tafadhali toa maelezo yoyote ya ziada juu ya shida hapa",
+      "photolabel": "Tafadhali ongeza picha ya shida"
     }
   }
 }

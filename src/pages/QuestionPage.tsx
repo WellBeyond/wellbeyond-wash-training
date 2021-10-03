@@ -193,7 +193,7 @@ const QuestionPage: React.FC<QuestionPageProps> = ({ history, subject, lesson, q
                     <IonRadioGroup value={answer} onIonChange={e => handleAnswer(e.detail.value)}>
                       {question.choices.map((choice, cidx) =>  {
                         return <IonItem key={`l-${lesson.id}-q${idx}-choice-${cidx}`}>
-                          <IonLabel>{choice.value}</IonLabel>
+                          <IonLabel className="ion-text-wrap">{choice.value}</IonLabel>
                           <IonRadio disabled={lockAnswer} slot="start" value={choice.value} />
                         </IonItem>
                       })}

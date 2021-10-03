@@ -34,6 +34,8 @@ export interface DiagnosticLog {
   started?: Date;
   completed?: Date;
   status: 'open' | 'resolved' | 'partial' | 'unresolved';
+  photo?: string;
+  information?: string;
   symptoms?: SymptomResult[];
   diagnosticResults: DiagnosticResult[];
   solutionResults: SolutionResult[];

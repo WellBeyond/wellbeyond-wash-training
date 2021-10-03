@@ -13,7 +13,7 @@ const SystemItem: React.FC<SystemItemProps> = ({ system, target}) => {
   return (
       <IonCard button className="system-card" routerLink={`/tabs/systems/${system.id}${target}`}>
         <IonCardHeader>
-            <IonLabel>
+            <IonLabel className="ion-text-wrap">
               <h2>{system.name}</h2>
             </IonLabel>
         </IonCardHeader>
