@@ -420,7 +420,7 @@
     "unresolved": {
       "explanation": "Parfois, nous ne pouvons pas comprendre le problème en utilisant nos règles intégrées. Si vous fournissez des détails supplémentaires, quelqu'un vous contactera pour vous aider à résoudre le problème.",
       "infolabel": "Décrivez le problème en détail",
-      "infoplaceholder": "Veuillez fournir des informations supplémentaires sur le problème ici",
+      "infoplaceholder": "S'il vous plaît fournir toute information supplémentaire sur le problème ici",
       "photolabel": "Merci d'ajouter une photo du problème"
     }
   }
