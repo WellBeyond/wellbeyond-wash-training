@@ -140,6 +140,12 @@ const FormQuestionPage: React.FC<FormQuestionPageProps> = ({
   const handleSubmit = async () => {
    if (activeSession) {
    } else {
+    let questionsWithoutAnswers= form.questions
+    let answersToQuestions = answer
+    questionsWithoutAnswers.forEach((question, index) => {
+      // @ts-ignore
+     question.answer = answersToQuestions[index] || ''
+   })
     const activeSession = {
       id: '',
       name: '',
@@ -151,6 +157,7 @@ const FormQuestionPage: React.FC<FormQuestionPageProps> = ({
       community: community || '',
       formTypeId: form.formTypeId,
       started: new Date(),
+      formQuestionsWithAnswers: form.questions,
       forms: {
         [form.id] : {
           formId: form.id,
