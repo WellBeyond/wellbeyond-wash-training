@@ -40,7 +40,6 @@
     "react-intercom": "^1.0.15",
     "react-router": "^5.2.1",
     "react-router-dom": "^5.3.0",
-    "react-scripts": "3.4.1",
     "react-zoom-pan-pinch": "^1.6.1",
     "reselect": "^4.0.0",
     "video-react": "^0.14.1",
@@ -77,6 +76,7 @@
     "@types/googlemaps": "^3.43.3",
     "firebase-admin": "^9.11.1",
     "intercom-client": "^2.11.2",
+    "react-scripts": "3.4.1",
     "typescript": "^3.9.10"
   }
 }
