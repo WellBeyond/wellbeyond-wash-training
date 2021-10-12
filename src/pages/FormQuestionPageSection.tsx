@@ -144,7 +144,10 @@ const FormQuestionPage: React.FC<FormQuestionPageProps> = ({
     let answersToQuestions = answer
     questionsWithoutAnswers.forEach((question, index) => {
       // @ts-ignore
-     question.answer = answersToQuestions[index] || ''
+      question["multi-step-question"].forEach((step, stepindex) => {
+        // @ts-ignore
+        step.answer = answersToQuestions[index][stepindex] || ''
+      })
    })
     const activeSession = {
       id: '',
