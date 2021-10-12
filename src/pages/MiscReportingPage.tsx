@@ -45,7 +45,7 @@ const MiscReportingPage: React.FC<MiscReportingPageProps> = ({defaultLanguage, f
   }, [defaultLanguage]);
 
   const getSpecificForm = (formTypes: any[], formTypeName: any) => {
-    const element = formTypes.find(item => item.name === formTypeName);
+    const element = formTypes.find(item => item.name.includes(formTypeName));
     if (element)
       return element.id
     return '#'

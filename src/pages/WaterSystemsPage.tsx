@@ -45,7 +45,7 @@ const WaterSystemsPage: React.FC<WaterSystemsPageProps> = ({defaultLanguage, for
   }, [defaultLanguage]);
 
   const getSpecificForm = (formTypes: any[], formTypeName: any) => {
-    const element = formTypes.find(item => item.name === formTypeName);
+    const element = formTypes.find(item => item.name.includes(formTypeName));
     if (element)
       return element.id
     return '#'
