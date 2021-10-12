@@ -400,7 +400,7 @@
     },
     "messages": {
       "noSystems": "Aucun système d&#39;approvisionnement en eau n&#39;a été identifié pour votre organisation. Veuillez contacter {{contactName}} à {{contactEmail}} si vous avez des questions.",
-      "noSymptoms": "Le moteur de diagnostic n'a pas été configuré pour votre organisation."
+      "noSymptoms": "Le moteur de diagnostic n'a pas été configuré pour votre organisation ou pour ce type de système."
     },
     "modals": {
       "solution": "Documentation supplémentaire",

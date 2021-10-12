@@ -400,7 +400,7 @@
     },
     "messages": {
       "noSystems": "ለድርጅትዎ ምንም የውሃ ስርዓቶች ተለይተዋል። ጥያቄዎች ካሉዎት እባክዎን {{contactName}} በ {{contactEmail}}",
-      "noSymptoms": "የምርመራ ሞተር ለድርጅትዎ አልተዋቀረም።"
+      "noSymptoms": "የምርመራ ሞተሩ ለድርጅትዎ ወይም ለዚህ ዓይነት ስርዓት አልተዋቀረም።"
     },
     "modals": {
       "solution": "ተጨማሪ ሰነድ",

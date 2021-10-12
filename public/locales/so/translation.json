@@ -400,7 +400,7 @@
     },
     "messages": {
       "noSystems": "Wax nidaam biyo ah looma aqoonsan ururkaaga. Fadlan la xiriir {{contactName}} at {{contactEmail}} haddii aad su&#39;aalo qabtid.",
-      "noSymptoms": "Mashiinka ogaanshaha looma habayn ururkaaga."
+      "noSymptoms": "Mashiinka baadhitaanka looma habayn ururkaaga ama nidaamka noocan ah."
     },
     "modals": {
       "solution": "Diiwaangelin Dheeraad ah",

@@ -400,7 +400,7 @@
     },
     "messages": {
       "noSystems": "Hakuna mifumo ya maji iliyotambuliwa kwa shirika lako. Tafadhali wasiliana na {{contactName}} kwa {{contactEmail}} ikiwa una maswali.",
-      "noSymptoms": "Injini ya uchunguzi haijasanidiwa kwa shirika lako."
+      "noSymptoms": "Injini ya uchunguzi haijasanidiwa kwa shirika lako au kwa aina hii ya mfumo."
     },
     "modals": {
       "solution": "Nyaraka za Ziada",
