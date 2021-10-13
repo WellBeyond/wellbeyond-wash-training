@@ -400,7 +400,7 @@
     },
     "messages": {
       "noSystems": "No water systems have been identified for your organization.  Please contact {{contactName}} at {{contactEmail}} if you have questions.",
-      "noSymptoms": "The diagnostic engine has not been configured for your organization."
+      "noSymptoms": "The diagnostic engine has not been configured for your organization or for this type of system."
     },
     "modals": {
       "solution": "Additional Documentation",

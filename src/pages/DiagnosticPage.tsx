@@ -63,7 +63,7 @@ const DiagnosticPage: React.FC<DiagnosticPageProps> = ({ systems, organization, 
   }, [systems]);
 
   if (systems && systems.length === 1) {
-    return <Redirect to={`/tabs/diagnose/${systems[0].id}`} />
+    return <Redirect to={`/tabs/systems/${systems[0].id}/symptoms`} />
   }
 
   return (
