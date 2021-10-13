@@ -194,7 +194,7 @@ const FormQuestionPage: React.FC<FormQuestionPageProps> = ({
               {
                 (question && (question.questionType === 'yes-no') &&
                   <IonList>
-                    <IonRadioGroup value={answer[`${currentIdx}`]} onIonChange={e => { handleAnswer(e.detail.value)}}>
+                    <IonRadioGroup value={answer[`${currentIdx}`]} key={`l-${form.id}-q${currentIdx}`} onIonChange={e => { handleAnswer(e.detail.value)}}>
                       <IonItem>
                         <IonLabel>{t('resources.forms.labels.yes')}</IonLabel>
                         <IonRadio disabled={lockAnswer} slot="start" value="yes" />
