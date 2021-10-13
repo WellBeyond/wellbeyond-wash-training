@@ -1,6 +1,6 @@
 import React, {useEffect, useRef} from 'react';
 
-import {IonContent, IonItem, IonItemGroup, IonPage, IonText,} from '@ionic/react';
+import {IonContent, IonItem, IonItemGroup, IonPage, IonText, IonLoading,} from '@ionic/react';
 
 import * as selectors from '../data/selectors';
 import {Image} from 'cloudinary-react';
@@ -57,30 +57,33 @@ const ImpactReportingPage: React.FC<ImpactReportingPageProps> = ({defaultLanguag
       <HeaderLogo pageTitle={t('pages.impactReportingPage.pageTitle')} />
       <IonContent fullscreen={true}>
           <IonItemGroup className="page-items" >
-            <IonItem routerLink={`/tabs/impactReports/forms/form-types/${getSpecificForm(formTypes, 'Instructions')}`} className="page-item" detail={false}>
-              <div className="photo">
-                <Image
-                  cloudName={cloudinaryConfig.cloudName}
-                  publicId="images/home-page/icon-comm-impact"
-                  alt="Instructions logo"
-                  quality="auto"
-                  width="auto"
-                  crop="scale" />
-                <IonText className="subsection ion-text-uppercase">{t('pages.impactReportingPage.instructions')}</IonText>
-              </div>
-            </IonItem>
-            <IonItem routerLink={`/tabs/impactReports/forms/form-types/${getSpecificForm(formTypes, 'Survey Input')}`} className="page-item" detail={false}>
-              <div className="photo">
-                <Image
-                  cloudName={cloudinaryConfig.cloudName}
-                  publicId="images/home-page/icon-maint-checklist"
-                  alt="Surveys logo"
-                  quality="auto"
-                  width="auto"
-                  crop="scale" />
-                <IonText className="subsection ion-text-uppercase">{t('pages.impactReportingPage.surveyInput')}</IonText>
-              </div>
-            </IonItem>
+          {
+            formTypes ?
+              formTypes && formTypes.map((formType) => {
+                if (formType.formCategory === 'impact-reporting'){
+                  return (
+                    <IonItem routerLink={`/tabs/waterSystems/forms/form-types/${getSpecificForm(formTypes, formType.name)}`} className="page-item" detail={false}>
+                      <div className="photo">
+                        <Image
+                          cloudName={cloudinaryConfig.cloudName}
+                          publicId={formType.photo}
+                          alt="Water System Form Type"
+                          quality="auto"
+                          width="auto"
+                          crop="scale" />
+                        <IonText className="subsection ion-text-uppercase">{formType.name}</IonText>
+                      </div>
+                    </IonItem>
+                    )
+                }
+                return ''
+              }) :
+              <IonLoading
+            isOpen={!formTypes}
+            message={'Please wait...'}
+            duration={5000}
+          />
+            }
           </IonItemGroup>
       </IonContent>
     </IonPage>

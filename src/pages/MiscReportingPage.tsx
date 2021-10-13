@@ -1,6 +1,6 @@
 import React, {useEffect, useRef} from 'react';
 
-import {IonContent, IonItem, IonItemGroup, IonPage, IonText,} from '@ionic/react';
+import {IonContent, IonItem, IonItemGroup, IonPage, IonText, IonLoading,} from '@ionic/react';
 
 import {Image} from 'cloudinary-react';
 import {cloudinaryConfig} from "../CLOUDINARY_CONFIG";
@@ -56,30 +56,32 @@ const MiscReportingPage: React.FC<MiscReportingPageProps> = ({defaultLanguage, f
       <HeaderLogo pageTitle={t('pages.miscReportingPage.pageTitle')} />
       <IonContent fullscreen={true}>
           <IonItemGroup className="page-items" >
-            <IonItem routerLink={`/tabs/miscReporting/forms/form-types/${getSpecificForm(formTypes, 'School Attendance')}`} className="page-item" detail={false}>
-              <div className="photo">
-                <Image
-                  cloudName={cloudinaryConfig.cloudName}
-                  publicId="images/home-page/icon-comm-impact"
-                  alt="School Attendance logo"
-                  quality="auto"
-                  width="auto"
-                  crop="scale" />
-                <IonText className="subsection ion-text-uppercase">{t('pages.miscReportingPage.schoolAttendance')}</IonText>
-              </div>
-            </IonItem>
-            <IonItem routerLink={`/tabs/miscReporting/forms/form-types/${getSpecificForm(formTypes, 'Crop Yield')}`} className="page-item" detail={false}>
-              <div className="photo">
-                <Image
-                  cloudName={cloudinaryConfig.cloudName}
-                  publicId="images/home-page/icon-crop-tracking"
-                  alt="Crop Yield logo"
-                  quality="auto"
-                  width="auto"
-                  crop="scale" />
-                <IonText className="subsection ion-text-uppercase">{t('pages.miscReportingPage.cropYield')}</IonText>
-              </div>
-            </IonItem>
+          {
+            formTypes ?
+              formTypes && formTypes.map((formType) => {
+                if (formType.formCategory === 'misc-reporting'){
+                  return (
+                    <IonItem routerLink={`/tabs/waterSystems/forms/form-types/${getSpecificForm(formTypes, formType.name)}`} className="page-item" detail={false}>
+                      <div className="photo">
+                        <Image
+                          cloudName={cloudinaryConfig.cloudName}
+                          publicId={formType.photo}
+                          alt="Water System Form Type"
+                          quality="auto"
+                          width="auto"
+                          crop="scale" />
+                        <IonText className="subsection ion-text-uppercase">{formType.name}</IonText>
+                      </div>
+                    </IonItem>
+                    )
+                }
+                return ''
+              }) : <IonLoading
+              isOpen={!formTypes}
+              message={'Please wait...'}
+              duration={5000}
+            />
+            }
           </IonItemGroup>
       </IonContent>
     </IonPage>

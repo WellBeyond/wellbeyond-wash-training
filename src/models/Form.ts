@@ -51,6 +51,7 @@ export interface FormType {
   name?: string;
   description?: string;
   photo?: string;
+  formCategory?: string
 }
 
 export interface FormProgress {
