@@ -137,9 +137,9 @@ const FormQuestionPage: React.FC<FormQuestionPageProps> = ({
    } else {
      let questionsWithoutAnswers= form.questions
      let answersToQuestions = answer
-     questionsWithoutAnswers.forEach((question, index) => {
+     questionsWithoutAnswers && questionsWithoutAnswers.map((question, index) => {
        // @ts-ignore
-      question.answer = answersToQuestions[index] || ''
+      return question.answer = answersToQuestions[index] || ''
     })
     const activeSession = {
       id: '',

@@ -75,7 +75,7 @@ const FormTypePage: React.FC<SubjectProps> = ({ formType, forms, loadFormsData, 
         <IonContent fullscreen={true}>
           {
             forms && forms.map((form: Form) => (
-            <IonCard>
+            <IonCard key={form.id}>
               <IonCardHeader>
                 <IonCardTitle>
                   <h2>{form?.name}</h2>

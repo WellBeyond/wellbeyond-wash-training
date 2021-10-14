@@ -61,7 +61,7 @@ const MiscReportingPage: React.FC<MiscReportingPageProps> = ({defaultLanguage, f
               formTypes && formTypes.map((formType) => {
                 if (formType.formCategory === 'misc-reporting'){
                   return (
-                    <IonItem routerLink={`/tabs/waterSystems/forms/form-types/${getSpecificForm(formTypes, formType.name)}`} className="page-item" detail={false}>
+                    <IonItem key={formType.id} routerLink={`/tabs/waterSystems/forms/form-types/${getSpecificForm(formTypes, formType.name)}`} className="page-item" detail={false}>
                       <div className="photo">
                         <Image
                           cloudName={cloudinaryConfig.cloudName}

@@ -142,12 +142,9 @@ const FormQuestionPage: React.FC<FormQuestionPageProps> = ({
    } else {
     let questionsWithoutAnswers= form.questions
     let answersToQuestions = answer
-    questionsWithoutAnswers.forEach((question, index) => {
+    questionsWithoutAnswers && questionsWithoutAnswers.forEach((question, index) => {
       // @ts-ignore
-      question["multi-step-question"].forEach((step, stepindex) => {
-        // @ts-ignore
-        step.answer = answersToQuestions[index][stepindex] || ''
-      })
+      question.answer = answersToQuestions[index] || ''
    })
     const activeSession = {
       id: '',
@@ -168,6 +165,7 @@ const FormQuestionPage: React.FC<FormQuestionPageProps> = ({
         }
       },
     }
+    console.log({activeSession})
     activeSession.id = userId + ':' + activeSession.formId + ':' + (activeSession.started && activeSession.started.getTime());
     await startFormSession(activeSession)
     setFormSubmitted(true);

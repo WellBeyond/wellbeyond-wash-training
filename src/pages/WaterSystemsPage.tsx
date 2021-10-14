@@ -78,7 +78,7 @@ const WaterSystemsPage: React.FC<WaterSystemsPageProps> = ({defaultLanguage, for
               formTypes && formTypes.map((formType) => {
                 if (formType.formCategory === 'water-systems'){
                   return (
-                    <IonItem routerLink={`/tabs/waterSystems/forms/form-types/${getSpecificForm(formTypes, formType.name)}`} className="page-item" detail={false}>
+                    <IonItem key={formType.id} routerLink={`/tabs/waterSystems/forms/form-types/${getSpecificForm(formTypes, formType.name)}`} className="page-item" detail={false}>
                       <div className="photo">
                         <Image
                           cloudName={cloudinaryConfig.cloudName}
