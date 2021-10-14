@@ -73,6 +73,18 @@ const WaterSystemsPage: React.FC<WaterSystemsPageProps> = ({defaultLanguage, for
                 <IonText className="subsection ion-text-uppercase">{t('pages.waterSystemsPage.diagnostics')}</IonText>
               </div>
             </IonItem>
+            <IonItem routerLink="/tabs/maintenance" className="page-item" detail={false}>
+              <div className="photo">
+                <Image
+                  cloudName={cloudinaryConfig.cloudName}
+                  publicId="images/home-page/icon-maint-checklist"
+                  alt="Maintenance checklist logo"
+                  quality="auto"
+                  width="auto"
+                  crop="scale" />
+                <IonText className="subsection ion-text-uppercase">{t('pages.waterSystemsPage.maintenanceChecklists')}</IonText>
+              </div>
+            </IonItem>
             {
               formTypes ?
               formTypes && formTypes.map((formType) => {
