@@ -2,7 +2,6 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
 import {DiagnosticLog} from '../../models/Diagnostic';
-import {checkIsAdmin} from "../user/userApi";
 import {DiagnosticLogs} from "./diagnostic.state";
 import {System} from '../../models/Maintenance';
 
