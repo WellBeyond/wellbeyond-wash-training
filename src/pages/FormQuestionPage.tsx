@@ -79,6 +79,7 @@ const FormQuestionPage: React.FC<FormQuestionPageProps> = ({
   answer,
   setAnswer,
   organizations,
+  organization,
   community,
   userId,
   hasNext,
@@ -145,8 +146,8 @@ const FormQuestionPage: React.FC<FormQuestionPageProps> = ({
       archived: false,
       userId: userId || '',
       formId: form.id,
-      organizationId: organizations?.[0]?.id,
-      organization: organizations?.[0]?.name,
+      organizationId: organization && organization.id,
+      organization: organization && organization.name,
       community: community || '',
       formTypeId: form.formTypeId,
       started: new Date(),
@@ -159,6 +160,8 @@ const FormQuestionPage: React.FC<FormQuestionPageProps> = ({
         }
       },
     }
+    console.log('Aaaaaaaaaaaaactive session',{activeSession})
+
     activeSession.id = userId + ':' + activeSession.formId + ':' + (activeSession.started && activeSession.started.getTime());
     await startFormSession(activeSession)
     setFormSubmitted(true);
