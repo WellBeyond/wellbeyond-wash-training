@@ -2,16 +2,11 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
 import {DiagnosticLog} from '../../models/Diagnostic';
-import {checkIsAdmin} from "../user/userApi";
 import {DiagnosticLogs} from "./diagnostic.state";
 import {System} from '../../models/Maintenance';
 
 export const listenForDiagnosticData = async (collectionPath:string, organizationId:string, callback:any) : Promise<any> => {
-  const isAdmin:boolean = await checkIsAdmin();
   let query:firebase.firestore.Query<firebase.firestore.DocumentData> = firebase.firestore().collection(collectionPath);
-  if (!isAdmin) {
-    query = query.where('organizationId', '==', organizationId);
-  }
   return query
     .onSnapshot(querySnapshot => {
       let results:any[] = [];
