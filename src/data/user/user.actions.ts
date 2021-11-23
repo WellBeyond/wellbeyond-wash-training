@@ -10,7 +10,8 @@ import {
   listenForFormSessions,
   listenForUserProfile,
   logout,
-  updateProfile
+  updateProfile,
+  listenForForms
 } from './userApi';
 import {ActionType} from '../../util/types'
 import {UserState} from './user.state';
@@ -22,8 +23,7 @@ import 'firebase/functions';
 import 'firebase/messaging';
 import {TrainingSessions} from "../training/training.state";
 import {FormSessions} from "../form/form.state";
-import { FormRecord, FormProgress, FormSession } from '../../models/Form';
-// import { FormSession } from '../form/form.state';
+import { FormRecord, FormProgress, FormSession, Form } from '../../models/Form';
 
 declare var intercom: any;
 
@@ -41,8 +41,14 @@ export const loadTrainingSessions = () => async (dispatch: React.Dispatch<any>) 
 }
 
 export const loadFormSessions = () => async (dispatch: React.Dispatch<any>) => {
-  await listenForFormSessions((sessions:FormSessions) => {
-    dispatch(setForm2Sessions(sessions));
+  await listenForFormSessions((formSessions:FormSessions) => {
+    dispatch(setFormSessions(formSessions));
+  });
+}
+
+export const loadForms = () => async (dispatch: React.Dispatch<any>) => {
+  await listenForForms((forms:Form) => {
+    dispatch(setForms(forms));
   });
 }
 
@@ -273,8 +279,8 @@ export const startTrainingSession = (session: TrainingSession) => async (dispatc
 };
 
 export const startFormSession = (formSession: FormSession) => async (dispatch: React.Dispatch<any>): Promise<any> => {
-  dispatch(setFormSession(formSession));
-  return createOrUpdateFormSession(formSession);
+  createOrUpdateFormSession(formSession);
+  return dispatch(setFormSession(formSession));
 };
 
 export const updateTrainingSession = (session: TrainingSession) => async (dispatch: React.Dispatch<any>) => {
@@ -293,6 +299,7 @@ export const updateTrainingLesson = (session: TrainingSession|undefined, lesson:
 
 export const updateForm = (formSession: FormSession|undefined, form: FormProgress) => async (dispatch: React.Dispatch<any>) => {
   if (formSession) {
+    console.log("form session exists", formSession, form)
     formSession.forms = formSession.forms || {};
     formSession.forms[form.formId] = form;
     createOrUpdateFormSession(formSession);
@@ -395,9 +402,9 @@ export const setFormSessions = (formSessions: FormSessions) => ({
   formSessions
 } as const);
 
-export const setForm2Sessions = (formSessions: FormSessions) => ({
+export const setForms = (forms: Form) => ({
   type: 'set-form-sessions',
-  formSessions
+  forms
 } as const);
 
 export const setTrainingSession = (session: TrainingSession) => ({

@@ -1,28 +1,27 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {IonButton, IonIcon, NavContext} from '@ionic/react';
 import {arrowBack} from 'ionicons/icons';
-import { Form, FormType } from '../models/Form';
+import { FormType } from '../models/Form';
 
 
 interface BackToFormProps {
-  form?: Form;
   formType?: FormType;
 }
 
-const BackToFormLink: React.FC<BackToFormProps> = ({ form, formType }) => {
+const BackToFormLink: React.FC<BackToFormProps> = ({ formType }) => {
 
   const {navigate} = useContext(NavContext);
-  const [backLink, setBackLink] = useState<string>('/tabs/impact-reports');
+  const [backLink, setBackLink] = useState<string>('');
 
   useEffect(() => {
-    if (form) {
-      setBackLink(`/tabs/formTypes/${formType?.id}/forms/${form?.id}`);
+    if (formType) {
+      setBackLink(`/tabs/${formType?.formCategory}`);
     }
-  }, [form, formType]);
+  }, [formType]);
 
   return (
-    <IonButton onClick={()=>{navigate(backLink, 'back')}}>
-      <IonIcon icon={arrowBack} />
+    <IonButton onClick={()=>{navigate(backLink, 'back')}} size="small">
+      <IonIcon icon={arrowBack}/>
     </IonButton>
   );
 };

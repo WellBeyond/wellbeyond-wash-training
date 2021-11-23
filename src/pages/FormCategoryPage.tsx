@@ -32,9 +32,9 @@ interface StateProps {
 interface DispatchProps {
 }
 
-type MiscReportingPageProps = OwnProps & StateProps & DispatchProps;
+type FormCategoryPageProps = OwnProps & StateProps & DispatchProps;
 
-const MiscReportingPage: React.FC<MiscReportingPageProps> = ({defaultLanguage, formTypes}) => {
+const FormCategoryPage: React.FC<FormCategoryPageProps> = ({defaultLanguage, forms, formTypes}) => {
 
   const pageRef = useRef<HTMLElement>(null);
 
@@ -53,7 +53,7 @@ const MiscReportingPage: React.FC<MiscReportingPageProps> = ({defaultLanguage, f
 
   return(
     <IonPage ref={pageRef} id="water-systems-page" >
-      <HeaderLogo pageTitle={t('pages.miscReportingPage.pageTitle')} />
+      <HeaderLogo pageTitle={t('pages.FormCategoryPage.pageTitle')} />
       <IonContent fullscreen={true}>
           <IonItemGroup className="page-items" >
           {
@@ -96,5 +96,5 @@ export default connect<OwnProps, StateProps, DispatchProps>({
     organization: selectors.getUserOrganization(state),
     form: selectors.getFormsForOrganization(state),
   }),
-  component: React.memo(MiscReportingPage)
+  component: React.memo(FormCategoryPage)
 });

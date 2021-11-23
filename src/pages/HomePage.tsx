@@ -65,7 +65,7 @@ const HomePage: React.FC<HomePageProps> = ({defaultLanguage}) => {
                 <IonText className="subsection ion-text-uppercase">{t('pages.homePage.waterSystems')}</IonText>
               </div>
             </IonItem>
-            <IonItem routerLink="/tabs/impact-reports" className="page-item" detail={false}>
+            <IonItem routerLink="/tabs/impact-reporting" className="page-item" detail={false}>
               <div className="photo">
                 <Image
                   cloudName={cloudinaryConfig.cloudName}
@@ -77,7 +77,7 @@ const HomePage: React.FC<HomePageProps> = ({defaultLanguage}) => {
                 <IonText className="subsection ion-text-uppercase">{t('pages.homePage.impactReporting')}</IonText>
               </div>
             </IonItem>
-            <IonItem routerLink="/tabs/reports" className="page-item" detail={false}>
+            <IonItem routerLink="/tabs/misc-reporting" className="page-item" detail={false}>
               <div className="photo">
                 <Image
                   cloudName={cloudinaryConfig.cloudName}

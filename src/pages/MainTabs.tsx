@@ -22,7 +22,6 @@ import MaintenanceLogPage from "./MaintenanceLogPage";
 import MaintenanceStepPage from "./MaintenanceStepPage";
 import WaterSystemsPage from './WaterSystemsPage';
 import ImpactReportingPage from './ImpactReportingPage';
-import FormsHomePage from './FormHome';
 import MiscReportingPage from './MiscReportingPage';
 import DiagnosticPage from "./DiagnosticPage";
 import SymptomsPage from "./SymptomsPage";
@@ -88,15 +87,14 @@ const MainTabs: React.FC<MainTabsProps> = ({isLoggedIn, isRegistered, acceptedTe
           <Route path="/tabs/form/:formId/question/:questionId" component={FormQuestionPage} exact={true} />
           <Route path="/tabs/subjects/:subjectId/lessons/:lessonId/preview/:questionId" component={QuestionPreviewPage} exact={true} />
           <Route path="/tabs/water-systems" component={WaterSystemsPage} exact={true} />
-          <Route path="/tabs/forms" component={FormsHomePage} exact={true} />
-          <Route path="/tabs/impact-reports" component={ImpactReportingPage} exact={true} />
+          <Route path="/tabs/impact-reporting" component={ImpactReportingPage} exact={true} />
           <Route path="/tabs/forms/form-types/:formTypeId" component={FormTypePage} exact={true} />
-          <Route path="/tabs/waterSystems/forms/form-types/:formTypeId" component={FormTypePage} exact={true} />
-          <Route path="/tabs/impactReports/forms/form-types/:formTypeId" component={FormTypePage} exact={true} />
-          <Route path="/tabs/miscReporting/forms/form-types/:formTypeId" component={FormTypePage} exact={true} />
+          <Route path="/tabs/water-systems/forms/form-types/:formTypeId" component={FormTypePage} exact={true} />
+          <Route path="/tabs/impact-reporting/forms/form-types/:formTypeId" component={FormTypePage} exact={true} />
+          <Route path="/tabs/misc-reporting/forms/form-types/:formTypeId" component={FormTypePage} exact={true} />
           <Route path="/tabs/formTypes/:formTypeId/forms/:formId/questions/:questionId" component={FormQuestionPage} exact={true} />
-          <Route path="/tabs/impact-reports" component={FormQuestionPage} exact={true} />
-          <Route path="/tabs/reports" component={MiscReportingPage} exact={true} />
+          {/* <Route path="/tabs/impact-reporting" component={FormQuestionPage} exact={true} /> */}
+          <Route path="/tabs/misc-reporting" component={MiscReportingPage} exact={true} />
           <Route path="/tabs/maintenance" component={MaintenancePage} exact={true} />
           <Route path="/tabs/systems/:systemId" component={SystemPage} exact={true} />
           <Route path="/tabs/maintenance/:mlId" component={MaintenanceLogPage} exact={true} />

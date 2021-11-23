@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   IonButton,
   IonButtons,
@@ -15,10 +15,10 @@ import {
   IonRow,
   IonTitle,
   IonToolbar,
+  IonText,
   IonIcon,
-  IonText
+  IonLoading
 } from '@ionic/react';
-import {Lesson, Subject} from '../models/Training';
 import {connect} from '../data/connect';
 import * as selectors from '../data/selectors';
 import './Forms.scss';
@@ -26,21 +26,18 @@ import {RouteComponentProps} from "react-router";
 import {useTranslation} from "react-i18next";
 import i18n from '../i18n';
 import {Organization} from "../models/User";
-import {TrainingSessions} from "../data/training/training.state";
 import { FormType, Form } from '../models/Form';
 import {loadFormsData} from "../data/form/form.actions";
-import  {warning} from 'ionicons/icons';
+import BackToFormLink from '../components/BackToForm';
+import { warning } from 'ionicons/icons';
 
 interface OwnProps extends RouteComponentProps {
-  subject: Subject;
-  lessons: Lesson[];
 }
 
 interface StateProps {
-  trainingSessions?: TrainingSessions;
   formType?: FormType,
   userId?: string;
-  forms: Form[];
+  forms: any;
   organization?: Organization;
   community?: string;
   loadFormsData?: typeof loadFormsData;
@@ -48,54 +45,71 @@ interface StateProps {
 
 interface DispatchProps { }
 
-interface SubjectProps extends OwnProps, StateProps, DispatchProps { }
+interface FormTypePageProps extends OwnProps, StateProps, DispatchProps { }
 
-const FormTypePage: React.FC<SubjectProps> = ({ formType, forms, loadFormsData, userId, organization, community}) => {
+const FormTypePage: React.FC<FormTypePageProps> = ({ formType, forms, loadFormsData}) => {
 
   const { t } = useTranslation(['translation'], {i18n} );
+  const [showLoading, setShowLoading] = useState(true);
+
+  setTimeout(() => {
+    setShowLoading(false);
+  }, 2000);
 
   useEffect(() => {
     if (formType?.id) {
-      loadFormsData && loadFormsData(formType.id)
+      loadFormsData && loadFormsData(formType?.id)
     }
   }, [formType, loadFormsData])
 
+
   return (
-    <IonPage id="form-page">
+    <IonPage id="form-type-page">
       <IonHeader translucent={true}>
         <IonToolbar>
           <IonButtons slot="start">
             <IonMenuButton />
           </IonButtons>
-          <IonTitle>{formType?.name}</IonTitle>
+          <IonTitle>
+            <BackToFormLink formType={formType} />
+            {formType?.name}
+            </IonTitle>
         </IonToolbar>
       </IonHeader>
-
-      { forms && forms.length > 0 ?
-        <IonContent fullscreen={true}>
-          {
-            forms && forms.map((form: Form) => (
-            <IonCard key={form.id}>
-              <IonCardHeader>
-                <IonCardTitle>
-                  <h2>{form?.name}</h2>
-                  <h3><em dangerouslySetInnerHTML={{__html: form?.description}} /></h3>
-                </IonCardTitle>
-              </IonCardHeader>
-              <IonCardContent>
-                <IonList>
-
-                </IonList>
-                <IonRow>
-                  <IonCol>
-                    <IonButton expand="block" fill="solid" color="primary" routerLink={`/tabs/formTypes/${formType?.id}/forms/${form.id}/start`}>{t('resources.forms.startSessionCTA')}</IonButton>
-                  </IonCol>
-                </IonRow>
-              </IonCardContent>
-            </IonCard>
-          ))}
-        </IonContent>
-        : <IonContent id='no-content'>
+      {
+        <IonLoading
+          isOpen={showLoading}
+          onDidDismiss={() => setShowLoading(false)}
+          message={'Please wait...'}
+          duration={5000}
+        />
+      }
+      {
+        forms && forms.length > 0 ?
+          <IonContent fullscreen={true}>
+            {
+              forms && forms.map((form: Form) => (
+              <IonCard key={form.id}>
+                <IonCardHeader>
+                  <IonCardTitle>
+                    <h2>{form?.name}</h2>
+                    <h3><em dangerouslySetInnerHTML={{__html: form?.description}} /></h3>
+                  </IonCardTitle>
+                </IonCardHeader>
+                <IonCardContent>
+                  <IonList>
+                  </IonList>
+                  <IonRow>
+                    <IonCol>
+                      <IonButton expand="block" fill="solid" color="primary" routerLink={`/tabs/formTypes/${formType?.id}/forms/${form.id}/start`}>{t('resources.forms.startSessionCTA')}</IonButton>
+                    </IonCol>
+                  </IonRow>
+                </IonCardContent>
+              </IonCard>
+            ))}
+          </IonContent>
+        :
+        <IonContent id='no-content'>
             <IonIcon className="no-content-text" icon={warning} color="danger"/>
             <IonText className="no-content-text">{t('resources.forms.nonefound')}</IonText>
         </IonContent>
@@ -115,4 +129,3 @@ export default connect<OwnProps, StateProps, DispatchProps>({
   mapDispatchToProps: { loadFormsData },
   component: FormTypePage
 });
-

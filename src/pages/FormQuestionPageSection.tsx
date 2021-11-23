@@ -29,9 +29,9 @@ import i18n from '../i18n';
 
 import {connect} from '../data/connect';
 import * as selectors from '../data/selectors';
-import {Form, FormType, FormQuestion, FormProgress, FormSession} from '../models/Form'
+import {Form, FormType, FormQuestion, FormSession} from '../models/Form'
 
-import {updateForm, startFormSession} from "../data/user/user.actions";
+import {startFormSession} from "../data/user/user.actions";
 import PhotoUpload from '../components/PhotoUpload';
 import { Answer } from '../data/form/form.state';
 import {Organization} from "../models/User";
@@ -47,7 +47,6 @@ interface OwnProps extends RouteComponentProps {
   questions: FormQuestion[];
   forms: Form[]
   currentIdx: number;
-  formProgress: FormProgress;
   hasNext: boolean;
   hasPrevious: boolean;
   answer: Answer;
@@ -63,7 +62,6 @@ interface StateProps {
 }
 
 interface DispatchProps {
-  updateForm: typeof updateForm;
   setAnswer: (ans: Answer) => void;
   getPreviousQuestion: () => void;
   getNextQuestion: () => void;
@@ -324,14 +322,12 @@ const FormQuestionPage: React.FC<FormQuestionPageProps> = ({
 
 export default connect({
   mapDispatchToProps: {
-    updateForm: updateForm,
     startFormSession: startFormSession,
   },
   mapStateToProps: (state, ownProps) => ({
     formType: selectors.getFormType(state, ownProps),
     idx: selectors.getFormQuestionIdx(state, ownProps),
     userId: selectors.getUserId(state),
-    formProgress: selectors.getFormProgress(state, ownProps),
     activeSession: selectors.getFormSession(state, ownProps),
     organizations: selectors.getOrganizations(state),
     organization: selectors.getUserOrganization(state),

@@ -6,6 +6,8 @@ import {
   IonPage,
   IonTitle,
   IonToolbar,
+  IonButton,
+  IonIcon,
 } from '@ionic/react';
 import './Login.scss';
 import {useTranslation} from "react-i18next";
@@ -15,13 +17,14 @@ import {RouteComponentProps} from 'react-router';
 import {Form, FormType} from "../models/Form";
 
 import * as selectors from "../data/selectors";
-import {startTrainingSession} from "../data/user/user.actions";
+import {startFormSession} from "../data/user/user.actions";
 import {Organization} from "../models/User";
 import FormQuestionPage from './FormQuestionPage';
 import SFormQuestionPage from './FormQuestionPageSection';
 import { Answer, AnswerExt } from '../data/form/form.state';
-import BackToFormLink from '../components/BackToForm';
 import FormSubmitSuccessPage from './FormSubmitSuccessPage';
+import { arrowBack } from 'ionicons/icons';
+import BackToFormLink from '../components/BackToForm';
 
 interface OwnProps extends RouteComponentProps {
   formType: FormType;
@@ -35,16 +38,16 @@ interface StateProps {
 }
 
 interface DispatchProps {
-  startTrainingSession: typeof startTrainingSession;
+  startFormSession: typeof startFormSession;
 }
 
-interface StartTrainingSessionProps extends OwnProps, StateProps, DispatchProps { }
+interface StartFormSessionProps extends OwnProps, StateProps, DispatchProps { }
 
 const MultiStepQuestion: React.FC<any> = ({ question, ...props}: { question: { "multi-step-question": Array<typeof FormQuestionPage>}, currentIdx: number }) => {
   return <SFormQuestionPage  {...props} questions={question["multi-step-question"]} />
 }
 
-const StartTrainingSession: React.FC<StartTrainingSessionProps> = ({ form, formType, userId, organization, community, startTrainingSession }) => {
+const StartFormSession: React.FC<StartFormSessionProps> = ({ form, formType, userId, organization, community, startFormSession }) => {
 
   const { t } = useTranslation(['translation'], {i18n} );
 
@@ -93,7 +96,15 @@ const StartTrainingSession: React.FC<StartTrainingSessionProps> = ({ form, formT
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
-            <BackToFormLink formType={formType} form={form}/>
+          <IonTitle>
+            {
+              hasPrevious ? <IonButton onClick={getPreviousQuestion} fill="solid" color="primary">
+              <IonIcon icon={arrowBack} />
+            </IonButton> :
+            <BackToFormLink formType={formType} />
+            }
+            {formType?.name}
+            </IonTitle>
           </IonButtons>
           {/* <IonTitle>{t('resources.forms.pages.start')}</IonTitle> */}
           <IonTitle>{t('resources.forms.pages.start')} {form.name} {t('resources.forms.pages.questions')}</IonTitle>
@@ -125,7 +136,7 @@ const StartTrainingSession: React.FC<StartTrainingSessionProps> = ({ form, formT
 
 export default connect<OwnProps, StateProps, DispatchProps>({
   mapDispatchToProps: {
-    startTrainingSession
+    startFormSession
   },
   mapStateToProps: (state, ownProps) => ({
     formType: selectors.getFormType(state, ownProps),
@@ -134,5 +145,5 @@ export default connect<OwnProps, StateProps, DispatchProps>({
     organization: selectors.getUserOrganization(state),
     community: selectors.getUserCommunity(state),
   }),
-  component: StartTrainingSession
+  component: StartFormSession
 })
