@@ -35,6 +35,7 @@ import {
   loadOrganizations,
   loadTrainingSessions,
   loadFormSessions,
+  loadForms,
   logoutUser,
   setDefaultLanguage,
   watchAuthState
@@ -49,7 +50,7 @@ import i18n from "./i18n";
 import Terms from "./pages/Terms";
 import Privacy from "./pages/Privacy";
 import {loadMaintenanceData} from "./data/maintenance/maintenance.actions";
-import {loadFormTypesData} from "./data/form/form.actions";
+import {loadFormTypesData, loadFormsData} from "./data/form/form.actions";
 import {loadDiagnosticData} from "./data/diagnostic/diagnostic.actions";
 
 const App: React.FC = () => {
@@ -84,13 +85,15 @@ interface DispatchProps {
   watchAuthState: typeof watchAuthState;
   logoutUser: typeof logoutUser;
   loadFormSessions: typeof loadFormSessions;
+  loadForms: typeof loadForms;
+  loadFormsData: typeof loadFormsData;
   loadFormTypesData: typeof loadFormTypesData;
 }
 
 interface IonicAppProps extends StateProps, DispatchProps { }
 
 
-const IonicApp: React.FC<IonicAppProps> = ({ darkMode, loading, isLoggedIn, isAdmin, intercomUser, userOrganizationId, loadMaintenanceData, loadDiagnosticData, loadTrainingData, loadTrainingSessions, loadFormSessions, loadOrganizations, loadFormTypesData, watchAuthState, logoutUser}) => {
+const IonicApp: React.FC<IonicAppProps> = ({ darkMode, loading, isLoggedIn, isAdmin, intercomUser, userOrganizationId, loadMaintenanceData, loadDiagnosticData, loadTrainingData, loadTrainingSessions, loadFormSessions, loadForms, loadOrganizations, loadFormTypesData, loadFormsData, watchAuthState, logoutUser}) => {
 
   const { t } = useTranslation(['translation'], {i18n} );
 
@@ -122,26 +125,29 @@ const IonicApp: React.FC<IonicAppProps> = ({ darkMode, loading, isLoggedIn, isAd
       setDefaultLanguage(i18n.language);
       loadTrainingSessions();
       loadFormSessions();
+      loadForms();
     }
-  }, [isLoggedIn, loadTrainingSessions, loadFormSessions]);
+  }, [isLoggedIn, loadTrainingSessions, loadFormSessions, loadForms]);
 
   useEffect(() => {
     if (userOrganizationId) {
       loadTrainingData(userOrganizationId);
       loadFormTypesData(userOrganizationId);
       loadMaintenanceData(userOrganizationId);
+      loadFormsData(userOrganizationId);
       loadDiagnosticData(userOrganizationId);
     }
-  }, [userOrganizationId, loadTrainingData, loadMaintenanceData, loadFormTypesData, loadDiagnosticData]);
+  }, [userOrganizationId, loadTrainingData, loadMaintenanceData, loadFormTypesData, loadFormsData, loadDiagnosticData]);
 
   useEffect(() => {
     if (isAdmin) {
       loadTrainingData('');
       loadMaintenanceData('');
       loadDiagnosticData('');
-      loadFormTypesData('')
+      loadFormTypesData('');
+      loadFormsData('');
     }
-  }, [isAdmin, loadTrainingData, loadMaintenanceData, loadFormTypesData, loadDiagnosticData]);
+  }, [isAdmin, loadTrainingData, loadMaintenanceData, loadFormTypesData, loadFormsData, loadDiagnosticData]);
 
 
   // @ts-ignore
@@ -194,6 +200,6 @@ const IonicAppConnected = connect<{}, StateProps, DispatchProps>({
     intercomUser: selectors.getIntercomUser(state),
     userOrganizationId: selectors.getUserOrganizationId(state),
   }),
-  mapDispatchToProps: { loadTrainingSessions, loadMaintenanceData, loadDiagnosticData, loadTrainingData, loadOrganizations, loadFormTypesData, watchAuthState, logoutUser, loadFormSessions},
+  mapDispatchToProps: { loadTrainingSessions, loadMaintenanceData, loadDiagnosticData, loadTrainingData, loadFormsData, loadOrganizations, loadFormTypesData, watchAuthState, logoutUser, loadFormSessions, loadForms},
   component: IonicApp
 });

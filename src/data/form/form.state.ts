@@ -5,6 +5,7 @@ export interface FormState {
   forms: Form[];
   loading?: boolean;
   menuEnabled: boolean;
+  formSession?: FormSession;
 }
 
 export interface FormSessions {

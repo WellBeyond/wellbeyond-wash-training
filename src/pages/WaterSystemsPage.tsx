@@ -38,7 +38,7 @@ interface DispatchProps {
 
 type WaterSystemsPageProps = OwnProps & StateProps & DispatchProps;
 
-const WaterSystemsPage: React.FC<WaterSystemsPageProps> = ({defaultLanguage, forms,form, formType, formTypes}) => {
+const WaterSystemsPage: React.FC<WaterSystemsPageProps> = ({defaultLanguage, formTypes}) => {
 
   const pageRef = useRef<HTMLElement>(null);
 
@@ -86,11 +86,11 @@ const WaterSystemsPage: React.FC<WaterSystemsPageProps> = ({defaultLanguage, for
               </div>
             </IonItem>
             {
-              formTypes ?
+              formTypes && formTypes.length>0 ?
               formTypes && formTypes.map((formType) => {
                 if (formType.formCategory === 'water-systems'){
                   return (
-                    <IonItem key={formType.id} routerLink={`/tabs/waterSystems/forms/form-types/${getSpecificForm(formTypes, formType.name)}`} className="page-item" detail={false}>
+                    <IonItem key={formType.id} routerLink={`/tabs/water-systems/forms/form-types/${getSpecificForm(formTypes, formType.name)}`} className="page-item" detail={false}>
                       <div className="photo">
                         <Image
                           cloudName={cloudinaryConfig.cloudName}

@@ -43,6 +43,7 @@ export interface Form {
   loading: boolean;
   formTypeId: string;
   pages?: [];
+  archived?: boolean;
 }
 
 export interface FormType {

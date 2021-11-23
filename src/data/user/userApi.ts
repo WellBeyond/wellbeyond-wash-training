@@ -2,13 +2,12 @@ import 'firebase/auth';
 import 'firebase/firestore';
 import {TrainingSession} from "../../models/Training";
 import {Admin, UserProfile} from "../../models/User";
-import {FormSession} from "../../models/Form";
+import {FormSession, Form} from "../../models/Form";
 import firebase from "firebase/app";
 import {TrainingSessions} from "../training/training.state";
 import {FormSessions} from "../form/form.state";
 
-let unsubUser:any, unsubAdmin:any, unsubLessons:any, unsubTrainingSessions:any, unsubFormSessions:any;
-
+let unsubUser:any, unsubAdmin:any, unsubLessons:any, unsubTrainingSessions:any, unsubFormSessions:any, unsubForms:any;
 
 export const getCurrentUser = () => {
   return firebase.auth().currentUser;
@@ -34,6 +33,9 @@ export const logout = () => {
   }
   if (unsubFormSessions) {
     unsubFormSessions();
+  }
+  if (unsubForms) {
+    unsubForms();
   }
   return firebase.auth().signOut();
 };
@@ -129,6 +131,33 @@ export const listenForFormSessions = async (callback:any) : Promise<any> => {
       callback(results);
     });
 };
+
+export const listenForForms = async (callback:any) : Promise<any> => {
+  const user = firebase.auth().currentUser;
+  if (!user || !user.uid) {
+    return Promise.resolve();
+  }
+  const results = {} as Form;
+  const query:firebase.firestore.Query<firebase.firestore.DocumentData> = firebase.firestore()
+    .collection('forms')
+    .where('userId', '==', user.uid);
+
+  return unsubForms = query
+    .onSnapshot(querySnapshot => {
+      querySnapshot.forEach(function(doc) {
+
+        if (doc.exists) {
+          const data = {id: doc.id, ...doc.data()} as Form;
+          if (!data.archived) {
+            // @ts-ignore id is always defined
+            results[data.id] = data;
+          }
+        }
+      });
+      callback(results);
+    });
+};
+
 /**
  *
  * @param email
@@ -370,6 +399,29 @@ export const createOrUpdateFormSession = async (formSession:FormSession) => {
       console.log("Error writing document:", error);
     });
 }
+
+export const createOrUpdateForms = async (formSession:FormSession) => {
+  let user = firebase.auth().currentUser;
+  if (!user || !user.uid) {
+    return Promise.resolve();
+  }
+  formSession.started = formSession.started || new Date();
+  if (!formSession.id) {
+    formSession.id = (user && user.uid) + ':' + formSession.formTypeId + ':' + formSession.started.getTime();
+  }
+  return firebase
+    .firestore()
+    .collection('formSessions')
+    .doc(formSession.id)
+    .set(formSession, {merge: true})
+    .then(() => {
+      return;
+    })
+    .catch(error => {
+      console.log("Error writing document:", error);
+    });
+}
+
 export const listenForOrganizationData = async (callback:any) : Promise<any> => {
   let query:firebase.firestore.Query<firebase.firestore.DocumentData> = firebase.firestore().collection('organizations');
   return query

@@ -62,7 +62,7 @@ const ImpactReportingPage: React.FC<ImpactReportingPageProps> = ({defaultLanguag
               formTypes && formTypes.map((formType) => {
                 if (formType.formCategory === 'impact-reporting'){
                   return (
-                    <IonItem key={formType.id} routerLink={`/tabs/waterSystems/forms/form-types/${getSpecificForm(formTypes, formType.name)}`} className="page-item" detail={false}>
+                    <IonItem key={formType.id} routerLink={`/tabs/impact-reporting/forms/form-types/${getSpecificForm(formTypes, formType.name)}`} className="page-item" detail={false}>
                       <div className="photo">
                         <Image
                           cloudName={cloudinaryConfig.cloudName}
