@@ -23,6 +23,7 @@ import {
   IonRadioGroup,
   IonTitle,
   IonToolbar,
+  IonCheckbox,
 } from '@ionic/react'
 import {useTranslation} from "react-i18next";
 import i18n from '../i18n';
@@ -152,6 +153,17 @@ const QuestionPage: React.FC<QuestionPageProps> = ({ history, subject, lesson, q
     lessonProgress.score = lessonProgress.answers.length ? Math.round((100*correct) / lesson.questions.length) : 0;
   }
 
+  const handleMultiSelect = (key: string) => (event: any) => {
+    // @ts-ignore
+    let ans = { ...answer[currentIdx] }
+    if (!event.detail.checked) {
+      delete ans[key]
+    } else {
+      ans = {...ans, [key]: event.detail.value }
+    }
+    handleAnswer(ans)
+  }
+
   return (
     <IonPage id="question-page">
         <IonHeader translucent={true}>
@@ -207,6 +219,25 @@ const QuestionPage: React.FC<QuestionPageProps> = ({ history, subject, lesson, q
                     <IonItem>
                       <IonInput disabled={lockAnswer} type="number" value={answer} placeholder={t('questions.enterNumber')} onIonChange={e => handleAnswer(parseInt(e.detail.value!, 10))}/>
                     </IonItem>
+                  </IonList>
+                )
+              }
+               {
+                (question && question.questionType === 'multi-select' && question.choices &&
+                  <IonList>
+                      {question.choices.map((choice, cidx) =>  {
+                        return (
+                          <IonItem key={`l-${lesson.id}-q${idx}-choice-${cidx}`}>
+                            <IonLabel>{choice.value}</IonLabel>
+                            <IonCheckbox disabled={lockAnswer} slot="start"
+                              value={choice.value}
+                              onIonChange={handleMultiSelect(cidx.toString())}
+                              // @ts-ignore
+                              checked={ !!answer[`${currentIdx}`]?.[cidx.toString()] }
+                            />
+                          </IonItem>
+                        )
+                      })}
                   </IonList>
                 )
               }

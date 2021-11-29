@@ -163,7 +163,7 @@ const FormQuestionPage: React.FC<FormQuestionPageProps> = ({
         }
       },
     }
-    console.log('Aaaaaaaaaaaaactive session',{activeSession})
+
     activeSession.id = userId + ':' + activeSession.formId + ':' + (activeSession.started && activeSession.started.getTime());
     await startFormSession(activeSession)
     setFormSubmitted(true);

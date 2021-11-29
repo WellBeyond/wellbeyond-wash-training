@@ -160,7 +160,6 @@ const FormQuestionPage: React.FC<FormQuestionPageProps> = ({
         }
       },
     }
-    console.log('Aaaaaaaaaaaaactive session',{activeSession})
 
     activeSession.id = userId + ':' + activeSession.formId + ':' + (activeSession.started && activeSession.started.getTime());
     await startFormSession(activeSession)
@@ -188,7 +187,7 @@ const FormQuestionPage: React.FC<FormQuestionPageProps> = ({
         <IonContent fullscreen={true} id={`form-question-page-${currentIdx}`}>
           <IonCard className='lesson-card'>
             <IonCardHeader>
-              <IonCardSubtitle>{t('resources.forms.questions.title', {num:currentIdx + 1, count:form.questions.length})}</IonCardSubtitle>
+              <IonCardSubtitle>{t('resources.forms.questions.title', {num:currentIdx + 1, count:form?.questions?.length})}</IonCardSubtitle>
               <IonCardTitle><h2>{question.questionText}</h2></IonCardTitle>
             </IonCardHeader>
             <IonCardContent className='question-answer'>

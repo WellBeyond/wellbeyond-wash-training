@@ -70,8 +70,8 @@ const AcceptTerms: React.FC<AcceptTermsProps> = ({acceptTerms, acceptedTerms, is
   if (isLoggedIn && acceptedTerms) {
     if (localStorage.getItem('history')) {
       let path = localStorage.getItem('history')
-      // if you restart a form before you finish answering the questions, the page resets
-      path = path && (!path.includes('formTypes') && !path.includes('subjects')) ? path : '/tabs';
+      // if you restart a form before you finish answering the questions, the page should reset
+      path = path ? path : '/tabs';
       localStorage.removeItem('history')
       return <Redirect to={path} />
     }
