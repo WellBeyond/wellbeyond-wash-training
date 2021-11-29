@@ -95,7 +95,7 @@ const Menu: React.FC<MenuProps> = ({ darkMode, notificationsOn, isLoggedIn, isMa
       })
       .map(p => (
         <IonMenuToggle key={p.title} auto-hide="false">
-          <IonItem detail={false} routerLink={p.path} routerDirection="none" className={location.pathname.startsWith(p.path) ? 'selected' : undefined}>
+          <IonItem detail={false} routerLink={p.path} id={`${p.title}uuid`} routerDirection="none" className={location.pathname.startsWith(p.path) ? 'selected' : undefined}>
             <IonIcon slot="start" src={p.src} icon={p.src ? undefined: p.icon} />
             <IonLabel>{t(p.title)}</IonLabel>
           </IonItem>
