@@ -147,7 +147,7 @@ const SubjectPage: React.FC<SubjectProps> = ({ subject, lessons, trainingSession
 
 export default connect<OwnProps, StateProps, DispatchProps>({
   mapStateToProps: (state, ownProps) => ({
-    subject: selectors.getSubject(state, ownProps),
+    subject: selectors.getSubject(state, ownProps) || {},
     lessons: selectors.getSubjectLessons(state, ownProps),
     trainingSessions: selectors.getTrainingSessions(state),
     userId: selectors.getUserId(state),

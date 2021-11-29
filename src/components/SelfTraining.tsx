@@ -82,6 +82,7 @@ const SelfTraining: React.FC<SelfTrainingProps> = ({ subject,lessons, session, u
           };
         }
       });
+      if (!session.community) delete session.community;
       startTrainingSession(session);
       navigate('/tabs/subjects/' + subject.id + '/progress?tsId=' + session.id);
     }

@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useCallback} from 'react';
+import React, {useEffect, useState, useCallback, useContext} from 'react';
 import {
   IonButtons,
   IonContent,
@@ -8,6 +8,7 @@ import {
   IonToolbar,
   IonButton,
   IonIcon,
+  NavContext
 } from '@ionic/react';
 import './Login.scss';
 import {useTranslation} from "react-i18next";
@@ -66,9 +67,12 @@ const StartFormSession: React.FC<StartFormSessionProps> = ({ form, formType, use
     i18n.changeLanguage(formType.locale || 'en');
   }, [formType]);
 
+  const {navigate} = useContext(NavContext);
+
   useEffect(() => {
     const initialIdx = 0;
-    if (form?.questions.length <= initialIdx) return;
+    if (form?.questions?.length <= initialIdx) return;
+    if (!form.questions) {navigate('/tabs/water-systems/', 'forward'); return}
     setQuestion(form.questions[initialIdx])
     setHasNext(nextExists(initialIdx))
     setCurrentIdx(initialIdx)
@@ -139,8 +143,8 @@ export default connect<OwnProps, StateProps, DispatchProps>({
     startFormSession
   },
   mapStateToProps: (state, ownProps) => ({
-    formType: selectors.getFormType(state, ownProps),
-    form: selectors.getForm(state, ownProps),
+    formType: selectors.getFormType(state, ownProps) || {},
+    form: selectors.getForm(state, ownProps) || {},
     userId: selectors.getUserId(state),
     organization: selectors.getUserOrganization(state),
     community: selectors.getUserCommunity(state),
