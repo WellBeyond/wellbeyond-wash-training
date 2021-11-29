@@ -76,7 +76,7 @@ const StartFormSession: React.FC<StartFormSessionProps> = ({ form, formType, use
     setQuestion(form.questions[initialIdx])
     setHasNext(nextExists(initialIdx))
     setCurrentIdx(initialIdx)
-  }, [form, nextExists]);
+  }, [form, navigate, nextExists]);
 
   const getNextQuestion = () => {
     if (!hasNext) return;
