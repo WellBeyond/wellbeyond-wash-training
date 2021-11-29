@@ -68,6 +68,13 @@ const AcceptTerms: React.FC<AcceptTermsProps> = ({acceptTerms, acceptedTerms, is
     return <Redirect to="/register" />
   }
   if (isLoggedIn && acceptedTerms) {
+    if (localStorage.getItem('history')) {
+      let path = localStorage.getItem('history')
+      // if you restart a form before you finish answering the questions, the page resets
+      path = path && (!path.includes('formTypes') && !path.includes('subjects')) ? path : '/tabs';
+      localStorage.removeItem('history')
+      return <Redirect to={path} />
+    }
     return <Redirect to="/tabs" />
   }
 

@@ -44,6 +44,7 @@ const MainTabs: React.FC<MainTabsProps> = ({isLoggedIn, isRegistered, acceptedTe
 
   const { t } = useTranslation(['translation'], {i18n} );
 
+  localStorage.setItem('history', window.location.pathname)
   if (typeof isLoggedIn === 'undefined') {
     return (
       <IonContent>

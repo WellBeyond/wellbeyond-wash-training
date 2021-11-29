@@ -81,7 +81,7 @@ const FormTypePage: React.FC<FormTypePageProps> = ({ formType, forms, loadFormsD
           isOpen={showLoading}
           onDidDismiss={() => setShowLoading(false)}
           message={'Please wait...'}
-          duration={5000}
+          duration={3000}
         />
       }
       {
