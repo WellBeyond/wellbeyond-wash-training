@@ -72,11 +72,14 @@ const StartFormSession: React.FC<StartFormSessionProps> = ({ form, formType, use
   useEffect(() => {
     const initialIdx = 0;
     if (form?.questions?.length <= initialIdx) return;
-    if (!form.questions) {navigate('/tabs/water-systems/', 'forward'); return}
+    // Temporarily fixing navigation issues before refactoring app
+    let path = localStorage.getItem('history')
+    let formTypePath = path?.substring(path.indexOf("formTypes/") + 10, path.lastIndexOf("/forms/"))
+    if (!form.questions) {navigate(`/tabs/forms/form-types/${formTypePath}`, 'forward'); return}
     setQuestion(form.questions[initialIdx])
     setHasNext(nextExists(initialIdx))
     setCurrentIdx(initialIdx)
-  }, [form, navigate, nextExists]);
+  }, [form, formType, navigate, nextExists]);
 
   const getNextQuestion = () => {
     if (!hasNext) return;
@@ -116,7 +119,7 @@ const StartFormSession: React.FC<StartFormSessionProps> = ({ form, formType, use
         </IonToolbar>
       </IonHeader>
       <IonContent>
-        {formSubmitted && <FormSubmitSuccessPage />}
+        {formSubmitted && <FormSubmitSuccessPage formType={formType}/>}
         {!formSubmitted && (
           <Component
             form={form}
