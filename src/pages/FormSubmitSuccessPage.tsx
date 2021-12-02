@@ -52,7 +52,7 @@ const ImpactReportingPage2: React.FC<ImpactReportingPage2Props> = ({ formType, f
       <IonFooter>
         <IonToolbar>
           <IonButtons slot={'start'}>
-            <NavLink to={`/tabs/water-systems`}>
+            <NavLink to={`/tabs/forms/form-types/${formType?.id}`}>
               <IonButton fill="solid" color="primary">
                 {t('resources.forms.submit_success.back_to_forms')}
               </IonButton>
