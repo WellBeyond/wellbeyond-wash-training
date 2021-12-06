@@ -104,10 +104,10 @@ const StartTrainingSession: React.FC<StartTrainingSessionProps> = ({subject, les
         userId: userId || '',
         organizationId: organization && organization.id,
         organization: organization && organization.name,
-        community: formValues.community,
+        community: formValues.community || '',
         started: new Date(),
         archived: false,
-        name: formValues.name,
+        name: formValues.name || '',
         groupType: formValues.groupType,
         groupSizeNum: parseInt(formValues.groupSize),
         lessons: {}
@@ -123,6 +123,7 @@ const StartTrainingSession: React.FC<StartTrainingSessionProps> = ({subject, les
           };
         }
       });
+      if (!session.community) delete session.community;
       startTrainingSession(session);
       navigate('/tabs/subjects/' + subject.id + '/progress?tsId=' + session.id);
     }
