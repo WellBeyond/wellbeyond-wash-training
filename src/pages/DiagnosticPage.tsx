@@ -15,6 +15,9 @@ import {
   IonToolbar
 } from '@ionic/react';
 
+import { Widget } from '@typeform/embed-react'
+
+
 import './DiagnosticPage.scss'
 
 import {Trans, useTranslation} from "react-i18next";
@@ -78,6 +81,7 @@ const DiagnosticPage: React.FC<DiagnosticPageProps> = ({ systems, organization, 
       </IonHeader>
 
       <IonContent fullscreen={true}>
+          <Widget id="LV8CJAbe"  className="my-form" />
         {organization && systems ?
           (<IonList>
             <IonListHeader>
