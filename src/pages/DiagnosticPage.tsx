@@ -76,6 +76,7 @@ const DiagnosticPage: React.FC<DiagnosticPageProps> = ({ systems, organization, 
           <IonTitle>{t('resources.systems.name_plural')}</IonTitle>
         </IonToolbar>
       </IonHeader>
+      
       <IonContent fullscreen={true}>
         {organization && systems ?
           (<IonList>
