@@ -16,6 +16,9 @@ import {
   IonToolbar,
   NavContext,
 } from '@ionic/react';
+
+import { Widget } from '@typeform/embed-react'
+
 import {System} from '../models/Maintenance';
 import {connect} from '../data/connect';
 import * as selectors from '../data/selectors';
@@ -131,7 +134,9 @@ const SymptomsPage: React.FC<SymptomsProps> = ({ system,  symptoms,  defaultLang
 
       { system && symptoms &&
         <IonContent fullscreen={true}>
-            <IonList>
+          <Widget id="CqTjx0gc" style={{ width: '100%', height: '65vw', display: 'flex' }} className="my-form" />
+
+            {/* <IonList>
               <IonListHeader>
                 <h4>{t('diagnostic.headers.symptoms', {systemName: system.name})}</h4>
               </IonListHeader>
@@ -154,15 +159,15 @@ const SymptomsPage: React.FC<SymptomsProps> = ({ system,  symptoms,  defaultLang
             <p className="ion-padding-start">
               {t(error)}
             </p>
-          </IonText>}
+          </IonText>} */}
         </IonContent>
       }
 
-      <IonFooter>
+      {/* <IonFooter>
         <IonToolbar>
           <IonButton expand="block" fill="solid" color="primary" onClick={start}>{t('diagnostic.buttons.start')}</IonButton>
         </IonToolbar>
-      </IonFooter>
+      </IonFooter> */}
     </IonPage>
   );
 }
