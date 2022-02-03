@@ -1,20 +1,25 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {
+  // useContext,
+  // useState,
+  useEffect,
+} from 'react';
 import {
-  IonButton,
-  IonButtons,
-  IonCheckbox,
+  // IonButton,
+  // IonCheckbox,
+  // IonFooter,
+  // IonItem,
+  // IonLabel,
+  // IonList,
+  // IonListHeader,
+  // IonText,
+  // NavContext,
   IonContent,
-  IonFooter,
+  IonButtons,
   IonHeader,
-  IonItem,
-  IonLabel,
-  IonList,
-  IonListHeader,
   IonMenuButton,
-  IonPage, IonText,
+  IonPage, 
   IonTitle,
   IonToolbar,
-  NavContext,
 } from '@ionic/react';
 
 import { Widget } from '@typeform/embed-react'
@@ -24,11 +29,17 @@ import {connect} from '../data/connect';
 import * as selectors from '../data/selectors';
 import './SystemPage.scss';
 import {RouteComponentProps} from "react-router";
-import {Trans, useTranslation} from "react-i18next";
+import {
+  // Trans, 
+  useTranslation
+} from "react-i18next";
 import i18n from '../i18n';
-import {DiagnosticEngine, Symptom} from "wellbeyond-diagnostic-engine";
+import {
+  // DiagnosticEngine, 
+  Symptom
+} from "wellbeyond-diagnostic-engine";
 import {loadDiagnosticLogs, setDiagnosticEngine, updateDiagnosticLog} from "../data/diagnostic/diagnostic.actions";
-import {DiagnosticLog} from "../models/Diagnostic";
+// import {DiagnosticLog} from "../models/Diagnostic";
 
 interface SymptomMap {
   [id: string]: boolean;
@@ -54,11 +65,11 @@ interface SymptomsProps extends OwnProps, StateProps, DispatchProps { }
 
 const SymptomsPage: React.FC<SymptomsProps> = ({ system,  symptoms,  defaultLanguage, userId, updateDiagnosticLog, loadDiagnosticLogs, setDiagnosticEngine}) => {
 
-  const {navigate} = useContext(NavContext);
+  // const {navigate} = useContext(NavContext);
   const { t } = useTranslation(['translation'], {i18n} );
 
-  const [currentSymptoms, setCurrentSymptoms] = useState<SymptomMap>({});
-  const [error, setError] = useState<string>('');
+  // const [currentSymptoms, setCurrentSymptoms] = useState<SymptomMap>({});
+  // const [error, setError] = useState<string>('');
 
 
   useEffect(() => {
@@ -70,56 +81,56 @@ const SymptomsPage: React.FC<SymptomsProps> = ({ system,  symptoms,  defaultLang
   }, [system, symptoms, defaultLanguage, loadDiagnosticLogs]);
 
 
-  const setSymptomChecked = (symptom:Symptom, checked:boolean) => {
-    const updated = {...currentSymptoms};
-    updated[symptom.id] = checked;
-    setCurrentSymptoms(updated);
-    if (checked) {
-      setError('');
-    }
-  }
+  // const setSymptomChecked = (symptom:Symptom, checked:boolean) => {
+  //   const updated = {...currentSymptoms};
+  //   updated[symptom.id] = checked;
+  //   setCurrentSymptoms(updated);
+  //   if (checked) {
+  //     setError('');
+  //   }
+  // }
 
-  const validate = ():boolean => {
-    for (const symptom in currentSymptoms) {
-      if (currentSymptoms[symptom]) {
-        return true;
-      }
-    }
-    return false;
-  }
+  // const validate = ():boolean => {
+  //   for (const symptom in currentSymptoms) {
+  //     if (currentSymptoms[symptom]) {
+  //       return true;
+  //     }
+  //   }
+  //   return false;
+  // }
 
-  const start = () => {
-    if (validate()) {
-      const now = new Date();
-      const log:DiagnosticLog = {
-        id: system.id + ':' + now.getTime(),
-        started: now,
-        name: system.name + ' - ' + now.toLocaleDateString(),
-        organizationId: system.organizationId,
-        community: system.community,
-        systemId: system.id,
-        userId: userId,
-        archived: false,
-        status: 'open',
-        symptoms: symptoms.filter(s =>{return currentSymptoms[s.id]}).map(s => {
-          return {
-            symptomId: s.id,
-            symptom: s.name,
-            resolved: false
-          }
-        }),
-        diagnosticResults: [],
-        solutionResults: []
-      };
-      setError('');
-      updateDiagnosticLog(log);
-      setDiagnosticEngine(new DiagnosticEngine());
-      navigate('/tabs/diagnostic/'+ log.id, 'forward');
-    }
-    else {
-      setError('diagnostic.errors.selectSymptom');
-    }
-  }
+  // const start = () => {
+  //   if (validate()) {
+  //     const now = new Date();
+  //     const log:DiagnosticLog = {
+  //       id: system.id + ':' + now.getTime(),
+  //       started: now,
+  //       name: system.name + ' - ' + now.toLocaleDateString(),
+  //       organizationId: system.organizationId,
+  //       community: system.community,
+  //       systemId: system.id,
+  //       userId: userId,
+  //       archived: false,
+  //       status: 'open',
+  //       symptoms: symptoms.filter(s =>{return currentSymptoms[s.id]}).map(s => {
+  //         return {
+  //           symptomId: s.id,
+  //           symptom: s.name,
+  //           resolved: false
+  //         }
+  //       }),
+  //       diagnosticResults: [],
+  //       solutionResults: []
+  //     };
+  //     setError('');
+  //     updateDiagnosticLog(log);
+  //     setDiagnosticEngine(new DiagnosticEngine());
+  //     navigate('/tabs/diagnostic/'+ log.id, 'forward');
+  //   }
+  //   else {
+  //     setError('diagnostic.errors.selectSymptom');
+  //   }
+  // }
 
   return (
     <IonPage id="symptoms-page">
