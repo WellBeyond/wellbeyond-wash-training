@@ -75,9 +75,6 @@ const SymptomsPage: React.FC<SymptomsProps> = ({ system,  symptoms,  defaultLang
 
     let systemTypeObjectArray = systemTypes.filter((stId)=> system.systemTypeIds.includes(stId.id))
 
-    console.log({systemTypeObjectArray})
-
-
   useEffect(() => {
     if (system && symptoms) {
       i18n.changeLanguage(defaultLanguage || 'en');
