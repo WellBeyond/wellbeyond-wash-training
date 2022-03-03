@@ -72,8 +72,6 @@ const SymptomsPage: React.FC<SymptomsProps> = ({ system,  symptoms,  defaultLang
 
   // const [currentSymptoms, setCurrentSymptoms] = useState<SymptomMap>({});
   // const [error, setError] = useState<string>('');
-    // const systemTypeIds = system.systemTypeIds 
-    // console.log({userProfile, system, systemTypes})
 
     let systemTypeObjectArray = systemTypes.filter((stId)=> system.systemTypeIds.includes(stId.id))
 
