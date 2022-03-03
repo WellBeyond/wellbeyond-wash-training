@@ -15,6 +15,7 @@ export const initialState: AppState = {
   },
   maintenance: {
     systems: [],
+    systemTypes: [],
     checklists: [],
     maintenanceLogs: {}
   },

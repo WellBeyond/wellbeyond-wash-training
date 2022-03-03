@@ -34,6 +34,9 @@ export const getOrganizations = (state: AppState) => {
 export const getSystems = (state: AppState) => {
   return state.maintenance.systems;
 }
+export const getSystemTypes = (state: AppState) => {
+  return state.maintenance.systemTypes;
+}
 export const getChecklists = (state: AppState) => {
   return state.maintenance.checklists;
 }

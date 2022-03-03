@@ -9,6 +9,9 @@ export const maintenanceReducer = (state: MaintenanceState, action: MaintenanceA
     case 'set-maintenance-systems': {
       return {...state, systems: action.systems};
     }
+    case 'set-maintenance-system-types': {
+      return {...state, systemTypes: action.systemTypes};
+    }
     case 'set-maintenance-checklists': {
       return {...state, checklists: action.checklists};
     }

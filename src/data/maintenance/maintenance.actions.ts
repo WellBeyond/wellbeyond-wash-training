@@ -1,7 +1,7 @@
 import {ActionType} from '../../util/types';
 import {createOrUpdateMaintenanceLog, listenForMaintenanceData, listenForMaintenanceLogs} from "./maintenanceApi";
 import {MaintenanceLogs, MaintenanceState} from "./maintenance.state";
-import {Checklist, MaintenanceLog, System} from "../../models/Maintenance";
+import {Checklist, MaintenanceLog, System, SystemType} from "../../models/Maintenance";
 import React from "react";
 
 const listeners:{systems?:any, checklists?:any, maintenanceLogs?:any} = {};
@@ -16,6 +16,11 @@ export const loadMaintenanceData = (organizationId:string) => (async (dispatch: 
     listeners.systems = listener;
   });
 
+  listenForMaintenanceData('systemTypes', organizationId, (systemTypes: SystemType[]) => {
+    dispatch(setSystemTypes(systemTypes));
+  }).then(listener => {
+    listeners.systems = listener;
+  });
   if (listeners.checklists && typeof listeners.checklists === 'function') {
     listeners.checklists();
   }
@@ -71,6 +76,11 @@ export const setSystems = (systems: System[]) => ({
   systems
 } as const);
 
+export const setSystemTypes = (systemTypes: SystemType[]) => ({
+  type: 'set-maintenance-system-types',
+  systemTypes
+} as const);
+
 export const setChecklists = (checklists: Checklist[]) => ({
   type: 'set-maintenance-checklists',
   checklists
@@ -99,3 +109,4 @@ export type MaintenanceActions =
   | ActionType<typeof setMaintenanceLogs>
   | ActionType<typeof setMaintenanceLog>
   | ActionType<typeof setMaintenanceLogArchived>
+  | ActionType<typeof setSystemTypes>
