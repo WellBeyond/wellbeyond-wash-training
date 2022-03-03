@@ -47,12 +47,14 @@ interface SymptomMap {
 
 interface OwnProps extends RouteComponentProps {
   system: System;
+  systemTypes: System[];
 }
 
 interface StateProps {
   symptoms: Symptom[];
   defaultLanguage?: string;
   userId?: string;
+  userProfile?: any
 }
 
 interface DispatchProps {
@@ -63,7 +65,7 @@ interface DispatchProps {
 
 interface SymptomsProps extends OwnProps, StateProps, DispatchProps { }
 
-const SymptomsPage: React.FC<SymptomsProps> = ({ system,  symptoms,  defaultLanguage, userId, updateDiagnosticLog, loadDiagnosticLogs, setDiagnosticEngine}) => {
+const SymptomsPage: React.FC<SymptomsProps> = ({ system,  symptoms,  defaultLanguage, userId, userProfile, systemTypes, updateDiagnosticLog, loadDiagnosticLogs, setDiagnosticEngine}) => {
 
   // const {navigate} = useContext(NavContext);
   const { t } = useTranslation(['translation'], {i18n} );
@@ -71,6 +73,7 @@ const SymptomsPage: React.FC<SymptomsProps> = ({ system,  symptoms,  defaultLang
   // const [currentSymptoms, setCurrentSymptoms] = useState<SymptomMap>({});
   // const [error, setError] = useState<string>('');
 
+    let systemTypeObjectArray = systemTypes.filter((stId)=> system.systemTypeIds.includes(stId.id))
 
   useEffect(() => {
     if (system && symptoms) {
@@ -145,7 +148,13 @@ const SymptomsPage: React.FC<SymptomsProps> = ({ system,  symptoms,  defaultLang
 
       { system && symptoms &&
         <IonContent fullscreen={true}>
-          <Widget id="CqTjx0gc" style={{ width: '100%', height: '65vw', display: 'flex' }} className="my-form" />
+          {
+          systemTypeObjectArray.filter(function(e) { return e.name === 'Rainwater System'; }).length > 0 ? 
+          <Widget id="gPMM68sX" style={{ width: '100%', height: '65vw', display: 'flex' }} className="my-form"  hidden={{ userid: `${(userProfile && userProfile.name) || userId}`, systemtype: 'Rainwater System'}}/> :
+          systemTypeObjectArray.filter(function(e) { return e.name === 'Borehole System'; }).length > 0 ?
+          <Widget id="CqTjx0gc" style={{ width: '100%', height: '65vw', display: 'flex' }} className="my-form"  hidden={{ userid: `${(userProfile && userProfile.name) || userId}`, systemtype: 'Borehole System'}}/> :
+          <Widget id="gPMM68sX" style={{ width: '100%', height: '65vw', display: 'flex' }} className="my-form"  hidden={{ userid: `${(userProfile && userProfile.name) || userId}`, systemtype: 'System no specified'}}/>
+          }
 
             {/* <IonList>
               <IonListHeader>
@@ -194,6 +203,8 @@ export default connect<OwnProps, StateProps, DispatchProps>({
     symptoms: selectors.getSymptomsForSystem(state, ownProps),
     defaultLanguage: state.user.defaultLanguage,
     userId: selectors.getUserId(state),
+    userProfile: selectors.getUserProfile(state),
+    systemTypes: selectors.getSystemTypes(state)
   }),
   component: SymptomsPage
 });
