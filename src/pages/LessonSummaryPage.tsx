@@ -106,7 +106,7 @@ const LessonSummaryPage: React.FC<LessonSummaryProps> = ({ history, subject, les
               <IonCardSubtitle>{t('resources.lessons.summary.title')}</IonCardSubtitle>
               <IonCardTitle><h2>{lesson.name}</h2></IonCardTitle>
             </IonCardHeader>
-            <IonCardContent className='lesson-text'>
+            <IonCardContent className='lesson-text' style={{textAlign:'justify'}}>
               {nextLesson ?
                 <p>{t('resources.lessons.summary.completed', {score: lessonProgress.score})}</p>
                 :

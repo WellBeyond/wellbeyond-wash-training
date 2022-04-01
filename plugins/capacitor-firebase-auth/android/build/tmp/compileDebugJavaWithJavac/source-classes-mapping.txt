@@ -1,0 +1,21 @@
+com/baumblatt/capacitor/firebase/auth/handlers/ProviderHandler.java
+ com.baumblatt.capacitor.firebase.auth.handlers.ProviderHandler
+com/baumblatt/capacitor/firebase/auth/BuildConfig.java
+ com.baumblatt.capacitor.firebase.auth.BuildConfig
+com/baumblatt/capacitor/firebase/auth/handlers/GoogleProviderHandler.java
+ com.baumblatt.capacitor.firebase.auth.handlers.GoogleProviderHandler
+ com.baumblatt.capacitor.firebase.auth.handlers.GoogleProviderHandler$1
+com/baumblatt/capacitor/firebase/auth/handlers/AppleProviderHandler.java
+ com.baumblatt.capacitor.firebase.auth.handlers.AppleProviderHandler
+com/baumblatt/capacitor/firebase/auth/handlers/FacebookProviderHandler.java
+ com.baumblatt.capacitor.firebase.auth.handlers.FacebookProviderHandler
+ com.baumblatt.capacitor.firebase.auth.handlers.FacebookProviderHandler$1
+com/baumblatt/capacitor/firebase/auth/CapacitorFirebaseAuth.java
+ com.baumblatt.capacitor.firebase.auth.CapacitorFirebaseAuth
+ com.baumblatt.capacitor.firebase.auth.CapacitorFirebaseAuth$1
+ com.baumblatt.capacitor.firebase.auth.CapacitorFirebaseAuth$2
+com/baumblatt/capacitor/firebase/auth/handlers/PhoneProviderHandler.java
+ com.baumblatt.capacitor.firebase.auth.handlers.PhoneProviderHandler
+ com.baumblatt.capacitor.firebase.auth.handlers.PhoneProviderHandler$1
+com/baumblatt/capacitor/firebase/auth/handlers/TwitterProviderHandler.java
+ com.baumblatt.capacitor.firebase.auth.handlers.TwitterProviderHandler

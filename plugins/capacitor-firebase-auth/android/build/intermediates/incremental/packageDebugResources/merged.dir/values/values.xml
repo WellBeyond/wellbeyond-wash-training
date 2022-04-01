@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="apple_provider_id">apple.com</string>
+    <string name="default_web_client_id">DO_YOU_FORGOT_YOUR_GOOGLE_SERVICE_JSON</string>
+    <string name="facebook_app_id">REPLACE_ME</string>
+    <string name="facebook_provider_id">facebook.com</string>
+    <string name="fb_login_protocol_scheme">REPLACE_ME</string>
+    <string name="google_provider_id">google.com</string>
+    <string name="label_google_sign_in">Google Sign In</string>
+    <string name="loading">Loading…</string>
+    <string name="phone_provider_id">phone</string>
+    <string name="twitter_provider_id">twitter.com</string>
+</resources>

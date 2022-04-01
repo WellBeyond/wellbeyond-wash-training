@@ -98,7 +98,7 @@ const LessonIntroPage: React.FC<LessonIntroProps> = ({ subject,lesson, lessonPro
               <IonCardContent className='lesson-text'>
                 <img src={lessonIcon} crossOrigin='anonymous' alt="">
                 </img>
-                <div dangerouslySetInnerHTML={{__html: lesson.description}}></div>
+                <div style={{textAlign:'justify'}} dangerouslySetInnerHTML={{__html: lesson.description}}></div>
                 {lessonProgress && lessonProgress.completed ?
                   <p>{t('resources.lessons.intro.completed')}</p>
                   :

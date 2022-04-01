@@ -1,0 +1,4 @@
+com/getcapacitor/community/fcm/fcm/BuildConfig.java
+ com.getcapacitor.community.fcm.fcm.BuildConfig
+com/getcapacitor/community/fcm/FCMPlugin.java
+ com.getcapacitor.community.fcm.FCMPlugin

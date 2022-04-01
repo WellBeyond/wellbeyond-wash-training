@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "applicationId": "com.baumblatt.capacitor.firebase.auth",
+  "variantType": "LIBRARY",
+  "elements": [
+    {
+      "outputType": {
+        "type": "AAPT_FRIENDLY_MERGED_MANIFESTS"
+      },
+      "apkData": {
+        "type": "MAIN",
+        "splits": [],
+        "versionCode": 1,
+        "versionName": "1.0",
+        "outputFile": "capacitor-firebase-auth-debug.aar",
+        "fullName": "debug",
+        "baseName": "debug",
+        "dirName": ""
+      },
+      "path": "AndroidManifest.xml",
+      "properties": {
+        "packageId": "com.baumblatt.capacitor.firebase.auth",
+        "split": ""
+      }
+    }
+  ]
+}

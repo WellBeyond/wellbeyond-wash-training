@@ -1,0 +1,14 @@
+R_DEF: Internal format may change without notice
+local
+id webview
+layout bridge_layout_main
+string apple_provider_id
+string default_web_client_id
+string facebook_app_id
+string facebook_provider_id
+string fb_login_protocol_scheme
+string google_provider_id
+string label_google_sign_in
+string loading
+string phone_provider_id
+string twitter_provider_id
