@@ -35,6 +35,7 @@ import { startFormSession} from "../data/user/user.actions";
 import PhotoUpload from '../components/PhotoUpload';
 import { Answer } from '../data/form/form.state';
 import {Organization} from "../models/User";
+import { Widget } from '@typeform/embed-react'
 
 type showWarningType = Record<string, boolean>;
 
@@ -183,6 +184,14 @@ const FormQuestionPage: React.FC<FormQuestionPageProps> = ({
 
   return (
     <>
+      {(form && form.id ==='rdbzoyPMaZZwyJPYnmLg') ? 
+      <>
+        { //Temporarily adding link to typeform for Facility Survey before refactoring. Do not try this!!! It is so wrong by every engineering standard on earth. 
+          //I did explain to the team why we shouldn't do this too but right now, this solves their problem.
+        }
+        <Widget id="Iip13He7" style={{ width: '100%', height: '65vw', display: 'flex' }} className="my-form" />
+      </> :
+      <>
         {form && question &&
         <IonContent fullscreen={true} id={`form-question-page-${currentIdx}`}>
           <IonCard className='lesson-card'>
@@ -311,6 +320,8 @@ const FormQuestionPage: React.FC<FormQuestionPageProps> = ({
           </IonButtons>
         </IonToolbar>
       </IonFooter>
+      </>
+      }
     </>
     );
 };
