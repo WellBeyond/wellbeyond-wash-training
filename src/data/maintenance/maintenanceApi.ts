@@ -1,7 +1,7 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
-import {Checklist, MaintenanceLog, System} from '../../models/Maintenance';
+import {Checklist, MaintenanceLog, System, SystemType} from '../../models/Maintenance';
 import {checkIsAdmin} from "../user/userApi";
 import {MaintenanceLogs} from "./maintenance.state";
 import {isPlatform} from "@ionic/react";
@@ -28,6 +28,29 @@ export const listenForMaintenanceData = async (collectionPath:string, organizati
       const maintenanceData:any ={};
       maintenanceData[collectionPath] = results;
       cacheImagesAndVideos(maintenanceData as MaintenanceData);
+      callback(results);
+    });
+};
+
+let systemTypeListener: any
+
+export const listenForSystemTypeData = async (callback:any) : Promise<any> => {
+  if (systemTypeListener && typeof systemTypeListener === 'function') {
+    systemTypeListener();
+    systemTypeListener = undefined;
+  }
+  let query:firebase.firestore.Query<firebase.firestore.DocumentData> = firebase.firestore().collection('systemTypes');
+    systemTypeListener = query
+    .onSnapshot(querySnapshot => {
+      let results:SystemType[] = [];
+      querySnapshot.forEach(doc => {
+        // doc.data() is never undefined for query doc snapshots
+        results.push({
+          id: doc.id,
+          ...doc.data()
+        } as SystemType);
+      });
+      cacheImagesAndVideos({topics: results} as MaintenanceData);
       callback(results);
     });
 };

@@ -21,7 +21,7 @@ import {Trans, useTranslation} from "react-i18next";
 import i18n from '../i18n';
 import * as selectors from '../data/selectors';
 import {connect} from '../data/connect';
-import {System} from '../models/Maintenance';
+import {System, SystemType} from '../models/Maintenance';
 import SystemItem from "../components/SystemItem";
 import {Redirect} from "react-router-dom";
 import {RouteComponentProps} from "react-router";
@@ -32,6 +32,7 @@ interface OwnProps extends RouteComponentProps {
 
 interface StateProps {
   systems: System[],
+  systemTypes: SystemType[],
   organization?: Organization,
   defaultLanguage?: string
 }
@@ -42,7 +43,7 @@ interface DispatchProps {
 
 type DiagnosticPageProps = OwnProps & StateProps & DispatchProps;
 
-const DiagnosticPage: React.FC<DiagnosticPageProps> = ({ systems, organization, defaultLanguage}) => {
+const DiagnosticPage: React.FC<DiagnosticPageProps> = ({ systems, systemTypes, organization, defaultLanguage}) => {
 
   const pageRef = useRef<HTMLElement>(null);
   const { t } = useTranslation(['translation'], {i18n} );
@@ -60,7 +61,7 @@ const DiagnosticPage: React.FC<DiagnosticPageProps> = ({ systems, organization, 
       });
       setSystemList(list);
     }
-  }, [systems]);
+  }, [systems, systemTypes]);
 
   if (systems && systems.length === 1) {
     return <Redirect to={`/tabs/systems/${systems[0].id}/symptoms`} />
@@ -115,7 +116,8 @@ export default connect<OwnProps, StateProps, DispatchProps>({
   mapStateToProps: (state) => ({
     systems: selectors.getSystemsForCommunity(state),
     organization: selectors.getUserOrganization(state),
-    defaultLanguage: state.user.defaultLanguage
+    defaultLanguage: state.user.defaultLanguage,
+    systemTypes: selectors.getSystemTypes(state)
   }),
   component: React.memo(DiagnosticPage)
 });

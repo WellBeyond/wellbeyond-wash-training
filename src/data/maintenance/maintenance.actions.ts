@@ -1,10 +1,10 @@
 import {ActionType} from '../../util/types';
-import {createOrUpdateMaintenanceLog, listenForMaintenanceData, listenForMaintenanceLogs} from "./maintenanceApi";
+import {createOrUpdateMaintenanceLog, listenForMaintenanceData, listenForMaintenanceLogs, listenForSystemTypeData} from "./maintenanceApi";
 import {MaintenanceLogs, MaintenanceState} from "./maintenance.state";
 import {Checklist, MaintenanceLog, System, SystemType} from "../../models/Maintenance";
 import React from "react";
 
-const listeners:{systems?:any, checklists?:any, maintenanceLogs?:any} = {};
+const listeners:{systems?:any, checklists?:any, maintenanceLogs?:any, systemTypes?:any} = {};
 
 export const loadMaintenanceData = (organizationId:string) => (async (dispatch: React.Dispatch<any>) => {
   if (listeners.systems && typeof listeners.systems === 'function') {
@@ -16,11 +16,12 @@ export const loadMaintenanceData = (organizationId:string) => (async (dispatch: 
     listeners.systems = listener;
   });
 
-  listenForMaintenanceData('systemTypes', organizationId, (systemTypes: SystemType[]) => {
+  if (listeners.systemTypes && typeof listeners.systemTypes === 'function') {
+    listeners.systemTypes();
+  }
+  listenForSystemTypeData((systemTypes: SystemType[]) => {
     dispatch(setSystemTypes(systemTypes));
-  }).then(listener => {
-    listeners.systems = listener;
-  });
+  })
   if (listeners.checklists && typeof listeners.checklists === 'function') {
     listeners.checklists();
   }
