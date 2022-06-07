@@ -73,8 +73,6 @@ const SymptomsPage: React.FC<SymptomsProps> = ({ system,  symptoms,  defaultLang
   // const [currentSymptoms, setCurrentSymptoms] = useState<SymptomMap>({});
   // const [error, setError] = useState<string>('');
 
-    let systemTypeObjectArray = systemTypes.filter((stId)=> system.systemTypeIds.includes(stId.id))
-
   useEffect(() => {
     if (system && symptoms) {
       i18n.changeLanguage(defaultLanguage || 'en');
@@ -83,6 +81,7 @@ const SymptomsPage: React.FC<SymptomsProps> = ({ system,  symptoms,  defaultLang
 
   }, [system, symptoms, defaultLanguage, loadDiagnosticLogs]);
 
+  let systemTypeObjectArray = systemTypes && systemTypes.filter((stId)=> system && system.systemTypeIds.includes(stId.id))
 
   // const setSymptomChecked = (symptom:Symptom, checked:boolean) => {
   //   const updated = {...currentSymptoms};
@@ -146,7 +145,7 @@ const SymptomsPage: React.FC<SymptomsProps> = ({ system,  symptoms,  defaultLang
         </IonToolbar>
       </IonHeader>
 
-      { system && symptoms &&
+      { system && symptoms && systemTypes &&
         <IonContent fullscreen={true}>
           {
           systemTypeObjectArray.filter(function(e) { return e.name === 'Rainwater System'; }).length > 0 ? 
@@ -196,7 +195,7 @@ export default connect<OwnProps, StateProps, DispatchProps>({
   mapDispatchToProps: {
     updateDiagnosticLog,
     loadDiagnosticLogs,
-    setDiagnosticEngine
+    setDiagnosticEngine,
   },
   mapStateToProps: (state, ownProps) => ({
     system: selectors.getSystem(state, ownProps),

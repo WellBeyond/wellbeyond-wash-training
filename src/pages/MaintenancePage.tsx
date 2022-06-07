@@ -22,7 +22,7 @@ import * as selectors from '../data/selectors';
 import {connect} from '../data/connect';
 import {System} from '../models/Maintenance';
 import SystemItem from "../components/SystemItem";
-import {Redirect} from "react-router-dom";
+// import {Redirect} from "react-router-dom";
 import {RouteComponentProps} from "react-router";
 import {Organization} from "../models/User";
 
@@ -60,9 +60,9 @@ const MaintenancePage: React.FC<MaintenancePageProps> = ({ systems, organization
     }
   }, [systems]);
 
-  if (systems && systems.length === 1) {
-    return <Redirect to={`/tabs/systems/${systems[0].id}`} />
-  }
+  // if (systems && systems.length === 1) {
+  //   return <Redirect to={`/tabs/systems/${systems[0].id}`} />
+  // }
 
   return (
     <IonPage ref={pageRef} id="system-list">
