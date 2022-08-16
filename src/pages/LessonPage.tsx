@@ -176,7 +176,7 @@ const LessonPagePage: React.FC<LessonPageProps> = ({ history, subject, lesson, p
               <h2>{page.title}</h2>
             </IonCardHeader>
             <IonCardContent class='lesson-text'>
-              <div dangerouslySetInnerHTML={{__html: page.text}}></div>
+              <div style={{textAlign: 'left'}} dangerouslySetInnerHTML={{__html: page.text}}></div>
               {page.photo &&
                 <IonGrid>
                   <IonRow>

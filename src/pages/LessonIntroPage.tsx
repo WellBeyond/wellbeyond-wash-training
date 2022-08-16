@@ -98,14 +98,14 @@ const LessonIntroPage: React.FC<LessonIntroProps> = ({ subject,lesson, lessonPro
               <IonCardContent className='lesson-text'>
                 <img src={lessonIcon} crossOrigin='anonymous' alt="">
                 </img>
-                <div dangerouslySetInnerHTML={{__html: lesson.description}}></div>
+                <div style={{textAlign: 'left'}} dangerouslySetInnerHTML={{__html: lesson.description}}></div>
                 {lessonProgress && lessonProgress.completed ?
-                  <p>{t('resources.lessons.intro.completed')}</p>
+                  <p style={{textAlign: 'left'}}>{t('resources.lessons.intro.completed')}</p>
                   :
                   lesson.questions && lesson.questions.length ?
-                    <p>{t('resources.lessons.intro.firsttime')} </p>
+                    <p style={{textAlign: 'left'}}>{t('resources.lessons.intro.firsttime')} </p>
                     :
-                    <p>{t('resources.lessons.intro.firsttime2')} </p>
+                    <p style={{textAlign: 'left'}}>{t('resources.lessons.intro.firsttime2')} </p>
                 }
               </IonCardContent>
             </IonCard>
