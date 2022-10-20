@@ -78,7 +78,7 @@ const MaintenanceStepPage: React.FC<SystemProps> = ({ log, checklistStep,  maint
           <IonCardHeader>
             <h2>{checklistStep.name}</h2>
           </IonCardHeader>
-          <IonCardContent class='lesson-text'>
+          <IonCardContent class='maintenance-page-text' style={{textAlign: 'left'}}>
             <div dangerouslySetInnerHTML={{__html: checklistStep.instructions || ''}}></div>
             {checklistStep.photo &&
             <IonGrid>
