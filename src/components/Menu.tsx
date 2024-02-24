@@ -1,5 +1,6 @@
 import React from 'react';
-import {RouteComponentProps, useLocation, withRouter} from 'react-router';
+import {RouteComponentProps} from 'react-router';
+import { useHistory } from 'react-router-dom';
 
 import {
   IonContent,
@@ -83,7 +84,8 @@ interface DispatchProps {
 interface MenuProps extends RouteComponentProps, StateProps, DispatchProps { }
 
 const Menu: React.FC<MenuProps> = ({ darkMode, notificationsOn, isLoggedIn, isMaintenanceUser, menuEnabled, subjects, topics, setDarkMode, enableNotifications }) => {
-  const location = useLocation();
+  // const location = useLocation();
+  const history = useHistory();
   const { t } = useTranslation(['translation'], {i18n} );
 
   function renderlistItems(list: Pages[]) {
@@ -95,7 +97,8 @@ const Menu: React.FC<MenuProps> = ({ darkMode, notificationsOn, isLoggedIn, isMa
       })
       .map(p => (
         <IonMenuToggle key={p.title} auto-hide="false">
-          <IonItem detail={false} routerLink={p.path} id={`${p.title}uuid`} routerDirection="none" className={location.pathname.startsWith(p.path) ? 'selected' : undefined}>
+          {/* <IonItem detail={false} routerLink={p.path} id={`${p.title}uuid`} routerDirection="none" className={location.pathname.startsWith(p.path) ? 'selected' : undefined}>  */}
+          <IonItem detail={false} routerLink={p.path} id={`${p.title}uuid`} routerDirection="none"> 
             <IonIcon slot="start" src={p.src} icon={p.src ? undefined: p.icon} />
             <IonLabel>{t(p.title)}</IonLabel>
           </IonItem>
@@ -173,5 +176,5 @@ export default connect<{}, StateProps, {}>({
     setDarkMode,
     enableNotifications,
   }),
-  component: withRouter(Menu)
+  component: Menu
 })
