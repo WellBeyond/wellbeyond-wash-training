@@ -2,7 +2,9 @@ import React, {Suspense, useEffect} from 'react';
 import {Redirect, Route, Switch} from 'react-router-dom';
 import {IonApp, IonLoading, IonRouterOutlet, IonSplitPane, isPlatform} from '@ionic/react';
 import {IonReactRouter} from '@ionic/react-router';
-import Intercom from 'react-intercom';
+// import Intercom from 'react-intercom';
+import {useIntercom, IntercomProvider} from 'react-use-intercom';
+
 
 import Menu from './components/Menu';
 /* Core CSS required for Ionic components to work properly */
@@ -61,7 +63,10 @@ const App: React.FC = () => {
       />
     }>
       <AppContextProvider>
-        <IonicAppConnected />
+        <IntercomProvider appId='ywg09h0a'>
+          <IonicAppConnected />
+        </IntercomProvider>
+        
       </AppContextProvider>
     </Suspense>
   );
@@ -96,6 +101,10 @@ interface IonicAppProps extends StateProps, DispatchProps { }
 const IonicApp: React.FC<IonicAppProps> = ({ darkMode, loading, isLoggedIn, isAdmin, intercomUser, userOrganizationId, loadMaintenanceData, loadDiagnosticData, loadTrainingData, loadTrainingSessions, loadFormSessions, loadForms, loadOrganizations, loadFormTypesData, loadFormsData, watchAuthState, logoutUser}) => {
 
   const { t } = useTranslation(['translation'], {i18n} );
+
+  // const {
+  //   getVisitorId,
+  // } = useIntercom();
 
   useEffect(() => {
     if (!firebase.apps.length) {
@@ -182,7 +191,7 @@ const IonicApp: React.FC<IonicAppProps> = ({ darkMode, loading, isLoggedIn, isAd
           />
         {process.env.NODE_ENV === 'production' && !isPlatform('hybrid') &&
           <div className="app">
-            <Intercom appID="ywg09h0a" alignment={'right'} {...intercomUser} />
+            {/* <Intercom appID="ywg09h0a" alignment={'right'} {...intercomUser} /> */}
           </div>
         }
       </IonApp>
