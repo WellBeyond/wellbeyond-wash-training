@@ -80,6 +80,8 @@ if ("function" === typeof importScripts) {
         ],
       })
     );
+
+    self.__WB_MANIFEST && self.__WB_MANIFEST;
   } else {
     console.error("Workbox could not be loaded. No offline support");
   }
