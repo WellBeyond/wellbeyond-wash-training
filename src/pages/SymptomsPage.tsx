@@ -41,9 +41,9 @@ import {
 import {loadDiagnosticLogs, setDiagnosticEngine, updateDiagnosticLog} from "../data/diagnostic/diagnostic.actions";
 // import {DiagnosticLog} from "../models/Diagnostic";
 
-interface SymptomMap {
-  [id: string]: boolean;
-}
+// interface SymptomMap {
+//   [id: string]: boolean;
+// }
 
 interface OwnProps extends RouteComponentProps {
   system: System;
