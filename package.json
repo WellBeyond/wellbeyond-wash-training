@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@babel/preset-env": "^7.24.0",
     "@capacitor-community/fcm": "file:plugins/fcm",
     "@capacitor-community/react-hooks": "0.0.11",
     "@capacitor/android": "^2.5.0",
