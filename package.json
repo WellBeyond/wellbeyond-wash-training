@@ -81,7 +81,7 @@
     "@types/googlemaps": "^3.43.3",
     "firebase-admin": "^9.11.1",
     "intercom-client": "^2.11.2",
-    "react-scripts": "4.0.3",
+    "react-scripts": "4.0.1",
     "typescript": "^3.9.10"
   }
 }
