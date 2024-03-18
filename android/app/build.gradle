@@ -2,12 +2,12 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 33
     defaultConfig {
         applicationId "com.wellbeyond.wash"
         minSdkVersion 21
-        targetSdkVersion 31
-        versionCode 8
+        targetSdkVersion 33
+        versionCode 9
         versionName "1.5.1"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
