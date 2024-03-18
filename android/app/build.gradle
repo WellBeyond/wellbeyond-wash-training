@@ -7,7 +7,7 @@ android {
         applicationId "com.wellbeyond.wash"
         minSdkVersion 21
         targetSdkVersion 33
-        versionCode 9
+        versionCode 10
         versionName "1.5.3"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
