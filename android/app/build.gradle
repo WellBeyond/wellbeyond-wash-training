@@ -6,7 +6,7 @@ android {
     defaultConfig {
         applicationId "com.wellbeyond.wash"
         minSdkVersion 21
-        targetSdkVersion 29
+        targetSdkVersion 31
         versionCode 8
         versionName "1.5.1"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
